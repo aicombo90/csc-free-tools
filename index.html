@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSC FREE TOOLS - আপনার সব কাজ একই জায়গায়</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Hind Siliguri', sans-serif; }
+        body { background-color: #f4f6f9; color: #333; line-height: 1.6; }
+        
+        /* ইউটিউব নোটিশ বার - লাল কালার এবং মোটা টেক্সট */
+        .youtube-notice-bar { background-color: #e53e3e; color: white; text-align: center; padding: 12px 20px; font-size: 16px; font-weight: 700; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .youtube-notice-bar strong { font-weight: 800; font-size: 18px; text-decoration: underline; }
+        .youtube-notice-bar a { color: #e53e3e; background-color: #ffffff; padding: 4px 12px; border-radius: 6px; text-decoration: none; margin-left: 10px; font-weight: 700; display: inline-block; transition: 0.2s; }
+        .youtube-notice-bar a:hover { background-color: #f1f5f9; transform: scale(1.02); }
+
+        header { background-color: #ffffff; padding: 15px 5%; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; }
+        
+        .logo { font-size: 24px; font-weight: 700; color: #1e3a8a; display: flex; align-items: center; gap: 8px; }
+        .logo i { color: #2563eb; }
+        
+        .nav-right-controls { display: flex; align-items: center; gap: 15px; }
+        
+        .search-box { position: relative; width: 280px; }
+        .search-box input { width: 100%; padding: 8px 35px 8px 15px; border-radius: 20px; border: 1px solid #cbd5e1; background-color: #f8fafc; outline: none; font-size: 14px; }
+        .search-box i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+        
+        /* ল্যাঙ্গুয়েজ ড্রপডাউন বাটন */
+        .language-switcher { position: relative; display: inline-block; }
+        .lang-btn { background-color: #2563eb; color: white; padding: 8px 16px; font-size: 14px; font-weight: 600; border: none; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: 0.2s; }
+        .lang-btn:hover { background-color: #1d4ed8; }
+        .lang-dropdown { display: none; position: absolute; right: 0; top: 100%; margin-top: 5px; background-color: white; min-width: 130px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-radius: 8px; z-index: 150; border: 1px solid #e2e8f0; overflow: hidden; }
+        .lang-dropdown a { color: #333; padding: 10px 15px; text-decoration: none; display: block; font-size: 14px; font-weight: 500; text-align: left; transition: 0.2s; }
+        .lang-dropdown a:hover { background-color: #f1f5f9; color: #2563eb; }
+        .language-switcher:hover .lang-dropdown { display: block; }
+
+        /* লাইভ চেঞ্জ: হিরো সেকশনের ব্যাকগ্রাউন্ড এখন হালকা নীল (Sky/Cyan Blue) */
+        .hero { text-align: center; padding: 55px 20px; background-color: #e0f2fe; border-bottom: 1px solid #bae6fd; }
+        .hero-badge { display: inline-block; background-color: #48bb78; color: white; padding: 4px 12px; border-radius: 15px; font-size: 13px; font-weight: 600; margin-bottom: 15px; }
+        .hero h1 { font-size: 38px; color: #1e3a8a; margin-bottom: 12px; font-weight: 800; }
+        
+        /* লাইভ চেঞ্জ: লেখার সাইজ বড়, কালার ডার্ক এবং অনেক বেশি স্পষ্ট/মোটা করা হয়েছে */
+        .hero p { font-size: 18px; color: #0f172a; font-weight: 600; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .section-title { font-size: 22px; color: #1a365d; margin-bottom: 30px; border-left: 4px solid #2563eb; padding-left: 10px; font-weight: 700; }
+        
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+        .tool-card { background-color: #ffffff; border-radius: 12px; padding: 35px 25px; text-align: center; border: 1px solid #cbd5e1; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 5px 15px rgba(0,0,0,0.04); }
+        .tool-card:hover { transform: translateY(-4px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); border-color: #2563eb; }
+        
+        .tool-icon { width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; margin: 0 auto 18px auto; }
+        .photoshop-icon { background-color: #ebf5ff; color: #2563eb; }
+        .pdf-icon { background-color: #fef2f2; color: #ef4444; }
+        .yt-icon { background-color: #fff5f5; color: #dc2626; }
+        
+        .tool-card h3 { font-size: 20px; color: #1e293b; margin-bottom: 12px; font-weight: 700; }
+        .tool-card p { font-size: 15.5px; color: #334155; font-weight: 500; margin-bottom: 22px; line-height: 1.6; text-align: center; }
+        
+        .btn { display: block; width: 100%; padding: 12px; background-color: #2563eb; color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; text-align: center; transition: background 0.2s; font-size: 15px; text-decoration: none; }
+        .btn:hover { background-color: #1d4ed8; }
+        
+        .info-feedback-section { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 50px; background-color: #ffffff; padding: 35px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .contact-info-box h3, .feedback-box h3 { color: #1a365d; font-size: 20px; margin-bottom: 15px; font-weight: 700; }
+        
+        .contact-method { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; }
+        .contact-method i { font-size: 20px; color: #2563eb; }
+        .contact-method div p { font-size: 12px; color: #64748b; }
+        .contact-method div h4 { font-size: 15px; color: #334155; font-weight: 600; }
+        
+        .feedback-form .form-group { margin-bottom: 15px; }
+        .feedback-form label { display: block; font-size: 14px; margin-bottom: 5px; color: #4a5568; font-weight: 500; }
+        .feedback-form input, .feedback-form textarea { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #cbd5e1; outline: none; font-size: 14px; }
+        
+        .submit-btn { background-color: #2563eb; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+        .submit-btn:hover { background-color: #1d4ed8; }
+
+        /* মোডাল */
+        .modal { display: none; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
+        .modal-content { background-color: #fff; margin: 5% auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 10px; text-align: center; position: relative; }
+        .close-btn { position: absolute; right: 20px; top: 10px; color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; }
+        
+        .upload-btn { display: inline-block; padding: 10px 20px; background-color: #4a5568; color: white; font-weight: 600; border-radius: 5px; cursor: pointer; margin-bottom: 15px; }
+        .preview-box { width: 150px; height: 180px; margin: 0 auto 15px auto; border: 2px dashed #cbd5e1; display: flex; justify-content: center; align-items: center; background-color: #f8fafc; }
+        .preview-box img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .input-group { text-align: left; margin-bottom: 15px; }
+        .input-group label { display: block; font-size: 14px; margin-bottom: 5px; color: #4a5568; }
+        .input-group input, .input-group select { width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #cbd5e1; }
+        
+        .slider-panel { display: none; background: #f1f5f9; padding: 12px; border-radius: 6px; margin-bottom: 15px; }
+        .slider-container { margin-bottom: 10px; text-align: left; }
+        .slider-container label { display: flex; justify-content: space-between; font-size: 13px; color: #4a5568; }
+        .slider-container input { width: 100%; margin-top: 4px; }
+        
+        .generate-btn { width: 100%; padding: 12px; background-color: #38a169; color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer; }
+        
+        footer { text-align: center; padding: 25px; background-color: #ffffff; color: #718096; margin-top: 40px; font-size: 14px; border-top: 1px solid #e2e8f0; }
+
+        @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-right-controls { width: 100%; justify-content: space-between; } .search-box { flex-grow: 1; } .info-feedback-section { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <!-- লাল ইউটিউব নোটিশ বার এবং বোল্ড টেক্সট -->
+    <div class="youtube-notice-bar" id="noticeBar">
+        <i class="fa-brands fa-youtube"></i> কোনো টুল ব্যবহার করতে সমস্যা হলে বা বিস্তারিত শিখতে আমাদের <strong id="noticeTxt">ইউটিউব ভিডিওটি দেখুন:</strong> 
+        <a href="https://youtube.com/@cscfreetools?si=2O7GFn-a8Yx7bovX" target="_blank" id="noticeBtn">চ্যানেল ভিজিট করুন</a>
+    </div>
+
+    <header>
+        <div class="navbar">
+            <div class="logo"><i class="fa-solid fa-laptop-code"></i> CSC FREE TOOLS</div>
+            
+            <div class="nav-right-controls">
+                <div class="search-box">
+                    <input type="text" id="searchBar" placeholder="প্রয়োজনীয় টুল খুঁজুন..." onkeyup="searchTools()">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                
+                <!-- ল্যাঙ্গুয়েজ ড্রপডাউন বাটন -->
+                <div class="language-switcher">
+                    <button class="lang-btn"><i class="fa-solid fa-globe"></i> <span id="langBtnText">ভাষা / Lang</span></button>
+                    <div class="lang-dropdown">
+                        <a href="#" onclick="changeLanguage('bn')">বাংলা</a>
+                        <a href="#" onclick="changeLanguage('en')">English</a>
+                        <a href="#" onclick="changeLanguage('hi')">हिन्दी</a>
+                        <a href="#" onclick="changeLanguage('ur')">اردو</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- লাইভ চেঞ্জ: ব্যানার ব্যাকগ্রাউন্ড এখন হালকা নীল এবং ডেসক্রিপশন বড় ও গাঢ় -->
+    <section class="hero">
+        <div class="hero-badge" id="heroBadge">১০০% নিরাপদ ও ফ্রি সার্ভিস</div>
+        <h1 id="heroTitle">আপনার সব কাজ করতে পারবেন একই জায়গায়</h1>
+        <p id="heroDesc">অনলাইন ফর্ম ফিলাপ, পাসপোর্ট ফটো তৈরি এবং ফাইল সাইজ কমানোর প্রফেশনাল ও সহজ ডিজিটাল প্ল্যাটফর্ম।</p>
+    </section>
+
+    <main class="container">
+        <h2 class="section-title" id="secTitle">আমাদের সমস্ত ডিজিটাল সেবা</h2>
+        
+        <div class="tools-grid" id="toolsGrid">
+            <div class="tool-card" data-name="photoshop image editor ফটোশপ ছবি এডিট পাসপোর্ট সাইজ">
+                <div>
+                    <div class="tool-icon photoshop-icon"><i class="fa-solid fa-camera"></i></div>
+                    <h3 id="t1Title">ফটোশপ স্টুডিও টুল</h3>
+                    <p id="t1Desc">অনলাইনে যেকোনো ছবির ব্যাকগ্রাউন্ড এক ক্লিকে পরিবর্তন করুন। ফেসের কালো দাগ দূর করে গ্লোয়িং ও স্মুথ করুন এবং ল্যাব প্রিন্টের জন্য একদম পারফেক্ট সাইজের পাসপোর্ট ফটো কাস্টমাইজ করে ডাউনলোড করুন।</p>
+                </div>
+                <button class="btn tOpenBtn" onclick="openStudioModal()">ওপেন টুল</button>
+            </div>
+            
+            <div class="tool-card" data-name="compress pdf পিডিএফ কমপ্রেস সাইজ কমানো">
+                <div>
+                    <div class="tool-icon pdf-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <h3 id="t2Title">কম্প্রেস PDF (সাইজ কমান)</h3>
+                    <p id="t2Desc">যেকোনো বড় আকারের পিডিএফ (PDF) ফাইলের কোয়ালিটি ও ভেতরের লেখা ১০০% ঠিক রেখে ফাইলের সাইজ বা এমবি (MB/KB) খুব সহজে কমিয়ে নিন। বিভিন্ন অনলাইন ফর্ম ফিলাপের জন্য এটি অত্যন্ত দরকারী টুল।</p>
+                </div>
+                <button class="btn tOpenBtn" onclick="openTool('PDF Compressor')">ওপেন টুল</button>
+            </div>
+            
+            <div class="tool-card" data-name="youtube thumbnail downloader ইউটিউব ভিডিও ইমেজ">
+                <div>
+                    <div class="tool-icon yt-icon"><i class="fa-solid fa-image"></i></div>
+                    <h3 id="t3Title">থাম্বনেইল ডাউনলোডার</h3>
+                    <p id="t3Desc">যেকোনো রানিং ইউটিউব ভিডিওর ইউআরএল (URL) বা লিংক এখানে পেস্ট করে সেই ভিডিওর মূল কভার ইমেজ বা থাম্বনেইলটি সম্পূর্ণ ফুল এইচডি (Full HD 1080p) কোয়ালিটিতে সরাসরি আপনার গ্যালারিতে সেভ করুন।</p>
+                </div>
+                <button class="btn tOpenBtn" onclick="openTool('Thumbnail Downloader')">ওপেন টুল</button>
+            </div>
+        </div>
+
+        <div class="info-feedback-section">
+            <div class="contact-info-box">
+                <h3 id="cTitle">যোগাযোগের মাধ্যম</h3>
+                <div class="contact-method">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <p id="cMob">মোবাইল নাম্বার</p>
+                        <h4>+91 8906139223</h4>
+                    </div>
+                </div>
+                <div class="contact-method">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <p id="cEmail">ইমেইল আইডি</p>
+                        <h4>cscfreetools@gmail.com</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feedback-box">
+                <h3 id="fTitle">আপনার মতামত জানান</h3>
+                <form class="feedback-form" onsubmit="handleFeedback(event)">
+                    <div class="form-group">
+                        <label id="lName">আপনার নাম:</label>
+                        <input type="text" id="fbName" placeholder="নাম লিখুন" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="lMsg">বার্তা:</label>
+                        <textarea id="fbMessage" rows="2" placeholder="এখানে লিখুন..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" id="fBtn">সাবমিট করুন</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- মোডাল প্যানেল -->
+    <div id="studioModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeStudioModal()">&times;</span>
+            <h3 style="margin-bottom: 15px;" id="mTitle">পাসポート ফটো এডিটর স্টুডিও</h3>
+            <label for="imageUpload" class="upload-btn" id="mSelect">ছবি সিলেক্ট করুন</label>
+            <input type="file" id="imageUpload" accept="image/*" style="display:none;" onchange="previewImage(event)">
+            <div class="preview-box">
+                <img id="imgPreview" src="#" alt="Preview" style="display:none;">
+                <span id="previewPlaceholder">কোনো ছবি নেই</span>
+            </div>
+            <div class="input-group">
+                <label id="mMode">মোড সিলেক্ট করুন (Select Mode):</label>
+                <select id="modeSelect" onchange="toggleModeSliders()">
+                    <option value="A">A (Fast Mode)</option>
+                    <option value="B">B (Pro Mode)</option>
+                    <option value="C">C (AI Background Remove)</option>
+                    <option value="D" selected>D (Ultra Smooth & Bright)</option>
+                </select>
+            </div>
+            <div class="slider-panel" id="sliderPanel" style="display: block;">
+                <div class="slider-container">
+                    <label><span id="mBright">ব্রাইটনেস (Brightness):</span> <span id="brightVal">100%</span></label>
+                    <input type="range" id="brightnessSlider" min="70" max="130" value="100" oninput="updateFilters()">
+                </div>
+                <div class="slider-container">
+                    <label><span id="mSmooth">স্মুথনেস (Face Smooth):</span> <span id="smoothVal">0%</span></label>
+                    <input type="range" id="smoothSlider" min="0" max="4" value="0" step="1" oninput="updateFilters()">
+                </div>
+            </div>
+            <div class="input-group">
+                <label id="mCopies">কপি সংখ্যা (Number of Copies):</label>
+                <input type="number" id="copiesInput" value="8" min="1">
+            </div>
+            <button class="generate-btn" id="genBtn" onclick="generateA4()">A4 প্রিন্ট ফাইল তৈরি করুন</button>
+        </div>
+    </div>
+
+    <canvas id="photoCanvas" style="display:none;"></canvas>
+    <canvas id="a4Canvas" style="display:none;"></canvas>
+
+    <footer>
+        <p>&copy; 2026 <strong>CSC FREE TOOLS</strong>. <span id="footText">সর্বস্বত্ব সংরক্ষিত।</span></p>
+    </footer>
+
+    <script>
+        // ডাইনামিক রিয়েল ল্যাঙ্গুয়েজ ট্রান্সলেশন ডাটাবেস
+        const translations = {
+            bn: {
+                search: "প্রয়োজনীয় টুল খুঁজুন...", lang: "ভাষা / Lang",
+                noticeTxt: "ইউটিউব ভিডিওটি দেখুন:", noticeBtn: "চ্যানেল ভিজিট করুন",
+                badge: "১০০% নিরাপদ ও ফ্রি সার্ভিস", title: "আপনার সব কাজ করতে পারবেন একই জায়গায়",
+                desc: "অনলাইন ফর্ম ফিলাপ, পাসপোর্ট ফটো তৈরি এবং ফাইল সাইজ কমানোর প্রফেশনাল ও সহজ ডিজিটাল প্ল্যাটফর্ম।",
+                secTitle: "আমাদের সমস্ত ডিজিটাল সেবা",
+                t1T: "ফটোশপ স্টুডিও টুল", t1D: "অনলাইনে যেকোনো ছবির ব্যাকগ্রাউন্ড এক ক্লিকে পরিবর্তন করুন। ফেসের কালো দাগ দূর করে গলোয়িং ও স্মুথ করুন এবং ল্যাব প্রিন্টের জন্য একদম পারফেক্ট সাইজের পাসপোর্ট ফটো কাস্টমাইজ করে ডাউনলোড করুন।",
+                t2T: "কম্প্রেস PDF (সাইজ কমান)", t2D: "যেকোনো বড় আকারের পিডিএফ (PDF) ফাইলের কোয়ালিটি ও ভেতরের লেখা ১০০% ঠিক রেখে ফাইলের সাইজ বা এমবি (MB/KB) খুব সহজে কমিয়ে নিন। বিভিন্ন অনলাইন ফর্ম ফিলাপের জন্য এটি অত্যন্ত দরকারী টুল।",
+                t3T: "থাম্বনেইল ডাউনলোডার", t3D: "যেকোনো রানিং ইউটিউব ভিডিওর ইউআরএল (URL) বা লিংক এখানে পেস্ট করে সেই ভিডিওর মূল কভার ইমেজ বা থাম্বনেইলটি সম্পূর্ণ ফুল এইচডি (Full HD 1080p) কোয়ালিটিতে সরাসরি আপনার গ্যালারিতে সেভ করুন।",
+                btnOpen: "ওপেন টুল", cTitle: "যোগাযোগের মাধ্যম", cMob: "মোবাইল নাম্বার", cEmail: "ইমেইল আইডি",
+                fTitle: "আপনার মতামত জানান", lName: "আপনার নাম:", lMsg: "বার্তা:", fBtn: "সাবমিট করুন",
+                fbPl: "নাম লিখুন", fbTxPl: "এখানে লিখুন...", foot: "সর্বস্বত্ব সংরক্ষিত।"
+            },
+            en: {
+                search: "Search tools here...", lang: "English",
+                noticeTxt: "Watch YouTube Video:", noticeBtn: "Visit Channel",
+                badge: "100% Safe & Free Service", title: "All Your Tasks Done in One Single Place",
+                desc: "Professional and easy digital platform for online form filling, passport photo creation, and file size reduction.",
+                secTitle: "Our Premium Digital Services",
+                t1T: "Photoshop Studio Tool", t1D: "Change any photo background in just one click online. Remove dark spots to make skin smooth/glowing, and instantly generate print-ready passport size photos.",
+                t2T: "Compress PDF (Reduce Size)", t2D: "Reduce the file size or MB/KB of large PDF documents easily while maintaining 100% text quality. Extremely helpful tool for online job/exam form submissions.",
+                t3T: "Thumbnail Downloader", t3D: "Simply paste any running YouTube video link or URL here to extract and save its original cover image or thumbnail in Full HD (1080p) directly to your gallery.",
+                btnOpen: "Open Tool", cTitle: "Contact Channels", cMob: "Mobile Number", cEmail: "Email Address",
+                fTitle: "Send Your Feedback", lName: "Your Name:", lMsg: "Message:", fBtn: "Submit Now",
+                fbPl: "Enter your name", fbTxPl: "Type here...", foot: "All Rights Reserved."
+            },
+            hi: {
+                search: "टूल खोजें...", lang: "हिन्दी",
+                noticeTxt: "यूट्यूब वीडियो देखें:", noticeBtn: "चैनल पर जाएं",
+                badge: "100% सुरक्षित और मुफ्त सेवा", title: "अपने सभी काम एक ही स्थान पर करें",
+                desc: "ऑनलाइन फॉर्म भरने, पासपोर्ट फोटो बनाने और फ़ाइल का साइज़ कम करने का एक आसान और व्यावसायिक डिजिटल प्लेटफॉर्म।",
+                secTitle: "हमारी सभी डिजिटल सेवाएं",
+                t1T: "फोटोशॉप स्टूडियो टूल", t1D: "किसी भी फोटो का बैकग्राउंड ऑनलाइन सिर्फ एक क्लिक में बदलें। चेहरे के दाग-धब्बों को साफ और स्मूथ करें और लैब प्रिंट के लिए एकदम सही साइज की पासपोर्ट फोटो तैयार करें।",
+                t2T: "कंप्रेस PDF (साइज़ घटाएं)", t2D: "बड़ी पीडीएफ फाइलों की क्वालिटी और टेक्स्ट को 100% सुरक्षित रखते हुए उनका साइज़ (MB/KB) आसानी से कम करें। ऑनलाइन फॉर्म भरने के लिए यह बहुत उपयोगी है।",
+                t3T: "थंबनेल डाउनलोडर", t3D: "किसी भी यूट्यूब वीडियो का लिंक यहां पेस्ट करें और उस वीडियो का मुख्य कवर इमेज या थंबनेल सीधे अपनी गैलरी में फुल एचडी (1080p) क्वालिटी में डाउनलोड करें।",
+                btnOpen: "टूल खोलें", cTitle: "संपर्क का माध्यम", cMob: "मोबाइल नंबर", cEmail: "ईमेल आईडी",
+                fTitle: "अपनी प्रतिक्रिया दें", lName: "आपका नाम:", lMsg: "संदेश:", fBtn: "सबमिट करें",
+                fbPl: "नाम दर्ज करें", fbTxPl: "यहाँ लिखें...", foot: "सर्वाधिकार सुरक्षित।"
+            },
+            ur: {
+                search: "ٹول تلاش کریں...", lang: "اردو",
+                noticeTxt: "یوٹیوب ویڈیو دیکھیں:", noticeBtn: "چینل پر جائیں",
+                badge: "100% محفوظ اور مفت سروس", title: "اپنے تمام کام ایک ہی جگہ پر کریں",
+                desc: "آن لائن فارم بھرنے، پاسپورٹ سائز تصویر بنانے، اور فائل کا سائز کم کرنے کا ایک آسان اور پروفیشنل ڈیجیٹل پلیٹ فارم۔",
+                secTitle: "ہماری تمام ڈیجیٹل خدمات",
+                t1T: "فوٹوشاپ اسٹوڈیو ٹول", t1D: "کسی بھی تصویر کا بیک گراؤنڈ آن لائن صرف ایک کلک میں تبدیل کریں۔ چہرے کے داغ دھبوں کو صاف اور اسموتھ کریں اور لیب پرنٹ کے لیے پاسپورٹ فوٹو تیار کریں۔",
+                t2T: "کمپریس PDF (سائز کم کریں)", t2D: "بڑی پی ڈی ایف فائلوں کی کوالٹی اور ٹیکسٹ کو 100% محفوظ رکھتے ہوئے ان کا سائز (MB/KB) آسانی سے کم کریں۔ آن لائن فارم بھرنے کے لیے یہ بہت مفید ہے۔",
+                t3T: "تھمب نیل ڈاؤنلوڈر", t3D: "کسی بھی یوٹیوب ویڈیو کا لنک یہاں پیسٹ کریں اور اس ویڈیو کا اصل کور امیج یا تھمب نیل براہ راست اپنی گیلری میں فل ایچ ڈی (1080p) کوالٹی میں ڈاؤن لوڈ کریں۔",
+                btnOpen: "ٹول کھولیں", cTitle: "رابطے کا ذریعہ", cMob: "موبائل نمبر", cEmail: "ای میل آئی ڈی",
+                fTitle: "اپنی رائے دیں", lName: "آپ کا نام:", lMsg: "پیغام:", fBtn: "جمع کریں",
+                fbPl: "نام لکھیں", fbTxPl: "یہاں لکھیں...", foot: "جملہ حقوق محفوظ ہیں۔"
+            }
+        };
+
+        // লাইভ ভাষা পরিবর্তন করার রিয়েল ফাংশন
+        function changeLanguage(lang) {
+            const data = translations[lang];
+            if (!data) return;
+
+            document.getElementById('searchBar').placeholder = data.search;
+            document.getElementById('langBtnText').innerText = data.lang;
+            document.getElementById('noticeTxt').innerText = data.noticeTxt;
+            document.getElementById('noticeBtn').innerText = data.noticeBtn;
+            document.getElementById('heroBadge').innerText = data.badge;
+            document.getElementById('heroTitle').innerText = data.title;
+            document.getElementById('heroDesc').innerText = data.desc;
+            document.getElementById('secTitle').innerText = data.secTitle;
+            
+            document.getElementById('t1Title').innerText = data.t1T;
+            document.getElementById('t1Desc').innerText = data.t1D;
+            document.getElementById('t2Title').innerText = data.t2T;
+            document.getElementById('t2Desc').innerText = data.t2D;
+            document.getElementById('t3Title').innerText = data.t3T;
+            document.getElementById('t3Desc').innerText = data.t3D;
+            
+            let openBtns = document.getElementsByClassName('tOpenBtn');
+            for(let btn of openBtns) { btn.innerText = data.btnOpen; }
+            
+            document.getElementById('cTitle').innerText = data.cTitle;
+            document.getElementById('cMob').innerText = data.cMob;
+            document.getElementById('cEmail').innerText = data.cEmail;
+            document.getElementById('fTitle').innerText = data.fTitle;
+            document.getElementById('lName').innerText = data.lName;
+            document.getElementById('lMsg').innerText = data.lMsg;
+            document.getElementById('fBtn').innerText = data.fBtn;
+            document.getElementById('fbName').placeholder = data.fbPl;
+            document.getElementById('fbMessage').placeholder = data.fbTxPl;
+            document.getElementById('footText').innerText = data.foot;
+        }
+
+        const REMOVE_BG_API_KEY = "igg155X4aLCG7ngEX1R9wNih"; 
+        let selectedSourceImage = null;
+        let originalFile = null;
+        let aiProcessedImage = null;
+
+        function openStudioModal() { document.getElementById('studioModal').style.display = "block"; toggleModeSliders(); }
+        function closeStudioModal() { document.getElementById('studioModal').style.display = "none"; }
+
+        function searchTools() {
+            let input = document.getElementById('searchBar').value.toLowerCase();
+            let cards = document.getElementsByClassName('tool-card');
+            for (let i = 0; i < cards.length; i++) {
+                let nameData = cards[i].getAttribute('data-name');
+                if (nameData && nameData.includes(input)) { cards[i].style.display = ""; } else { cards[i].style.display = "none"; }
+            }
+        }
+        function openTool(name) { alert(name + " টুলটি খুব শীঘ্রই লাইভ করা হবে!"); }
+
+        function toggleModeSliders() {
+            const mode = document.getElementById('modeSelect').value;
+            document.getElementById('sliderPanel').style.display = (mode === "D") ? "block" : "none";
+        }
+
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                originalFile = file;
+                aiProcessedImage = null;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgElement = document.getElementById('imgPreview');
+                    imgElement.src = e.target.result;
+                    imgElement.style.display = "block";
+                    document.getElementById('previewPlaceholder').style.display = "none";
+                    selectedSourceImage = new Image();
+                    selectedSourceImage.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function updateFilters() {
+            const bright = document.getElementById('brightnessSlider').value;
+            const smooth = document.getElementById('smoothSlider').value;
+            document.getElementById('brightVal').innerText = bright + "%";
+            document.getElementById('smoothVal').innerText = (smooth * 25) + "%";
+            
+            const imgElement = document.getElementById('imgPreview');
+            if(imgElement && imgElement.style.display === "block") {
+                imgElement.style.filter = `brightness(${bright}%) blur(${smooth * 0.3}px)`;
+            }
+        }
+
+        function handleFeedback(event) {
+            event.preventDefault();
+            alert("আপনার মূল্যবান মতামতের জন্য ধন্যবাদ!");
+            document.getElementById('fbName').value = "";
+            document.getElementById('fbMessage').value = "";
+        }
+
+        async function generateA4() {
+            if (!selectedSourceImage) { alert("দয়া করে একটি ছবি সিলেক্ট করুন!"); return; }
+            const copies = parseInt(document.getElementById('copiesInput').value) || 8;
+            const mode = document.getElementById('modeSelect').value;
+            const genBtn = document.getElementById('genBtn');
+            
+            let processingImage = selectedSourceImage;
+
+            if ((mode === "C" || mode === "D") && originalFile && !aiProcessedImage) {
+                genBtn.innerText = 'AI প্রক্রিয়াকরণ চলছে...';
+                genBtn.disabled = true;
+                try {
+                    const formData = new FormData();
+                    formData.append("image_file", originalFile);
+                    const response = await fetch("https://api.remove.bg/v1.0/removebg", {
+                        method: "POST",
+                        headers: { "X-Api-Key": REMOVE_BG_API_KEY },
+                        body: formData
+                    });
+                    if (response.ok) {
+                        const blob = await response.blob();
+                        aiProcessedImage = await new Promise((resolve) => {
+                            const img = new Image();
+                            img.onload = () => resolve(img);
+                            img.src = URL.createObjectURL(blob);
+                        });
+                        processingImage = aiProcessedImage;
+                    }
+                } catch (e) { console.log(e); }
+            }
+
+            genBtn.innerText = 'A4 প্রিন্ট ফাইল তৈরি করুন';
+            genBtn.disabled = false;
+
+            const pCanvas = document.getElementById('photoCanvas');
+            const pCtx = pCanvas.getContext('2d');
+            pCanvas.width = 413; pCanvas.height = 531;
+            pCtx.fillStyle = "white"; pCtx.fillRect(0, 0, 413, 531);
+            
+            if(mode === "D") {
+                pCtx.filter = `brightness(${document.getElementById('brightnessSlider').value}%) blur(${document.getElementById('smoothSlider').value * 0.3}px)`;
+            }
+            pCtx.drawImage(processingImage, 10, 10, 393, 511);
+            pCtx.filter = "none";
+            pCtx.strokeStyle = "#000000"; pCtx.lineWidth = 4; pCtx.strokeRect(0,0,413,531);
+
+            const a4Canvas = document.getElementById('a4Canvas');
+            const a4Ctx = a4Canvas.getContext('2d');
+            a4Canvas.width = 2480; a4Canvas.height = 3508;
+            a4Ctx.fillStyle = "white"; a4Ctx.fillRect(0, 0, 2480, 3508);
+
+            let x = 60, y = 60;
+            for (let i = 0; i < copies; i++) {
+                a4Ctx.drawImage(pCanvas, x, y);
+                x += 450;
+                if (x + 413 > 2480) { x = 60; y += 580; }
+            }
+
+            const link = document.createElement('a');
+            link.download = 'CSC_Print_Ready_A4.jpg';
+            link.href = a4Canvas.toDataURL('image/jpeg', 0.95);
+            link.click();
+        }
+    </script>
+</body>
+</html>
