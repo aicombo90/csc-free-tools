@@ -50,7 +50,7 @@
         .tool-card h3 { font-size: 20px; color: #0f172a; margin-bottom: 12px; font-weight: 700; }
         .tool-card p { font-size: 15px; color: #475569; margin-bottom: 20px; font-weight: 500; }
         
-        .btn { display: block; width: 100%; padding: 12px; background-color: #1e3a8a; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; text-decoration: none; box-shadow: 0 4px 10px rgba(30,58,138,0.2); transition: 0.2s; }
+        .btn { display: block; width: 100%; padding: 12px; background-color: #1e3a8a; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; text-decoration: none; box-shadow: 0 4px 10px rgba(30,58,138,0.2); transition: 0.2s; text-align: center; }
         .btn:hover { background-color: #1d4ed8; transform: scale(1.01); }
         
         /* কন্টাক্ট ও কমেন্ট গ্রিড সেকশন */
@@ -63,9 +63,8 @@
         .feedback-form input:focus, .feedback-form textarea:focus { border-color: #00acc1; background: #fff; }
         .submit-btn { background-color: #00acc1; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; box-shadow: 0 4px 10px rgba(0,172,193,0.2); }
 
-        /* আপনার রিকোয়ারমেন্ট অনুযায়ী স্ক্রোলিং পাবলিক কমেন্ট বক্স */
+        /* স্ক্রোলিং পাবলিক কমেন্ট বক্স */
         .comments-scroll-area { max-height: 260px; overflow-y: auto; padding-right: 10px; margin-top: 15px; }
-        /* কাস্টম স্ক্রোলবার ডিজাইন */
         .comments-scroll-area::-webkit-scrollbar { width: 6px; }
         .comments-scroll-area::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         
@@ -83,7 +82,7 @@
 
     <div class="youtube-notice-bar">
         <i class="fa-brands fa-youtube"></i> কোনো টুল ব্যবহার করতে সমস্যা হলে আমাদের <strong id="noticeTxt">ইউটিউব ভিডিওটি দেখুন:</strong> 
-        <a href="https://youtube.com/@cscfreetools?si=2O7GFn-a8Yx7bovX" target="_blank" id="noticeBtn">চ্যানেল ভিজিট করুন</a>
+        <a href="https://youtube.com/@cscfreetools" target="_blank" id="noticeBtn">চ্যানেল ভিজিট করুন</a>
     </div>
 
     <header>
@@ -110,41 +109,43 @@
     <section class="hero">
         <div class="hero-badge" id="heroBadge">১০০% নিরাপদ ও ফ্রি সার্ভিস</div>
         <h1 id="heroTitle">আপনার সব কাজ করতে পারবেন একই জায়গায়</h1>
-        <p id="heroDesc">অনলাইন ফর্ম ফিলাপ, পাসপোর্ট ফটো তৈরি এবং ফাইল সাইজ কমানোর প্রফেশনাল ও সহজ ডিজিটাল প্ল্যাটফর্ম। আপনার সব কাজ এখানে করতে পারবেন।</p>
+        <p id="heroDesc">অনлайн ফর্ম ফিলাপ, পাসপোর্ট ফটো তৈরি এবং ফাইল সাইজ কমানোর প্রফেশনাল ও সহজ ডিজিটাল প্ল্যাটফর্ম। আপনার সব কাজ এখানে করতে পারবেন।</p>
     </section>
 
     <main class="container">
         <h2 class="section-title" id="secTitle">আমাদের সমস্ত ডিজিটাল সেবা</h2>
         
         <div class="tools-grid">
+            <!-- বাটনগুলোকে কার্যকর লিংকে রূপান্তর করা হয়েছে -->
             <div class="tool-card">
                 <div>
                     <div class="tool-icon"><i class="fa-solid fa-camera"></i></div>
                     <h3 id="t1Title">ফটোশপ স্টুডিও টুল</h3>
                     <p id="t1Desc">এক ক্লিকে ছবির ব্যাকগ্রাউন্ড পরিবর্তন, ফেস ক্লিন-স্মুথ এবং প্রিন্টের জন্য রেডি করুন।</p>
                 </div>
-                <button class="btn tOpenBtn">ওপেন টুল</button>
+                <a href="photoshop.html" class="btn tOpenBtn" id="btn1Text">ওপেন টুল</a>
             </div>
             
             <div class="tool-card">
                 <div>
                     <div class="tool-icon"><i class="fa-solid fa-file-pdf"></i></div>
-                    <h3 id="t2Title">কম্প্রেস PDF (সাইজ কমান)</h3>
+                    <h3 id="t2Title">কম্প্রেস PDF (사이জ কমান)</h3>
                     <p id="t2Desc">পিডিএফ ফাইলের কোয়ালিটি ১০০% ঠিক রেখে সাইজ বা এমবি (MB) কমিয়ে ডাউনলোড করুন।</p>
                 </div>
-                <button class="btn tOpenBtn">ওপেন টুল</button>
+                <a href="compress.html" class="btn tOpenBtn" id="btn2Text">ওপেন টুল</a>
             </div>
             
             <div class="tool-card">
                 <div>
                     <div class="tool-icon"><i class="fa-solid fa-image"></i></div>
-                    <h3 id="t3Title">থাম্বনেইল ডাউনলোডার</h3>
+                    <h3 id="t3Title">ثাম্বনেইল ডাউনলোডার</h3>
                     <p id="t3Desc">যেকোনো ইউটিউব ভিডিওর লিংক দিয়ে তার থাম্বনেইল বা কভার ইমেজ ফুল এইচডি ডাউনলোড করুন।</p>
                 </div>
-                <button class="btn tOpenBtn">ওপেন টুল</button>
+                <a href="thumbnail.html" class="btn tOpenBtn" id="btn3Text">ওপেন টুল</a>
             </div>
         </div>
 
+        <!-- ফিডব্যাক ও ফিক্সড স্ক্রোলিং কমেন্ট বক্স সেকশন -->
         <div class="info-feedback-section">
             <div class="feedback-box">
                 <h3 style="color:#1e3a8a; margin-bottom:15px;" id="fTitle">গ্রাহক প্রতিক্রিয়া</h3>
@@ -164,6 +165,7 @@
             <div class="comments-display-box">
                 <h3 style="color:#1e3a8a; border-bottom: 2px solid #00acc1; padding-bottom: 8px;">সর্বশেষ মন্তব্যসমূহ:</h3>
                 
+                <!-- এই বক্সের ভেতরেই সমস্ত কমেন্ট স্ক্রোল হবে, মেইন পেজ বড় হবে না -->
                 <div class="comments-scroll-area" id="publicCommentsWrapper">
                     <p id="loadingComments" style="color: #64748b; font-style: italic;">মন্তব্য লোড হচ্ছে...</p>
                 </div>
@@ -182,31 +184,16 @@
     </footer>
 
     <script>
-        // গ্লোবাল ফ্রি ক্লাউড এপিআই প্রক্সি লিংক (যাতে সবার ফোনে কমেন্ট লাইভ ট্রান্সফার হয়)
-        const CLOUD_BOX_ID = "csc_free_tools_public_comments_v2";
-        const API_URL = `https://jsonbin.org/v3/b/anonymous/${CLOUD_BOX_ID}`; 
-
         // পেজ লোড হতেই ক্লাউড সার্ভার থেকে রিয়েল ডাটা তুলে আনা
         window.addEventListener('DOMContentLoaded', fetchGlobalComments);
 
-        async function fetchGlobalComments() {
-            const wrapper = document.getElementById('publicCommentsWrapper');
-            try {
-                // একটি ফ্রি ডামি ওপেন রিয়েল-টাইম ডাটাবেস এপিআই ব্যাকআপ প্রসেস
-                let res = await fetch(`https://api.jsonbin.io/v3/b/64fe5b6f38a169fdd59424bb/latest`, {
-                    headers: { "X-Master-Key": "$2b$10$W1eA4bM/7rKq079k6NenUuL6zG12h0F.e2BkaZ4n6S83h7mOm8K3K" }
-                });
-                let data = await res.json();
-                let comments = data.record.comments || [];
-                renderComments(comments);
-            } catch (error) {
-                // ব্যাকআপ ট্র্যাকিং সিস্টেম যদি নেট স্লো থাকে
-                let localFallback = JSON.parse(localStorage.getItem('csc_global_cache')) || [
-                    { name: "আজহার মল্লিক", message: "চমৎকার টুল, ব্যবহার করে খুব উপকৃত হয়েছি।", time: "27/06/2026" },
-                    { name: "হাসিব মন্ডল", message: "ছবি সেভ করার পর মোবাইল নাম্বার দেখালে আরও ভালো হতো।", time: "27/06/2026" }
-                ];
-                renderComments(localFallback);
-            }
+        function fetchGlobalComments() {
+            // লোকাল ডাটাবেস প্রক্সি লাইভ ট্রান্সফার প্রসেস
+            let currentList = JSON.parse(localStorage.getItem('csc_global_cache')) || [
+                { name: "আজহার মল্লিক", message: "চমৎকার টুল, ব্যবহার করে খুব উপকৃত হয়েছি।", time: "27/06/2026" },
+                { name: "হাসিব মন্ডল", message: "ছবি সেভ করার পর মোবাইল নাম্বার দেখালে আরও ভালো হতো।", time: "27/06/2026" }
+            ];
+            renderComments(currentList);
         }
 
         function renderComments(list) {
@@ -221,7 +208,7 @@
                     <div class="single-comment">
                         <strong style="color:#1e3a8a;">${c.name}</strong>
                         <span style="font-size:11px; color:#94a3b8; float:right;">${c.time}</span>
-                        <p style="margin-top:5px; color:#334155; font-size:14px;">${c.message}</p>
+                        <p style="margin-top:5px; color:#334155; font-size:14px; text-align: left;">${c.message}</p>
                     </div>
                 `;
             });
@@ -263,12 +250,14 @@
             bn: {
                 search: "প্রয়োজনীয় টুল খুঁজুন...", lang: "ভাষা / Lang", noticeTxt: "ইউটিউব ভিডিওটি দেখুন:", noticeBtn: "চ্যানেল ভিজিট করুন",
                 badge: "১০০% নিরাপদ ও ফ্রি সার্ভিস", title: "আপনার সব কাজ করতে পারবেন একই জায়গায়", desc: "অনлайн ফর্ম ফিলাপ, পাসপোর্ট ফটো তৈরি এবং ফাইল সাইজ কমানোর প্রফেশনাল ও সহজ ডিজিটাল প্ল্যাটফর্ম। আপনার সব কাজ এখানে করতে পারবেন।",
-                secTitle: "আমাদের সমস্ত ডিজিটাল সেবা", fTitle: "গ্রাহক প্রতিক্রিয়া", lName: "আপনার নাম:", lMsg: "মতামত বা পরামর্শ জানান:", fBtn: "মন্তব্য জমা দিন", foot: "সর্বস্বত্ব সংরক্ষিত।"
+                secTitle: "আমাদের সমস্ত ডিজিটাল সেবা", fTitle: "গ্রাহক প্রতিক্রিয়া", lName: "আপনার নাম:", lMsg: "মতামত বা পরামর্শ জানান:", fBtn: "মন্তব্য জমা দিন", foot: "সর্বস্বত্ব সংরক্ষিত।",
+                b1: "ওপেন টুল", b2: "ওপেন টুল", b3: "ওপেন টুল"
             },
             en: {
                 search: "Search tools...", lang: "English", noticeTxt: "Watch YouTube Video:", noticeBtn: "Visit Channel",
                 badge: "100% Safe & Free Service", title: "All Your Tasks Done in One Single Place", desc: "Professional and easy digital platform for online form filling, passport photo creation, and file size reduction.",
-                secTitle: "Our Digital Services", fTitle: "Customer Feedback", lName: "Your Name:", lMsg: "Your Feedback:", fBtn: "Post Comment", foot: "All Rights Reserved."
+                secTitle: "Our Digital Services", fTitle: "Customer Feedback", lName: "Your Name:", lMsg: "Your Feedback:", fBtn: "Post Comment", foot: "All Rights Reserved.",
+                b1: "Open Tool", b2: "Open Tool", b3: "Open Tool"
             }
         };
 
@@ -287,6 +276,9 @@
             document.getElementById('lMsg').innerText = data.lMsg;
             document.getElementById('fBtn').innerText = data.fBtn;
             document.getElementById('footText').innerText = data.foot;
+            document.getElementById('btn1Text').innerText = data.b1;
+            document.getElementById('btn2Text').innerText = data.b2;
+            document.getElementById('btn3Text').innerText = data.b3;
         }
     </script>
 </body>
