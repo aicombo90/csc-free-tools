@@ -6,98 +6,169 @@
     <title>CSC FREE TOOLS - আপনার সব কাজ একই জায়গায়</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --blue: #2563eb;
+            --blue-dark: #1d4ed8;
+            --blue-deep: #1e3a8a;
+            --bg: #f4f6f9;
+            --surface: #ffffff;
+            --border: #cbd5e1;
+            --border-soft: #e2e8f0;
+            --ink: #1e293b;
+            --ink-soft: #334155;
+            --muted: #64748b;
+            --muted-2: #718096;
+            --green: #16a34a;
+            --green-dark: #128a3e;
+            --badge-green: #48bb78;
+            --purple: #7c3aed;
+            --purple-dark: #6b2fd6;
+            --pdf-red: #ef4444;
+            --yt-red: #dc2626;
+            --notice-red: #e53e3e;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Hind Siliguri', sans-serif; }
-        body { background-color: #f4f6f9; color: #333; line-height: 1.6; }
-        
-        .youtube-notice-bar { background-color: #e53e3e; color: white; text-align: center; padding: 12px 20px; font-size: 16px; font-weight: 700; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        body { background-color: var(--bg); color: var(--ink-soft); line-height: 1.6; }
+
+        .youtube-notice-bar { background-color: var(--notice-red); color: white; text-align: center; padding: 12px 20px; font-size: 16px; font-weight: 700; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .youtube-notice-bar strong { font-weight: 800; font-size: 18px; text-decoration: underline; }
-        .youtube-notice-bar a { color: #e53e3e; background-color: #ffffff; padding: 4px 12px; border-radius: 6px; text-decoration: none; margin-left: 10px; font-weight: 700; display: inline-block; transition: 0.2s; }
+        .youtube-notice-bar a { color: var(--notice-red); background-color: #ffffff; padding: 4px 12px; border-radius: 6px; text-decoration: none; margin-left: 10px; font-weight: 700; display: inline-block; transition: 0.2s; }
         .youtube-notice-bar a:hover { background-color: #f1f5f9; transform: scale(1.02); }
 
-        header { background-color: #ffffff; padding: 15px 5%; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        /* ---------- Header: two-tier (utility strip + main nav) ---------- */
+        .header-utility { background-color: var(--blue-deep); color: #dbe4f7; font-size: 13px; padding: 7px 5%; }
+        .header-utility-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .header-utility-tagline { font-weight: 600; letter-spacing: 0.2px; }
+        .header-utility-contacts { display: flex; gap: 20px; }
+        .header-utility-contacts span { display: inline-flex; align-items: center; gap: 6px; }
+        .header-utility-contacts i { font-size: 12px; }
+        @media (max-width: 768px) { .header-utility-contacts { display: none; } }
+
+        header { background-color: var(--surface); padding: 15px 5%; border-bottom: 1px solid var(--border-soft); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; }
-        
-        .logo { font-size: 24px; font-weight: 700; color: #1e3a8a; display: flex; align-items: center; gap: 8px; }
-        .logo i { color: #2563eb; }
-        
+
+        .logo { font-size: 24px; font-weight: 700; color: var(--blue-deep); display: flex; align-items: center; gap: 8px; }
+        .logo i { color: var(--blue); }
+
         .nav-right-controls { display: flex; align-items: center; gap: 15px; }
-        
+
         .search-box { position: relative; width: 280px; }
-        .search-box input { width: 100%; padding: 8px 35px 8px 15px; border-radius: 20px; border: 1px solid #cbd5e1; background-color: #f8fafc; outline: none; font-size: 14px; }
+        .search-box input { width: 100%; padding: 8px 35px 8px 15px; border-radius: 20px; border: 1px solid var(--border); background-color: #f8fafc; outline: none; font-size: 14px; }
         .search-box i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
-        
+
         .language-switcher { position: relative; display: inline-block; }
-        .lang-btn { background-color: #2563eb; color: white; padding: 8px 16px; font-size: 14px; font-weight: 600; border: none; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: 0.2s; }
-        .lang-btn:hover { background-color: #1d4ed8; }
-        .lang-dropdown { display: none; position: absolute; right: 0; top: 100%; margin-top: 5px; background-color: white; min-width: 130px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-radius: 8px; z-index: 150; border: 1px solid #e2e8f0; overflow: hidden; }
+        .lang-btn { background-color: var(--blue); color: white; padding: 8px 16px; font-size: 14px; font-weight: 600; border: none; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: 0.2s; }
+        .lang-btn:hover { background-color: var(--blue-dark); }
+        .lang-dropdown { display: none; position: absolute; right: 0; top: 100%; margin-top: 5px; background-color: white; min-width: 130px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-radius: 8px; z-index: 150; border: 1px solid var(--border-soft); overflow: hidden; }
         .lang-dropdown a { color: #333; padding: 10px 15px; text-decoration: none; display: block; font-size: 14px; font-weight: 500; text-align: left; transition: 0.2s; }
-        .lang-dropdown a:hover { background-color: #f1f5f9; color: #2563eb; }
+        .lang-dropdown a:hover { background-color: #f1f5f9; color: var(--blue); }
         .language-switcher:hover .lang-dropdown { display: block; }
 
-        .hero { text-align: center; padding: 55px 20px; background-color: #e0f2fe; border-bottom: 1px solid #bae6fd; }
-        .hero-badge { display: inline-block; background-color: #48bb78; color: white; padding: 4px 12px; border-radius: 15px; font-size: 13px; font-weight: 600; margin-bottom: 15px; }
-        .hero h1 { font-size: 38px; color: #1e3a8a; margin-bottom: 12px; font-weight: 800; }
-        
-        .hero p { font-size: 18px; color: #0f172a; font-weight: 600; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+        /* ---------- Hero: split layout (copy left / visual right) ---------- */
+        .hero { padding: 55px 5% 0; background-color: #e0f2fe; border-bottom: 1px solid #bae6fd; overflow: hidden; }
+        .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 30px; }
+        .hero-content { padding-bottom: 45px; }
+        .hero-badge { display: inline-block; background-color: var(--badge-green); color: white; padding: 4px 12px; border-radius: 15px; font-size: 13px; font-weight: 600; margin-bottom: 15px; }
+        .hero h1 { font-size: 36px; color: var(--blue-deep); margin-bottom: 12px; font-weight: 800; line-height: 1.25; }
+        .hero p { font-size: 17px; color: #0f172a; font-weight: 600; line-height: 1.65; margin-bottom: 22px; }
 
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .section-title { font-size: 22px; color: #1a365d; margin-bottom: 30px; border-left: 4px solid #2563eb; padding-left: 10px; font-weight: 700; }
-        
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
-        .tool-card { background-color: #ffffff; border-radius: 12px; padding: 35px 25px; text-align: center; border: 1px solid #cbd5e1; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 5px 15px rgba(0,0,0,0.04); }
-        .tool-card:hover { transform: translateY(-4px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); border-color: #2563eb; }
-        
-        .tool-icon { width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; margin: 0 auto 18px auto; }
-        .photoshop-icon { background-color: #ebf5ff; color: #2563eb; }
-        .pdf-icon { background-color: #fef2f2; color: #ef4444; }
-        .yt-icon { background-color: #fff5f5; color: #dc2626; }
-        .annapurna-icon { background-color: #f0fdf4; color: #16a34a; }
-        
-        .tool-card h3 { font-size: 20px; color: #1e293b; margin-bottom: 12px; font-weight: 700; }
-        .tool-card p { font-size: 15.5px; color: #334155; font-weight: 500; margin-bottom: 22px; line-height: 1.6; text-align: center; }
-        
-        .btn { display: block; width: 100%; padding: 12px; background-color: #2563eb; color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; text-align: center; transition: background 0.2s; font-size: 15px; text-decoration: none; }
-        .btn:hover { background-color: #1d4ed8; }
-        
-        .info-feedback-section { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 50px; background-color: #ffffff; padding: 35px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        .contact-info-box h3, .feedback-box h3 { color: #1a365d; font-size: 20px; margin-bottom: 15px; font-weight: 700; }
-        
-        .contact-method { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; }
-        .contact-method i { font-size: 20px; color: #2563eb; }
-        .contact-method div p { font-size: 12px; color: #64748b; }
-        .contact-method div h4 { font-size: 15px; color: #334155; font-weight: 600; }
-        
+        .hero-trust-row { display: flex; flex-wrap: wrap; gap: 18px; }
+        .hero-trust-row span { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; color: var(--blue-deep); background: rgba(255,255,255,0.6); padding: 7px 14px; border-radius: 20px; border: 1px solid #bae6fd; }
+        .hero-trust-row i { color: var(--green); }
+
+        .hero-visual { position: relative; height: 300px; display: flex; align-items: center; justify-content: center; }
+        .hero-visual-card { position: absolute; background: var(--surface); border-radius: 14px; box-shadow: 0 12px 28px rgba(15,23,42,0.12); padding: 16px 20px; display: flex; align-items: center; gap: 12px; border: 1px solid var(--border-soft); }
+        .hero-visual-card i { font-size: 20px; width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+        .hero-visual-card span { font-size: 13.5px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+        .hvc-1 { top: 8px; left: 0; }
+        .hvc-1 i { background: #ebf5ff; color: var(--blue); }
+        .hvc-2 { top: 110px; right: 0; }
+        .hvc-2 i { background: #fef2f2; color: var(--pdf-red); }
+        .hvc-3 { bottom: 10px; left: 30px; }
+        .hvc-3 i { background: #f0fdf4; color: var(--green); }
+        @media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; } .hero-visual { display: none; } .hero-content { text-align: center; padding-bottom: 40px; } .hero-trust-row { justify-content: center; } }
+
+        .container { max-width: 1200px; margin: 45px auto; padding: 0 20px; }
+        .section-kicker { color: var(--blue); font-size: 13px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; display: block; }
+        .section-title { font-size: 22px; color: #1a365d; margin-bottom: 8px; border-left: 4px solid var(--blue); padding-left: 10px; font-weight: 700; }
+        .section-subtitle { color: var(--muted); font-size: 14.5px; margin-bottom: 30px; padding-left: 14px; }
+
+        /* ---------- Tool cards: icon-left horizontal layout ---------- */
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 22px; }
+        .tool-card { background-color: var(--surface); border-radius: 12px; padding: 26px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 18px; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 5px 15px rgba(0,0,0,0.04); }
+        .tool-card:hover { transform: translateY(-4px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); border-color: var(--blue); }
+
+        .tool-card-top { display: flex; gap: 16px; align-items: flex-start; text-align: left; }
+        .tool-icon { width: 56px; height: 56px; flex-shrink: 0; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        .photoshop-icon { background-color: #ebf5ff; color: var(--blue); }
+        .pdf-icon { background-color: #fef2f2; color: var(--pdf-red); }
+        .yt-icon { background-color: #fff5f5; color: var(--yt-red); }
+        .annapurna-icon { background-color: #f0fdf4; color: var(--green); }
+        .voter-icon { background-color: #f5f3ff; color: var(--purple); }
+
+        .tool-card-text { flex: 1; }
+        .tool-tag { display: inline-block; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--blue); background: #ebf5ff; padding: 3px 9px; border-radius: 5px; margin-bottom: 8px; }
+        .tool-card h3 { font-size: 18.5px; color: var(--ink); margin-bottom: 8px; font-weight: 700; }
+        .tool-card p { font-size: 14.5px; color: var(--ink-soft); font-weight: 500; line-height: 1.6; text-align: left; }
+
+        .btn { display: block; width: 100%; padding: 12px; background-color: var(--blue); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; text-align: center; transition: background 0.2s; font-size: 15px; text-decoration: none; }
+        .btn:hover { background-color: var(--blue-dark); }
+
+        /* ---------- Contact (dark panel) + Feedback (light) split ---------- */
+        .info-feedback-section { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 0; margin-top: 50px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(15,23,42,0.08); }
+        .contact-info-box { background: linear-gradient(155deg, var(--blue-deep) 0%, #142a63 100%); padding: 35px; color: #fff; }
+        .contact-info-box h3 { color: #fff; font-size: 20px; margin-bottom: 8px; font-weight: 700; }
+        .contact-info-box .cib-subtitle { color: #b9c8ee; font-size: 13.5px; margin-bottom: 22px; }
+        .feedback-box { background-color: var(--surface); padding: 35px; }
+        .feedback-box h3 { color: #1a365d; font-size: 20px; margin-bottom: 15px; font-weight: 700; }
+
+        .contact-method { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; background: rgba(255,255,255,0.08); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12); }
+        .contact-method i { font-size: 20px; color: #93b4f7; }
+        .contact-method div p { font-size: 12px; color: #b9c8ee; }
+        .contact-method div h4 { font-size: 15px; color: #fff; font-weight: 600; }
+
         .feedback-form .form-group { margin-bottom: 15px; }
         .feedback-form label { display: block; font-size: 14px; margin-bottom: 5px; color: #4a5568; font-weight: 500; }
-        .feedback-form input, .feedback-form textarea { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #cbd5e1; outline: none; font-size: 14px; }
-        
-        .submit-btn { background-color: #2563eb; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
-        .submit-btn:hover { background-color: #1d4ed8; }
+        .feedback-form input, .feedback-form textarea { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid var(--border); outline: none; font-size: 14px; }
+
+        .submit-btn { background-color: var(--blue); color: white; padding: 10px 20px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+        .submit-btn:hover { background-color: var(--blue-dark); }
+
+        @media (max-width: 768px) { .info-feedback-section { grid-template-columns: 1fr; } }
 
         .modal { display: none; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
         .modal-content { background-color: #fff; margin: 5% auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 10px; text-align: center; position: relative; }
+        .modal-content.wide { max-width: 620px; }
         .close-btn { position: absolute; right: 20px; top: 10px; color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; }
-        
+
+        .voter-services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
+        .voter-service-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px 12px; background-color: #f8fafc; border: 1px solid var(--border-soft); border-radius: 10px; text-decoration: none; transition: 0.2s; }
+        .voter-service-card:hover { background-color: #f5f3ff; border-color: var(--purple); transform: translateY(-3px); }
+        .voter-service-card i { font-size: 26px; color: var(--purple); }
+        .voter-service-card span { font-size: 14.5px; font-weight: 700; color: #1e293b; }
+        @media (max-width: 480px) { .voter-services-grid { grid-template-columns: 1fr; } }
+
         .upload-btn { display: inline-block; padding: 10px 20px; background-color: #4a5568; color: white; font-weight: 600; border-radius: 5px; cursor: pointer; margin-bottom: 15px; }
-        .preview-box { width: 150px; height: 180px; margin: 0 auto 15px auto; border: 2px dashed #cbd5e1; display: flex; justify-content: center; align-items: center; background-color: #f8fafc; }
+        .preview-box { width: 150px; height: 180px; margin: 0 auto 15px auto; border: 2px dashed var(--border); display: flex; justify-content: center; align-items: center; background-color: #f8fafc; }
         .preview-box img { width: 100%; height: 100%; object-fit: contain; }
-        
+
         .input-group { text-align: left; margin-bottom: 15px; }
         .input-group label { display: block; font-size: 14px; margin-bottom: 5px; color: #4a5568; }
-        .input-group input, .input-group select { width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #cbd5e1; }
-        
+        .input-group input, .input-group select { width: 100%; padding: 8px; border-radius: 4px; border: 1px solid var(--border); }
+
         .slider-panel { display: none; background: #f1f5f9; padding: 12px; border-radius: 6px; margin-bottom: 15px; }
         .slider-container { margin-bottom: 10px; text-align: left; }
         .slider-container label { display: flex; justify-content: space-between; font-size: 13px; color: #4a5568; }
         .slider-container input { width: 100%; margin-top: 4px; }
-        
-        .generate-btn { width: 100%; padding: 12px; background-color: #38a169; color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer; }
-        
-        footer { text-align: center; padding: 25px; background-color: #ffffff; color: #718096; margin-top: 40px; font-size: 14px; border-top: 1px solid #e2e8f0; }
 
-        @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-right-controls { width: 100%; justify-content: space-between; } .search-box { flex-grow: 1; } .info-feedback-section { grid-template-columns: 1fr; } }
+        .generate-btn { width: 100%; padding: 12px; background-color: #38a169; color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer; }
+
+        footer { text-align: center; padding: 25px; background-color: var(--surface); color: var(--muted-2); margin-top: 40px; font-size: 14px; border-top: 1px solid var(--border-soft); }
+
+        @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-right-controls { width: 100%; justify-content: space-between; } .search-box { flex-grow: 1; } }
     </style>
 </head>
 <body>
@@ -105,6 +176,16 @@
     <div class="youtube-notice-bar" id="noticeBar">
         <i class="fa-brands fa-youtube"></i> কোনো টুল ব্যবহার করতে সমস্যা হলে বা বিস্তারিত শিখতে আমাদের <strong id="noticeTxt">ইউটিউব ভিডিওটি দেখুন:</strong> 
         <a href="https://youtube.com/@cscfreetools?si=2O7GFn-a8Yx7bovX" target="_blank" id="noticeBtn">চ্যানেল ভিজিট করুন</a>
+    </div>
+
+    <div class="header-utility">
+        <div class="header-utility-inner">
+            <span class="header-utility-tagline">একটি বিশ্বস্ত ও নিরাপদ ডিজিটাল সেবা প্ল্যাটফর্ম</span>
+            <div class="header-utility-contacts">
+                <span><i class="fa-solid fa-phone"></i> +91 8906139223</span>
+                <span><i class="fa-solid fa-envelope"></i> cscfreetools@gmail.com</span>
+            </div>
+        </div>
     </div>
 
     <header>
@@ -131,55 +212,95 @@
     </header>
 
     <section class="hero">
-        <div class="hero-badge" id="heroBadge">১০০% নিরাপদ ও ফ্রি সার্ভিস</div>
-        <h1 id="heroTitle">আপনার সব কাজ করতে পারবেন একই জায়গায়</h1>
-        <p id="heroDesc">অনলাইন ফর্ম ফিলাপ, পাসপোর্ট ফটো তৈরি এবং ফাইল সাইজ কমানোর প্রফেশনাল ও সহজ ডিজিটাল প্ল্যাটফর্ম।</p>
+        <div class="hero-inner">
+            <div class="hero-content">
+                <div class="hero-badge" id="heroBadge">১০০% নিরাপদ ও ফ্রি সার্ভিস</div>
+                <h1 id="heroTitle">আপনার সব কাজ করতে পারবেন একই জায়গায়</h1>
+                <p id="heroDesc">অনলাইন ফর্ম ফিলাপ, পাসপোর্ট ফটো তৈরি এবং ফাইল সাইজ কমানোর প্রফেশনাল ও সহজ ডিজিটাল প্ল্যাটফর্ম।</p>
+                <div class="hero-trust-row">
+                    <span><i class="fa-solid fa-circle-check"></i> সম্পূর্ণ ফ্রি</span>
+                    <span><i class="fa-solid fa-circle-check"></i> কোনো রেজিস্ট্রেশন লাগবে না</span>
+                    <span><i class="fa-solid fa-circle-check"></i> দ্রুত ও সহজ ব্যবহার</span>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-visual-card hvc-1"><i class="fa-solid fa-camera"></i><span>পাসপোর্ট ফটো এডিটর</span></div>
+                <div class="hero-visual-card hvc-2"><i class="fa-solid fa-file-pdf"></i><span>PDF কম্প্রেসার</span></div>
+                <div class="hero-visual-card hvc-3"><i class="fa-solid fa-id-card"></i><span>ভোটার সেবা</span></div>
+            </div>
+        </div>
     </section>
 
     <main class="container">
+        <span class="section-kicker">আমাদের সেবাসমূহ</span>
         <h2 class="section-title" id="secTitle">আমাদের সমস্ত ডিজিটাল সেবা</h2>
+        <p class="section-subtitle">নিচের যেকোনো টুলে ক্লিক করে সাথে সাথে ব্যবহার শুরু করুন</p>
         
         <div class="tools-grid" id="toolsGrid">
             <div class="tool-card" data-name="photoshop image editor ফটোশপ ছবি এডিট পাসপোর্ট সাইজ">
-                <div>
+                <div class="tool-card-top">
                     <div class="tool-icon photoshop-icon"><i class="fa-solid fa-camera"></i></div>
-                    <h3 id="t1Title">ফটোশপ স্টুডিও টুল</h3>
-                    <p id="t1Desc">অনলাইনে যেকোনো ছবির ব্যাকগ্রাউন্ড এক ক্লিকে পরিবর্তন করুন। ফেসের কালো দাগ দূর করে গ্লোয়িং ও স্মুথ করুন এবং ল্যাব প্রিন্টের জন্য একদম পারফেক্ট সাইজের পাসপোর্ট ফটো কাস্টমাইজ করে ডাউনলোড করুন।</p>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">ফটো ও ইমেজ</span>
+                        <h3 id="t1Title">ফটোশপ স্টুডিও টুল</h3>
+                        <p id="t1Desc">অনলাইনে যেকোনো ছবির ব্যাকগ্রাউন্ড এক ক্লিকে পরিবর্তন করুন। ফেসের কালো দাগ দূর করে গ্লোয়িং ও স্মুথ করুন এবং ল্যাব প্রিন্টের জন্য একদম পারফেক্ট সাইজের পাসপোর্ট ফটো কাস্টমাইজ করে ডাউনলোড করুন।</p>
+                    </div>
                 </div>
                 <button class="btn tOpenBtn" onclick="openStudioModal()">ওপেন টুল</button>
             </div>
             
             <div class="tool-card" data-name="compress pdf পিডিএফ কমপ্রেস সাইজ কমানো">
-                <div>
+                <div class="tool-card-top">
                     <div class="tool-icon pdf-icon"><i class="fa-solid fa-file-pdf"></i></div>
-                    <h3 id="t2Title">কম্প্রেস PDF (সাইজ কমান)</h3>
-                    <p id="t2Desc">যেকোনো বড় আকারের পিডিএফ (PDF) ফাইলের কোয়ালিটি ও ভেতরের লেখা ১০০% ঠিক রেখে ফাইলের সাইজ বা এমবি (MB/KB) খুব সহজে কমিয়ে নিন। বিভিন্ন অনলাইন ফর্ম ফিলাপের জন্য এটি অত্যন্ত দরকারী টুল।</p>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">ডকুমেন্ট</span>
+                        <h3 id="t2Title">কম্প্রেস PDF (সাইজ কমান)</h3>
+                        <p id="t2Desc">যেকোনো বড় আকারের পিডিএফ (PDF) ফাইলের কোয়ালিটি ও ভেতরের লেখা ১০০% ঠিক রেখে ফাইলের সাইজ বা এমবি (MB/KB) খুব সহজে কমিয়ে নিন। বিভিন্ন অনলাইন ফর্ম ফিলাপের জন্য এটি অত্যন্ত দরকারী টুল।</p>
+                    </div>
                 </div>
                 <button class="btn tOpenBtn" onclick="openTool('PDF Compressor')">ওপেন টুল</button>
             </div>
             
             <div class="tool-card" data-name="youtube thumbnail downloader ইউটিউব ভিডিও ইমেজ">
-                <div>
+                <div class="tool-card-top">
                     <div class="tool-icon yt-icon"><i class="fa-solid fa-image"></i></div>
-                    <h3 id="t3Title">থাম্বনেইল ডাউনলোডার</h3>
-                    <p id="t3Desc">যেকোনো রানিং ইউটিউব ভিডিওর ইউআরএল (URL) বা লিংক এখানে পেস্ট করে সেই ভিডিওর মূল কভার ইমেজ বা থাম্বনেইলটি সম্পূর্ণ ফুল এইচডি (Full HD 1080p) কোয়ালিটিতে সরাসরি আপনার গ্যালারিতে সেভ করুন।</p>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">মিডিয়া</span>
+                        <h3 id="t3Title">থাম্বনেইল ডাউনলোডার</h3>
+                        <p id="t3Desc">যেকোনো রানিং ইউটিউব ভিডিওর ইউআরএল (URL) বা লিংক এখানে পেস্ট করে সেই ভিডিওর মূল কভার ইমেজ বা থাম্বনেইলটি সম্পূর্ণ ফুল এইচডি (Full HD 1080p) কোয়ালিটিতে সরাসরি আপনার গ্যালারিতে সেভ করুন।</p>
+                    </div>
                 </div>
                 <button class="btn tOpenBtn" onclick="openTool('Thumbnail Downloader')">ওপেন টুল</button>
             </div>
 
             <div class="tool-card" data-name="annapurna bhandar family level data collect অন্নপূর্ণা ভাণ্ডার ফ্যামিলি লেভেল ডেটা কালেক্ট">
-                <div>
+                <div class="tool-card-top">
                     <div class="tool-icon annapurna-icon"><i class="fa-solid fa-landmark"></i></div>
-                    <h3 id="t4Title">অন্নপূর্ণা ভাণ্ডার <span style="display:block; font-size:14px; color:#16a34a; font-weight:600; margin-top:4px;">(Family Level Data Collect)</span></h3>
-                    <p id="t4Desc">অন্নপূর্ণা ভাণ্ডার প্রকল্পের জন্য পরিবার ভিত্তিক তথ্য সহজে সংগ্রহ ও জমা করুন। সদস্যদের বিস্তারিত তথ্য এন্ট্রি করে দ্রুত ও নির্ভুলভাবে ডেটা কালেকশনের কাজ সম্পন্ন করুন।</p>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">সরকারি স্কিম</span>
+                        <h3 id="t4Title">অন্নপূর্ণা ভাণ্ডার <span style="display:block; font-size:14px; color:#16a34a; font-weight:600; margin-top:4px;">(Family Level Data Collect)</span></h3>
+                        <p id="t4Desc">অন্নপূর্ণা ভাণ্ডার প্রকল্পের জন্য পরিবার ভিত্তিক তথ্য সহজে সংগ্রহ ও জমা করুন। সদস্যদের বিস্তারিত তথ্য এন্ট্রি করে দ্রুত ও নির্ভুলভাবে ডেটা কালেকশনের কাজ সম্পন্ন করুন।</p>
+                    </div>
                 </div>
                 <button class="btn tOpenBtn" onclick="openAnnapurnaModal()">ওপেন টুল</button>
             </div>
-        </div>
 
+            <div class="tool-card" data-name="voter portal form 6 status check citizen registration ভোটার পোর্টাল">
+                <div class="tool-card-top">
+                    <div class="tool-icon voter-icon"><i class="fa-solid fa-id-card"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">ভোটার সেবা</span>
+                        <h3 id="t5Title">ভোটার পোর্টাল <span style="display:block; font-size:14px; color:#7c3aed; font-weight:600; margin-top:4px;">(Voter Services)</span></h3>
+                        <p id="t5Desc">নতুন ভোটার কার্ডের জন্য আবেদন, কার্ড সংশোধন, স্থানান্তর এবং স্ট্যাটাস চেক করার জন্য এই পোর্টালটি ব্যবহার করুন।</p>
+                    </div>
+                </div>
+                <button class="btn tOpenBtn" onclick="openVoterModal()">ওপেন টুল</button>
+            </div>
+        </div>
         <div class="info-feedback-section">
             <div class="contact-info-box">
                 <h3 id="cTitle">যোগাযোগের মাধ্যম</h3>
+                <p class="cib-subtitle">যেকোনো প্রশ্ন বা সহায়তার জন্য যোগাযোগ করুন</p>
                 <div class="contact-method">
                     <i class="fa-solid fa-phone"></i>
                     <div>
@@ -216,7 +337,7 @@
     <div id="studioModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeStudioModal()">&times;</span>
-            <h3 style="margin-bottom: 15px;" id="mTitle">পাসポート ফটো এডিটর স্টুডিও</h3>
+            <h3 style="margin-bottom: 15px;" id="mTitle">পাসপোর্ট ফটো এডিটর স্টুডিও</h3>
             <label for="imageUpload" class="upload-btn" id="mSelect">ছবি সিলেক্ট করুন</label>
             <input type="file" id="imageUpload" accept="image/*" style="display:none;" onchange="previewImage(event)">
             <div class="preview-box">
@@ -255,6 +376,33 @@
         <div style="background:#fff; margin:2% auto; width:95%; max-width:1150px; height:92vh; border-radius:12px; position:relative; overflow:hidden; box-shadow:0 10px 40px rgba(0,0,0,0.3);">
             <span class="close-btn" style="z-index:10; background:#fff; border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; top:8px; right:10px;" onclick="closeAnnapurnaModal()">&times;</span>
             <iframe id="annapurnaFrame" style="width:100%; height:100%; border:none;"></iframe>
+        </div>
+    </div>
+
+    <!-- ভোটার পোর্টাল মোডাল -->
+    <div id="voterModal" class="modal">
+        <div class="modal-content wide">
+            <span class="close-btn" onclick="closeVoterModal()">&times;</span>
+            <h3 style="margin-bottom: 5px; color:#1a365d;">ভোটার পোর্টাল</h3>
+            <p style="font-size:14px; color:#64748b; margin-bottom: 5px;">(Voter Services)</p>
+            <div class="voter-services-grid">
+                <a class="voter-service-card" href="https://voters.eci.gov.in/form6" target="_blank" rel="noopener">
+                    <i class="fa-solid fa-file-signature"></i>
+                    <span>New Voter Application Form 6</span>
+                </a>
+                <a class="voter-service-card" href="https://voters.eci.gov.in/form8" target="_blank" rel="noopener">
+                    <i class="fa-solid fa-database"></i>
+                    <span>Voter Collection</span>
+                </a>
+                <a class="voter-service-card" href="https://voters.eci.gov.in/home/track" target="_blank" rel="noopener">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    <span>Status Check</span>
+                </a>
+                <a class="voter-service-card" href="https://voters.eci.gov.in/signup" target="_blank" rel="noopener">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span>Citizen Registration</span>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -380,6 +528,9 @@
             document.getElementById('annapurnaModal').style.display = "none";
             document.getElementById('annapurnaFrame').srcdoc = "";
         }
+
+        function openVoterModal() { document.getElementById('voterModal').style.display = "block"; }
+        function closeVoterModal() { document.getElementById('voterModal').style.display = "none"; }
 
         function searchTools() {
             let input = document.getElementById('searchBar').value.toLowerCase();
