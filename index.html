@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSC FREE TOOLS - আপনার সব কাজ একই জায়গায়</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&display=swap');
 
@@ -169,6 +172,87 @@
         footer { text-align: center; padding: 25px; background-color: var(--surface); color: var(--muted-2); margin-top: 40px; font-size: 14px; border-top: 1px solid var(--border-soft); }
 
         @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-right-controls { width: 100%; justify-content: space-between; } .search-box { flex-grow: 1; } }
+
+        /* ---------- New tool icon colors ---------- */
+        .img-icon { background-color: #fff7ed; color: #ea580c; }
+        .qr-icon { background-color: #f0f9ff; color: #0284c7; }
+        .word-icon { background-color: #fdf4ff; color: #a21caf; }
+        .pass-icon { background-color: #fef9c3; color: #ca8a04; }
+        .unit-icon { background-color: #ecfdf5; color: #059669; }
+        .games-icon { background-color: #fff1f2; color: #e11d48; }
+        .img2pdf-icon { background-color: #eef2ff; color: #4338ca; }
+        .weight-icon { background-color: #fefce8; color: #a16207; }
+        .combo-icon-doc { background-color: #fef2f2; color: var(--pdf-red); }
+        .combo-icon-util { background-color: #f5f3ff; color: var(--purple); }
+
+        /* ---------- Combo cards (multiple tools grouped in one card) ---------- */
+        .combo-list { display: flex; flex-direction: column; gap: 10px; }
+        .combo-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; background-color: #f8fafc; border: 1px solid var(--border-soft); border-radius: 8px; transition: 0.2s; }
+        .combo-item:hover { background-color: #eef2ff; border-color: var(--blue); }
+        .combo-item-label { display: flex; align-items: center; gap: 10px; font-size: 14.5px; font-weight: 600; color: var(--ink); }
+        .combo-item-label i { width: 20px; text-align: center; color: var(--blue); font-size: 15px; }
+        .combo-btn { padding: 7px 16px; background-color: var(--blue); color: #fff; border: none; border-radius: 6px; font-weight: 700; font-size: 13px; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+        .combo-btn:hover { background-color: var(--blue-dark); }
+
+        /* ---------- New tool modal shared styles ---------- */
+        .tool-modal-body { text-align: left; max-height: 72vh; overflow-y: auto; padding-right: 4px; }
+        .field-label { display: block; font-size: 13px; font-weight: 700; color: #4a5568; margin: 12px 0 6px; }
+        .tool-select, .tool-input, .tool-textarea { width: 100%; padding: 9px; border-radius: 6px; border: 1px solid var(--border); font-size: 14px; outline: none; }
+        .tool-textarea { resize: vertical; min-height: 100px; }
+        .hint-text { font-size: 12.5px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+        .result-panel { margin-top: 14px; padding: 12px; background: #f8fafc; border-radius: 8px; border: 1px solid var(--border-soft); font-size: 14px; line-height: 1.6; }
+        .dl-link { display: none; margin-top: 10px; text-align: center; }
+
+        .thumb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+        .thumb-item { background: #f8fafc; border: 1px solid var(--border-soft); border-radius: 8px; padding: 8px; text-align: center; }
+        .thumb-item img { width: 100%; border-radius: 5px; margin-bottom: 6px; display: block; }
+        .thumb-item p { font-size: 12px; margin-bottom: 6px; color: var(--muted); font-weight: 600; }
+        @media (max-width: 480px) { .thumb-grid { grid-template-columns: 1fr; } }
+
+        .stat-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-top: 14px; }
+        .stat-box { background: #f8fafc; border: 1px solid var(--border-soft); border-radius: 8px; padding: 12px; text-align: center; }
+        .stat-box b { display: block; font-size: 22px; color: var(--blue-deep); }
+        .stat-box span { font-size: 12px; color: var(--muted); font-weight: 600; }
+
+        .pass-output-row { display: flex; gap: 8px; margin-top: 14px; }
+        .pass-output-row input { flex: 1; padding: 10px; border-radius: 6px; border: 1px solid var(--border); font-family: monospace; font-size: 15px; }
+        .pass-output-row button { padding: 0 16px; border: none; border-radius: 6px; background: var(--blue); color: #fff; cursor: pointer; font-weight: 700; }
+        .pass-check-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0; }
+        .pass-check-row label { font-size: 13px; display: flex; align-items: center; gap: 5px; font-weight: 600; color: var(--ink-soft); }
+        .strength-bar { height: 8px; border-radius: 4px; background: #e2e8f0; margin-top: 12px; overflow: hidden; }
+        .strength-bar div { height: 100%; width: 0%; transition: 0.3s; border-radius: 4px; }
+
+        .unit-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+
+        .img-preview-box { width: 100%; max-height: 220px; overflow: hidden; border: 2px dashed var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 12px 0; background: #f8fafc; }
+        .img-preview-box img { max-width: 100%; max-height: 220px; object-fit: contain; }
+        .img2pdf-list { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+        .img2pdf-list div { position: relative; }
+        .img2pdf-list img { width: 64px; height: 64px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border-soft); display: block; }
+        .img2pdf-list span { position: absolute; top: -6px; right: -6px; background: var(--pdf-red); color: #fff; width: 18px; height: 18px; border-radius: 50%; font-size: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 700; }
+
+        /* ---------- Games ---------- */
+        .games-modal-content { max-width: 560px; }
+        .game-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; justify-content: center; }
+        .game-tab-btn { padding: 8px 14px; border-radius: 20px; border: 1px solid var(--border); background: #f8fafc; cursor: pointer; font-weight: 700; font-size: 13px; color: var(--ink-soft); }
+        .game-tab-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+        .game-panel { display: none; }
+        .game-panel.active { display: block; text-align: center; }
+
+        .ttt-board { display: grid; grid-template-columns: repeat(3,80px); grid-template-rows: repeat(3,80px); gap: 6px; justify-content: center; margin: 14px auto; }
+        .ttt-cell { background: #f1f5f9; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 800; cursor: pointer; color: var(--blue-deep); }
+        .ttt-cell:hover { background: #e2e8f0; }
+
+        .mem-board { display: grid; grid-template-columns: repeat(4,64px); grid-template-rows: repeat(4,64px); gap: 6px; justify-content: center; margin: 14px auto; }
+        .mem-cell { background: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 26px; cursor: pointer; color: transparent; user-select: none; transition: 0.15s; }
+        .mem-cell.flipped, .mem-cell.matched { background: #f1f5f9; color: #000; }
+
+        .g2048-board { display: grid; grid-template-columns: repeat(4,64px); grid-template-rows: repeat(4,64px); gap: 6px; justify-content: center; margin: 14px auto; background: #cbd5e1; padding: 6px; border-radius: 10px; width: max-content; }
+        .g2048-cell { background: #e2e8f0; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; color: #334155; }
+
+        .game-score { font-weight: 700; color: var(--blue-deep); margin-bottom: 6px; }
+        .game-btn { margin-top: 12px; padding: 9px 20px; border: none; border-radius: 6px; background: var(--green); color: #fff; font-weight: 700; cursor: pointer; }
+        .game-btn:hover { background: var(--green-dark); }
     </style>
 </head>
 <body>
@@ -249,28 +333,70 @@
                 <button class="btn tOpenBtn" onclick="openStudioModal()">ওপেন টুল</button>
             </div>
             
-            <div class="tool-card" data-name="compress pdf পিডিএফ কমপ্রেস সাইজ কমানো">
+            <div class="tool-card combo-card" data-name="compress pdf পিডিএফ কমপ্রেস সাইজ কমানো image resize compress ছবি রিসাইজ কমপ্রেস ইমেজ image to pdf converter ছবি থেকে পিডিএফ কনভার্ট unit converter এককের রূপান্তর কনভার্টার land area converter decimal to acre bigha katha জমির পরিমাপ ডেসিমেল একর বিঘা কাঠা রূপান্তর ডকুমেন্ট ও ইমেজ টুলস">
                 <div class="tool-card-top">
-                    <div class="tool-icon pdf-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="tool-icon combo-icon-doc"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="tool-card-text">
-                        <span class="tool-tag">ডকুমেন্ট</span>
-                        <h3 id="t2Title">কম্প্রেস PDF (সাইজ কমান)</h3>
-                        <p id="t2Desc">যেকোনো বড় আকারের পিডিএফ (PDF) ফাইলের কোয়ালিটি ও ভেতরের লেখা ১০০% ঠিক রেখে ফাইলের সাইজ বা এমবি (MB/KB) খুব সহজে কমিয়ে নিন। বিভিন্ন অনলাইন ফর্ম ফিলাপের জন্য এটি অত্যন্ত দরকারী টুল।</p>
+                        <span class="tool-tag">ডকুমেন্ট ও ইমেজ</span>
+                        <h3>ডকুমেন্ট ও ইমেজ টুলস</h3>
+                        <p>পিডিএফ ও ইমেজ সংক্রান্ত সব দরকারি টুল একই জায়গায় — কমপ্রেস, রিসাইজ, কনভার্ট সব এখান থেকেই করুন।</p>
                     </div>
                 </div>
-                <button class="btn tOpenBtn" onclick="openTool('PDF Compressor')">ওপেন টুল</button>
+                <div class="combo-list">
+                    <div class="combo-item">
+                        <span class="combo-item-label"><i class="fa-solid fa-file-pdf"></i> কম্প্রেস PDF (সাইজ কমান)</span>
+                        <button class="combo-btn" onclick="openPdfCompressModal()">ওপেন</button>
+                    </div>
+                    <div class="combo-item">
+                        <span class="combo-item-label"><i class="fa-solid fa-compress"></i> ইমেজ রিসাইজার ও কম্প্রেসার</span>
+                        <button class="combo-btn" onclick="openImgToolModal()">ওপেন</button>
+                    </div>
+                    <div class="combo-item">
+                        <span class="combo-item-label"><i class="fa-solid fa-file-import"></i> ইমেজ টু PDF কনভার্টার</span>
+                        <button class="combo-btn" onclick="openImg2PdfModal()">ওপেন</button>
+                    </div>
+                    <div class="combo-item">
+                        <span class="combo-item-label"><i class="fa-solid fa-arrow-right-arrow-left"></i> ইউনিট কনভার্টার</span>
+                        <button class="combo-btn" onclick="openUnitModal()">ওপেন</button>
+                    </div>
+                    <div class="combo-item">
+                        <span class="combo-item-label"><i class="fa-solid fa-map"></i> জমির পরিমাপ কনভার্টার (ডেসিমেল-একর-বিঘা)</span>
+                        <button class="combo-btn" onclick="openLandModal()">ওপেন</button>
+                    </div>
+                </div>
             </div>
-            
-            <div class="tool-card" data-name="youtube thumbnail downloader ইউটিউব ভিডিও ইমেজ">
+
+            <div class="tool-card combo-card" data-name="youtube thumbnail downloader ইউটিউব ভিডিও ইমেজ games খেলা গেম টিক ট্যাক টো মেমরি স্নেক 2048 password generator পাসওয়ার্ড তৈরি জেনারেটর qr code generator কিউআর কোড তৈরি জেনারেটর weight converter ওজন কনভার্টার ক্যালকুলেটর কেজি গ্রাম পাউন্ড ইউটিলিটি ও মজার টুলস">
                 <div class="tool-card-top">
-                    <div class="tool-icon yt-icon"><i class="fa-solid fa-image"></i></div>
+                    <div class="tool-icon combo-icon-util"><i class="fa-solid fa-layer-group"></i></div>
                     <div class="tool-card-text">
-                        <span class="tool-tag">মিডিয়া</span>
-                        <h3 id="t3Title">থাম্বনেইল ডাউনলোডার</h3>
-                        <p id="t3Desc">যেকোনো রানিং ইউটিউব ভিডিওর ইউআরএল (URL) বা লিংক এখানে পেস্ট করে সেই ভিডিওর মূল কভার ইমেজ বা থাম্বনেইলটি সম্পূর্ণ ফুল এইচডি (Full HD 1080p) কোয়ালিটিতে সরাসরি আপনার গ্যালারিতে সেভ করুন।</p>
+                        <span class="tool-tag">ইউটিলিটি ও মজা</span>
+                        <h3>ইউটিলিটি ও মজার টুলস</h3>
+                        <p>থাম্বনেইল ডাউনলোড, গেমস, পাসওয়ার্ড জেনারেটর, QR কোড এবং ওজন কনভার্টার — সব একসাথে এই কার্ডে।</p>
                     </div>
                 </div>
-                <button class="btn tOpenBtn" onclick="openTool('Thumbnail Downloader')">ওপেন টুল</button>
+                <div class="combo-list">
+                    <div class="combo-item">
+                        <span class="combo-item-label"><i class="fa-solid fa-image"></i> থাম্বনেইল ডাউনলোডার</span>
+                        <button class="combo-btn" onclick="openThumbModal()">ওপেন</button>
+                    </div>
+                    <div class="combo-item">
+                        <span class="combo-item-label"><i class="fa-solid fa-gamepad"></i> গেমস (Games)</span>
+                        <button class="combo-btn" onclick="openGamesModal()">ওপেন</button>
+                    </div>
+                    <div class="combo-item">
+                        <span class="combo-item-label"><i class="fa-solid fa-key"></i> পাসওয়ার্ড জেনারেটর</span>
+                        <button class="combo-btn" onclick="openPasswordModal()">ওপেন</button>
+                    </div>
+                    <div class="combo-item">
+                        <span class="combo-item-label"><i class="fa-solid fa-qrcode"></i> QR কোড জেনারেটর</span>
+                        <button class="combo-btn" onclick="openQRModal()">ওপেন</button>
+                    </div>
+                    <div class="combo-item">
+                        <span class="combo-item-label"><i class="fa-solid fa-weight-hanging"></i> ওজন কনভার্টার</span>
+                        <button class="combo-btn" onclick="openWeightModal()">ওপেন</button>
+                    </div>
+                </div>
             </div>
 
             <div class="tool-card" data-name="annapurna bhandar family level data collect অন্নপূর্ণা ভাণ্ডার ফ্যামিলি লেভেল ডেটা কালেক্ট">
@@ -296,6 +422,19 @@
                 </div>
                 <button class="btn tOpenBtn" onclick="openVoterModal()">ওপেন টুল</button>
             </div>
+
+            <div class="tool-card" data-name="word character counter শব্দ ক্যারেক্টার গণনা">
+                <div class="tool-card-top">
+                    <div class="tool-icon word-icon"><i class="fa-solid fa-font"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">ইউটিলিটি</span>
+                        <h3>ওয়ার্ড ও ক্যারেক্টার কাউন্টার</h3>
+                        <p>যেকোনো লেখার শব্দ সংখ্যা, অক্ষর সংখ্যা, বাক্য সংখ্যা এবং পড়ার আনুমানিক সময় সাথে সাথে জেনে নিন।</p>
+                    </div>
+                </div>
+                <button class="btn tOpenBtn" onclick="openWordCounterModal()">ওপেন টুল</button>
+            </div>
+
         </div>
         <div class="info-feedback-section">
             <div class="contact-info-box">
@@ -402,6 +541,315 @@
                     <i class="fa-solid fa-user-plus"></i>
                     <span>Citizen Registration</span>
                 </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF কম্প্রেসার / রিসাইজার মোডাল -->
+    <div id="pdfCompressModal" class="modal">
+        <div class="modal-content wide">
+            <span class="close-btn" onclick="closeGenericModal('pdfCompressModal')">&times;</span>
+            <h3 style="margin-bottom: 15px; color:#1a365d;">PDF কম্প্রেসার / রিসাইজার</h3>
+            <div class="tool-modal-body">
+                <label class="field-label">PDF ফাইল সিলেক্ট করুন</label>
+                <input type="file" id="pdfCompressFile" accept="application/pdf" class="tool-input" onchange="onPdfFileSelected(event)">
+                <p class="hint-text" id="pdfFileInfo"></p>
+
+                <label class="field-label">কম্প্রেশন লেভেল</label>
+                <select id="pdfCompressQuality" class="tool-select">
+                    <option value="0.8">হালকা (Light) - ভালো কোয়ালিটি</option>
+                    <option value="0.5" selected>মাঝারি (Medium) - রেকমেন্ডেড</option>
+                    <option value="0.3">সর্বোচ্চ (High) - সবচেয়ে ছোট সাইজ</option>
+                </select>
+
+                <p class="hint-text">⚠️ এই টুলটি প্রতিটি পেজ ছবি আকারে প্রসেস করে সাইজ কমায়, তাই এটি স্ক্যান করা বা ছবি সমৃদ্ধ PDF-এর জন্য সবচেয়ে ভালো কাজ করে। কম্প্রেসের পর লেখা সিলেক্ট/কপি করা যাবে না।</p>
+
+                <button class="generate-btn" id="pdfCompressBtn" onclick="compressPDF()">কম্প্রেস করুন</button>
+
+                <div class="result-panel" id="pdfCompressStatus" style="display:none;"></div>
+                <a id="pdfCompressDownload" class="btn dl-link" download>ডাউনলোড করুন</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- থাম্বনেইল ডাউনলোডার মোডাল -->
+    <div id="thumbModal" class="modal">
+        <div class="modal-content wide">
+            <span class="close-btn" onclick="closeGenericModal('thumbModal')">&times;</span>
+            <h3 style="margin-bottom: 15px; color:#1a365d;">থাম্বনেইল ডাউনলোডার</h3>
+            <div class="tool-modal-body">
+                <label class="field-label">ইউটিউব ভিডিওর লিংক পেস্ট করুন</label>
+                <input type="text" id="ytUrlInput" class="tool-input" placeholder="https://www.youtube.com/watch?v=...">
+                <button class="generate-btn" style="margin-top:10px;" onclick="fetchThumbnail()">থাম্বনেইল দেখুন</button>
+                <div id="thumbResult"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ইমেজ রিসাইজার/কম্প্রেসার মোডাল -->
+    <div id="imgToolModal" class="modal">
+        <div class="modal-content wide">
+            <span class="close-btn" onclick="closeGenericModal('imgToolModal')">&times;</span>
+            <h3 style="margin-bottom: 15px; color:#1a365d;">ইমেজ রিসাইজার ও কম্প্রেসার</h3>
+            <div class="tool-modal-body">
+                <label class="upload-btn" for="imgToolFile">ছবি সিলেক্ট করুন</label>
+                <input type="file" id="imgToolFile" accept="image/*" style="display:none;" onchange="loadImgTool(event)">
+                <div class="img-preview-box"><span id="imgToolPlaceholder">কোনো ছবি নেই</span><img id="imgToolPreview" style="display:none;"></div>
+
+                <div class="unit-row">
+                    <div>
+                        <label class="field-label">প্রস্থ (Width px)</label>
+                        <input type="number" id="imgToolWidth" class="tool-input" oninput="imgToolDimChange('w')">
+                    </div>
+                    <div>
+                        <label class="field-label">উচ্চতা (Height px)</label>
+                        <input type="number" id="imgToolHeight" class="tool-input" oninput="imgToolDimChange('h')">
+                    </div>
+                </div>
+                <label style="font-size:13px; display:flex; align-items:center; gap:6px; margin-top:10px; font-weight:600;">
+                    <input type="checkbox" id="imgToolAspect" checked> অনুপাত ঠিক রাখুন (Aspect Ratio)
+                </label>
+
+                <label class="field-label">কোয়ালিটি (Quality): <span id="imgToolQualVal">80%</span></label>
+                <input type="range" id="imgToolQuality" min="10" max="100" value="80" oninput="document.getElementById('imgToolQualVal').innerText=this.value+'%'">
+
+                <label class="field-label">ফরম্যাট</label>
+                <select id="imgToolFormat" class="tool-select">
+                    <option value="image/jpeg">JPG</option>
+                    <option value="image/png">PNG</option>
+                    <option value="image/webp">WebP</option>
+                </select>
+
+                <button class="generate-btn" onclick="processImgTool()">প্রসেস করে ডাউনলোড করুন</button>
+                <div class="result-panel" id="imgToolStatus" style="display:none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ইমেজ টু PDF মোডাল -->
+    <div id="img2pdfModal" class="modal">
+        <div class="modal-content wide">
+            <span class="close-btn" onclick="closeGenericModal('img2pdfModal')">&times;</span>
+            <h3 style="margin-bottom: 15px; color:#1a365d;">ইমেজ টু PDF কনভার্টার</h3>
+            <div class="tool-modal-body">
+                <label class="upload-btn" for="img2pdfFiles">ছবি সিলেক্ট করুন (একাধিক)</label>
+                <input type="file" id="img2pdfFiles" accept="image/*" multiple style="display:none;" onchange="loadImg2Pdf(event)">
+                <div class="img2pdf-list" id="img2pdfList"></div>
+                <button class="generate-btn" onclick="convertImg2Pdf()">PDF তৈরি করুন</button>
+                <div class="result-panel" id="img2pdfStatus" style="display:none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR কোড জেনারেটর মোডাল -->
+    <div id="qrModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeGenericModal('qrModal')">&times;</span>
+            <h3 style="margin-bottom: 15px; color:#1a365d;">QR কোড জেনারেটর</h3>
+            <div class="tool-modal-body">
+                <label class="field-label">টেক্সট / লিংক লিখুন</label>
+                <textarea id="qrInput" class="tool-textarea" placeholder="যেমন: https://example.com"></textarea>
+                <button class="generate-btn" onclick="generateQR()">QR কোড তৈরি করুন</button>
+                <div id="qrOutput" style="margin-top:15px; display:flex; justify-content:center;"></div>
+                <a id="qrDownload" class="btn dl-link" download="qrcode.png">ডাউনলোড করুন</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ওয়ার্ড কাউন্টার মোডাল -->
+    <div id="wordCounterModal" class="modal">
+        <div class="modal-content wide">
+            <span class="close-btn" onclick="closeGenericModal('wordCounterModal')">&times;</span>
+            <h3 style="margin-bottom: 15px; color:#1a365d;">ওয়ার্ড ও ক্যারেক্টার কাউন্টার</h3>
+            <div class="tool-modal-body">
+                <textarea id="wcInput" class="tool-textarea" style="min-height:160px;" placeholder="এখানে লিখুন বা পেস্ট করুন..." oninput="updateWordCount()"></textarea>
+                <div class="stat-grid">
+                    <div class="stat-box"><b id="wcWords">0</b><span>শব্দ (Words)</span></div>
+                    <div class="stat-box"><b id="wcChars">0</b><span>ক্যারেক্টার</span></div>
+                    <div class="stat-box"><b id="wcSentences">0</b><span>বাক্য</span></div>
+                    <div class="stat-box"><b id="wcReadTime">0 min</b><span>পড়ার সময়</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- পাসওয়ার্ড জেনারেটর মোডাল -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeGenericModal('passwordModal')">&times;</span>
+            <h3 style="margin-bottom: 15px; color:#1a365d;">পাসওয়ার্ড জেনারেটর</h3>
+            <div class="tool-modal-body">
+                <label class="field-label">দৈর্ঘ্য (Length): <span id="passLenVal">14</span></label>
+                <input type="range" id="passLength" min="6" max="32" value="14" oninput="document.getElementById('passLenVal').innerText=this.value">
+                <div class="pass-check-row">
+                    <label><input type="checkbox" id="passUpper" checked> বড় হাতের অক্ষর (A-Z)</label>
+                    <label><input type="checkbox" id="passLower" checked> ছোট হাতের অক্ষর (a-z)</label>
+                    <label><input type="checkbox" id="passNum" checked> সংখ্যা (0-9)</label>
+                    <label><input type="checkbox" id="passSym" checked> চিহ্ন (!@#$)</label>
+                </div>
+                <button class="generate-btn" onclick="generatePassword()">পাসওয়ার্ড তৈরি করুন</button>
+                <div class="pass-output-row">
+                    <input type="text" id="passOutput" readonly placeholder="আপনার পাসওয়ার্ড এখানে দেখাবে">
+                    <button onclick="copyPassword()">কপি</button>
+                </div>
+                <div class="strength-bar"><div id="passStrengthBar"></div></div>
+                <p class="hint-text" id="passStrengthText"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ইউনিট কনভার্টার মোডাল -->
+    <div id="unitModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeGenericModal('unitModal')">&times;</span>
+            <h3 style="margin-bottom: 15px; color:#1a365d;">ইউনিট কনভার্টার</h3>
+            <div class="tool-modal-body">
+                <label class="field-label">ধরন সিলেক্ট করুন</label>
+                <select id="unitCategory" class="tool-select" onchange="setupUnitOptions()">
+                    <option value="length">দৈর্ঘ্য (Length)</option>
+                    <option value="weight">ওজন (Weight)</option>
+                    <option value="temp">তাপমাত্রা (Temperature)</option>
+                </select>
+
+                <div class="unit-row">
+                    <div>
+                        <label class="field-label">থেকে (From)</label>
+                        <select id="unitFrom" class="tool-select" onchange="convertUnit()"></select>
+                    </div>
+                    <div>
+                        <label class="field-label">এ (To)</label>
+                        <select id="unitTo" class="tool-select" onchange="convertUnit()"></select>
+                    </div>
+                </div>
+                <label class="field-label">মান লিখুন (Value)</label>
+                <input type="number" id="unitValue" class="tool-input" value="1" oninput="convertUnit()">
+
+                <div class="result-panel" id="unitResult" style="text-align:center; font-size:18px; font-weight:700;">-</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ওজন কনভার্টার মোডাল -->
+    <div id="weightModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeGenericModal('weightModal')">&times;</span>
+            <h3 style="margin-bottom: 15px; color:#1a365d;">ওজন কনভার্টার</h3>
+            <div class="tool-modal-body">
+                <div class="unit-row">
+                    <div>
+                        <label class="field-label">থেকে (From)</label>
+                        <select id="weightFrom" class="tool-select" onchange="convertWeight()">
+                            <option value="mg">মিলিগ্রাম (mg)</option>
+                            <option value="g" selected>গ্রাম (g)</option>
+                            <option value="kg">কিলোগ্রাম (kg)</option>
+                            <option value="quintal">কুইন্টাল (Quintal)</option>
+                            <option value="ton">টন (Ton)</option>
+                            <option value="oz">আউন্স (oz)</option>
+                            <option value="lb">পাউন্ড (lb)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="field-label">এ (To)</label>
+                        <select id="weightTo" class="tool-select" onchange="convertWeight()">
+                            <option value="mg">মিলিগ্রাম (mg)</option>
+                            <option value="g">গ্রাম (g)</option>
+                            <option value="kg" selected>কিলোগ্রাম (kg)</option>
+                            <option value="quintal">কুইন্টাল (Quintal)</option>
+                            <option value="ton">টন (Ton)</option>
+                            <option value="oz">আউন্স (oz)</option>
+                            <option value="lb">পাউন্ড (lb)</option>
+                        </select>
+                    </div>
+                </div>
+                <label class="field-label">মান লিখুন (Value)</label>
+                <input type="number" id="weightValue" class="tool-input" value="1" oninput="convertWeight()">
+
+                <div class="result-panel" id="weightResult" style="text-align:center; font-size:18px; font-weight:700;">-</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- জমির পরিমাপ কনভার্টার মোডাল -->
+    <div id="landModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeGenericModal('landModal')">&times;</span>
+            <h3 style="margin-bottom: 15px; color:#1a365d;">জমির পরিমাপ কনভার্টার</h3>
+            <div class="tool-modal-body">
+                <div class="unit-row">
+                    <div>
+                        <label class="field-label">থেকে (From)</label>
+                        <select id="landFrom" class="tool-select" onchange="convertLand()">
+                            <option value="decimal" selected>ডেসিমেল (Decimal)</option>
+                            <option value="acre">একর (Acre)</option>
+                            <option value="bigha">বিঘা (Bigha - WB)</option>
+                            <option value="katha">কাঠা (Katha - WB)</option>
+                            <option value="chatak">ছটাক (Chatak - WB)</option>
+                            <option value="hectare">হেক্টর (Hectare)</option>
+                            <option value="sqft">বর্গফুট (Sq. ft)</option>
+                            <option value="sqm">বর্গমিটার (Sq. m)</option>
+                            <option value="sqyard">বর্গগজ (Sq. yard)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="field-label">এ (To)</label>
+                        <select id="landTo" class="tool-select" onchange="convertLand()">
+                            <option value="decimal">ডেসিমেল (Decimal)</option>
+                            <option value="acre" selected>একর (Acre)</option>
+                            <option value="bigha">বিঘা (Bigha - WB)</option>
+                            <option value="katha">কাঠা (Katha - WB)</option>
+                            <option value="chatak">ছটাক (Chatak - WB)</option>
+                            <option value="hectare">হেক্টর (Hectare)</option>
+                            <option value="sqft">বর্গফুট (Sq. ft)</option>
+                            <option value="sqm">বর্গমিটার (Sq. m)</option>
+                            <option value="sqyard">বর্গগজ (Sq. yard)</option>
+                        </select>
+                    </div>
+                </div>
+                <label class="field-label">মান লিখুন (Value)</label>
+                <input type="number" id="landValue" class="tool-input" value="1" oninput="convertLand()">
+
+                <div class="result-panel" id="landResult" style="text-align:center; font-size:18px; font-weight:700;">-</div>
+                <p style="font-size:12px; color:var(--muted-2); margin-top:10px; text-align:left;">নোট: বিঘা/কাঠা/ছটাক পশ্চিমবঙ্গের প্রচলিত মান অনুযায়ী গণনা করা হয়েছে (১ বিঘা = ২০ কাঠা = ১৬০ ছটাক), এলাকাভেদে সামান্য পার্থক্য হতে পারে।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- গেমস মোডাল -->
+    <div id="gamesModal" class="modal">
+        <div class="modal-content games-modal-content">
+            <span class="close-btn" onclick="closeGamesModal()">&times;</span>
+            <h3 style="margin-bottom: 10px; color:#1a365d;">গেমস</h3>
+            <div class="game-tabs">
+                <button class="game-tab-btn active" onclick="switchGame('ttt', this)">টিক-ট্যাক-টো</button>
+                <button class="game-tab-btn" onclick="switchGame('mem', this)">মেমরি ম্যাচ</button>
+                <button class="game-tab-btn" onclick="switchGame('g2048', this)">২০৪৮</button>
+                <button class="game-tab-btn" onclick="switchGame('snake', this)">স্নেক</button>
+            </div>
+
+            <div class="game-panel active" id="panel-ttt">
+                <p class="game-score" id="tttStatus">আপনার (X) পালা</p>
+                <div class="ttt-board" id="tttBoard"></div>
+                <button class="game-btn" onclick="initTTT()">নতুন গেম</button>
+            </div>
+
+            <div class="game-panel" id="panel-mem">
+                <p class="game-score">চাল সংখ্যা: <span id="memMoves">0</span></p>
+                <div class="mem-board" id="memBoard"></div>
+                <button class="game-btn" onclick="initMemory()">নতুন গেম</button>
+            </div>
+
+            <div class="game-panel" id="panel-g2048">
+                <p class="game-score">স্কোর: <span id="g2048Score">0</span></p>
+                <div class="g2048-board" id="g2048Board"></div>
+                <p class="hint-text">কীবোর্ড অ্যারো কী (Arrow Keys) ব্যবহার করে খেলুন</p>
+                <button class="game-btn" onclick="init2048()">নতুন গেম</button>
+            </div>
+
+            <div class="game-panel" id="panel-snake">
+                <p class="game-score">স্কোর: <span id="snakeScore">0</span></p>
+                <canvas id="snakeCanvas" width="280" height="280" style="background:#0f172a; border-radius:8px; display:block; margin:10px auto;"></canvas>
+                <p class="hint-text">কীবোর্ড অ্যারো কী ব্যবহার করে সাপ চালান</p>
+                <button class="game-btn" onclick="initSnake()">নতুন গেম</button>
             </div>
         </div>
     </div>
@@ -646,6 +1094,782 @@
             link.download = 'CSC_Print_Ready_A4.jpg';
             link.href = a4Canvas.toDataURL('image/jpeg', 0.95);
             link.click();
+        }
+
+        /* =============================================================
+           NEW TOOLS - GENERIC MODAL HELPERS
+        ============================================================= */
+        function openGenericModal(id){ document.getElementById(id).style.display = 'block'; }
+        function closeGenericModal(id){ document.getElementById(id).style.display = 'none'; }
+
+        window.addEventListener('click', function(e){
+            document.querySelectorAll('.modal').forEach(function(m){
+                if (e.target === m){
+                    m.style.display = 'none';
+                    if (m.id === 'gamesModal') stopSnake();
+                }
+            });
+        });
+
+        if (window.pdfjsLib){
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js';
+        }
+
+        /* =============================================================
+           PDF COMPRESSOR / RESIZER
+        ============================================================= */
+        function openPdfCompressModal(){ openGenericModal('pdfCompressModal'); }
+
+        function onPdfFileSelected(e){
+            const f = e.target.files[0];
+            const info = document.getElementById('pdfFileInfo');
+            if (f) info.innerText = 'সিলেক্ট করা ফাইল: ' + f.name + ' (' + (f.size/1024).toFixed(1) + ' KB)';
+            document.getElementById('pdfCompressStatus').style.display = 'none';
+            document.getElementById('pdfCompressDownload').style.display = 'none';
+        }
+
+        async function compressPDF(){
+            const fileInput = document.getElementById('pdfCompressFile');
+            const statusEl = document.getElementById('pdfCompressStatus');
+            const dlBtn = document.getElementById('pdfCompressDownload');
+            const btn = document.getElementById('pdfCompressBtn');
+            if (!fileInput.files[0]){ alert('দয়া করে একটি PDF ফাইল সিলেক্ট করুন।'); return; }
+            const file = fileInput.files[0];
+            const quality = parseFloat(document.getElementById('pdfCompressQuality').value);
+
+            statusEl.style.display = 'block';
+            dlBtn.style.display = 'none';
+            btn.disabled = true;
+
+            try {
+                const arrayBuffer = await file.arrayBuffer();
+                const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+                const pdf = await loadingTask.promise;
+                const { PDFDocument } = PDFLib;
+                const newPdf = await PDFDocument.create();
+
+                for (let i = 1; i <= pdf.numPages; i++){
+                    statusEl.innerText = 'পেজ ' + i + ' / ' + pdf.numPages + ' প্রসেস করা হচ্ছে...';
+                    const page = await pdf.getPage(i);
+                    const viewport = page.getViewport({ scale: 1.4 });
+                    const canvas = document.createElement('canvas');
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+                    const ctx = canvas.getContext('2d');
+                    await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+                    const jpegUrl = canvas.toDataURL('image/jpeg', quality);
+                    const jpegBytes = await (await fetch(jpegUrl)).arrayBuffer();
+                    const jpegImage = await newPdf.embedJpg(jpegBytes);
+                    const newPage = newPdf.addPage([viewport.width, viewport.height]);
+                    newPage.drawImage(jpegImage, { x: 0, y: 0, width: viewport.width, height: viewport.height });
+                }
+
+                const pdfBytes = await newPdf.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+
+                statusEl.innerHTML = '✅ কম্প্রেস সম্পন্ন হয়েছে!<br>আগের সাইজ: ' + (file.size/1024).toFixed(1) + ' KB &rarr; নতুন সাইজ: <strong>' + (blob.size/1024).toFixed(1) + ' KB</strong>';
+                dlBtn.href = url;
+                dlBtn.download = 'compressed_' + file.name.replace(/\.pdf$/i,'') + '.pdf';
+                dlBtn.style.display = 'block';
+            } catch (err){
+                console.error(err);
+                statusEl.innerHTML = '❌ ফাইলটি প্রসেস করা যায়নি। দয়া করে অন্য একটি PDF ফাইল ট্রাই করুন।';
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        /* =============================================================
+           THUMBNAIL DOWNLOADER
+        ============================================================= */
+        function openThumbModal(){ openGenericModal('thumbModal'); }
+
+        function extractYouTubeId(url){
+            const patterns = [
+                /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/|youtube\.com\/live\/)([a-zA-Z0-9_-]{11})/
+            ];
+            for (const p of patterns){
+                const m = url.match(p);
+                if (m) return m[1];
+            }
+            return null;
+        }
+
+        function fetchThumbnail(){
+            const url = document.getElementById('ytUrlInput').value.trim();
+            const id = extractYouTubeId(url);
+            const resultEl = document.getElementById('thumbResult');
+            if (!id){
+                resultEl.innerHTML = '<p style="color:#e53e3e; margin-top:10px; font-weight:600;">সঠিক ইউটিউব ভিডিও লিংক দিন।</p>';
+                return;
+            }
+            const qualities = [
+                { key: 'maxresdefault', label: 'সর্বোচ্চ মানের (HD)' },
+                { key: 'sddefault', label: 'স্ট্যান্ডার্ড (SD)' },
+                { key: 'hqdefault', label: 'উচ্চমানের (HQ)' },
+                { key: 'mqdefault', label: 'মাঝারি মানের (MQ)' }
+            ];
+            let html = '<div class="thumb-grid">';
+            qualities.forEach(function(q){
+                const imgUrl = 'https://img.youtube.com/vi/' + id + '/' + q.key + '.jpg';
+                html += '<div class="thumb-item">' +
+                    '<img src="' + imgUrl + '" alt="' + q.label + '" onerror="this.closest(\'.thumb-item\').style.display=\'none\'">' +
+                    '<p>' + q.label + '</p>' +
+                    '<button class="btn" onclick="downloadThumb(\'' + imgUrl + '\',\'' + id + '_' + q.key + '.jpg\')">ডাউনলোড</button>' +
+                '</div>';
+            });
+            html += '</div>';
+            resultEl.innerHTML = html;
+        }
+
+        async function downloadThumb(url, filename){
+            try {
+                const response = await fetch(url, { mode: 'cors' });
+                const blob = await response.blob();
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+            } catch (e){
+                window.open(url, '_blank');
+            }
+        }
+
+        /* =============================================================
+           IMAGE RESIZER / COMPRESSOR
+        ============================================================= */
+        let imgToolOriginal = null;
+        let imgToolNaturalW = 0, imgToolNaturalH = 0;
+
+        function openImgToolModal(){ openGenericModal('imgToolModal'); }
+
+        function loadImgTool(event){
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e){
+                const img = new Image();
+                img.onload = function(){
+                    imgToolOriginal = img;
+                    imgToolNaturalW = img.width;
+                    imgToolNaturalH = img.height;
+                    document.getElementById('imgToolWidth').value = img.width;
+                    document.getElementById('imgToolHeight').value = img.height;
+                    document.getElementById('imgToolPreview').src = e.target.result;
+                    document.getElementById('imgToolPreview').style.display = 'block';
+                    document.getElementById('imgToolPlaceholder').style.display = 'none';
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function imgToolDimChange(dim){
+            if (!document.getElementById('imgToolAspect').checked || !imgToolNaturalW) return;
+            const ratio = imgToolNaturalW / imgToolNaturalH;
+            if (dim === 'w'){
+                const w = parseInt(document.getElementById('imgToolWidth').value) || 0;
+                document.getElementById('imgToolHeight').value = Math.round(w / ratio);
+            } else {
+                const h = parseInt(document.getElementById('imgToolHeight').value) || 0;
+                document.getElementById('imgToolWidth').value = Math.round(h * ratio);
+            }
+        }
+
+        function processImgTool(){
+            const statusEl = document.getElementById('imgToolStatus');
+            if (!imgToolOriginal){ alert('দয়া করে একটি ছবি সিলেক্ট করুন।'); return; }
+            const w = parseInt(document.getElementById('imgToolWidth').value) || imgToolNaturalW;
+            const h = parseInt(document.getElementById('imgToolHeight').value) || imgToolNaturalH;
+            const quality = parseInt(document.getElementById('imgToolQuality').value) / 100;
+            const format = document.getElementById('imgToolFormat').value;
+
+            const canvas = document.createElement('canvas');
+            canvas.width = w; canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(imgToolOriginal, 0, 0, w, h);
+
+            const dataUrl = canvas.toDataURL(format, quality);
+            const approxKB = Math.round((dataUrl.length * 3/4) / 1024);
+
+            const ext = format === 'image/png' ? 'png' : (format === 'image/webp' ? 'webp' : 'jpg');
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = 'resized_image.' + ext;
+            link.click();
+
+            statusEl.style.display = 'block';
+            statusEl.innerHTML = '✅ ছবিটি প্রসেস হয়েছে (' + w + 'x' + h + 'px, আনুমানিক ' + approxKB + ' KB) এবং ডাউনলোড শুরু হয়েছে।';
+        }
+
+        /* =============================================================
+           IMAGE TO PDF
+        ============================================================= */
+        let img2pdfFilesArr = [];
+
+        function openImg2PdfModal(){ openGenericModal('img2pdfModal'); }
+
+        function loadImg2Pdf(event){
+            img2pdfFilesArr = Array.from(event.target.files);
+            renderImg2PdfList();
+        }
+
+        function renderImg2PdfList(){
+            const listEl = document.getElementById('img2pdfList');
+            listEl.innerHTML = '';
+            img2pdfFilesArr.forEach(function(file, idx){
+                const reader = new FileReader();
+                reader.onload = function(e){
+                    const div = document.createElement('div');
+                    div.innerHTML = '<img src="' + e.target.result + '"><span onclick="removeImg2Pdf(' + idx + ')">&times;</span>';
+                    listEl.appendChild(div);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function removeImg2Pdf(idx){
+            img2pdfFilesArr.splice(idx, 1);
+            renderImg2PdfList();
+        }
+
+        async function convertImg2Pdf(){
+            const statusEl = document.getElementById('img2pdfStatus');
+            if (img2pdfFilesArr.length === 0){ alert('দয়া করে অন্তত একটি ছবি সিলেক্ট করুন।'); return; }
+            statusEl.style.display = 'block';
+            statusEl.innerText = 'PDF তৈরি করা হচ্ছে...';
+
+            try {
+                const { PDFDocument } = PDFLib;
+                const pdfDoc = await PDFDocument.create();
+
+                for (const file of img2pdfFilesArr){
+                    const bytes = await file.arrayBuffer();
+                    let image;
+                    if (file.type === 'image/png'){
+                        image = await pdfDoc.embedPng(bytes);
+                    } else {
+                        image = await pdfDoc.embedJpg(bytes);
+                    }
+                    const page = pdfDoc.addPage([image.width, image.height]);
+                    page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+                }
+
+                const pdfBytes = await pdfDoc.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'images_to_pdf.pdf';
+                link.click();
+
+                statusEl.innerHTML = '✅ সফলভাবে ' + img2pdfFilesArr.length + 'টি ছবি দিয়ে PDF তৈরি হয়েছে এবং ডাউনলোড হয়ে গেছে।';
+            } catch (err){
+                console.error(err);
+                statusEl.innerHTML = '❌ কিছু একটা সমস্যা হয়েছে। শুধুমাত্র JPG/PNG ছবি ব্যবহার করুন।';
+            }
+        }
+
+        /* =============================================================
+           QR CODE GENERATOR
+        ============================================================= */
+        function openQRModal(){ openGenericModal('qrModal'); }
+
+        function generateQR(){
+            const text = document.getElementById('qrInput').value.trim();
+            const outputEl = document.getElementById('qrOutput');
+            const dlBtn = document.getElementById('qrDownload');
+            if (!text){ alert('দয়া করে কিছু টেক্সট বা লিংক লিখুন।'); return; }
+            outputEl.innerHTML = '';
+            new QRCode(outputEl, { text: text, width: 220, height: 220, colorDark: '#1e293b', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
+
+            setTimeout(function(){
+                const img = outputEl.querySelector('img');
+                const canvas = outputEl.querySelector('canvas');
+                const dataUrl = canvas ? canvas.toDataURL('image/png') : (img ? img.src : null);
+                if (dataUrl){
+                    dlBtn.href = dataUrl;
+                    dlBtn.style.display = 'block';
+                }
+            }, 300);
+        }
+
+        /* =============================================================
+           WORD COUNTER
+        ============================================================= */
+        function openWordCounterModal(){ openGenericModal('wordCounterModal'); }
+
+        function updateWordCount(){
+            const text = document.getElementById('wcInput').value;
+            const trimmed = text.trim();
+            const words = trimmed === '' ? 0 : trimmed.split(/\s+/).length;
+            const chars = text.length;
+            const sentences = trimmed === '' ? 0 : ((trimmed.match(/[.!?।]+/g) || []).length || 1);
+            const readMinutes = words === 0 ? 0 : Math.max(1, Math.ceil(words / 200));
+
+            document.getElementById('wcWords').innerText = words;
+            document.getElementById('wcChars').innerText = chars;
+            document.getElementById('wcSentences').innerText = sentences;
+            document.getElementById('wcReadTime').innerText = readMinutes + ' min';
+        }
+
+        /* =============================================================
+           PASSWORD GENERATOR
+        ============================================================= */
+        function openPasswordModal(){ openGenericModal('passwordModal'); }
+
+        function generatePassword(){
+            const length = parseInt(document.getElementById('passLength').value);
+            const useUpper = document.getElementById('passUpper').checked;
+            const useLower = document.getElementById('passLower').checked;
+            const useNum = document.getElementById('passNum').checked;
+            const useSym = document.getElementById('passSym').checked;
+
+            let charset = '';
+            if (useUpper) charset += 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+            if (useLower) charset += 'abcdefghijkmnpqrstuvwxyz';
+            if (useNum) charset += '23456789';
+            if (useSym) charset += '!@#$%^&*()_+-=';
+
+            if (!charset){ alert('অন্তত একটি ক্যারেক্টার টাইপ সিলেক্ট করুন।'); return; }
+
+            let password = '';
+            const randomValues = new Uint32Array(length);
+            crypto.getRandomValues(randomValues);
+            for (let i = 0; i < length; i++){
+                password += charset[randomValues[i] % charset.length];
+            }
+
+            document.getElementById('passOutput').value = password;
+
+            let score = 0;
+            if (length >= 12) score++;
+            if (useUpper) score++;
+            if (useLower) score++;
+            if (useNum) score++;
+            if (useSym) score++;
+
+            const bar = document.getElementById('passStrengthBar');
+            const text = document.getElementById('passStrengthText');
+            const pct = (score / 5) * 100;
+            bar.style.width = pct + '%';
+            if (score <= 2){ bar.style.background = '#ef4444'; text.innerText = 'দুর্বল পাসওয়ার্ড'; }
+            else if (score <= 4){ bar.style.background = '#f59e0b'; text.innerText = 'মাঝারি পাসওয়ার্ড'; }
+            else { bar.style.background = '#16a34a'; text.innerText = 'শক্তিশালী পাসওয়ার্ড'; }
+        }
+
+        function copyPassword(){
+            const output = document.getElementById('passOutput');
+            if (!output.value){ alert('আগে একটি পাসওয়ার্ড তৈরি করুন।'); return; }
+            output.select();
+            navigator.clipboard.writeText(output.value).then(function(){
+                alert('পাসওয়ার্ড কপি হয়েছে!');
+            }).catch(function(){
+                document.execCommand('copy');
+                alert('পাসওয়ার্ড কপি হয়েছে!');
+            });
+        }
+
+        /* =============================================================
+           UNIT CONVERTER
+        ============================================================= */
+        const unitData = {
+            length: { units: { 'মিটার': 1, 'কিলোমিটার': 1000, 'সেন্টিমিটার': 0.01, 'মিলিমিটার': 0.001, 'মাইল': 1609.34, 'গজ': 0.9144, 'ফুট': 0.3048, 'ইঞ্চি': 0.0254 } },
+            weight: { units: { 'কিলোগ্রাম': 1, 'গ্রাম': 0.001, 'মিলিগ্রাম': 0.000001, 'পাউন্ড': 0.453592, 'আউন্স': 0.0283495, 'টন': 1000 } },
+            temp: { units: { 'সেলসিয়াস': 'C', 'ফারেনহাইট': 'F', 'কেলভিন': 'K' } }
+        };
+
+        function openUnitModal(){ openGenericModal('unitModal'); }
+
+        function openWeightModal(){ openGenericModal('weightModal'); convertWeight(); }
+        function convertWeight(){
+            const gramFactors = { mg: 0.001, g: 1, kg: 1000, quintal: 100000, ton: 1000000, oz: 28.3495, lb: 453.592 };
+            const from = document.getElementById('weightFrom').value;
+            const to = document.getElementById('weightTo').value;
+            const val = parseFloat(document.getElementById('weightValue').value) || 0;
+            const inGrams = val * gramFactors[from];
+            const result = inGrams / gramFactors[to];
+            document.getElementById('weightResult').innerText = (Math.round(result * 100000) / 100000) + ' ' + to;
+        }
+
+        function openLandModal(){ openGenericModal('landModal'); convertLand(); }
+        function convertLand(){
+            // Base unit: square feet. West Bengal standard: 1 Bigha = 20 Katha = 320 Chatak, 1 Bigha = 14400 sq ft
+            const sqftFactors = {
+                decimal: 435.6,
+                acre: 43560,
+                bigha: 14400,
+                katha: 720,
+                chatak: 45,
+                hectare: 107639.104,
+                sqft: 1,
+                sqm: 10.7639,
+                sqyard: 9
+            };
+            const from = document.getElementById('landFrom').value;
+            const to = document.getElementById('landTo').value;
+            const val = parseFloat(document.getElementById('landValue').value) || 0;
+            const inSqft = val * sqftFactors[from];
+            const result = inSqft / sqftFactors[to];
+            document.getElementById('landResult').innerText = (Math.round(result * 100000) / 100000) + ' ' + to;
+        }
+
+        function setupUnitOptions(){
+            const cat = document.getElementById('unitCategory').value;
+            const fromSel = document.getElementById('unitFrom');
+            const toSel = document.getElementById('unitTo');
+            fromSel.innerHTML = '';
+            toSel.innerHTML = '';
+            Object.keys(unitData[cat].units).forEach(function(u){
+                fromSel.innerHTML += '<option value="' + u + '">' + u + '</option>';
+                toSel.innerHTML += '<option value="' + u + '">' + u + '</option>';
+            });
+            if (toSel.options.length > 1) toSel.selectedIndex = 1;
+            convertUnit();
+        }
+
+        function convertUnit(){
+            const cat = document.getElementById('unitCategory').value;
+            const from = document.getElementById('unitFrom').value;
+            const to = document.getElementById('unitTo').value;
+            const val = parseFloat(document.getElementById('unitValue').value) || 0;
+            const resultEl = document.getElementById('unitResult');
+
+            let result;
+            if (cat === 'temp'){
+                let celsius;
+                if (from === 'সেলসিয়াস') celsius = val;
+                else if (from === 'ফারেনহাইট') celsius = (val - 32) * 5/9;
+                else celsius = val - 273.15;
+
+                if (to === 'সেলসিয়াস') result = celsius;
+                else if (to === 'ফারেনহাইট') result = celsius * 9/5 + 32;
+                else result = celsius + 273.15;
+            } else {
+                const fromFactor = unitData[cat].units[from];
+                const toFactor = unitData[cat].units[to];
+                result = (val * fromFactor) / toFactor;
+            }
+            resultEl.innerText = val + ' ' + from + ' = ' + result.toFixed(4).replace(/\.?0+$/,'') + ' ' + to;
+        }
+
+        setupUnitOptions();
+
+        /* =============================================================
+           GAMES
+        ============================================================= */
+        function openGamesModal(){
+            openGenericModal('gamesModal');
+            initTTT();
+        }
+        function closeGamesModal(){
+            closeGenericModal('gamesModal');
+            stopSnake();
+        }
+
+        function switchGame(name, btnEl){
+            document.querySelectorAll('.game-panel').forEach(function(p){ p.classList.remove('active'); });
+            document.querySelectorAll('.game-tab-btn').forEach(function(b){ b.classList.remove('active'); });
+            document.getElementById('panel-' + name).classList.add('active');
+            if (btnEl) btnEl.classList.add('active');
+
+            stopSnake();
+            if (name === 'ttt') initTTT();
+            if (name === 'mem') initMemory();
+            if (name === 'g2048') init2048();
+            if (name === 'snake') initSnake();
+        }
+
+        /* ---- Tic Tac Toe ---- */
+        let tttBoardState = Array(9).fill('');
+        let tttTurn = 'X';
+        let tttGameOver = false;
+
+        function initTTT(){
+            tttBoardState = Array(9).fill('');
+            tttTurn = 'X';
+            tttGameOver = false;
+            renderTTT();
+            document.getElementById('tttStatus').innerText = 'আপনার (X) পালা';
+        }
+
+        function renderTTT(){
+            const boardEl = document.getElementById('tttBoard');
+            boardEl.innerHTML = '';
+            tttBoardState.forEach(function(val, idx){
+                const cell = document.createElement('div');
+                cell.className = 'ttt-cell';
+                cell.innerText = val;
+                cell.onclick = function(){ tttMove(idx); };
+                boardEl.appendChild(cell);
+            });
+        }
+
+        function tttMove(idx){
+            if (tttGameOver || tttBoardState[idx] !== '' || tttTurn !== 'X') return;
+            tttBoardState[idx] = 'X';
+            renderTTT();
+            if (checkTTTWin('X')){ endTTT('আপনি জিতেছেন! 🎉'); return; }
+            if (tttBoardState.every(function(c){ return c !== ''; })){ endTTT('ড্র হয়েছে!'); return; }
+            tttTurn = 'O';
+            document.getElementById('tttStatus').innerText = 'কম্পিউটার ভাবছে...';
+            setTimeout(tttComputerMove, 500);
+        }
+
+        function tttComputerMove(){
+            if (tttGameOver) return;
+            const empty = tttBoardState.map(function(v,i){ return v === '' ? i : null; }).filter(function(v){ return v !== null; });
+            const move = empty[Math.floor(Math.random() * empty.length)];
+            tttBoardState[move] = 'O';
+            renderTTT();
+            if (checkTTTWin('O')){ endTTT('কম্পিউটার জিতেছে! আবার চেষ্টা করুন।'); return; }
+            if (tttBoardState.every(function(c){ return c !== ''; })){ endTTT('ড্র হয়েছে!'); return; }
+            tttTurn = 'X';
+            document.getElementById('tttStatus').innerText = 'আপনার (X) পালা';
+        }
+
+        function checkTTTWin(player){
+            const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+            return wins.some(function(w){ return w.every(function(i){ return tttBoardState[i] === player; }); });
+        }
+
+        function endTTT(msg){
+            tttGameOver = true;
+            document.getElementById('tttStatus').innerText = msg;
+        }
+
+        /* ---- Memory Match ---- */
+        let memCards = [];
+        let memFlipped = [];
+        let memMatchedCount = 0;
+        let memMoves = 0;
+        let memLock = false;
+
+        function initMemory(){
+            const emojis = ['🎈','🌟','🍎','🚀','🐱','🌸','⚽','🎁'];
+            memCards = emojis.concat(emojis).sort(function(){ return Math.random() - 0.5; });
+            memFlipped = [];
+            memMatchedCount = 0;
+            memMoves = 0;
+            memLock = false;
+            document.getElementById('memMoves').innerText = 0;
+            renderMemory();
+        }
+
+        function renderMemory(){
+            const boardEl = document.getElementById('memBoard');
+            boardEl.innerHTML = '';
+            memCards.forEach(function(emoji, idx){
+                const cell = document.createElement('div');
+                cell.className = 'mem-cell';
+                cell.dataset.idx = idx;
+                cell.onclick = function(){ memFlip(idx); };
+                boardEl.appendChild(cell);
+            });
+        }
+
+        function memFlip(idx){
+            if (memLock) return;
+            const cell = document.querySelector('#memBoard .mem-cell[data-idx="' + idx + '"]');
+            if (!cell || cell.classList.contains('flipped') || cell.classList.contains('matched')) return;
+
+            cell.classList.add('flipped');
+            cell.innerText = memCards[idx];
+            memFlipped.push(idx);
+
+            if (memFlipped.length === 2){
+                memMoves++;
+                document.getElementById('memMoves').innerText = memMoves;
+                memLock = true;
+                const a = memFlipped[0], b = memFlipped[1];
+                if (memCards[a] === memCards[b]){
+                    document.querySelector('#memBoard .mem-cell[data-idx="' + a + '"]').classList.add('matched');
+                    document.querySelector('#memBoard .mem-cell[data-idx="' + b + '"]').classList.add('matched');
+                    memFlipped = [];
+                    memLock = false;
+                    memMatchedCount++;
+                    if (memMatchedCount === memCards.length / 2){
+                        setTimeout(function(){ alert('অভিনন্দন! আপনি সব মিলিয়ে ফেলেছেন 🎉'); }, 300);
+                    }
+                } else {
+                    setTimeout(function(){
+                        document.querySelector('#memBoard .mem-cell[data-idx="' + a + '"]').classList.remove('flipped');
+                        document.querySelector('#memBoard .mem-cell[data-idx="' + a + '"]').innerText = '';
+                        document.querySelector('#memBoard .mem-cell[data-idx="' + b + '"]').classList.remove('flipped');
+                        document.querySelector('#memBoard .mem-cell[data-idx="' + b + '"]').innerText = '';
+                        memFlipped = [];
+                        memLock = false;
+                    }, 800);
+                }
+            }
+        }
+
+        /* ---- 2048 ---- */
+        let g2048Grid = [];
+        let g2048Score = 0;
+        let g2048KeyHandler = null;
+
+        function init2048(){
+            g2048Grid = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+            g2048Score = 0;
+            document.getElementById('g2048Score').innerText = 0;
+            add2048Tile();
+            add2048Tile();
+            render2048();
+
+            if (g2048KeyHandler) document.removeEventListener('keydown', g2048KeyHandler);
+            g2048KeyHandler = function(e){
+                const gm = document.getElementById('gamesModal');
+                if (!gm || gm.style.display !== 'block') return;
+                if (!document.getElementById('panel-g2048').classList.contains('active')) return;
+                let moved = false;
+                if (e.key === 'ArrowLeft') moved = move2048('left');
+                else if (e.key === 'ArrowRight') moved = move2048('right');
+                else if (e.key === 'ArrowUp') moved = move2048('up');
+                else if (e.key === 'ArrowDown') moved = move2048('down');
+                if (moved){
+                    e.preventDefault();
+                    add2048Tile();
+                    render2048();
+                }
+            };
+            document.addEventListener('keydown', g2048KeyHandler);
+        }
+
+        function add2048Tile(){
+            const empty = [];
+            for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) if (g2048Grid[r][c] === 0) empty.push([r,c]);
+            if (empty.length === 0) return;
+            const pick = empty[Math.floor(Math.random() * empty.length)];
+            g2048Grid[pick[0]][pick[1]] = Math.random() < 0.9 ? 2 : 4;
+        }
+
+        function render2048(){
+            const boardEl = document.getElementById('g2048Board');
+            boardEl.innerHTML = '';
+            const colors = { 2:'#eee4da', 4:'#ede0c8', 8:'#f2b179', 16:'#f59563', 32:'#f67c5f', 64:'#f65e3b', 128:'#edcf72', 256:'#edcc61', 512:'#edc850', 1024:'#edc53f', 2048:'#edc22e' };
+            for (let r = 0; r < 4; r++){
+                for (let c = 0; c < 4; c++){
+                    const val = g2048Grid[r][c];
+                    const cell = document.createElement('div');
+                    cell.className = 'g2048-cell';
+                    if (val){
+                        cell.innerText = val;
+                        cell.style.background = colors[val] || '#3c3a32';
+                        cell.style.color = val <= 4 ? '#776e65' : '#fff';
+                    }
+                    boardEl.appendChild(cell);
+                }
+            }
+            document.getElementById('g2048Score').innerText = g2048Score;
+        }
+
+        function move2048(dir){
+            function rotate(grid){ return grid[0].map(function(_, c){ return grid.map(function(row){ return row[c]; }).reverse(); }); }
+
+            function slide(row){
+                let arr = row.filter(function(v){ return v !== 0; });
+                for (let i = 0; i < arr.length - 1; i++){
+                    if (arr[i] === arr[i+1]){
+                        arr[i] *= 2;
+                        g2048Score += arr[i];
+                        arr.splice(i+1, 1);
+                    }
+                }
+                while (arr.length < 4) arr.push(0);
+                return arr;
+            }
+
+            let grid = g2048Grid.map(function(r){ return r.slice(); });
+            if (dir === 'left'){
+                grid = grid.map(function(row){ return slide(row); });
+            } else if (dir === 'right'){
+                grid = grid.map(function(row){ return slide(row.slice().reverse()).reverse(); });
+            } else if (dir === 'up'){
+                grid = rotate(rotate(rotate(grid)));
+                grid = grid.map(function(row){ return slide(row); });
+                grid = rotate(grid);
+            } else if (dir === 'down'){
+                grid = rotate(grid);
+                grid = grid.map(function(row){ return slide(row); });
+                grid = rotate(rotate(rotate(grid)));
+            }
+
+            const moved = JSON.stringify(grid) !== JSON.stringify(g2048Grid);
+            g2048Grid = grid;
+            return moved;
+        }
+
+        /* ---- Snake ---- */
+        let snakeInterval = null;
+        let snakeBody, snakeDir, snakeFood, snakeGridSize = 14, snakeCell = 20, snakeKeyHandler = null;
+
+        function initSnake(){
+            stopSnake();
+            snakeBody = [{x:7,y:7}];
+            snakeDir = {x:1,y:0};
+            placeSnakeFood();
+            document.getElementById('snakeScore').innerText = 0;
+            drawSnake();
+
+            if (snakeKeyHandler) document.removeEventListener('keydown', snakeKeyHandler);
+            snakeKeyHandler = function(e){
+                const panel = document.getElementById('panel-snake');
+                if (!panel || !panel.classList.contains('active')) return;
+                if (e.key === 'ArrowUp' && snakeDir.y === 0){ snakeDir = {x:0,y:-1}; e.preventDefault(); }
+                else if (e.key === 'ArrowDown' && snakeDir.y === 0){ snakeDir = {x:0,y:1}; e.preventDefault(); }
+                else if (e.key === 'ArrowLeft' && snakeDir.x === 0){ snakeDir = {x:-1,y:0}; e.preventDefault(); }
+                else if (e.key === 'ArrowRight' && snakeDir.x === 0){ snakeDir = {x:1,y:0}; e.preventDefault(); }
+            };
+            document.addEventListener('keydown', snakeKeyHandler);
+
+            snakeInterval = setInterval(snakeStep, 150);
+        }
+
+        function stopSnake(){
+            if (snakeInterval){ clearInterval(snakeInterval); snakeInterval = null; }
+        }
+
+        function placeSnakeFood(){
+            snakeFood = { x: Math.floor(Math.random()*snakeGridSize), y: Math.floor(Math.random()*snakeGridSize) };
+        }
+
+        function snakeStep(){
+            const head = { x: snakeBody[0].x + snakeDir.x, y: snakeBody[0].y + snakeDir.y };
+
+            if (head.x < 0 || head.y < 0 || head.x >= snakeGridSize || head.y >= snakeGridSize || snakeBody.some(function(s){ return s.x === head.x && s.y === head.y; })){
+                stopSnake();
+                alert('গেম শেষ! স্কোর: ' + (snakeBody.length - 1));
+                return;
+            }
+
+            snakeBody.unshift(head);
+            if (head.x === snakeFood.x && head.y === snakeFood.y){
+                placeSnakeFood();
+                document.getElementById('snakeScore').innerText = snakeBody.length - 1;
+            } else {
+                snakeBody.pop();
+            }
+            drawSnake();
+        }
+
+        function drawSnake(){
+            const canvas = document.getElementById('snakeCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#ef4444';
+            ctx.fillRect(snakeFood.x * snakeCell, snakeFood.y * snakeCell, snakeCell-2, snakeCell-2);
+
+            snakeBody.forEach(function(s, idx){
+                ctx.fillStyle = idx === 0 ? '#22c55e' : '#4ade80';
+                ctx.fillRect(s.x * snakeCell, s.y * snakeCell, snakeCell-2, snakeCell-2);
+            });
         }
     </script>
 </body>
