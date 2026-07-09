@@ -70,6 +70,44 @@
         .lang-dropdown a:hover { background-color: #f1f5f9; color: var(--blue); }
         .language-switcher:hover .lang-dropdown { display: block; }
 
+        /* ---------- Admin panel ---------- */
+        .admin-btn { background-color: #1e293b; color: #fff; border: none; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: 0.2s; flex-shrink: 0; }
+        .admin-btn:hover { background-color: #0f172a; transform: scale(1.05); }
+
+        .admin-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.55); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+        .admin-modal-overlay.active { display: flex; }
+        .admin-modal { background: #fff; border-radius: 16px; padding: 32px 28px; width: 100%; max-width: 360px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.25); text-align: center; }
+        .admin-modal-close { position: absolute; top: 14px; right: 14px; background: #f1f5f9; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; color: #64748b; font-size: 14px; }
+        .admin-modal-close:hover { background: #e2e8f0; }
+        .admin-modal-icon { width: 56px; height: 56px; background: var(--blue-deep); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 0 auto 14px; }
+        .admin-modal-icon.small { width: 46px; height: 46px; font-size: 18px; margin: 0; }
+        .admin-modal h3 { font-size: 19px; color: var(--blue-deep); margin-bottom: 4px; }
+        .admin-modal-sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+        .admin-modal form { display: flex; flex-direction: column; gap: 10px; }
+        .admin-modal input { padding: 11px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; outline: none; }
+        .admin-modal input:focus { border-color: var(--blue); }
+        .admin-login-btn { background: var(--blue); color: #fff; border: none; padding: 11px; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; }
+        .admin-login-btn:hover { background: var(--blue-dark); }
+        .admin-login-error { display: none; color: #dc2626; font-size: 13px; text-align: left; margin-top: -2px; }
+        .admin-login-error.show { display: block; }
+
+        .admin-dash-modal { max-width: 480px; text-align: left; }
+        .admin-dash-header { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+        .admin-dash-header h3 { font-size: 18px; margin-bottom: 2px; }
+        .admin-dash-header .admin-modal-sub { margin-bottom: 0; }
+        .admin-logout-btn { margin-left: auto; background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; padding: 7px 12px; border-radius: 8px; font-size: 12.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+        .admin-logout-btn:hover { background: #fee2e2; }
+        .admin-dash-body { text-align: center; background: #f8fafc; border: 1px dashed var(--border); border-radius: 12px; padding: 20px; max-height: 360px; overflow-y: auto; }
+        .admin-dash-body h4 { color: var(--ink); font-size: 15px; margin-bottom: 8px; }
+        .admin-dash-body p { color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+
+        .admin-total-box { display: flex; justify-content: space-between; align-items: center; background: var(--blue-deep); color: #fff; padding: 12px 16px; border-radius: 10px; margin-bottom: 14px; font-weight: 700; }
+        .admin-total-box strong { font-size: 20px; }
+        .admin-visit-table { text-align: left; }
+        .admin-visit-row { display: flex; justify-content: space-between; padding: 9px 6px; border-bottom: 1px solid var(--border-soft); font-size: 14px; }
+        .admin-visit-row:last-child { border-bottom: none; }
+        .admin-visit-head { font-weight: 700; color: var(--blue-deep); border-bottom: 2px solid var(--border); }
+
         /* ---------- Hero: split layout (copy left / visual right) ---------- */
         .hero { padding: 55px 5% 0; background-color: #e0f2fe; border-bottom: 1px solid #bae6fd; overflow: hidden; }
         .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 30px; }
@@ -111,6 +149,7 @@
         .yt-icon { background-color: #fff5f5; color: var(--yt-red); }
         .annapurna-icon { background-color: #f0fdf4; color: var(--green); }
         .voter-icon { background-color: #f5f3ff; color: var(--purple); }
+        .land-icon { background-color: #fff7ed; color: #c2410c; }
 
         .tool-card-text { flex: 1; }
         .tool-tag { display: inline-block; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--blue); background: #ebf5ff; padding: 3px 9px; border-radius: 5px; margin-bottom: 8px; }
@@ -291,9 +330,45 @@
                         <a href="#" onclick="changeLanguage('ur')">اردو</a>
                     </div>
                 </div>
+
+                <button class="admin-btn" onclick="openAdminLogin()"><i class="fa-solid fa-user-shield"></i></button>
             </div>
         </div>
     </header>
+
+    <!-- ===== Admin Login Modal ===== -->
+    <div class="admin-modal-overlay" id="adminLoginOverlay">
+        <div class="admin-modal">
+            <button class="admin-modal-close" onclick="closeAdminLogin()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="admin-modal-icon"><i class="fa-solid fa-user-shield"></i></div>
+            <h3>Admin Login</h3>
+            <p class="admin-modal-sub">এই অংশ শুধুমাত্র এডমিনের জন্য</p>
+            <form onsubmit="return adminLoginSubmit(event)">
+                <input type="text" id="adminIdInput" placeholder="আইডি" autocomplete="off" required>
+                <input type="password" id="adminPassInput" placeholder="পাসওয়ার্ড" autocomplete="off" required>
+                <div class="admin-login-error" id="adminLoginError">ভুল আইডি অথবা পাসওয়ার্ড!</div>
+                <button type="submit" class="admin-login-btn">প্রবেশ করুন</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== Admin Dashboard Modal ===== -->
+    <div class="admin-modal-overlay" id="adminDashOverlay">
+        <div class="admin-modal admin-dash-modal">
+            <button class="admin-modal-close" onclick="closeAdminDash()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="admin-dash-header">
+                <div class="admin-modal-icon small"><i class="fa-solid fa-chart-line"></i></div>
+                <div>
+                    <h3>Admin Panel</h3>
+                    <p class="admin-modal-sub">ভিজিটর ডাটা ও পরিসংখ্যান</p>
+                </div>
+                <button class="admin-logout-btn" onclick="adminLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+            </div>
+            <div class="admin-dash-body" id="adminDashBody">
+                <i class="fa-solid fa-spinner fa-spin" style="font-size:28px; color:#94a3b8;"></i>
+            </div>
+        </div>
+    </div>
 
     <section class="hero">
         <div class="hero-inner">
@@ -409,6 +484,18 @@
                     </div>
                 </div>
                 <button class="btn tOpenBtn" onclick="openAnnapurnaModal()">ওপেন টুল</button>
+            </div>
+
+            <div class="tool-card" data-name="banglar bhumi land record জমির তথ্য জমি রেকর্ড খতিয়ান বাংলার ভূমি land">
+                <div class="tool-card-top">
+                    <div class="tool-icon land-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">জমি সেবা</span>
+                        <h3>বাংলার ভূমি <span style="display:block; font-size:14px; color:#c2410c; font-weight:600; margin-top:4px;">(Banglar Bhumi)</span></h3>
+                        <p>পশ্চিমবঙ্গ সরকারের অফিসিয়াল ভূমি তথ্য পোর্টাল। জমির খতিয়ান, দাগ নম্বর এবং সংশ্লিষ্ট যাবতীয় তথ্য যাচাই করুন।</p>
+                    </div>
+                </div>
+                <button class="btn tOpenBtn" onclick="window.open('https://banglarbhumi.gov.in/', '_blank')">ওপেন টুল</button>
             </div>
 
             <div class="tool-card" data-name="voter portal form 6 status check citizen registration ভোটার পোর্টাল">
@@ -862,6 +949,94 @@
     </footer>
 
     <script>
+        /* ===== Admin Panel ===== */
+        const ADMIN_ID = "8906139223";
+        const ADMIN_PASS = "Aship123*";
+
+        // ⚠️ এখানে আপনার Google Apps Script Web App URL বসান (ধাপ ২ দেখুন)
+        const VISITOR_API_URL = "https://script.google.com/macros/s/AKfycbz1UDTuvDx2lDJlkv3rUMAmROK7OkrDn9rZPCef6MVy7svtShBqn1JIFhoDqSEJSY-J/exec";
+
+        function openAdminLogin() {
+            document.getElementById('adminIdInput').value = '';
+            document.getElementById('adminPassInput').value = '';
+            document.getElementById('adminLoginError').classList.remove('show');
+            document.getElementById('adminLoginOverlay').classList.add('active');
+        }
+        function closeAdminLogin() {
+            document.getElementById('adminLoginOverlay').classList.remove('active');
+        }
+        function adminLoginSubmit(e) {
+            e.preventDefault();
+            const id = document.getElementById('adminIdInput').value.trim();
+            const pass = document.getElementById('adminPassInput').value;
+            if (id === ADMIN_ID && pass === ADMIN_PASS) {
+                closeAdminLogin();
+                document.getElementById('adminDashOverlay').classList.add('active');
+                loadVisitorData();
+            } else {
+                document.getElementById('adminLoginError').classList.add('show');
+            }
+            return false;
+        }
+        function closeAdminDash() {
+            document.getElementById('adminDashOverlay').classList.remove('active');
+        }
+        function adminLogout() {
+            closeAdminDash();
+        }
+        // Close modals when clicking outside the box
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('admin-modal-overlay')) {
+                e.target.classList.remove('active');
+            }
+        });
+
+        /* ---- Visitor logging (runs once per browser session) ---- */
+        function logVisitOnce() {
+            if (!VISITOR_API_URL || VISITOR_API_URL.indexOf('PASTE_YOUR') === 0) return;
+            if (sessionStorage.getItem('cscVisitLogged')) return;
+            fetch(VISITOR_API_URL + '?action=log', { mode: 'no-cors' })
+                .then(function () { sessionStorage.setItem('cscVisitLogged', '1'); })
+                .catch(function () {});
+        }
+        window.addEventListener('DOMContentLoaded', logVisitOnce);
+
+        /* ---- Load & render visitor data inside admin dashboard ---- */
+        function loadVisitorData() {
+            const body = document.getElementById('adminDashBody');
+            if (!VISITOR_API_URL || VISITOR_API_URL.indexOf('PASTE_YOUR') === 0) {
+                body.innerHTML = '<p style="text-align:center;color:#dc2626;">VISITOR_API_URL সেট করা হয়নি। প্রথমে Apps Script deploy করে URL বসান।</p>';
+                return;
+            }
+            body.innerHTML = '<p style="text-align:center;color:#64748b;"><i class="fa-solid fa-spinner fa-spin"></i> লোড হচ্ছে...</p>';
+            fetch(VISITOR_API_URL + '?action=data')
+                .then(function (res) { return res.json(); })
+                .then(function (res) {
+                    if (!res.success) { throw new Error('bad response'); }
+                    renderVisitorData(res.data);
+                })
+                .catch(function () {
+                    body.innerHTML = '<p style="text-align:center;color:#dc2626;">ডাটা লোড করা যায়নি। URL অথবা ইন্টারনেট চেক করুন।</p>';
+                });
+        }
+
+        function renderVisitorData(data) {
+            const body = document.getElementById('adminDashBody');
+            if (!data || data.length === 0) {
+                body.innerHTML = '<p style="text-align:center;color:#64748b;">এখনো কোনো ভিজিট রেকর্ড হয়নি।</p>';
+                return;
+            }
+            const total = data.reduce(function (sum, row) { return sum + row.count; }, 0);
+            let html = '<div class="admin-total-box"><span>মোট ভিজিট</span><strong>' + total + '</strong></div>';
+            html += '<div class="admin-visit-table">';
+            html += '<div class="admin-visit-row admin-visit-head"><span>তারিখ</span><span>ভিজিটর</span></div>';
+            data.forEach(function (row) {
+                html += '<div class="admin-visit-row"><span>' + row.date + '</span><span>' + row.count + '</span></div>';
+            });
+            html += '</div>';
+            body.innerHTML = html;
+        }
+
         const translations = {
             bn: {
                 search: "প্রয়োজনীয় টুল খুঁজুন...", lang: "ভাষা / Lang",
