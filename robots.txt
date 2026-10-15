@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aicombo90.github.io/csc-free-tools/sitemap.xml
