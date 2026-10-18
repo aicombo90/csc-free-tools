@@ -72,8 +72,9 @@
   #touch-ui { position:fixed; inset:0; z-index:15; pointer-events:none; }
   #joy-zone { position:absolute; left:0; bottom:0; width:45%; height:55%; pointer-events:auto; }
   #joy-base { position:fixed; width:120px; height:120px; border-radius:50%;
-    background:rgba(255,255,255,.08); border:2px solid rgba(255,255,255,.25);
-    display:none; transform:translate(-50%,-50%); z-index:16; pointer-events:none; }
+    background:rgba(255,255,255,.17); border:2px solid rgba(255,255,255,.55);
+    display:none; transform:translate(-50%,-50%); z-index:16; pointer-events:none;
+    box-shadow:0 0 0 6px rgba(255,255,255,.07), 0 4px 14px rgba(0,0,0,.35); }
   #joy-knob { position:absolute; left:50%; top:50%; width:54px; height:54px; border-radius:50%;
     background:rgba(255,255,255,.45); border:2px solid rgba(255,255,255,.6);
     transform:translate(-50%,-50%); box-shadow:0 4px 12px rgba(0,0,0,.4); }
@@ -99,6 +100,24 @@
     .tbtn { width:68px; height:68px; } .tbtn.big { width:80px; height:80px; }
     .tbtn.small { width:58px; height:58px; }
   }
+  /* খাটো স্ক্রিন (ল্যান্ডস্কেপ ফোন) — বোতাম ছোট, জায়গা বাঁচবে */
+  @media (max-height:540px) {
+    #touch-btns { grid-template-columns:repeat(2, 60px); gap:8px; right:10px;
+      bottom:calc(12px + env(safe-area-inset-bottom)); }
+    .tbtn { width:60px; height:60px; font-size:13px; }
+    .tbtn.big { width:70px; height:70px; font-size:15px; }
+    .tbtn.small { width:52px; height:52px; font-size:11.5px; }
+  }
+  /* আসল ফোন — ডেস্কটপ মোডেও (JS body.phone ক্লাস যোগ করে, viewport ধোঁকা দিতে পারে না) */
+  body.phone #touch-btns { grid-template-columns:repeat(2, 66px); gap:10px; }
+  body.phone .tbtn { width:66px; height:66px; }
+  body.phone .tbtn.big { width:78px; height:78px; }
+  body.phone .tbtn.small { width:56px; height:56px; }
+  body.phone #rotate-hint { font-size:13.5px; }
+  #rotate-hint.warn { color:#fde68a; font-weight:700; font-size:14px;
+    background:rgba(120,53,15,.88); margin:0 18px; padding:10px 14px; border-radius:12px;
+    border:1px solid rgba(251,191,36,.55);
+    top:calc(74px + env(safe-area-inset-top)); bottom:auto; }
 </style>
 </head>
 <body>
@@ -345,12 +364,16 @@ sun.shadow.camera.far = 140;
 scene.add(sun);
 
 function resize() {
-  const w = window.innerWidth, h = window.innerHeight;
+  // visualViewport পিনচ-জুম/ডেস্কটপ-মোডেও সঠিক দৃশ্যমান সাইজ দেয়
+  const vv = window.visualViewport;
+  const w = vv ? vv.width : window.innerWidth;
+  const h = vv ? vv.height : window.innerHeight;
   renderer.setSize(w, h, false);
   camera.aspect = w / h;
   camera.updateProjectionMatrix();
 }
 window.addEventListener('resize', resize);
+if (window.visualViewport) visualViewport.addEventListener('resize', resize);
 resize();
 
 /* ============================================================
@@ -648,6 +671,12 @@ for (const s of [-1, 1])
    INPUT — কিবোর্ড + টাচ (জয়স্টিক ও বোতাম)
    ============================================================ */
 const IS_TOUCH = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+// ফিজিক্যাল স্ক্রিন দেখে আসল মোবাইল চেনা — ডেস্কটপ মোড অন থাকলেও viewport মিথ্যা বলতে পারে,
+// কিন্তু window.screen (ডিভাইসের আসল স্ক্রিন) আর touch ক্ষমতা মিথ্যা বলে না।
+const PHYS_MIN = Math.min(window.screen.width || 0, window.screen.height || 0);
+const IS_PHONE = IS_TOUCH && PHYS_MIN > 0 && PHYS_MIN < 600;
+const DESKTOP_MODE = IS_TOUCH && /Linux x86_64|Windows NT|Macintosh/.test(navigator.userAgent || '');
+if (IS_PHONE) document.body.classList.add('phone');
 const input = { x: 0, z: 0, sprint: false };
 const keys = {};
 
@@ -1176,8 +1205,17 @@ function startGame() {
   if (IS_TOUCH) {
     $('touch-ui').classList.remove('hidden');
     const rh = $('rotate-hint');
+    rh.classList.remove('warn');
+    if (DESKTOP_MODE) {
+      rh.innerHTML = '⚠️ ডেস্কটপ মোড অন আছে — ভালো খেলার জন্য ব্রাউজার মেনু থেকে <b>ডেস্কটপ মোড বন্ধ</b> করো';
+      rh.classList.add('warn');
+    } else if (camera.aspect < 0.95) {
+      rh.innerHTML = '📱 ভালো খেলার জন্য ফোনটি আড়াআড়ি (landscape) ধরো';
+    } else {
+      rh.innerHTML = '👈 বাম পাশে আঙুল রেখে টানো — এটাই জয়স্টিক';
+    }
     rh.classList.remove('hidden');
-    setTimeout(() => rh.classList.add('hidden'), 7000);
+    setTimeout(() => rh.classList.add('hidden'), 9000);
   }
   camera.position.set(0, 26, 58);
   G.state = 'countdown'; G.countdownT = 3.4;
@@ -1225,12 +1263,14 @@ function quitToMenu() {
 const _camPos = new THREE.Vector3(), _look = new THREE.Vector3();
 function updateCamera(dt) {
   const portrait = camera.aspect < 0.95;
+  // ফোনে ক্যামেরা কাছে আনা — প্লেয়ার বড় ও স্পষ্ট দেখাবে (ডেস্কটপ মোডেও)
+  const zoom = IS_PHONE ? 0.62 : 1;
   // বল মাঠের বাইরে গেলেও ক্যামেরা মাঠের ভেতরের দিকেই থাকবে
   const bx = clamp(ball.pos.x, -HX, HX), bz = clamp(ball.pos.z, -HZ, HZ);
   _camPos.set(
     bx * 0.55,
-    portrait ? 36 : 24,
-    bz * 0.55 + (portrait ? 42 : 33)
+    (portrait ? 36 : 24) * zoom,
+    bz * 0.55 + (portrait ? 42 : 33) * zoom
   );
   camera.position.lerp(_camPos, 1 - Math.pow(0.0001, dt));
   _look.set(bx * 0.85, 0, bz * 0.7);
