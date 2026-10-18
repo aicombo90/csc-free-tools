@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>3D ফুটবল গেম | DAFADAR ONLINE SAVA</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#16a34a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -67,6 +73,9 @@
   #countdown { position:fixed; top:38%; left:0; right:0; z-index:25; text-align:center;
     font-size:min(110px,26vw); font-weight:700; color:#fff; pointer-events:none;
     text-shadow:0 8px 30px rgba(0,0,0,.7); }
+  #replay-label { position:fixed; top:calc(84px + env(safe-area-inset-top)); left:0; right:0; z-index:25;
+    text-align:center; font-size:20px; font-weight:700; color:#fff; pointer-events:none;
+    text-shadow:0 2px 10px rgba(0,0,0,.8); letter-spacing:1px; }
 
   /* ---------- touch controls ---------- */
   #touch-ui { position:fixed; inset:0; z-index:15; pointer-events:none; }
@@ -114,7 +123,36 @@
   body.phone .tbtn.big { width:78px; height:78px; }
   body.phone .tbtn.small { width:56px; height:56px; }
   body.phone #rotate-hint { font-size:13.5px; }
+  /* ---------- menu option cards ---------- */
+  #menu-options { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0 6px; }
+  .opt-card { display:flex; flex-direction:column; align-items:center; gap:4px;
+    padding:18px 10px; border-radius:16px; cursor:pointer; color:#fff;
+    background:linear-gradient(135deg, rgba(37,99,235,.35), rgba(37,99,235,.12));
+    border:1.5px solid rgba(96,165,250,.45); font-family:inherit; transition:.15s; }
+  .opt-card:active { transform:scale(.96); }
+  .opt-card.dl { background:linear-gradient(135deg, rgba(22,163,74,.35), rgba(22,163,74,.12));
+    border-color:rgba(74,222,128,.45); }
+  .oc-icon { font-size:38px; }
+  .oc-title { font-size:18px; font-weight:700; }
+  .opt-card small { font-size:12px; opacity:.75; }
+  .back-btn { width:100%; margin-top:10px; padding:10px; border-radius:12px; cursor:pointer;
+    background:transparent; border:1px solid rgba(255,255,255,.25); color:#cbd5e1;
+    font-family:inherit; font-size:14px; }
+  .dl-box { background:rgba(22,163,74,.1); border:1px solid rgba(74,222,128,.35);
+    border-radius:14px; padding:16px; margin-top:14px; text-align:left; }
+  .dl-title { font-size:17px; font-weight:700; margin-bottom:10px; text-align:center; }
+  .dl-points { font-size:14px; line-height:1.9; color:#d1fae5; }
+  .dl-btn { width:100%; margin-top:14px; padding:14px; font-size:17px; font-weight:700;
+    border:none; border-radius:12px; cursor:pointer; color:#fff; font-family:inherit;
+    background:linear-gradient(135deg,#16a34a,#15803d); box-shadow:0 6px 18px rgba(22,163,74,.4); }
+  .dl-btn:active { transform:scale(.97); }
+  .dl-btn.ready { animation:pulse 1.6s infinite; }
+  @keyframes pulse { 0%,100% { box-shadow:0 6px 18px rgba(22,163,74,.4); } 50% { box-shadow:0 6px 26px rgba(74,222,128,.75); } }
+  .dl-manual { margin-top:10px; font-size:12.5px; color:#a7f3d0; text-align:center; line-height:1.6; }
   #rotate-hint.warn { color:#fde68a; font-weight:700; font-size:14px;
+    background:rgba(120,53,15,.88); margin:0 18px; padding:10px 14px; border-radius:12px;
+    border:1px solid rgba(251,191,36,.55);
+    top:calc(74px + env(safe-area-inset-top)); bottom:auto; }
     background:rgba(120,53,15,.88); margin:0 18px; padding:10px 14px; border-radius:12px;
     border:1px solid rgba(251,191,36,.55);
     top:calc(74px + env(safe-area-inset-top)); bottom:auto; }
@@ -167,26 +205,74 @@
 
 <!-- banners -->
 <div id="goal-banner"><div class="big">⚽ গোল!</div><div class="sub" id="goal-sub"></div></div>
+<div id="replay-label" class="hidden">📼 রিপ্লে</div>
 <div id="countdown" class="hidden"></div>
+
+<script>
+// PWA — ডাউনলোড/ইনস্টল করলে অফলাইনেও খেলা যাবে
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+let _deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  _deferredPrompt = e;
+  const b = document.getElementById('btn-download');
+  if (b) b.classList.add('ready');
+});
+</script>
 
 <!-- main menu -->
 <div id="menu" class="overlay">
   <div class="menu-card">
     <div class="menu-title">⚽ 3D ফুটবল</div>
-    <div class="menu-sub">তুমি <b style="color:#60a5fa">নীল দল</b>-এর খেলোয়াড়। AI সতীর্থদের নিয়ে <b style="color:#f87171">লাল দলকে</b> হারাও!<br>ইন্টারনেট ছাড়াই খেলা যায় — কোনো সার্ভার লাগে না।</div>
-    <div class="opt-label">কঠিনতা বাছো</div>
-    <div class="opt-row" id="diff-row">
-      <button class="opt-btn" data-diff="easy">😊 সহজ</button>
-      <button class="opt-btn active" data-diff="medium">😐 মাঝারি</button>
-      <button class="opt-btn" data-diff="hard">😈 কঠিন</button>
+    <div class="menu-sub">তুমি <b style="color:#60a5fa">নীল দল</b>-এর খেলোয়াড়। AI সতীর্থদের নিয়ে <b style="color:#f87171">লাল দলকে</b> হারাও!</div>
+
+    <!-- দুটো অপশন: মাঠে খেলো / ডাউনলোড -->
+    <div id="menu-options">
+      <button id="btn-play-opt" class="opt-card">
+        <span class="oc-icon">⚽</span><span class="oc-title">মাঠে খেলো</span>
+        <small>এখনই ব্রাউজারে খেলো</small>
+      </button>
+      <button id="btn-download-opt" class="opt-card dl">
+        <span class="oc-icon">📲</span><span class="oc-title">ডাউনলোড করো</span>
+        <small>ফোনে ইনস্টল করে খেলো</small>
+      </button>
     </div>
-    <div class="opt-label">খেলার সময়</div>
-    <div class="opt-row" id="dur-row">
-      <button class="opt-btn active" data-dur="2">২ মিনিট</button>
-      <button class="opt-btn" data-dur="4">৪ মিনিট</button>
-      <button class="opt-btn" data-dur="6">৬ মিনিট</button>
+
+    <div id="match-setup" class="hidden">
+      <div class="opt-label">কঠিনতা বাছো</div>
+      <div class="opt-row" id="diff-row">
+        <button class="opt-btn" data-diff="easy">😊 সহজ</button>
+        <button class="opt-btn active" data-diff="medium">😐 মাঝারি</button>
+        <button class="opt-btn" data-diff="hard">😈 কঠিন</button>
+      </div>
+      <div class="opt-label">খেলার সময়</div>
+      <div class="opt-row" id="dur-row">
+        <button class="opt-btn active" data-dur="2">২ মিনিট</button>
+        <button class="opt-btn" data-dur="4">৪ মিনিট</button>
+        <button class="opt-btn" data-dur="6">৬ মিনিট</button>
+      </div>
+      <button id="btn-start">▶ খেলা শুরু করো</button>
+      <button class="back-btn" id="btn-back-setup">← ফিরে যাও</button>
     </div>
-    <button id="btn-start">▶ খেলা শুরু করো</button>
+
+    <div id="download-panel" class="hidden">
+      <div class="dl-box">
+        <div class="dl-title">📲 ফোনে ইনস্টল করো</div>
+        <div class="dl-points">
+          ✅ হোম স্ক্রিনে গেমের আইকন — Free Fire-এর মতো<br>
+          ✅ খুললেই <b>অটো-ল্যান্ডস্কেপ</b> ফুলস্ক্রিন<br>
+          ✅ একবার লোড হলে <b>অফলাইনেও</b> খেলা যায়
+        </div>
+        <button id="btn-download" class="dl-btn">⬇️ ইনস্টল করো</button>
+        <div class="dl-manual" id="dl-manual">বাটনে কাজ না হলে: ব্রাউজার মেনু (⋮) → <b>"Add to Home screen"</b> / <b>"Install app"</b></div>
+      </div>
+      <button class="back-btn" id="btn-back-dl">← ফিরে যাও</button>
+    </div>
+
     <div class="controls-help" id="controls-help"></div>
   </div>
 </div>
@@ -554,6 +640,26 @@ function buildWorld() {
     const head = new THREE.Mesh(new THREE.BoxGeometry(4.4, 2, 0.8), lampMat);
     head.position.set(px, 20.5, pz); head.lookAt(0, 0, 0); scene.add(head);
   }
+
+  // বিজ্ঞাপন বোর্ড — মাঠের চারপাশে
+  const adC = document.createElement('canvas'); adC.width = 512; adC.height = 64;
+  const ax = adC.getContext('2d');
+  ax.fillStyle = '#0b3d91'; ax.fillRect(0, 0, 512, 64);
+  ax.fillStyle = '#ffd23f'; ax.fillRect(0, 0, 512, 6); ax.fillRect(0, 58, 512, 6);
+  ax.fillStyle = '#ffffff'; ax.font = 'bold 30px sans-serif';
+  ax.textAlign = 'center'; ax.textBaseline = 'middle';
+  ax.fillText('⚽ DAFADAR 3D FOOTBALL', 256, 34);
+  const adTex = new THREE.CanvasTexture(adC);
+  adTex.wrapS = THREE.RepeatWrapping; adTex.repeat.set(8, 1);
+  const adMat = new THREE.MeshLambertMaterial({ map: adTex });
+  const boardGeo = new THREE.BoxGeometry(1, 1, 1);
+  function adBoard(w, x, z, rotY) {
+    const b = new THREE.Mesh(boardGeo, adMat);
+    b.scale.set(w, 1, 0.3); b.position.set(x, 0.5, z); b.rotation.y = rotY;
+    scene.add(b);
+  }
+  adBoard(76, 0, -24, 0); adBoard(76, 0, 24, Math.PI);
+  adBoard(52, -38, 0, Math.PI / 2); adBoard(52, 38, 0, -Math.PI / 2);
 }
 
 /* ============================================================
@@ -620,6 +726,7 @@ function buildTeams() {
         isUser: team === 0,
         controlled: false,
         animT: Math.random() * 10,
+        kickT: 0,
         mesh: parts,
         moving: 0,
       };
@@ -647,6 +754,31 @@ const marker = new THREE.Mesh(
 marker.rotation.x = Math.PI;
 marker.visible = false;
 scene.add(marker);
+
+/* ============================================================
+   REPLAY — শেষ ৮ সেকেন্ড রেকর্ড, গোলে স্লো-মো রিপ্লে
+   ============================================================ */
+const REPLAY = { buf: [], max: 480, idx: 0, t: 0 };
+function recordFrame() {
+  const f = { bx: ball.pos.x, bz: ball.pos.z, ps: [] };
+  for (const p of players) f.ps.push([p.pos.x, p.pos.z, p.angle]);
+  REPLAY.buf.push(f);
+  if (REPLAY.buf.length > REPLAY.max) REPLAY.buf.shift();
+}
+function applyReplayFrame(f) {
+  ball.pos.set(f.bx, ball.pos.y, f.bz);
+  ballMesh.position.copy(ball.pos);
+  for (let i = 0; i < players.length && i < f.ps.length; i++) {
+    const p = players[i], s = f.ps[i];
+    p.pos.set(s[0], 0, s[1]); p.angle = s[2];
+    p.mesh.group.position.set(s[0], 0, s[1]);
+    p.mesh.group.rotation.y = -s[2] + Math.PI / 2;
+  }
+  // রিপ্লেতে পা-দোলা ফ্রিজ — স্লো-মো ইফেক্ট
+  for (const p of players) {
+    p.mesh.legL.rotation.x *= 0.9; p.mesh.legR.rotation.x *= 0.9;
+  }
+}
 
 /* ============================================================
    BALL
@@ -677,6 +809,9 @@ const PHYS_MIN = Math.min(window.screen.width || 0, window.screen.height || 0);
 const IS_PHONE = IS_TOUCH && PHYS_MIN > 0 && PHYS_MIN < 600;
 const DESKTOP_MODE = IS_TOUCH && /Linux x86_64|Windows NT|Macintosh/.test(navigator.userAgent || '');
 if (IS_PHONE) document.body.classList.add('phone');
+
+// হ্যাপটিক ফিডব্যাক — প্রতিটা টাচে "আসল" অনুভূতি
+function buzz(pat) { try { if (navigator.vibrate) navigator.vibrate(pat); } catch (e) {} }
 const input = { x: 0, z: 0, sprint: false };
 const keys = {};
 
@@ -790,6 +925,8 @@ function shoot(p) {
   const sp = p.role === 'GK' ? 26 : rand(23, 29);
   freeBall(Math.cos(ang) * sp, rand(2.4, 4.2), Math.sin(ang) * sp, p);
   p.angle = ang;
+  p.kickT = 0.4;
+  buzz(25);
   SFX.kick(1);
 }
 
@@ -817,6 +954,8 @@ function passBall(p) {
   const sp = clamp(d * 1.7, 11, 20);
   freeBall(dx / d * sp, 1.4, dz / d * sp, p);
   p.angle = Math.atan2(dz, dx);
+  p.kickT = 0.32;
+  buzz(15);
   SFX.kick(0.55);
   return true;
 }
@@ -1179,19 +1318,33 @@ function onGoal(team) {
   G.score[team]++;
   updateScore();
   SFX.cheer(); SFX.whistle(0.5, 1);
-  $('goal-sub').textContent = team === 0 ? 'তুমি গোল করলে! 🎉' : 'প্রতিপক্ষ গোল করল 😞';
-  $('goal-banner').classList.add('show');
+  buzz([70, 50, 70, 50, 120]);
   ball.vel.set(0, 0, 0);
-  G.state = 'goal'; G.goalT = 2.8;
+  // গোল → প্রথমে স্লো-মো রিপ্লে, তারপর ব্যানার ও কিকঅফ
+  G.state = 'replay';
+  G.replayIdx = 0;
+  G.replayFrom = Math.max(0, REPLAY.buf.length - 300); // শেষ ~৫ সেকেন্ড
+  $('replay-label').classList.remove('hidden');
   G._concede = 1 - team;
+  G._scorer = team;
 }
 
 function startGame() {
   SFX.ensure(); SFX.click(); SFX.crowdLoop();
+  // মোবাইলে অটো-ল্যান্ডস্কেপ — Free Fire/PUBG-এর মতো আড়াআড়ি হয়ে যাবে
+  try {
+    if (IS_PHONE) {
+      if (document.documentElement.requestFullscreen)
+        document.documentElement.requestFullscreen().catch(() => {});
+      if (screen.orientation && screen.orientation.lock)
+        screen.orientation.lock('landscape').catch(() => {});
+    }
+  } catch (e) {}
   G.diff = DIFFS[G.diffKey];
   G.score = [0, 0];
   G.timeLeft = G.durationMin * 60;
   G.freezeT = 0; G.switchT = 0;
+  REPLAY.buf.length = 0;
   buildTeams();
   resetPositions(0);
   updateScore();
@@ -1200,6 +1353,7 @@ function startGame() {
   $('fulltime').classList.add('hidden');
   $('pause-menu').classList.add('hidden');
   $('goal-banner').classList.remove('show');
+  $('replay-label').classList.add('hidden');
   $('hud').classList.remove('hidden');
   $('hud-btns').classList.remove('hidden');
   if (IS_TOUCH) {
@@ -1251,8 +1405,17 @@ function quitToMenu() {
   SFX.click();
   G.state = 'menu';
   SFX.setCrowd(false);
-  for (const id of ['pause-menu', 'fulltime', 'hud', 'hud-btns', 'touch-ui', 'rotate-hint'])
+  for (const id of ['pause-menu', 'fulltime', 'hud', 'hud-btns', 'touch-ui', 'rotate-hint', 'replay-label'])
     $(id).classList.add('hidden');
+  // মেনুতে ফিরলে আবার দুটো অপশন দেখানো
+  $('menu-options').classList.remove('hidden');
+  $('match-setup').classList.add('hidden');
+  $('download-panel').classList.add('hidden');
+  // ফুলস্ক্রিন/ল্যান্ডস্কেপ লক ছেড়ে দেওয়া
+  try {
+    if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock();
+    if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  } catch (e) {}
   $('goal-banner').classList.remove('show');
   $('menu').classList.remove('hidden');
 }
@@ -1289,6 +1452,20 @@ function tick(dt) {
     if (G.countdownT <= 0) { el.classList.add('hidden'); G.state = 'play'; SFX.whistle(0.4, 1); }
     return;
   }
+  if (G.state === 'replay') {
+    // স্লো-মো রিপ্লে: বাফার 0.35x গতিতে চালানো
+    G.replayIdx += dt * 60 * 0.35;
+    const i = Math.min(REPLAY.buf.length - 1, (G.replayFrom + G.replayIdx) | 0);
+    if (REPLAY.buf[i]) applyReplayFrame(REPLAY.buf[i]);
+    const total = REPLAY.buf.length - G.replayFrom;
+    if (G.replayIdx >= total) {
+      $('replay-label').classList.add('hidden');
+      $('goal-sub').textContent = G._scorer === 0 ? 'তুমি গোল করলে! 🎉' : 'প্রতিপক্ষ গোল করল 😞';
+      $('goal-banner').classList.add('show');
+      G.state = 'goal'; G.goalT = 2.2;
+    }
+    return;
+  }
   if (G.state === 'goal') {
     G.goalT -= dt;
     if (G.goalT <= 0) {
@@ -1312,6 +1489,7 @@ function tick(dt) {
   for (const p of players) movePlayer(p, dt);
   separatePlayers();
   ballPhysics(dt);
+  recordFrame();
 }
 
 function updateVisuals(dt) {
@@ -1323,8 +1501,19 @@ function updateVisuals(dt) {
     const sp = Math.hypot(p.vel.x, p.vel.z);
     p.animT += dt * (2 + sp * 1.7);
     const sw = sp > 0.6 ? Math.sin(p.animT) * 0.65 : 0;
-    m.legL.rotation.x = sw; m.legR.rotation.x = -sw;
-    m.armL.rotation.x = -sw * 0.7; m.armR.rotation.x = sw * 0.7;
+    if (p.kickT > 0) {
+      // শট/পাসের মুহূর্তে ডান পায়ের জোরালো সুইং — রিয়েলিস্টিক কিক
+      p.kickT -= dt;
+      const k = Math.max(0, Math.sin((1 - Math.max(0, p.kickT) / 0.4) * Math.PI));
+      m.legR.rotation.x = -1.5 * k;
+      m.legL.rotation.x = sw * 0.3;
+      m.armL.rotation.x = 0.9 * k; m.armR.rotation.x = -sw * 0.7;
+      m.body.rotation.x = 0.12 * k;
+    } else {
+      m.body.rotation.x = 0;
+      m.legL.rotation.x = sw; m.legR.rotation.x = -sw;
+      m.armL.rotation.x = -sw * 0.7; m.armR.rotation.x = sw * 0.7;
+    }
     m.body.position.y = 1.12 + (sp > 0.6 ? Math.abs(Math.sin(p.animT)) * 0.06 : Math.sin(t * 2 + p.animT) * 0.02);
   }
   if (!ball.owner) ballMesh.position.copy(ball.pos);
@@ -1342,6 +1531,12 @@ function updateVisuals(dt) {
   if (G.state === 'menu') {
     camera.position.set(Math.sin(t * 0.1) * 48, 27, Math.cos(t * 0.1) * 48);
     camera.lookAt(0, 1.5, 0);
+  } else if (G.state === 'replay') {
+    // সিনেমাটিক রিপ্লে ক্যামেরা — বলের কাছ থেকে, নিচু অ্যাঙ্গেল
+    const bx = ball.pos.x, bz = ball.pos.z;
+    _camPos.set(bx * 0.9 - 6, 7, bz * 0.9 + 13);
+    camera.position.lerp(_camPos, 1 - Math.pow(0.01, dt));
+    camera.lookAt(bx, 1.2, bz);
   } else {
     updateCamera(dt);
   }
@@ -1377,6 +1572,35 @@ document.querySelectorAll('#dur-row .opt-btn').forEach(b => {
   });
 });
 $('btn-start').addEventListener('click', startGame);
+
+// মেনু অপশন: মাঠে খেলো / ডাউনলোড
+function showMenuPanel(which) {
+  SFX.click();
+  $('menu-options').classList.toggle('hidden', which !== 'options');
+  $('match-setup').classList.toggle('hidden', which !== 'setup');
+  $('download-panel').classList.toggle('hidden', which !== 'download');
+}
+$('btn-play-opt').addEventListener('click', () => showMenuPanel('setup'));
+$('btn-download-opt').addEventListener('click', () => showMenuPanel('download'));
+$('btn-back-setup').addEventListener('click', () => showMenuPanel('options'));
+$('btn-back-dl').addEventListener('click', () => showMenuPanel('options'));
+$('btn-download').addEventListener('click', async () => {
+  SFX.click();
+  if (_deferredPrompt) {
+    _deferredPrompt.prompt();
+    await _deferredPrompt.userChoice.catch(() => {});
+    _deferredPrompt = null;
+  } else {
+    $('dl-manual').style.color = '#fde68a';
+    $('dl-manual').style.fontWeight = '700';
+    buzz(30);
+  }
+});
+
+// ডিবাগ হুক — শুধু লোকাল টেস্টে (প্রোডাকশনে নিষ্ক্রিয়)
+if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+  window.__dbg = { G, players, ball, onGoal, startGame, REPLAY };
+}
 $('btn-pause').addEventListener('click', () => togglePause());
 $('btn-resume').addEventListener('click', () => togglePause());
 $('btn-restart').addEventListener('click', () => { $('pause-menu').classList.add('hidden'); G.state = 'play'; startGame(); });
