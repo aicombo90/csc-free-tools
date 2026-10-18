@@ -434,7 +434,38 @@ canvas.addEventListener('webglcontextrestored', () => location.reload());
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x87b5e0);
-scene.fog = new THREE.Fog(0x87b5e0, 90, 230);
+scene.fog = new THREE.Fog(0xcfe0ee, 90, 260);
+
+// গ্র্যাডিয়েন্ট আকাশ-গম্বুজ
+{
+  const skyC = document.createElement('canvas'); skyC.width = 2; skyC.height = 256;
+  const sx = skyC.getContext('2d');
+  const grd = sx.createLinearGradient(0, 0, 0, 256);
+  grd.addColorStop(0.0, '#2e6bcf');
+  grd.addColorStop(0.55, '#7db8e8');
+  grd.addColorStop(0.8, '#cfe8f7');
+  grd.addColorStop(1.0, '#e9f4fb');
+  sx.fillStyle = grd; sx.fillRect(0, 0, 2, 256);
+  const sky = new THREE.Mesh(
+    new THREE.SphereGeometry(380, 24, 16),
+    new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(skyC), side: THREE.BackSide, fog: false })
+  );
+  scene.add(sky);
+  // সাদা মেঘ
+  const cloudMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.88, fog: false });
+  for (let i = 0; i < 7; i++) {
+    const cl = new THREE.Group();
+    for (let j = 0; j < 4; j++) {
+      const s = new THREE.Mesh(new THREE.SphereGeometry(6 + Math.random() * 5, 10, 8), cloudMat);
+      s.position.set(j * 7 - 10 + Math.random() * 3, Math.random() * 2.5, Math.random() * 4);
+      s.scale.y = 0.5;
+      cl.add(s);
+    }
+    const a = Math.random() * Math.PI * 2, r = 190 + Math.random() * 110;
+    cl.position.set(Math.cos(a) * r, 75 + Math.random() * 45, Math.sin(a) * r);
+    scene.add(cl);
+  }
+}
 
 const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 500);
 
@@ -528,6 +559,7 @@ function ballTexture() {
    WORLD — মাঠ, গোলপোস্ট, গ্যালারি, লাইট
    ============================================================ */
 const HX = PITCH.L / 2, HZ = PITCH.W / 2;   // 32, 20
+let crowdTex = null;   // দর্শক অ্যানিমেশনের জন্য
 
 function buildWorld() {
   // বাইরের মাটি
@@ -609,7 +641,8 @@ function buildWorld() {
   }
 
   // গ্যালারি (৪ দিকে ধাপ)
-  const crowdMat = new THREE.MeshLambertMaterial({ map: crowdTexture() });
+  crowdTex = crowdTexture();
+  const crowdMat = new THREE.MeshLambertMaterial({ map: crowdTex });
   const baseMat = new THREE.MeshLambertMaterial({ color: 0x24304d });
   function stand(w, d, x, z, rotY) {
     const g = new THREE.Group();
@@ -666,34 +699,80 @@ function buildWorld() {
    PLAYERS
    ============================================================ */
 const SKIN = [0xf1c27d, 0xe0ac69, 0xc68642, 0x8d5524];
+const HAIR = [0x141414, 0x2b1d12, 0x4a3220, 0x0d0d0d, 0x3d3d3d];
 const players = [];
 
-function makePlayerMesh(jerseyColor) {
+function numberTexture(num) {
+  const c = document.createElement('canvas'); c.width = c.height = 64;
+  const x = c.getContext('2d');
+  x.clearRect(0, 0, 64, 64);
+  x.fillStyle = '#ffffff'; x.font = 'bold 42px sans-serif';
+  x.textAlign = 'center'; x.textBaseline = 'middle';
+  x.strokeStyle = 'rgba(0,0,0,.55)'; x.lineWidth = 5;
+  x.strokeText(String(num), 32, 34); x.fillText(String(num), 32, 34);
+  return new THREE.CanvasTexture(c);
+}
+
+function makePlayerMesh(jerseyColor, num) {
   const g = new THREE.Group();
   const jersey = new THREE.MeshLambertMaterial({ color: jerseyColor });
   const skin = new THREE.MeshLambertMaterial({ color: SKIN[(Math.random() * SKIN.length) | 0] });
-  const dark = new THREE.MeshLambertMaterial({ color: 0x1e293b });
+  const shortsM = new THREE.MeshLambertMaterial({ color: 0xf1f5f9 });
+  const sockM = new THREE.MeshLambertMaterial({ color: 0xf8fafc });
+  const shoeM = new THREE.MeshLambertMaterial({ color: 0x18181b });
+  const hairM = new THREE.MeshLambertMaterial({ color: HAIR[(Math.random() * HAIR.length) | 0] });
 
-  // পা ঘোরানোর pivot উপরে রাখতে geometry নিচে সরানো
-  const legGeo = new THREE.BoxGeometry(0.24, 0.62, 0.24);
-  legGeo.translate(0, -0.31, 0);
-  const legL = new THREE.Mesh(legGeo, dark); legL.position.set(-0.16, 0.62, 0);
-  const legR = new THREE.Mesh(legGeo, dark); legR.position.set(0.16, 0.62, 0);
+  // পা: হিপ থেকে pivot — থাই(স্কিন) + মোজা(সাদা) + জুতো
+  function leg(side) {
+    const pivot = new THREE.Group();
+    pivot.position.set(0.17 * side, 0.95, 0);
+    const thigh = new THREE.Mesh(new THREE.BoxGeometry(0.21, 0.36, 0.23), skin);
+    thigh.position.y = -0.18;
+    const sock = new THREE.Mesh(new THREE.BoxGeometry(0.17, 0.42, 0.19), sockM);
+    sock.position.y = -0.56;
+    const shoe = new THREE.Mesh(new THREE.BoxGeometry(0.19, 0.13, 0.34), shoeM);
+    shoe.position.set(0, -0.82, 0.06);
+    thigh.castShadow = sock.castShadow = true;
+    pivot.add(thigh, sock, shoe);
+    g.add(pivot);
+    return pivot;
+  }
+  const legL = leg(-1), legR = leg(1);
 
-  const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.30, 0.55, 4, 10), jersey);
-  body.position.y = 1.12; body.castShadow = true;
+  // শর্টস
+  const shorts = new THREE.Mesh(new THREE.BoxGeometry(0.52, 0.3, 0.34), shortsM);
+  shorts.position.y = 1.06; shorts.castShadow = true; g.add(shorts);
 
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.24, 12, 10), skin);
-  head.position.y = 1.78; head.castShadow = true;
+  // জার্সি টর্সো + পিঠে নম্বর
+  const torso = new THREE.Mesh(new THREE.BoxGeometry(0.54, 0.62, 0.34), jersey);
+  torso.position.y = 1.5; torso.castShadow = true; g.add(torso);
+  const numPlane = new THREE.Mesh(new THREE.PlaneGeometry(0.3, 0.3),
+    new THREE.MeshBasicMaterial({ map: numberTexture(num), transparent: true }));
+  numPlane.position.set(0, 0.03, -0.176); numPlane.rotation.y = Math.PI;
+  torso.add(numPlane);
 
-  const armGeo = new THREE.BoxGeometry(0.16, 0.55, 0.16);
-  armGeo.translate(0, -0.27, 0);
-  const armL = new THREE.Mesh(armGeo, jersey); armL.position.set(-0.44, 1.45, 0);
-  const armR = new THREE.Mesh(armGeo, jersey); armR.position.set(0.44, 1.45, 0);
+  // হাত: শোল্ডার থেকে pivot — জার্সি হাতা + স্কিন হাত
+  function arm(side) {
+    const pivot = new THREE.Group();
+    pivot.position.set(0.36 * side, 1.76, 0);
+    const sleeve = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.3, 0.17), jersey);
+    sleeve.position.y = -0.15;
+    const hand = new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.28, 0.15), skin);
+    hand.position.y = -0.42;
+    pivot.add(sleeve, hand);
+    g.add(pivot);
+    return pivot;
+  }
+  const armL = arm(-1), armR = arm(1);
 
-  legL.castShadow = legR.castShadow = true;
-  g.add(legL, legR, body, head, armL, armR);
-  return { group: g, legL, legR, armL, armR, body };
+  // মাথা + চুল
+  const head = new THREE.Mesh(new THREE.SphereGeometry(0.21, 14, 12), skin);
+  head.position.y = 2.0; head.castShadow = true; g.add(head);
+  const hair = new THREE.Mesh(
+    new THREE.SphereGeometry(0.215, 14, 10, 0, Math.PI * 2, 0, Math.PI * 0.55), hairM);
+  hair.position.y = 2.04; hair.rotation.x = -0.4; g.add(hair);
+
+  return { group: g, legL, legR, armL, armR, body: torso };
 }
 
 const FORMATION = [
@@ -712,7 +791,7 @@ function buildTeams() {
     const gkJersey = team === 0 ? 0xf59e0b : 0x10b981;
     FORMATION.forEach((f, i) => {
       const s = team === 0 ? 1 : -1;   // team 1 আয়না
-      const parts = makePlayerMesh(f.role === 'GK' ? gkJersey : jersey);
+      const parts = makePlayerMesh(f.role === 'GK' ? gkJersey : jersey, i + 1);
       const p = {
         team, role: f.role, idx: i,
         pos: new THREE.Vector3(s * f.x, 0, s * f.z),
@@ -1046,14 +1125,22 @@ function aiThink(p) {
   const myBall = ball.owner && ball.owner.team === p.team;
   const oppBall = ball.owner && ball.owner.team !== p.team;
 
-  // --- বলের দিকে ছোটা: দলের ২ জন নিকটতম ---
+  // --- বলের দিকে ছোটা: দলের শুধু ১ জন নিকটতম (জটলা এড়াতে) ---
   if (!myBall) {
     const mates = players
       .filter(q => q.team === p.team && q.role !== 'GK' && !q.controlled)
       .sort((a, b) => dist2(a.pos.x, a.pos.z, ball.pos.x, ball.pos.z) - dist2(b.pos.x, b.pos.z, ball.pos.x, ball.pos.z));
-    if (mates.indexOf(p) >= 0 && mates.indexOf(p) < 2) {
+    const idx = mates.indexOf(p);
+    if (idx === 0) {
       const t = ball.owner ? ball.owner.pos : ball.pos;
       p.moveTarget = { x: t.x, z: t.z, sprint: true };
+      return;
+    }
+    if (idx === 1) {
+      // দ্বিতীয় জন জটলায় না গিয়ে বল ও নিজের গোলের মাঝে কভার পজিশনে
+      const ownGX = -atk * HX;
+      const t = ball.owner ? ball.owner.pos : ball.pos;
+      p.moveTarget = { x: clamp((t.x + ownGX) / 2, -HX + 2, HX - 2), z: clamp(t.z * 0.55, -16, 16) };
       return;
     }
   }
@@ -1146,15 +1233,16 @@ function movePlayer(p, dt) {
   }
 }
 
-/* খেলোয়াড়রা একে অপরের গায়ে উঠবে না (ট্যাকলের দূরত্ব বজায় রেখে) */
+/* খেলোয়াড়রা একে অপরের গায়ে উঠবে না — জটলা এড়াতে যথেষ্ট ফাঁকা রাখা */
 function separatePlayers() {
+  const MIN_D = 1.15;
   for (let i = 0; i < players.length; i++) {
     for (let j = i + 1; j < players.length; j++) {
       const a = players[i], b = players[j];
       const dx = b.pos.x - a.pos.x, dz = b.pos.z - a.pos.z;
       const d = Math.hypot(dx, dz);
-      if (d < 0.7 && d > 0.001) {
-        const push = (0.7 - d) * 0.5, nx = dx / d, nz = dz / d;
+      if (d < MIN_D && d > 0.001) {
+        const push = (MIN_D - d) * 0.5, nx = dx / d, nz = dz / d;
         a.pos.x -= nx * push; a.pos.z -= nz * push;
         b.pos.x += nx * push; b.pos.z += nz * push;
       }
@@ -1494,6 +1582,8 @@ function tick(dt) {
 
 function updateVisuals(dt) {
   const t = performance.now() / 1000;
+  // দর্শকদের নড়াচড়া — গ্যালারি "জীবন্ত" লাগবে
+  if (crowdTex) crowdTex.offset.x = (t * 0.02) % 1;
   for (const p of players) {
     const m = p.mesh;
     m.group.position.set(p.pos.x, 0, p.pos.z);
@@ -1514,7 +1604,7 @@ function updateVisuals(dt) {
       m.legL.rotation.x = sw; m.legR.rotation.x = -sw;
       m.armL.rotation.x = -sw * 0.7; m.armR.rotation.x = sw * 0.7;
     }
-    m.body.position.y = 1.12 + (sp > 0.6 ? Math.abs(Math.sin(p.animT)) * 0.06 : Math.sin(t * 2 + p.animT) * 0.02);
+    m.body.position.y = 1.5 + (sp > 0.6 ? Math.abs(Math.sin(p.animT)) * 0.06 : Math.sin(t * 2 + p.animT) * 0.02);
   }
   if (!ball.owner) ballMesh.position.copy(ball.pos);
 
