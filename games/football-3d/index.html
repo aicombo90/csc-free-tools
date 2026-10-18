@@ -71,9 +71,9 @@
   /* ---------- touch controls ---------- */
   #touch-ui { position:fixed; inset:0; z-index:15; pointer-events:none; }
   #joy-zone { position:absolute; left:0; bottom:0; width:45%; height:55%; pointer-events:auto; }
-  #joy-base { position:absolute; width:120px; height:120px; border-radius:50%;
+  #joy-base { position:fixed; width:120px; height:120px; border-radius:50%;
     background:rgba(255,255,255,.08); border:2px solid rgba(255,255,255,.25);
-    display:none; transform:translate(-50%,-50%); }
+    display:none; transform:translate(-50%,-50%); z-index:16; pointer-events:none; }
   #joy-knob { position:absolute; left:50%; top:50%; width:54px; height:54px; border-radius:50%;
     background:rgba(255,255,255,.45); border:2px solid rgba(255,255,255,.6);
     transform:translate(-50%,-50%); box-shadow:0 4px 12px rgba(0,0,0,.4); }
@@ -103,6 +103,23 @@
 </head>
 <body>
 <canvas id="game-canvas"></canvas>
+
+<!-- loading -->
+<div id="loading" class="overlay">
+  <div class="menu-card">
+    <div class="menu-title">⚽ 3D ফুটবল</div>
+    <div class="menu-sub">লোড হচ্ছে...<br><span style="font-size:12.5px">বেশি সময় লাগলে ইন্টারনেট চেক করে পেজ রিলোড করো</span></div>
+  </div>
+</div>
+
+<!-- graphics error -->
+<div id="gl-error" class="overlay hidden">
+  <div class="menu-card">
+    <div class="menu-title" style="font-size:24px">😢 গ্রাফিক্স সমস্যা</div>
+    <div class="menu-sub">ফোনের গ্রাফিক্স একটু হোঁচট খেয়েছে। পেজটা রিলোড করলেই ঠিক হয়ে যাবে।</div>
+    <button class="big-btn" onclick="location.reload()">🔄 রিলোড করো</button>
+  </div>
+</div>
 
 <!-- HUD -->
 <div id="hud" class="hidden">
@@ -300,9 +317,15 @@ const SFX = {
    ============================================================ */
 const canvas = $('game-canvas');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, (('ontouchstart' in window) || navigator.maxTouchPoints > 0) ? 1.5 : 2));
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+// গ্রাফিক্স ক্র্যাশ হলে ব্যবহারকারীকে জানাও
+canvas.addEventListener('webglcontextlost', e => {
+  e.preventDefault();
+  $('gl-error').classList.remove('hidden');
+});
+canvas.addEventListener('webglcontextrestored', () => location.reload());
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x87b5e0);
@@ -592,6 +615,15 @@ const ring = new THREE.Mesh(
 );
 ring.rotation.x = -Math.PI / 2; ring.position.y = 0.04;
 scene.add(ring);
+
+// ভাসমান তীর — তুমি কোন খেলোয়াড় চালাচ্ছো তা স্পষ্ট দেখাবে
+const marker = new THREE.Mesh(
+  new THREE.ConeGeometry(0.34, 0.75, 4),
+  new THREE.MeshBasicMaterial({ color: 0xffffff })
+);
+marker.rotation.x = Math.PI;
+marker.visible = false;
+scene.add(marker);
 
 /* ============================================================
    BALL
@@ -931,8 +963,9 @@ function movePlayer(p, dt) {
   } else {
     p.vel.set(0, 0, 0);
   }
-  p.pos.x = clamp(p.pos.x + p.vel.x * dt, -HX - 2.5, HX + 2.5);
-  p.pos.z = clamp(p.pos.z + p.vel.z * dt, -HZ - 2.5, HZ + 2.5);
+  // মাঠের ভেতরেই রাখো (গোলের পেছনে যেতে পারবে না)
+  p.pos.x = clamp(p.pos.x + p.vel.x * dt, -HX - 1, HX + 1);
+  p.pos.z = clamp(p.pos.z + p.vel.z * dt, -HZ - 1, HZ + 1);
 
   const mv = Math.hypot(p.vel.x, p.vel.z);
   p.moving = mv;
@@ -942,6 +975,22 @@ function movePlayer(p, dt) {
     while (da > Math.PI) da -= Math.PI * 2;
     while (da < -Math.PI) da += Math.PI * 2;
     p.angle += da * Math.min(1, 12 * dt);
+  }
+}
+
+/* খেলোয়াড়রা একে অপরের গায়ে উঠবে না (ট্যাকলের দূরত্ব বজায় রেখে) */
+function separatePlayers() {
+  for (let i = 0; i < players.length; i++) {
+    for (let j = i + 1; j < players.length; j++) {
+      const a = players[i], b = players[j];
+      const dx = b.pos.x - a.pos.x, dz = b.pos.z - a.pos.z;
+      const d = Math.hypot(dx, dz);
+      if (d < 0.7 && d > 0.001) {
+        const push = (0.7 - d) * 0.5, nx = dx / d, nz = dz / d;
+        a.pos.x -= nx * push; a.pos.z -= nz * push;
+        b.pos.x += nx * push; b.pos.z += nz * push;
+      }
+    }
   }
 }
 
@@ -1176,13 +1225,15 @@ function quitToMenu() {
 const _camPos = new THREE.Vector3(), _look = new THREE.Vector3();
 function updateCamera(dt) {
   const portrait = camera.aspect < 0.95;
+  // বল মাঠের বাইরে গেলেও ক্যামেরা মাঠের ভেতরের দিকেই থাকবে
+  const bx = clamp(ball.pos.x, -HX, HX), bz = clamp(ball.pos.z, -HZ, HZ);
   _camPos.set(
-    ball.pos.x * 0.55,
+    bx * 0.55,
     portrait ? 36 : 24,
-    ball.pos.z * 0.55 + (portrait ? 42 : 33)
+    bz * 0.55 + (portrait ? 42 : 33)
   );
   camera.position.lerp(_camPos, 1 - Math.pow(0.0001, dt));
-  _look.set(ball.pos.x * 0.85, 0, ball.pos.z * 0.7);
+  _look.set(bx * 0.85, 0, bz * 0.7);
   camera.lookAt(_look);
 }
 
@@ -1219,6 +1270,7 @@ function tick(dt) {
   if (G.switchT <= 0) { G.switchT = 0.7; autoSwitch(); }
   teamAI(dt);
   for (const p of players) movePlayer(p, dt);
+  separatePlayers();
   ballPhysics(dt);
 }
 
@@ -1242,7 +1294,10 @@ function updateVisuals(dt) {
     ring.position.set(controlled.pos.x, 0.045, controlled.pos.z);
     const s = 1 + Math.sin(t * 6) * 0.09;
     ring.scale.set(s, s, 1);
-  } else ring.visible = false;
+    marker.visible = true;
+    marker.position.set(controlled.pos.x, 2.75 + Math.sin(t * 5) * 0.15, controlled.pos.z);
+    marker.rotation.y = t * 2;
+  } else { ring.visible = false; marker.visible = false; }
 
   if (G.state === 'menu') {
     camera.position.set(Math.sin(t * 0.1) * 48, 27, Math.cos(t * 0.1) * 48);
@@ -1302,6 +1357,7 @@ $('controls-help').innerHTML = IS_TOUCH
 buildWorld();
 buildTeams();
 setControlled(players.find(p => p.team === 0 && p.role === 'MF'));
+$('loading').classList.add('hidden');
 requestAnimationFrame(loop);
 </script>
 </body>
