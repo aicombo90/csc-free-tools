@@ -360,6 +360,7 @@
         .tool-card.coming-soon:hover { border-color: #fcd34d; box-shadow: 0 20px 44px rgba(217,119,6,0.18); }
         .soon-badge { position: absolute; top: 16px; right: 16px; z-index: 2; background: linear-gradient(135deg,#f59e0b,#d97706); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; padding: 6px 13px; border-radius: 20px; box-shadow: 0 4px 12px rgba(217,119,6,.4); }
         .ludo-icon { background: linear-gradient(135deg,#a78bfa,#6d28d9); }
+        .carrom-icon { background: linear-gradient(135deg,#f59e0b,#b45309); }
         .emi-icon { background: linear-gradient(135deg,#818cf8,#4338ca); }
         .age-icon { background: linear-gradient(135deg,#fbbf24,#d97706); }
         .wordcount-icon { background: linear-gradient(135deg,#f9a8d4,#db2777); }
@@ -1607,6 +1608,17 @@ footer strong{color:#fff;}
                     </div>
                 </div>
                 <a class="btn tOpenBtn" href="games/football-3d/">Play Game</a>
+            </div>
+            <div class="tool-card" data-name="carrom royal game ক্যারাম গেম খেলা carrom board disc pool">
+                <div class="tool-card-top">
+                    <div class="tool-icon carrom-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">Games</span>
+                        <h3>Carrom Royale <span style="display:block; font-size:13px; color:#b45309; font-weight:700; margin-top:4px;">✨ NEW</span></h3>
+                        <p>তোমার নিজের ক্যারাম গেম! AI-এর সাথে (সহজ/মাঝারি/কঠিন), বন্ধুর সাথে একই ফোনে, বা প্র্যাকটিস — আসল ফিজিক্স, রানী+কভার রুলস।</p>
+                    </div>
+                </div>
+                <a class="btn tOpenBtn" href="games/carrom-royal/">Play Game</a>
             </div>
             <div class="tool-card coming-soon" data-name="ludo game লুডু গেম খেলা dice board game" onclick="comingSoon('Ludo Game')">
                 <span class="soon-badge">Coming Soon</span>
@@ -3531,6 +3543,9 @@ footer strong{color:#fff;}
         {icon:'⚽',title:'3D Football Game',kw:['football','ফুটবল','game','গেম','খেলা','khela'],open:"window.open('games/football-3d/','_blank')",
          d_en:'Full 3D football match — you + AI teammates vs AI team.',d_bn:'ফুল 3D ফুটবল ম্যাচ — তুমি + AI বনাম AI টিম।',
          h_en:'Click Play → choose difficulty → use joystick / keyboard.',h_bn:'Play চাপো → লেভেল বেছে নাও → খেলো!'},
+        {icon:'🎯',title:'Carrom Royale',kw:['carrom','ক্যারাম','কেরাম','carrom game','disc pool'],open:"window.open('games/carrom-royal/','_blank')",
+         d_en:'Free carrom board game — vs AI (3 levels), 2-player pass & play, or practice. Real physics, queen + cover rules.',d_bn:'ফ্রি ক্যারাম গেম — AI-এর সাথে (৩ লেভেল), দুইজন, বা প্র্যাকটিস। আসল ফিজিক্স, রানী+কভার রুল।',
+         h_en:'Click Play → choose mode → drag striker, pull back to aim, release to shoot.',h_bn:'Play চাপো → মোড বেছে নাও → স্ট্রাইকার সরাও, টেনে নিশানা করো, ছাড়ো!'},
         ];
         const AI_SOON = [
         {icon:'🎲',title:'Ludo Game',kw:['ludo','লুডু']},
@@ -3644,8 +3659,8 @@ footer strong{color:#fff;}
                 bye: bn ? '👋 বাই! আবার এসো।' : '👋 Bye! Come back anytime.',
                 help: bn ? '🤖 <b>আমি যা করতে পারি:</b><br>• টুল খুঁজে দেওয়া — যেমন <i>"qr code"</i><br>• টুলের কাজ বোঝানো — <i>"biodata কি করে?"</i><br>• ব্যবহার পদ্ধতি — <i>"pdf কিভাবে ছোট করবো?"</i><br>• সব টুলের লিস্ট — <i>"all tools"</i>'
                               : '🤖 <b>What I can do:</b><br>• Find tools — e.g. <i>"qr code"</i><br>• Explain a tool — <i>"what does biodata do?"</i><br>• How to use — <i>"how to compress pdf?"</i><br>• List everything — <i>"all tools"</i>',
-                all: bn ? '🧰 <b>আমাদের টুলসমূহ:</b><br>📷 ফটো: Passport Photo, BG Remover, Resizer, Image→PDF, Thumbnail<br>📄 ডকুমেন্ট: PDF Compress, Word Counter, Biodata Maker<br>🏛️ সরকারি: Voter, Pension, Aadhaar, PAN, Banglar Bhumi<br>🧰 ইউটিলিটি: Password, QR, Land, EMI, Age, %, GST<br>🎮 গেম: 3D Football<br>কোনটা খুলবো?'
-                            : '🧰 <b>Our tools:</b><br>📷 Photo: Passport Photo, BG Remover, Resizer, Image→PDF, Thumbnail<br>📄 Document: PDF Compress, Word Counter, Biodata Maker<br>🏛️ Govt: Voter, Pension, Aadhaar, PAN, Banglar Bhumi<br>🧰 Utility: Password, QR, Land, EMI, Age, %, GST<br>🎮 Games: 3D Football<br>Which one shall I open?',
+                all: bn ? '🧰 <b>আমাদের টুলসমূহ:</b><br>📷 ফটো: Passport Photo, BG Remover, Resizer, Image→PDF, Thumbnail<br>📄 ডকুমেন্ট: PDF Compress, Word Counter, Biodata Maker<br>🏛️ সরকারি: Voter, Pension, Aadhaar, PAN, Banglar Bhumi<br>🧰 ইউটিলিটি: Password, QR, Land, EMI, Age, %, GST<br>🎮 গেম: 3D Football, Carrom Royale<br>কোনটা খুলবো?'
+                            : '🧰 <b>Our tools:</b><br>📷 Photo: Passport Photo, BG Remover, Resizer, Image→PDF, Thumbnail<br>📄 Document: PDF Compress, Word Counter, Biodata Maker<br>🏛️ Govt: Voter, Pension, Aadhaar, PAN, Banglar Bhumi<br>🧰 Utility: Password, QR, Land, EMI, Age, %, GST<br>🎮 Games: 3D Football, Carrom Royale<br>Which one shall I open?',
                 fallback: '__FALLBACK__'+(bn ? '🤔 এই টুলটা খুঁজে পেলাম না। যদি <b>নতুন টুল</b> চাও, <i>"টুল চাই"</i> লেখো — তোমার রিকোয়েস্ট আমরা WhatsApp-এ পেয়ে যাবো! অথবা <i>"all tools"</i> লিখে সব দেখো।'
                                   : '__FALLBACK__🤔 Couldn\'t find that tool. Want a <b>new tool</b>? Type <i>"টুল চাই"</i> — we\'ll get your request on WhatsApp! Or type <i>"all tools"</i>.')
             };
