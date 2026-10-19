@@ -432,6 +432,36 @@
         .footer-bottom a { color: #c4b5fd; display: inline; margin: 0 6px; }
         @media (max-width: 760px){ .footer-grid { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 480px){ .footer-grid { grid-template-columns: 1fr; } }
+        /* ---------- Inviting hero: pattern + floating dots + glow badge ---------- */
+        .hero-dots { position: absolute; inset: 0; pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        .hero-float-dot { position: absolute; border-radius: 50%; background: #fff; pointer-events: none; }
+        .hfd-1 { width: 14px; height: 14px; top: 22%; left: 8%; opacity: .25; animation: heroFloat 5s ease-in-out infinite; }
+        .hfd-2 { width: 9px; height: 9px; top: 68%; left: 45%; opacity: .2; animation: heroFloat 7s ease-in-out infinite reverse; }
+        .hfd-3 { width: 18px; height: 18px; top: 30%; right: 10%; opacity: .15; animation: heroFloat 6s ease-in-out infinite; }
+        @keyframes heroFloat { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-22px) scale(1.25); } }
+        .hero-new-badge { display: inline-flex; align-items: center; gap: 8px; padding: 9px 20px; border-radius: 999px;
+            background: linear-gradient(90deg,#f59e0b,#f97316); color: #fff; font-weight: 800; font-size: 13.5px; letter-spacing: .3px;
+            box-shadow: 0 0 24px rgba(245,158,11,.55); margin-bottom: 16px; animation: badgeGlow 2.2s ease-in-out infinite; cursor: pointer; border: none; }
+        @keyframes badgeGlow { 0%,100% { box-shadow: 0 0 14px rgba(245,158,11,.45); transform: scale(1); } 50% { box-shadow: 0 0 30px rgba(245,158,11,.8); transform: scale(1.04); } }
+        .hero h1 { font-weight: 800; letter-spacing: -.5px; }
+        /* ---------- Stronger card hover (inviting) ---------- */
+        .tool-card:hover { transform: translateY(-8px); box-shadow: 0 24px 48px rgba(79,70,229,.22), 0 0 0 2px var(--blue); border-color: var(--blue); }
+        /* ---------- Why-choose-us strip ---------- */
+        .why-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 0 0 40px; }
+        .why-item { background: var(--surface); border: 1px solid var(--border-soft); border-radius: 16px; padding: 18px 14px; text-align: center; transition: transform .25s ease, box-shadow .25s ease; }
+        .why-item:hover { transform: scale(1.05); box-shadow: 0 14px 30px rgba(79,70,229,.14); }
+        .why-item i { font-size: 26px; margin-bottom: 10px; background: linear-gradient(135deg,var(--blue),#7c3aed); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .why-item b { display: block; font-size: 14.5px; color: var(--blue-deep); margin-bottom: 4px; }
+        .why-item span { font-size: 12.5px; color: var(--muted); line-height: 1.5; display: block; }
+        @media (max-width: 640px){ .why-strip { grid-template-columns: repeat(2, 1fr); } }
+        /* ---------- CTA banner ---------- */
+        .cta-banner { position: relative; overflow: hidden; border-radius: 24px; padding: 44px 32px; text-align: center; color: #fff;
+            background: linear-gradient(135deg,#1e1b4b 0%,#4c1d95 55%,#7c3aed 100%); margin: 10px 0 46px; box-shadow: 0 18px 44px rgba(76,29,149,.35); }
+        .cta-banner::before { content:''; position:absolute; width:340px; height:340px; border-radius:50%; background:radial-gradient(circle,rgba(245,158,11,.28),transparent 65%); top:-120px; right:-80px; }
+        .cta-banner h2 { font-size: 26px; font-weight: 800; margin-bottom: 10px; position: relative; }
+        .cta-banner p { color: #ddd6fe; font-size: 15px; margin-bottom: 22px; position: relative; }
+        .cta-banner .btn { position: relative; max-width: 280px; margin: 0 auto; background: linear-gradient(90deg,#f59e0b,#f97316); box-shadow: 0 8px 22px rgba(245,158,11,.45); }
         .tool-icon { transition: transform 0.25s ease; }
 
         .tool-card-top { display: flex; gap: 16px; align-items: flex-start; text-align: left; }
@@ -953,8 +983,13 @@ footer strong{color:#fff;}
     </div>
 
     <section class="hero">
+        <div class="hero-dots"></div>
+        <span class="hero-float-dot hfd-1"></span>
+        <span class="hero-float-dot hfd-2"></span>
+        <span class="hero-float-dot hfd-3"></span>
         <div class="hero-inner">
             <div class="hero-content">
+                <button class="hero-new-badge" onclick="openBiodataModal()">✨ NEW: Biodata Maker — Try it Free</button>
                 <div class="hero-badge" id="heroBadge">100% Safe & Free Service</div>
                 <h1 id="heroTitle">Dafadar Online Sava: All Your Tasks Done in One Single Place</h1>
                 <p id="heroDesc">A professional and easy digital platform for online form filling, passport photo creation and file size reduction.</p>
@@ -978,6 +1013,12 @@ footer strong{color:#fff;}
             <div class="stat"><span class="stat-num" data-count="6">0</span><span class="stat-label">Categories</span></div>
             <div class="stat"><span class="stat-num" data-count="100">0</span><span class="stat-suffix">%</span><span class="stat-label">Free Forever</span></div>
             <div class="stat"><span class="stat-num" style="font-size:26px;">🔒</span><span class="stat-label">No Sign-up Needed</span></div>
+        </div>
+        <div class="why-strip">
+            <div class="why-item"><i class="fa-solid fa-bolt"></i><b>Lightning Fast</b><span>Work done in seconds, right in your browser</span></div>
+            <div class="why-item"><i class="fa-solid fa-shield-halved"></i><b>100% Private</b><span>Files never leave your device</span></div>
+            <div class="why-item"><i class="fa-solid fa-indian-rupee-sign"></i><b>Fully Free</b><span>No hidden charges, ever</span></div>
+            <div class="why-item"><i class="fa-solid fa-mobile-screen"></i><b>Mobile Friendly</b><span>Perfect on phone & computer</span></div>
         </div>
         <span class="section-kicker">Our Services</span>
         <h2 class="section-title" id="secTitle">Our Digital Services</h2>
@@ -2205,6 +2246,12 @@ footer strong{color:#fff;}
 
     <canvas id="photoCanvas" style="display:none;"></canvas>
     <canvas id="a4Canvas" style="display:none;"></canvas>
+
+        <div class="cta-banner">
+            <h2>Ready to Finish Your Work in Minutes? 🚀</h2>
+            <p>Join thousands of happy users — pick a tool below and get it done free, right now.</p>
+            <a class="btn" href="#main-content" onclick="document.getElementById('main-content').scrollIntoView({behavior:'smooth'});return false;">Explore All Tools</a>
+        </div>
 
     <footer class="site-footer">
         <div class="footer-grid">
