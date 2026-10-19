@@ -438,6 +438,43 @@
         .footer-bottom strong { color: #fff; }
         @media (max-width: 760px){ .footer-grid { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 480px){ .footer-grid { grid-template-columns: 1fr; } }
+        /* ---------- AI Assistant ---------- */
+        .ai-float-btn { position: fixed; bottom: 24px; left: 24px; z-index: 2999; width: 60px; height: 60px; border-radius: 50%; border: none; cursor: pointer;
+            background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; font-size: 26px; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 28px rgba(79,70,229,.45); transition: transform .2s; }
+        .ai-float-btn:hover { transform: scale(1.08); }
+        .ai-float-btn::after { content:''; position:absolute; inset:-5px; border-radius:50%; border:2px solid rgba(124,58,237,.5); animation: aiPulse 2s ease-out infinite; }
+        @keyframes aiPulse { 0% { transform: scale(.85); opacity: 1; } 100% { transform: scale(1.25); opacity: 0; } }
+        .ai-chat-panel { position: fixed; bottom: 96px; left: 24px; z-index: 3000; width: 380px; max-width: calc(100vw - 32px); height: 540px; max-height: calc(100vh - 140px);
+            background: #fff; border-radius: 20px; box-shadow: 0 24px 60px rgba(20,26,48,.28); display: none; flex-direction: column; overflow: hidden; border: 1px solid #e0e7ff; }
+        .ai-chat-panel.open { display: flex; animation: aiSlideUp .3s ease; }
+        @keyframes aiSlideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+        .ai-chat-header { background: linear-gradient(135deg,#1e1b4b,#4c1d95); color: #fff; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+        .ai-chat-header .ai-bot-ico { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg,#4f46e5,#7c3aed); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+        .ai-chat-header b { font-size: 15px; display: block; }
+        .ai-chat-header small { font-size: 12px; color: #c4b5fd; }
+        .ai-online-dot { color: #4ade80; font-size: 9px; margin-right: 4px; }
+        .ai-chat-header .close-btn { margin-left: auto; position: static; color: #fff; font-size: 24px; cursor: pointer; background: none; width: auto; height: auto; }
+        .ai-chat-body { flex: 1; overflow-y: auto; padding: 16px 14px; display: flex; flex-direction: column; gap: 10px; background: #f6f7fb; }
+        .ai-msg { max-width: 86%; padding: 11px 14px; border-radius: 16px; font-size: 14px; line-height: 1.6; animation: aiSlideUp .25s ease; }
+        .ai-msg.bot { background: #fff; color: #1e2433; border: 1px solid #e6eaf5; border-bottom-left-radius: 5px; align-self: flex-start; box-shadow: 0 2px 8px rgba(20,26,48,.06); }
+        .ai-msg.user { background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; border-bottom-right-radius: 5px; align-self: flex-end; }
+        .ai-msg.typing { display: flex; gap: 5px; padding: 14px 16px; }
+        .ai-msg.typing span { width: 8px; height: 8px; border-radius: 50%; background: #a5b4fc; animation: aiBlink 1.2s infinite; }
+        .ai-msg.typing span:nth-child(2){ animation-delay: .2s; } .ai-msg.typing span:nth-child(3){ animation-delay: .4s; }
+        @keyframes aiBlink { 0%,60%,100% { opacity: .3; } 30% { opacity: 1; } }
+        .ai-tool-card { background: linear-gradient(135deg,#eef2ff,#f5f3ff); border: 1px solid #dbe2fb; border-radius: 12px; padding: 12px; margin-top: 8px; }
+        .ai-tool-card b { color: #1e1b4b; font-size: 14px; display: block; margin-bottom: 4px; }
+        .ai-tool-card p { font-size: 13px; color: #3f475e; margin-bottom: 10px; }
+        .ai-tool-card button { background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; border: none; border-radius: 9px; padding: 9px 18px; font-weight: 700; font-size: 13px; cursor: pointer; }
+        .ai-chips { display: flex; gap: 8px; padding: 10px 14px; overflow-x: auto; background: #fff; border-top: 1px solid #eef1f7; }
+        .ai-chip { flex-shrink: 0; background: #eef2ff; color: #3730a3; border: 1px solid #dbe2fb; border-radius: 999px; padding: 7px 14px; font-size: 12.5px; font-weight: 700; cursor: pointer; }
+        .ai-chip:hover { background: #e0e7ff; }
+        .ai-chat-input { display: flex; gap: 8px; padding: 12px 14px; background: #fff; border-top: 1px solid #eef1f7; }
+        .ai-chat-input input { flex: 1; border: 2px solid #e6eaf5; border-radius: 999px; padding: 10px 16px; font-size: 14px; outline: none; }
+        .ai-chat-input input:focus { border-color: #a5b4fc; }
+        .ai-chat-input button { width: 44px; height: 44px; border-radius: 50%; border: none; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; font-size: 16px; cursor: pointer; flex-shrink: 0; }
+        @media (max-width: 480px){ .ai-chat-panel { left: 12px; bottom: 92px; width: calc(100vw - 24px); } .ai-float-btn { left: 14px; bottom: 18px; } }
         /* ---------- Inviting hero: pattern + floating dots + glow badge ---------- */
         .hero-dots { position: absolute; inset: 0; pointer-events: none;
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
@@ -863,6 +900,22 @@ footer strong{color:#fff;}
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="toast-container" id="toastContainer"></div>
     <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to top" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
+    <!-- ===== AI Assistant ===== -->
+    <button class="ai-float-btn" id="aiFloatBtn" aria-label="AI Assistant" onclick="toggleAiChat()"><i class="fa-solid fa-robot"></i></button>
+    <div class="ai-chat-panel" id="aiChatPanel" role="dialog" aria-label="AI Assistant">
+        <div class="ai-chat-header">
+            <div class="ai-bot-ico"><i class="fa-solid fa-robot"></i></div>
+            <div><b>Sava AI</b><small><span class="ai-online-dot">●</span> Online — ask me anything</small></div>
+            <span class="close-btn" onclick="toggleAiChat()">&times;</span>
+        </div>
+        <div class="ai-chat-body" id="aiChatBody"></div>
+        <div class="ai-chips" id="aiChips"></div>
+        <div class="ai-chat-input">
+            <input id="aiInput" placeholder="Ask… / জিজ্ঞেস করো…" autocomplete="off" onkeydown="if(event.key==='Enter')aiSend()">
+            <button onclick="aiSend()" aria-label="Send"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
     <a class="whatsapp-float-btn" href="https://wa.me/918906139223" target="_blank" rel="noopener" aria-label="Contact on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
 
 
@@ -3255,7 +3308,166 @@ footer strong{color:#fff;}
             if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch);
             else watch();
         })();
-        /* ---------- Biodata Maker v2 ---------- */
+        /* ================= Sava AI Assistant ================= */
+        const AI_KB = [
+        {icon:'📷',title:'One Click Passport Photo',kw:['passport','পাসপোর্ট','পাসপোট','passport size','photo banano','ছবি বানানো'],open:"openStudioModal()",
+         d_en:'Make a perfect passport-size photo at home from any photo — auto crop & resize.',d_bn:'যেকোনো ছবি থেকে বাড়িতে বসে পারফেক্ট পাসপোর্ট সাইজ ফটো — অটো ক্রপ ও রিসাইজ।',
+         h_en:'Open the tool → upload your photo → adjust → download the passport-size copy.',h_bn:'টুল খোলো → ছবি আপলোড করো → ডাউনলোড করো।'},
+        {icon:'✨',title:'Background Remover',kw:['background','ব্যাকগ্রাউন্ড','remove bg','bg remover','ছবির পিছন'],open:"openRmBgModal()",
+         d_en:'Remove photo background in HD and download transparent PNG.',d_bn:'ছবির ব্যাকগ্রাউন্ড মুছে HD transparent PNG ডাউনলোড করো।',
+         h_en:'Open the tool → upload image → background removed automatically → download.',h_bn:'টুল খোলো → ছবি দাও → ব্যাকগ্রাউন্ড মুছে যাবে → ডাউনলোড।'},
+        {icon:'🖼️',title:'Image Resizer & Compressor',kw:['resize','রিসাইজ','compress image','ছবি ছোট','image size','kb'],open:"openImgToolModal()",
+         d_en:'Resize images to exact dimensions or KB — perfect for online forms.',d_bn:'ছবি নির্দিষ্ট সাইজ বা KB-তে ছোট করো — অনলাইন ফর্মের জন্য পারফেক্ট।',
+         h_en:'Open the tool → upload image → set size → download.',h_bn:'টুল খোলো → ছবি দাও → সাইজ সেট করো → ডাউনলোড।'},
+        {icon:'📑',title:'Image to PDF',kw:['image to pdf','jpg to pdf','img2pdf','ছবি থেকে পিডিএফ'],open:"openImg2PdfModal()",
+         d_en:'Turn multiple images into a single PDF document in seconds.',d_bn:'একাধিক ছবি একসাথে একটা PDF বানাও — কয়েক সেকেন্ডে।',
+         h_en:'Open the tool → add images → arrange → create & download PDF.',h_bn:'টুল খোলো → ছবি যোগ করো → PDF বানিয়ে ডাউনলোড।'},
+        {icon:'🎬',title:'Thumbnail Downloader',kw:['thumbnail','থাম্বনেইল','youtube thumb'],open:"openSmartlinkThen(openThumbModal)",
+         d_en:'Download HD thumbnails from any YouTube video instantly.',d_bn:'যেকোনো YouTube ভিডিওর HD থাম্বনেইল ডাউনলোড করো।',
+         h_en:'Open the tool → paste video link → download thumbnail.',h_bn:'টুল খোলো → ভিডিও লিংক দাও → থাম্বনেইল ডাউনলোড।'},
+        {icon:'🗜️',title:'Compress PDF',kw:['compress pdf','pdf compress','পিডিএফ ছোট','pdf choto','pdf size'],open:"openPdfCompressModal()",
+         d_en:'Reduce PDF file size for forms & applications without losing quality.',d_bn:'ফর্মের জন্য PDF ফাইলের সাইজ ছোট করো — কোয়ালিটি ঠিক রেখে।',
+         h_en:'Open the tool → upload PDF → choose level → download smaller file.',h_bn:'টুল খোলো → PDF দাও → কম্প্রেস → ডাউনলোড।'},
+        {icon:'🔤',title:'Word Counter',kw:['word count','word counter','character count','শব্দ গণনা','অক্ষর'],open:"openWordCounterModal()",
+         d_en:'Instant word, character, sentence count + reading time of any text.',d_bn:'যেকোনো লেখার শব্দ, অক্ষর, বাক্য গণনা + পড়ার সময়।',
+         h_en:'Open the tool → paste/type text → counts appear instantly.',h_bn:'টুল খোলো → লেখা দাও → গণনা দেখো।'},
+        {icon:'💒',title:'Biodata Maker',kw:['biodata','বায়োডাটা','বায়োডেটা','resume','সিভি','marriage'],open:"openBiodataModal()",
+         d_en:'Beautiful marriage biodata with photo — auto passport photo, dress change, auto %.',d_bn:'ছবিসহ সুন্দর বিয়ের বায়োডাটা — অটো পাসপোর্ট ফটো, ড্রেস চেঞ্জ, অটো %।',
+         h_en:'Open the tool → fill details (or Sample) → upload photo → Print / Save PDF.',h_bn:'টুল খোলো → তথ্য লেখো → ছবি দাও → Print / PDF সেভ।'},
+        {icon:'🗳️',title:'Voter Services',kw:['voter','ভোটার','vote'],open:"window.open('https://voters.eci.gov.in/','_blank')",
+         d_en:'Official voter portal — new registration, corrections, downloads.',d_bn:'অফিসিয়াল ভোটার পোর্টাল — নতুন নাম তোলা, সংশোধন, ডাউনলোড।',
+         h_en:'Click Open → official ECI portal opens → choose your service.',h_bn:'Open চাপো → অফিসিয়াল পোর্টাল খুলবে → সেবা বেছে নাও।'},
+        {icon:'👴',title:'Pension Status',kw:['pension','পেনশন','ভাতা','bidhaba','old age'],open:"window.open('https://samarth.wb.gov.in/track-applicant-public/','_blank')",
+         d_en:'Track West Bengal pension (old age / widow) application status.',d_bn:'পশ্চিমবঙ্গ পেনশন (বার্ধক্য/বিধবা) আবেদনের স্ট্যাটাস দেখো।',
+         h_en:'Click Open → Samarth portal → enter details → check status.',h_bn:'Open চাপো → পোর্টাল খুলবে → তথ্য দিয়ে স্ট্যাটাস দেখো।'},
+        {icon:'🪪',title:'Aadhaar Services',kw:['aadhaar','আধার','adhar'],open:"window.open('https://uidai.gov.in/en/','_blank')",
+         d_en:'Official UIDAI portal — download, update & verify Aadhaar.',d_bn:'অফিসিয়াল UIDAI পোর্টাল — ডাউনলোড, আপডেট, ভেরিফাই।',
+         h_en:'Click Open → UIDAI site → choose service.',h_bn:'Open চাপো → UIDAI সাইট → সেবা বেছে নাও।'},
+        {icon:'💳',title:'PAN Card',kw:['pan card','প্যান','pancard'],open:"window.open('https://onlineservices.proteantech.in/paam/endUserRegisterContact.html','_blank')",
+         d_en:'Apply for new PAN card or corrections via the official portal.',d_bn:'নতুন PAN কার্ড আবেদন বা সংশোধন — অফিসিয়াল পোর্টাল।',
+         h_en:'Click Open → official PAN portal → fill the form.',h_bn:'Open চাপো → পোর্টাল খুলবে → ফর্ম পূরণ করো।'},
+        {icon:'🌾',title:'Banglar Bhumi',kw:['banglar bhumi','বাংলার ভূমি','jomi','জমি','khatian','খতিয়ান','land record'],open:"window.open('https://banglarbhumi.gov.in/','_blank')",
+         d_en:'West Bengal land records — khatian, plot info & services.',d_bn:'পশ্চিমবঙ্গ জমির রেকর্ড — খতিয়ান, দাগের তথ্য।',
+         h_en:'Click Open → Banglar Bhumi portal → citizen services.',h_bn:'Open চাপো → বাংলার ভূমি পোর্টাল → নাগরিক সেবা।'},
+        {icon:'🍚',title:'Annapurna Bhandar',kw:['annapurna','অন্নপূর্ণা','bhandar'],open:"openAnnapurnaModal()",
+         d_en:'Family-level data collection for the Annapurna Bhandar scheme.',d_bn:'অন্নপূর্ণা ভাণ্ডার প্রকল্পের পারিবারিক তথ্য সংগ্রহ।',
+         h_en:'Open the tool → enter family member details → submit.',h_bn:'টুল খোলো → পরিবারের তথ্য লেখো → জমা দাও।'},
+        {icon:'🔑',title:'Password Generator',kw:['password','পাসওয়ার্ড'],open:"openSmartlinkThen(openPasswordModal)",
+         d_en:'Create strong, random, secure passwords instantly.',d_bn:'মজবুত, নিরাপদ পাসওয়ার্ড বানাও এক ক্লিকে।',
+         h_en:'Open the tool → set length → copy password.',h_bn:'টুল খোলো → লেন্থ সেট করো → কপি করো।'},
+        {icon:'🔳',title:'QR Code Generator',kw:['qr','কিউআর','qrcode'],open:"openSmartlinkThen(openQRModal)",
+         d_en:'QR codes for links, UPI payments, WiFi & contact cards.',d_bn:'লিংক, UPI পেমেন্ট, WiFi-এর QR কোড বানাও।',
+         h_en:'Open the tool → enter text/link → download QR.',h_bn:'টুল খোলো → লেখা/লিংক দাও → QR ডাউনলোড।'},
+        {icon:'📐',title:'Land Area Converter',kw:['land area','জমির মাপ','decimal','ডেসিমেল','bigha','বিঘা','katha','কাঠা','acre','একর'],open:"openLandModal()",
+         d_en:'Convert between Decimal, Acre, Bigha, Katha, Chatak.',d_bn:'ডেসিমেল, একর, বিঘা, কাঠা, ছটাকে রূপান্তর করো।',
+         h_en:'Open the tool → enter value → select units → convert.',h_bn:'টুল খোলো → মান লেখো → একক বেছে নাও।'},
+        {icon:'🧮',title:'EMI Calculator',kw:['emi','ইএমআই','loan','কিস্তি','rin'],open:"openEmiModal()",
+         d_en:'Monthly EMI, total interest & schedule for any loan.',d_bn:'যেকোনো লোনের মাসিক কিস্তি, মোট সুদ হিসাব করো।',
+         h_en:'Open the tool → enter loan, rate, years → see EMI.',h_bn:'টুল খোলো → লোন, সুদ, বছর লেখো → EMI দেখো।'},
+        {icon:'🎂',title:'Age Calculator',kw:['age','বয়স','boyos','dob'],open:"openAgeModal()",
+         d_en:'Exact age in years, months & days + birthday countdown.',d_bn:'বছর, মাস, দিনে সঠিক বয়স + জন্মদিন কাউন্টডাউন।',
+         h_en:'Open the tool → pick date of birth → see age.',h_bn:'টুল খোলো → জন্মতারিখ দাও → বয়স দেখো।'},
+        {icon:'📊',title:'Percentage Calculator',kw:['percent','percentage','শতকরা','পার্সেন্ট'],open:"openPctModal()",
+         d_en:'Discounts, marks, increase/decrease — all % calculations.',d_bn:'ছাড়, নাম্বার, বৃদ্ধি/হ্রাস — সব % হিসাব।',
+         h_en:'Open the tool → enter numbers → get % instantly.',h_bn:'টুল খোলো → সংখ্যা লেখো → % পাও।'},
+        {icon:'🧾',title:'GST Calculator',kw:['gst','জিএসটি'],open:"openGstModal()",
+         d_en:'GST inclusive/exclusive prices for 5/12/18/28% slabs.',d_bn:'৫/১২/১৮/২৮% স্ল্যাবে GST সহ/ছাড়া দাম।',
+         h_en:'Open the tool → enter amount & slab → see GST.',h_bn:'টুল খোলো → টাকা ও স্ল্যাব দাও → GST দেখো।'},
+        {icon:'🗂️',title:'Document Vault',kw:['save document','document save','ডকুমেন্ট সেভ','vault'],open:"openDocsVaultModal()",
+         d_en:'Safely store your important documents in your private vault.',d_bn:'গুরুত্বপূর্ণ ডকুমেন্ট নিরাপদে সংরক্ষণ করো।',
+         h_en:'Open the tool → upload & save documents.',h_bn:'টুল খোলো → ডকুমেন্ট আপলোড করে সেভ করো।'},
+        {icon:'🔐',title:'Password Vault',kw:['save password','password save','পাসওয়ার্ড সেভ','id password'],open:"openPwVaultModal()",
+         d_en:'Store all your IDs & passwords safely in one vault.',d_bn:'সব ID-পাসওয়ার্ড এক জায়গায় নিরাপদে রাখো।',
+         h_en:'Open the tool → add your accounts.',h_bn:'টুল খোলো → অ্যাকাউন্ট যোগ করো।'},
+        {icon:'⚽',title:'3D Football Game',kw:['football','ফুটবল','game','গেম','খেলা','khela'],open:"window.open('games/football-3d/','_blank')",
+         d_en:'Full 3D football match — you + AI teammates vs AI team.',d_bn:'ফুল 3D ফুটবল ম্যাচ — তুমি + AI বনাম AI টিম।',
+         h_en:'Click Play → choose difficulty → use joystick / keyboard.',h_bn:'Play চাপো → লেভেল বেছে নাও → খেলো!'},
+        ];
+        const AI_SOON = [
+        {icon:'🎲',title:'Ludo Game',kw:['ludo','লুডু']},
+        {icon:'🧾',title:'Invoice Generator',kw:['invoice','ইনভয়েস','বিল বানানো','challan','চালান']},
+        {icon:'📇',title:'Visiting Card Maker',kw:['visiting','ভিজিটিং']},
+        {icon:'🖼️',title:'Photo Collage Maker',kw:['collage','কোলাজ']},
+        {icon:'💌',title:'Invitation Card Maker',kw:['invitation','নিমন্ত্রণ','wedding card']},
+        {icon:'👁️',title:'Image to Text (OCR)',kw:['ocr','image to text','ছবি থেকে লেখা']},
+        ];
+        let aiOpened = false;
+        function aiIsBn(t){ return /[\u0980-\u09FF]/.test(t); }
+        function aiEsc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+        function toggleAiChat(){
+            const p = document.getElementById('aiChatPanel');
+            p.classList.toggle('open');
+            if(p.classList.contains('open') && !aiOpened){
+                aiOpened = true;
+                aiBotSay('👋 <b>নমস্কার! আমি Sava AI.</b><br>কোনো টুল খুঁজে দেবো? যেমন লেখো: <i>"passport photo"</i> বা <i>"pdf ছোট করো"</i> বা <i>"বায়োডাটা"</i>');
+                aiChips(['📷 Passport Photo','🗜️ PDF Compress','💒 Biodata','✦ All Tools']);
+            }
+            if(p.classList.contains('open')) setTimeout(()=>document.getElementById('aiInput').focus(), 300);
+        }
+        function aiChips(list){
+            document.getElementById('aiChips').innerHTML = list.map(c=>'<button class="ai-chip" onclick="aiChipSend(this)">'+c+'</button>').join('');
+        }
+        function aiChipSend(el){ document.getElementById('aiInput').value = el.textContent.replace(/^📷 |^🗜️ |^💒 |^✦ /,''); aiSend(); }
+        function aiAddMsg(html, who){
+            const b = document.getElementById('aiChatBody');
+            const d = document.createElement('div');
+            d.className = 'ai-msg '+who; d.innerHTML = html;
+            b.appendChild(d); b.scrollTop = b.scrollHeight;
+            return d;
+        }
+        function aiBotSay(html){
+            const t = aiAddMsg('<span></span><span></span><span></span>', 'bot typing');
+            setTimeout(()=>{ t.classList.remove('typing'); t.innerHTML = html;
+                document.getElementById('aiChatBody').scrollTop = 1e6; }, 650);
+        }
+        function aiSend(){
+            const inp = document.getElementById('aiInput');
+            const q = inp.value.trim(); if(!q) return;
+            inp.value = '';
+            aiAddMsg(aiEsc(q), 'user');
+            aiBotSay(aiThink(q));
+        }
+        function aiToolCard(it, bn){
+            const desc = bn ? it.d_bn : it.d_en;
+            return '<div class="ai-tool-card"><b>'+it.icon+' '+it.title+'</b><p>'+desc+'</p>'+
+                   '<button onclick="toggleAiChat();'+it.open+'">▶ '+(bn?'টুল খোলো':'Open Tool')+'</button></div>';
+        }
+        function aiThink(q){
+            const t = ' '+q.toLowerCase().trim()+' ';
+            const bn = aiIsBn(q);
+            const T = {
+                greet: bn ? '👋 নমস্কার! কোন টুলটা খুঁজে দেবো বলো?' : '👋 Hi! Which tool shall I find for you?',
+                thanks: bn ? '😊 স্বাগতম! আর কিছু লাগলে বলো।' : '😊 You\'re welcome! Anything else?',
+                bye: bn ? '👋 বাই! আবার এসো।' : '👋 Bye! Come back anytime.',
+                help: bn ? '🤖 <b>আমি যা করতে পারি:</b><br>• টুল খুঁজে দেওয়া — যেমন <i>"qr code"</i><br>• টুলের কাজ বোঝানো — <i>"biodata কি করে?"</i><br>• ব্যবহার পদ্ধতি — <i>"pdf কিভাবে ছোট করবো?"</i><br>• সব টুলের লিস্ট — <i>"all tools"</i>'
+                              : '🤖 <b>What I can do:</b><br>• Find tools — e.g. <i>"qr code"</i><br>• Explain a tool — <i>"what does biodata do?"</i><br>• How to use — <i>"how to compress pdf?"</i><br>• List everything — <i>"all tools"</i>',
+                all: bn ? '🧰 <b>আমাদের টুলসমূহ:</b><br>📷 ফটো: Passport Photo, BG Remover, Resizer, Image→PDF, Thumbnail<br>📄 ডকুমেন্ট: PDF Compress, Word Counter, Biodata Maker<br>🏛️ সরকারি: Voter, Pension, Aadhaar, PAN, Banglar Bhumi<br>🧰 ইউটিলিটি: Password, QR, Land, EMI, Age, %, GST<br>🎮 গেম: 3D Football<br>কোনটা খুলবো?'
+                            : '🧰 <b>Our tools:</b><br>📷 Photo: Passport Photo, BG Remover, Resizer, Image→PDF, Thumbnail<br>📄 Document: PDF Compress, Word Counter, Biodata Maker<br>🏛️ Govt: Voter, Pension, Aadhaar, PAN, Banglar Bhumi<br>🧰 Utility: Password, QR, Land, EMI, Age, %, GST<br>🎮 Games: 3D Football<br>Which one shall I open?',
+                fallback: bn ? '🤔 বুঝতে পারলাম না। এভাবে লেখো: <i>"passport photo"</i>, <i>"pdf ছোট"</i>, <i>"বায়োডাটা"</i> — অথবা <i>"all tools"</i> লিখে সব দেখো।'
+                                  : '🤔 I didn\'t get that. Try: <i>"passport photo"</i>, <i>"compress pdf"</i>, <i>"biodata"</i> — or type <i>"all tools"</i>.'
+            };
+            if(/^(hi+|hello|hey|হ্যালো|নমস্কার|আসসালামু|sup|yo)\b/.test(t.trim())) return T.greet;
+            if(/(thank|ধন্যবাদ|শুকরিয়া|thx)\b/.test(t)) return T.thanks;
+            if(/\b(bye|বাই|আল্লাহ হাফেজ|good ?night)\b/.test(t)) return T.bye;
+            if(/(help|সাহায্য|what can you do|তুমি কি( করতে)? পারো|তোমার কাজ)/.test(t)) return T.help;
+            if(/(all tools|সব টুল|কি কি আছে|tools list|সবগুলো)/.test(t)) return T.all;
+            const howQ = /(how|kivabe|কিভাবে|কীভাবে|কেমনে|kaise|process|পদ্ধতি|নিয়ম)/.test(t);
+            const whatQ = /(what|কি করে|কী করে|kya karta|কাজ কি|use of|about)/.test(t);
+            let best=null, score=0;
+            const pool = AI_KB.concat(AI_SOON.map(s=>({...s, soon:true})));
+            for(const it of pool){
+                let sc=0;
+                for(const k of it.kw){ if(t.includes(k)) sc += k.length; }
+                if(sc>score){ score=sc; best=it; }
+            }
+            if(best && score>=2){
+                if(best.soon) return (bn?'🚧 <b>'+best.title+'</b> খুব শীঘ্রই আসছে! এখনই চাইলে আমাকে বলো কোন টুল খুলবো।':'🚧 <b>'+best.title+'</b> is coming soon! Want me to open another tool?');
+                if(howQ) return '📖 <b>'+best.icon+' '+best.title+'</b><br>'+(bn?best.h_bn:best.h_en)+aiToolCard(best,bn);
+                if(whatQ) return 'ℹ️ <b>'+best.icon+' '+best.title+'</b><br>'+(bn?best.d_bn:best.d_en)+aiToolCard(best,bn);
+                return (bn?'🔍 পেয়ে গেছি! ':'🔍 Found it! ')+aiToolCard(best,bn);
+            }
+            return T.fallback;
+        }
         var bdBasePhoto = '', bdFinalPhoto = '', bdDress = 'none', bdDressSize = 100, bdDressY = 52;
         var bdDressImgs = {};
         function openBiodataModal(){ openGenericModal('biodataModal'); updateBiodata(); }
