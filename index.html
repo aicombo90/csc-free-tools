@@ -363,6 +363,34 @@
         .emi-icon { background: linear-gradient(135deg,#818cf8,#4338ca); }
         .age-icon { background: linear-gradient(135deg,#fbbf24,#d97706); }
         .wordcount-icon { background: linear-gradient(135deg,#f9a8d4,#db2777); }
+        .biodata-icon { background: linear-gradient(135deg,#f472b6,#be185d); }
+        .invoice-icon { background: linear-gradient(135deg,#34d399,#047857); }
+        .visitcard-icon { background: linear-gradient(135deg,#60a5fa,#1e40af); }
+        .collage-icon { background: linear-gradient(135deg,#fbbf24,#b45309); }
+        .percent-icon { background: linear-gradient(135deg,#2dd4bf,#0f766e); }
+        .gst-icon { background: linear-gradient(135deg,#a78bfa,#5b21b6); }
+        .invite-icon { background: linear-gradient(135deg,#fb7185,#be123c); }
+        /* ---------- Biodata Maker ---------- */
+        .modal-content.xwide { max-width: 980px; text-align: left; }
+        .biodata-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 12px; }
+        @media (max-width: 780px){ .biodata-layout { grid-template-columns: 1fr; } }
+        .biodata-form h4 { font-size: 14px; color: var(--blue-dark); margin: 16px 0 6px; padding-bottom: 5px; border-bottom: 2px solid #e0e7ff; }
+        .biodata-form h4:first-child { margin-top: 0; }
+        .biodata-form .tool-input, .biodata-form .tool-select { margin-bottom: 8px; }
+        .bd-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; }
+        .bd-sheet { width: 100%; max-width: 560px; margin: 0 auto; background: #fffdf7; border: 3px double #b45309; border-radius: 6px; padding: 26px 24px; font-family: Georgia, 'Times New Roman', serif; color: #1f2937; }
+        .bd-head { text-align: center; border-bottom: 2px solid #b45309; padding-bottom: 10px; margin-bottom: 12px; }
+        .bd-head h2 { font-size: 26px; letter-spacing: 8px; color: #92400e; margin: 0; font-family: Georgia, serif; }
+        .bd-head p { font-size: 12px; color: #78716c; margin: 5px 0 0; }
+        .bd-photo { float: right; width: 108px; height: 128px; object-fit: cover; border: 2px solid #b45309; border-radius: 4px; margin: 0 0 10px 12px; background: #f5f5f4; }
+        .bd-sec { font-size: 14px; font-weight: bold; color: #fff; background: linear-gradient(135deg,#d97706,#b45309); padding: 5px 12px; border-radius: 4px; margin: 16px 0 6px; clear: both; letter-spacing: .5px; }
+        .bd-row { display: flex; font-size: 13.5px; padding: 5px 0; border-bottom: 1px dotted #e7e5e4; }
+        .bd-row b { width: 42%; font-weight: 600; color: #57534e; flex-shrink: 0; }
+        .bd-row span { width: 58%; }
+        .bd-foot { text-align: center; font-size: 11.5px; color: #78716c; margin-top: 18px; border-top: 1px solid #e7e5e4; padding-top: 10px; }
+        .bd-actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+        .bd-actions .btn { width: auto; flex: 1; min-width: 140px; }
+        .btn-outline { background: #fff !important; color: var(--blue-dark) !important; border: 2px solid #c7d0f5 !important; box-shadow: none !important; }
         .tool-icon { transition: transform 0.25s ease; }
 
         .tool-card-top { display: flex; gap: 16px; align-items: flex-start; text-align: left; }
@@ -997,6 +1025,28 @@ footer strong{color:#fff;}
                 <div class="tool-banner" style="--tb1:#dc2626;--tb2:#991b1b;"><i class="fa-solid fa-image tb-bg"></i><span class="tb-cap">HD Thumbnail</span><div class="tb-window"><div class="tb-dots"><span></span><span></span><span></span></div><div class="tb-ico"><i class="fa-solid fa-image"></i></div><b></b><b></b></div></div>
                 <button class="btn tOpenBtn" onclick="openSmartlinkThen(openThumbModal)">Open Tool</button>
             </div>
+            <div class="tool-card coming-soon" data-name="photo collage maker ছবি কোলাজ grid photo join" onclick="comingSoon('Photo Collage Maker')">
+                <span class="soon-badge">Coming Soon</span>
+                <div class="tool-card-top">
+                    <div class="tool-icon collage-icon"><i class="fa-solid fa-images"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">Photo</span>
+                        <h3>Photo Collage Maker</h3>
+                        <p>Combine multiple photos into beautiful collage grids with frames and backgrounds — perfect for sharing.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-card coming-soon" data-name="invitation card maker নিমন্ত্রণ কার্ড wedding birthday" onclick="comingSoon('Invitation Card Maker')">
+                <span class="soon-badge">Coming Soon</span>
+                <div class="tool-card-top">
+                    <div class="tool-icon invite-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">Photo</span>
+                        <h3>Invitation Card Maker</h3>
+                        <p>Design stunning wedding, birthday and puja invitation cards with Bengali and English templates.</p>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
 
@@ -1037,6 +1087,39 @@ footer strong{color:#fff;}
                         <span class="tool-tag">Document</span>
                         <h3>Image to Text (OCR)</h3>
                         <p>Extract editable text from photos, screenshots and scanned documents in Bangla and English.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-card" data-name="biodata maker বিয়ের বায়োডাটা resume cv marriage profile">
+                <div class="tool-card-top">
+                    <div class="tool-icon biodata-icon"><i class="fa-solid fa-id-card"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">Document</span>
+                        <h3>Biodata Maker</h3>
+                        <p>Create a beautiful marriage biodata with photo — fill your details, preview instantly, print or save as PDF.</p>
+                    </div>
+                </div>
+                <button class="btn tOpenBtn" onclick="openBiodataModal()">Open Tool</button>
+            </div>
+            <div class="tool-card coming-soon" data-name="invoice generator বিল চালান তৈরি bill receipt" onclick="comingSoon('Invoice Generator')">
+                <span class="soon-badge">Coming Soon</span>
+                <div class="tool-card-top">
+                    <div class="tool-icon invoice-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">Document</span>
+                        <h3>Invoice Generator</h3>
+                        <p>Create professional GST invoices and bills with your shop name, items, tax and totals — print or PDF.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-card coming-soon" data-name="visiting card maker ভিজিটিং কার্ড business card" onclick="comingSoon('Visiting Card Maker')">
+                <span class="soon-badge">Coming Soon</span>
+                <div class="tool-card-top">
+                    <div class="tool-icon visitcard-icon"><i class="fa-solid fa-address-card"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">Document</span>
+                        <h3>Visiting Card Maker</h3>
+                        <p>Design your own business visiting card in minutes — name, phone, address, logo and stylish layouts.</p>
                     </div>
                 </div>
             </div>
@@ -1210,6 +1293,28 @@ footer strong{color:#fff;}
                         <span class="tool-tag">Utility</span>
                         <h3>Age Calculator</h3>
                         <p>Find your exact age in years, months and days from your date of birth — plus next birthday countdown.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-card coming-soon" data-name="percentage calculator শতকরা হিসাব percent" onclick="comingSoon('Percentage Calculator')">
+                <span class="soon-badge">Coming Soon</span>
+                <div class="tool-card-top">
+                    <div class="tool-icon percent-icon"><i class="fa-solid fa-percent"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">Utility</span>
+                        <h3>Percentage Calculator</h3>
+                        <p>Quick percentage calculations — discounts, marks, increase/decrease and exam percentages made easy.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-card coming-soon" data-name="gst calculator জিএসটি হিসাব tax" onclick="comingSoon('GST Calculator')">
+                <span class="soon-badge">Coming Soon</span>
+                <div class="tool-card-top">
+                    <div class="tool-icon gst-icon"><i class="fa-solid fa-receipt"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">Utility</span>
+                        <h3>GST Calculator</h3>
+                        <p>Calculate GST inclusive and exclusive prices instantly for 5%, 12%, 18% and 28% tax slabs.</p>
                     </div>
                 </div>
             </div>
@@ -1644,6 +1749,53 @@ footer strong{color:#fff;}
     </div>
 
     <!-- ওয়ার্ড কাউন্টার মোডাল -->
+    <!-- ===== Biodata Maker Modal ===== -->
+    <div id="biodataModal" class="modal">
+        <div class="modal-content xwide">
+            <span class="close-btn" onclick="closeGenericModal('biodataModal')">&times;</span>
+            <h3 style="margin-bottom: 4px; color:#1a365d;">Biodata Maker</h3>
+            <p class="hint-text" style="margin-top:0;">Fill the details — preview updates live. Then Print or Save as PDF.</p>
+            <div class="biodata-layout">
+                <div class="biodata-form">
+                    <h4>📷 Photo</h4>
+                    <input type="file" id="bd_photo" accept="image/*" class="tool-input" onchange="bdPhotoChange(this)">
+                    <h4>👤 Personal Details</h4>
+                    <input id="bd_name" class="tool-input" placeholder="Full Name" oninput="updateBiodata()">
+                    <div class="bd-grid2">
+                        <input id="bd_dob" class="tool-input" placeholder="Date of Birth" oninput="updateBiodata()">
+                        <input id="bd_height" class="tool-input" placeholder="Height (e.g. 5'6&quot;)" oninput="updateBiodata()">
+                        <input id="bd_weight" class="tool-input" placeholder="Weight (e.g. 60 kg)" oninput="updateBiodata()">
+                        <input id="bd_marital" class="tool-input" placeholder="Marital Status" oninput="updateBiodata()">
+                        <input id="bd_religion" class="tool-input" placeholder="Religion" oninput="updateBiodata()">
+                        <input id="bd_caste" class="tool-input" placeholder="Caste" oninput="updateBiodata()">
+                        <input id="bd_gotra" class="tool-input" placeholder="Gotra" oninput="updateBiodata()">
+                        <input id="bd_rashi" class="tool-input" placeholder="Rashi / Star" oninput="updateBiodata()">
+                    </div>
+                    <input id="bd_edu" class="tool-input" placeholder="Education" oninput="updateBiodata()">
+                    <div class="bd-grid2">
+                        <input id="bd_occ" class="tool-input" placeholder="Occupation" oninput="updateBiodata()">
+                        <input id="bd_income" class="tool-input" placeholder="Annual Income" oninput="updateBiodata()">
+                    </div>
+                    <input id="bd_address" class="tool-input" placeholder="Address" oninput="updateBiodata()">
+                    <input id="bd_phone" class="tool-input" placeholder="Phone / Mobile" oninput="updateBiodata()">
+                    <h4>👨‍👩‍👧 Family Details</h4>
+                    <input id="bd_father" class="tool-input" placeholder="Father's Name & Occupation" oninput="updateBiodata()">
+                    <input id="bd_mother" class="tool-input" placeholder="Mother's Name" oninput="updateBiodata()">
+                    <input id="bd_siblings" class="tool-input" placeholder="Siblings" oninput="updateBiodata()">
+                    <h4>💑 Partner Preference</h4>
+                    <input id="bd_partner" class="tool-input" placeholder="Expected partner details" oninput="updateBiodata()">
+                    <div class="bd-actions">
+                        <button class="btn btn-outline" onclick="bdFillSample()">✨ Fill Sample</button>
+                        <button class="btn" onclick="printBiodata()">🖨️ Print / Save PDF</button>
+                    </div>
+                </div>
+                <div>
+                    <div id="biodataPreview"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="wordCounterModal" class="modal">
         <div class="modal-content wide">
             <span class="close-btn" onclick="closeGenericModal('wordCounterModal')">&times;</span>
@@ -2637,6 +2789,79 @@ footer strong{color:#fff;}
         ============================================================= */
         function comingSoon(name){
             showToast('🚧 ' + name + ' — Coming Soon!', 'info');
+        }
+        /* ---------- Biodata Maker ---------- */
+        var bdPhotoData = '';
+        function openBiodataModal(){ openGenericModal('biodataModal'); updateBiodata(); }
+        function bdPhotoChange(input){
+            if(input.files && input.files[0]){
+                var reader = new FileReader();
+                reader.onload = function(e){ bdPhotoData = e.target.result; updateBiodata(); };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        function bdVal(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+        function bdRow(label, value){
+            if(!value) return '';
+            return '<div class="bd-row"><b>' + label + '</b><span>' + value.replace(/</g,'&lt;') + '</span></div>';
+        }
+        function updateBiodata(){
+            var photo = bdPhotoData ? '<img class="bd-photo" src="' + bdPhotoData + '">' : '<div class="bd-photo" style="display:flex;align-items:center;justify-content:center;color:#a8a29e;font-size:12px;">Photo</div>';
+            var html = '<div class="bd-sheet">' + photo +
+                '<div class="bd-head"><h2>BIODATA</h2><p>Marriage Profile</p></div>' +
+                '<div style="clear:both;"></div>' +
+                '<div class="bd-sec">Personal Details</div>' +
+                bdRow('Name', bdVal('bd_name')) +
+                bdRow('Date of Birth', bdVal('bd_dob')) +
+                bdRow('Height', bdVal('bd_height')) +
+                bdRow('Weight', bdVal('bd_weight')) +
+                bdRow('Marital Status', bdVal('bd_marital')) +
+                bdRow('Religion', bdVal('bd_religion')) +
+                bdRow('Caste', bdVal('bd_caste')) +
+                bdRow('Gotra', bdVal('bd_gotra')) +
+                bdRow('Rashi', bdVal('bd_rashi')) +
+                bdRow('Education', bdVal('bd_edu')) +
+                bdRow('Occupation', bdVal('bd_occ')) +
+                bdRow('Annual Income', bdVal('bd_income')) +
+                bdRow('Address', bdVal('bd_address')) +
+                bdRow('Phone', bdVal('bd_phone')) +
+                '<div class="bd-sec">Family Details</div>' +
+                bdRow("Father's Name", bdVal('bd_father')) +
+                bdRow("Mother's Name", bdVal('bd_mother')) +
+                bdRow('Siblings', bdVal('bd_siblings')) +
+                '<div class="bd-sec">Partner Preference</div>' +
+                bdRow('Expectation', bdVal('bd_partner')) +
+                '<div class="bd-foot">Created with Dafadar Online Sava — Biodata Maker</div>' +
+                '</div>';
+            document.getElementById('biodataPreview').innerHTML = html;
+        }
+        function bdFillSample(){
+            var s = { bd_name:'Rahul Sharma', bd_dob:'15 Aug 1995', bd_height:"5'8\"", bd_weight:'65 kg',
+                bd_marital:'Never Married', bd_religion:'Hindu', bd_caste:'Brahmin', bd_gotra:'Kashyap', bd_rashi:'Simha',
+                bd_edu:'B.Tech (Computer Science)', bd_occ:'Software Engineer', bd_income:'Rs. 8 LPA',
+                bd_address:'Kolkata, West Bengal', bd_phone:'+91 98765 43210',
+                bd_father:'Amit Sharma (Businessman)', bd_mother:'Sunita Sharma (Homemaker)',
+                bd_siblings:'One younger sister', bd_partner:'Well-educated, caring girl from a good family' };
+            for(var k in s){ document.getElementById(k).value = s[k]; }
+            updateBiodata();
+            showToast('Sample data filled!', 'success');
+        }
+        function printBiodata(){
+            var content = document.getElementById('biodataPreview').innerHTML;
+            var css = '.bd-sheet{max-width:700px;margin:0 auto;background:#fffdf7;border:3px double #b45309;padding:30px;font-family:Georgia,serif;color:#1f2937;}' +
+                '.bd-head{text-align:center;border-bottom:2px solid #b45309;padding-bottom:10px;margin-bottom:12px;}' +
+                '.bd-head h2{font-size:28px;letter-spacing:8px;color:#92400e;margin:0;}' +
+                '.bd-head p{font-size:12px;color:#78716c;margin:5px 0 0;}' +
+                '.bd-photo{float:right;width:120px;height:140px;object-fit:cover;border:2px solid #b45309;margin:0 0 10px 12px;}' +
+                '.bd-sec{font-size:15px;font-weight:bold;color:#fff;background:#b45309;padding:6px 12px;border-radius:4px;margin:18px 0 8px;clear:both;}' +
+                '.bd-row{display:flex;font-size:14px;padding:6px 0;border-bottom:1px dotted #ccc;}' +
+                '.bd-row b{width:40%;color:#57534e;}' + '.bd-row span{width:60%;}' +
+                '.bd-foot{text-align:center;font-size:12px;color:#78716c;margin-top:20px;border-top:1px solid #ccc;padding-top:10px;}';
+            var w = window.open('', '_blank');
+            w.document.write('<html><head><title>Biodata - ' + (bdVal('bd_name') || 'Profile') + '</title><style>' + css + '</style></head><body>' + content + '</body></html>');
+            w.document.close();
+            w.focus();
+            setTimeout(function(){ w.print(); }, 400);
         }
         function showToast(message, type){            type = type || 'info';
             const icons = { success: 'fa-circle-check', error: 'fa-circle-exclamation', info: 'fa-circle-info' };
