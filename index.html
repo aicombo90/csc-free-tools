@@ -1365,8 +1365,7 @@ footer strong{color:#fff;}
                 <div class="tool-banner" style="--tb1:#c2410c;--tb2:#7c2d12;"><i class="fa-solid fa-map tb-bg"></i><span class="tb-cap">Land · Convert</span><div class="tb-window"><div class="tb-dots"><span></span><span></span><span></span></div><div class="tb-ico"><i class="fa-solid fa-map"></i></div><b></b><b></b></div></div>
                 <button class="btn tOpenBtn" onclick="openLandModal()">Open Tool</button>
             </div>
-            <div class="tool-card coming-soon" data-name="emi calculator ইএমআই ক্যালকুলেটর loan interest কিস্তি" onclick="comingSoon('EMI Calculator')">
-                <span class="soon-badge">Coming Soon</span>
+            <div class="tool-card" data-name="emi calculator ইএমআই ক্যালকুলেটর loan interest কিস্তি">
                 <div class="tool-card-top">
                     <div class="tool-icon emi-icon"><i class="fa-solid fa-calculator"></i></div>
                     <div class="tool-card-text">
@@ -1375,9 +1374,9 @@ footer strong{color:#fff;}
                         <p>Calculate monthly loan EMI, total interest and payment schedule for home, car and personal loans.</p>
                     </div>
                 </div>
+                <button class="btn tOpenBtn" onclick="openEmiModal()">Open Tool</button>
             </div>
-            <div class="tool-card coming-soon" data-name="age calculator বয়স ক্যালকুলেটর date of birth জন্ম তারিখ" onclick="comingSoon('Age Calculator')">
-                <span class="soon-badge">Coming Soon</span>
+            <div class="tool-card" data-name="age calculator বয়স ক্যালকুলেটর date of birth জন্ম তারিখ">
                 <div class="tool-card-top">
                     <div class="tool-icon age-icon"><i class="fa-solid fa-cake-candles"></i></div>
                     <div class="tool-card-text">
@@ -1386,9 +1385,9 @@ footer strong{color:#fff;}
                         <p>Find your exact age in years, months and days from your date of birth — plus next birthday countdown.</p>
                     </div>
                 </div>
+                <button class="btn tOpenBtn" onclick="openAgeModal()">Open Tool</button>
             </div>
-            <div class="tool-card coming-soon" data-name="percentage calculator শতকরা হিসাব percent" onclick="comingSoon('Percentage Calculator')">
-                <span class="soon-badge">Coming Soon</span>
+            <div class="tool-card" data-name="percentage calculator শতকরা হিসাব percent">
                 <div class="tool-card-top">
                     <div class="tool-icon percent-icon"><i class="fa-solid fa-percent"></i></div>
                     <div class="tool-card-text">
@@ -1397,9 +1396,9 @@ footer strong{color:#fff;}
                         <p>Quick percentage calculations — discounts, marks, increase/decrease and exam percentages made easy.</p>
                     </div>
                 </div>
+                <button class="btn tOpenBtn" onclick="openPctModal()">Open Tool</button>
             </div>
-            <div class="tool-card coming-soon" data-name="gst calculator জিএসটি হিসাব tax" onclick="comingSoon('GST Calculator')">
-                <span class="soon-badge">Coming Soon</span>
+            <div class="tool-card" data-name="gst calculator জিএসটি হিসাব tax">
                 <div class="tool-card-top">
                     <div class="tool-icon gst-icon"><i class="fa-solid fa-receipt"></i></div>
                     <div class="tool-card-text">
@@ -1408,6 +1407,7 @@ footer strong{color:#fff;}
                         <p>Calculate GST inclusive and exclusive prices instantly for 5%, 12%, 18% and 28% tax slabs.</p>
                     </div>
                 </div>
+                <button class="btn tOpenBtn" onclick="openGstModal()">Open Tool</button>
             </div>
             </div>
         </div>
@@ -2236,6 +2236,109 @@ footer strong{color:#fff;}
 
                 <div class="result-panel" id="landResult" style="text-align:center; font-size:18px; font-weight:700;">-</div>
                 <p style="font-size:12px; color:var(--muted-2); margin-top:10px; text-align:left;">Note: Bigha/Katha/Chatak are calculated using the standard West Bengal values (1 Bigha = 20 Katha = 160 Chatak); small variations may exist by area.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== EMI Calculator Modal ===== -->
+    <div id="emiModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeGenericModal('emiModal')">&times;</span>
+            <h3 style="margin-bottom: 15px; color:#1a365d;">EMI Calculator</h3>
+            <div class="tool-modal-body">
+                <label class="field-label">Loan Amount (₹)</label>
+                <input type="number" id="emiP" class="tool-input" value="500000" min="0" oninput="calcEmi()">
+                <div class="unit-row">
+                    <div>
+                        <label class="field-label">Annual Interest Rate (%)</label>
+                        <input type="number" id="emiR" class="tool-input" value="10" min="0" step="0.1" oninput="calcEmi()">
+                    </div>
+                    <div>
+                        <label class="field-label">Tenure (Years)</label>
+                        <input type="number" id="emiN" class="tool-input" value="5" min="0" step="0.5" oninput="calcEmi()">
+                    </div>
+                </div>
+                <div class="result-panel" id="emiResult" style="text-align:center; font-size:16px;">-</div>
+                <p style="font-size:12px; color:var(--muted-2); margin-top:10px;">Monthly reducing-balance EMI. Actual bank offers may vary slightly with processing fees and rounding.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Age Calculator Modal ===== -->
+    <div id="ageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeGenericModal('ageModal')">&times;</span>
+            <h3 style="margin-bottom: 15px; color:#1a365d;">Age Calculator</h3>
+            <div class="tool-modal-body">
+                <label class="field-label">Date of Birth</label>
+                <input type="date" id="ageDob" class="tool-input" onchange="calcAge()">
+                <div class="result-panel" id="ageResult" style="text-align:center; font-size:16px;">Select your date of birth above.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Percentage Calculator Modal ===== -->
+    <div id="pctModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeGenericModal('pctModal')">&times;</span>
+            <h3 style="margin-bottom: 15px; color:#1a365d;">Percentage Calculator</h3>
+            <div class="tool-modal-body">
+                <label class="field-label">What is X% of Y?</label>
+                <div class="unit-row">
+                    <div><input type="number" id="pctA" class="tool-input" placeholder="%" value="20" oninput="calcPct()"></div>
+                    <div><input type="number" id="pctB" class="tool-input" placeholder="of" value="500" oninput="calcPct()"></div>
+                </div>
+                <div class="result-panel" id="pctR1" style="text-align:center; font-weight:700;">-</div>
+                <label class="field-label" style="margin-top:14px;">X is what % of Y?</label>
+                <div class="unit-row">
+                    <div><input type="number" id="pctC" class="tool-input" placeholder="part" value="45" oninput="calcPct()"></div>
+                    <div><input type="number" id="pctD" class="tool-input" placeholder="whole" value="60" oninput="calcPct()"></div>
+                </div>
+                <div class="result-panel" id="pctR2" style="text-align:center; font-weight:700;">-</div>
+                <label class="field-label" style="margin-top:14px;">Increase / decrease a value by %</label>
+                <div class="unit-row">
+                    <div><input type="number" id="pctE" class="tool-input" placeholder="value" value="1000" oninput="calcPct()"></div>
+                    <div style="display:flex; gap:8px;">
+                        <select id="pctDir" class="tool-select" onchange="calcPct()" style="flex:1;">
+                            <option value="up">+ Increase</option>
+                            <option value="down">− Decrease</option>
+                        </select>
+                        <input type="number" id="pctF" class="tool-input" placeholder="%" value="10" oninput="calcPct()" style="flex:1;">
+                    </div>
+                </div>
+                <div class="result-panel" id="pctR3" style="text-align:center; font-weight:700;">-</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== GST Calculator Modal ===== -->
+    <div id="gstModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeGenericModal('gstModal')">&times;</span>
+            <h3 style="margin-bottom: 15px; color:#1a365d;">GST Calculator</h3>
+            <div class="tool-modal-body">
+                <label class="field-label">Amount (₹)</label>
+                <input type="number" id="gstAmt" class="tool-input" value="1000" min="0" oninput="calcGst()">
+                <div class="unit-row">
+                    <div>
+                        <label class="field-label">GST Slab</label>
+                        <select id="gstSlab" class="tool-select" onchange="calcGst()">
+                            <option value="5">5%</option>
+                            <option value="12">12%</option>
+                            <option value="18" selected>18%</option>
+                            <option value="28">28%</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="field-label">Calculation</label>
+                        <select id="gstMode" class="tool-select" onchange="calcGst()">
+                            <option value="add" selected>Add GST (exclusive → inclusive)</option>
+                            <option value="remove">Remove GST (inclusive → exclusive)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="result-panel" id="gstResult" style="text-align:center; font-size:16px;">-</div>
+                <p style="font-size:12px; color:var(--muted-2); margin-top:10px;">Standard Indian GST slabs. For invoicing, always verify with your CA for your product category.</p>
             </div>
         </div>
     </div>
@@ -3564,6 +3667,76 @@ footer strong{color:#fff;}
            LAND AREA CONVERTER
         ============================================================= */
         function openLandModal(){ openGenericModal('landModal'); convertLand(); }
+
+        function fmtINR(x){ return new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:2}).format(x||0); }
+        function fmtNum(x, d){ return Number(x||0).toLocaleString('en-IN',{maximumFractionDigits:(d==null?2:d)}); }
+
+        /* ---- EMI Calculator ---- */
+        function openEmiModal(){ openGenericModal('emiModal'); calcEmi(); }
+        function calcEmi(){
+            var P = parseFloat(document.getElementById('emiP').value)||0;
+            var annual = parseFloat(document.getElementById('emiR').value)||0;
+            var yrs = parseFloat(document.getElementById('emiN').value)||0;
+            var n = Math.round(yrs*12), r = annual/1200, emi = 0;
+            if(n>0){ emi = r>0 ? P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1) : P/n; }
+            var total = emi*n, interest = Math.max(0,total-P);
+            document.getElementById('emiResult').innerHTML =
+                '<div style="font-size:12px; color:var(--muted-2);">Monthly EMI</div>'+
+                '<div style="font-size:30px; font-weight:800; color:#4f46e5;">'+fmtINR(emi)+'</div>'+
+                '<div style="margin-top:8px; font-size:14px;">Total Interest: <b>'+fmtINR(interest)+'</b> &nbsp;·&nbsp; Total Payable: <b>'+fmtINR(total)+'</b></div>';
+        }
+
+        /* ---- Age Calculator ---- */
+        function openAgeModal(){ openGenericModal('ageModal'); calcAge(); }
+        function calcAge(){
+            var v = document.getElementById('ageDob').value;
+            var box = document.getElementById('ageResult');
+            if(!v){ box.textContent = 'Select your date of birth above.'; return; }
+            var dob = new Date(v+'T00:00:00'), now = new Date();
+            if(isNaN(dob.getTime()) || dob > now){ box.textContent = 'Please choose a valid date of birth (not in the future).'; return; }
+            var y = now.getFullYear()-dob.getFullYear(), m = now.getMonth()-dob.getMonth(), d = now.getDate()-dob.getDate();
+            if(d<0){ m--; d += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+            if(m<0){ y--; m += 12; }
+            var totalDays = Math.floor((now-dob)/86400000);
+            var nb = new Date(now.getFullYear(), dob.getMonth(), dob.getDate());
+            if(nb <= now) nb = new Date(now.getFullYear()+1, dob.getMonth(), dob.getDate());
+            var ndays = Math.ceil((nb-now)/86400000);
+            box.innerHTML =
+                '<div style="font-size:30px; font-weight:800; color:#4f46e5;">'+y+' yrs '+m+' months '+d+' days</div>'+
+                '<div style="margin-top:8px; font-size:14px;">Total: <b>'+fmtNum(totalDays,0)+' days</b> · <b>'+fmtNum(totalDays/365.25,1)+' years</b></div>'+
+                '<div style="margin-top:4px; font-size:14px;">🎂 Next birthday in <b>'+ndays+' day'+(ndays===1?'':'s')+'</b></div>';
+        }
+
+        /* ---- Percentage Calculator ---- */
+        function openPctModal(){ openGenericModal('pctModal'); calcPct(); }
+        function calcPct(){
+            var a = parseFloat(document.getElementById('pctA').value)||0,
+                b = parseFloat(document.getElementById('pctB').value)||0;
+            document.getElementById('pctR1').textContent = fmtNum(a)+'% of '+fmtNum(b)+' = '+fmtNum(a*b/100);
+            var c = parseFloat(document.getElementById('pctC').value)||0,
+                d = parseFloat(document.getElementById('pctD').value)||0;
+            document.getElementById('pctR2').textContent = d===0 ? '—' : fmtNum(c)+' is '+fmtNum(c/d*100)+'% of '+fmtNum(d);
+            var e = parseFloat(document.getElementById('pctE').value)||0,
+                f = parseFloat(document.getElementById('pctF').value)||0,
+                up = document.getElementById('pctDir').value==='up';
+            var res = up ? e*(1+f/100) : e*(1-f/100);
+            document.getElementById('pctR3').textContent = fmtNum(e)+' '+(up?'+':'−')+' '+fmtNum(f)+'% = '+fmtNum(res);
+        }
+
+        /* ---- GST Calculator ---- */
+        function openGstModal(){ openGenericModal('gstModal'); calcGst(); }
+        function calcGst(){
+            var amt = parseFloat(document.getElementById('gstAmt').value)||0;
+            var slab = parseFloat(document.getElementById('gstSlab').value)||0;
+            var add = document.getElementById('gstMode').value==='add';
+            var net, gst, gross;
+            if(add){ net = amt; gst = net*slab/100; gross = net+gst; }
+            else { gross = amt; net = gross/(1+slab/100); gst = gross-net; }
+            document.getElementById('gstResult').innerHTML =
+                '<div style="font-size:12px; color:var(--muted-2);">GST @ '+fmtNum(slab,0)+'%</div>'+
+                '<div style="font-size:14px; margin-top:6px;">Net: <b>'+fmtINR(net)+'</b> &nbsp;·&nbsp; GST: <b>'+fmtINR(gst)+'</b></div>'+
+                '<div style="font-size:24px; font-weight:800; color:#4f46e5; margin-top:4px;">Gross: '+fmtINR(gross)+'</div>';
+        }
         function convertLand(){
             // Base unit: square feet. West Bengal standard: 1 Bigha = 20 Katha = 320 Chatak, 1 Bigha = 14400 sq ft
             const sqftFactors = {
