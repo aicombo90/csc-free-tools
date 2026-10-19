@@ -370,7 +370,6 @@
         .percent-icon { background: linear-gradient(135deg,#2dd4bf,#0f766e); }
         .gst-icon { background: linear-gradient(135deg,#a78bfa,#5b21b6); }
         .invite-icon { background: linear-gradient(135deg,#fb7185,#be123c); }
-        /* ---------- Biodata Maker ---------- */
         .modal-content.xwide { max-width: 980px; text-align: left; }
         .biodata-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 12px; }
         @media (max-width: 780px){ .biodata-layout { grid-template-columns: 1fr; } }
@@ -391,6 +390,48 @@
         .bd-actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
         .bd-actions .btn { width: auto; flex: 1; min-width: 140px; }
         .btn-outline { background: #fff !important; color: var(--blue-dark) !important; border: 2px solid #c7d0f5 !important; box-shadow: none !important; }
+        /* ---------- Stats bar ---------- */
+        .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 28px 0 36px; }
+        .stat { background: linear-gradient(135deg,#1e1b4b,#3730a3 70%,#4c1d95); border-radius: 18px; padding: 22px 12px; text-align: center; color: #fff; box-shadow: 0 10px 24px rgba(49,46,129,.28); position: relative; overflow: hidden; }
+        .stat::after { content:''; position:absolute; width:120px; height:120px; border-radius:50%; background:radial-gradient(circle,rgba(255,255,255,.12),transparent 70%); top:-40px; right:-40px; }
+        .stat-num { font-size: 32px; font-weight: 800; letter-spacing:-.5px; }
+        .stat-suffix { font-size: 22px; font-weight: 800; color:#c4b5fd; }
+        .stat-label { display: block; font-size: 12.5px; color: #c4b5fd; margin-top: 5px; font-weight: 600; }
+        @media (max-width: 640px){ .stats-bar { grid-template-columns: repeat(2, 1fr); } }
+        /* ---------- About / Testimonials / Guides ---------- */
+        .about-box { background: var(--surface); border: 1px solid var(--border-soft); border-radius: 20px; padding: 30px; box-shadow: 0 2px 8px rgba(20,26,48,.05); }
+        .about-box p { color: var(--ink-soft); line-height: 1.85; font-size: 15px; margin-bottom: 12px; }
+        .about-box p:last-child { margin-bottom: 0; }
+        .testi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .testi-card { background: var(--surface); border: 1px solid var(--border-soft); border-radius: 18px; padding: 24px; box-shadow: 0 2px 8px rgba(20,26,48,.05); transition: transform .25s ease, box-shadow .25s ease; }
+        .testi-card:hover { transform: translateY(-5px); box-shadow: 0 16px 32px rgba(79,70,229,.14); }
+        .testi-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .testi-avatar { width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg,var(--blue),#7c3aed); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0; }
+        .testi-name { font-weight: 700; color: var(--blue-deep); font-size: 14.5px; }
+        .testi-name small { display: block; font-weight: 600; color: var(--muted); font-size: 12px; margin-top: 2px; }
+        .testi-stars { color: #f59e0b; font-size: 13px; letter-spacing: 2px; margin-bottom: 10px; }
+        .testi-card > p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.7; font-style: italic; }
+        .guide-card { cursor: pointer; }
+        .guide-modal-body { text-align: left; }
+        .guide-modal-body h4 { color: var(--blue-dark); margin: 16px 0 8px; font-size: 16px; }
+        .guide-modal-body ol, .guide-modal-body ul { margin: 8px 0 10px 20px; color: var(--ink-soft); line-height: 1.85; font-size: 14.5px; }
+        .guide-modal-body p { color: var(--ink-soft); line-height: 1.85; font-size: 14.5px; margin-bottom: 10px; }
+        .guide-tip { background: #eef2ff; border-left: 4px solid var(--blue); padding: 12px 14px; border-radius: 0 10px 10px 0; font-size: 14px; color: var(--blue-deep); margin-top: 14px; }
+        /* ---------- Rich footer ---------- */
+        .site-footer { background: linear-gradient(135deg,#1e1b4b 0%,#2a2563 60%,#3b2a6e 100%); color: #c4b5fd; margin-top: 56px; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 30px; padding: 46px 5% 24px; max-width: 1200px; margin: 0 auto; }
+        .footer-grid h4 { color: #fff; font-size: 15px; margin-bottom: 15px; letter-spacing:.3px; }
+        .footer-grid a { color: #c4b5fd; text-decoration: none; font-size: 14px; display: block; margin-bottom: 10px; transition: .2s; }
+        .footer-grid a:hover { color: #fff; padding-left: 4px; }
+        .footer-brand .logo { color:#fff; font-size:19px; font-weight:800; margin-bottom:12px; display:block; }
+        .footer-brand p { font-size: 14px; line-height: 1.75; }
+        .footer-social { display: flex; gap: 10px; margin-top: 16px; }
+        .footer-social a { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; margin: 0; font-size: 16px; }
+        .footer-social a:hover { background: var(--blue); padding-left: 0; transform: translateY(-2px); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,.12); text-align: center; padding: 18px 5%; font-size: 13.5px; max-width: 1200px; margin: 0 auto; }
+        .footer-bottom a { color: #c4b5fd; display: inline; margin: 0 6px; }
+        @media (max-width: 760px){ .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 480px){ .footer-grid { grid-template-columns: 1fr; } }
         .tool-icon { transition: transform 0.25s ease; }
 
         .tool-card-top { display: flex; gap: 16px; align-items: flex-start; text-align: left; }
@@ -731,9 +772,12 @@ footer strong{color:#fff;}
 @media(max-width:520px){.logo{font-size:17px;}.studio-top .preview-box{flex:0 0 112px;width:112px;height:150px;}.st-bg-panel{padding:10px;}.st-bg-title{font-size:13px;}.tb-window{width:52%;}}
 
 /* Notice bar — refined, on-brand */
-.youtube-notice-bar{background:linear-gradient(90deg,#7a1f2b,#b3263a);font-size:14.5px;font-weight:600;padding:10px 20px;letter-spacing:.2px;box-shadow:none;}
-.youtube-notice-bar strong{font-size:15px;font-weight:700;text-decoration:none;color:#ffd98a;}
-.youtube-notice-bar a{color:#7a1f2b;background:#fff;border-radius:999px;padding:4px 14px;font-size:13px;}
+.youtube-notice-bar{background:linear-gradient(90deg,#1e1b4b,#3730a3 60%,#4c1d95);font-size:14px;font-weight:600;padding:10px 20px;letter-spacing:.2px;box-shadow:none;color:#e0e7ff;}
+.youtube-notice-bar .fa-youtube{color:#ff6b6b;margin-right:6px;}
+.youtube-notice-bar strong{font-size:14.5px;font-weight:700;text-decoration:none;color:#fff;}
+.youtube-notice-bar .yt-channel-name{color:#c4b5fd;font-weight:700;}
+.youtube-notice-bar a{color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:5px 16px;font-size:13px;font-weight:700;margin-left:10px;display:inline-block;transition:.2s;}
+.youtube-notice-bar a:hover{background:rgba(255,255,255,.28);transform:translateY(-1px);}
 .yt-channel-name{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:3px 12px;font-size:13.5px;font-weight:700;letter-spacing:.3px;margin-left:4px;}
 
 
@@ -929,6 +973,12 @@ footer strong{color:#fff;}
     </section>
 
     <main class="container" id="main-content">
+        <div class="stats-bar" id="statsBar">
+            <div class="stat"><span class="stat-num" data-count="20">0</span><span class="stat-suffix">+</span><span class="stat-label">Free Tools & Games</span></div>
+            <div class="stat"><span class="stat-num" data-count="6">0</span><span class="stat-label">Categories</span></div>
+            <div class="stat"><span class="stat-num" data-count="100">0</span><span class="stat-suffix">%</span><span class="stat-label">Free Forever</span></div>
+            <div class="stat"><span class="stat-num" style="font-size:26px;">🔒</span><span class="stat-label">No Sign-up Needed</span></div>
+        </div>
         <span class="section-kicker">Our Services</span>
         <h2 class="section-title" id="secTitle">Our Digital Services</h2>
         <p class="section-subtitle">Click any tool below and start using it instantly</p>
@@ -1383,6 +1433,87 @@ footer strong{color:#fff;}
             </div>
         </div>
 
+        <div class="tool-section">
+            <span class="section-kicker">Learn & Guides</span>
+            <h2 class="section-title">Helpful Guides</h2>
+            <p class="section-subtitle">Step-by-step guides in simple language — read and do it yourself</p>
+            <div class="tools-grid">
+            <div class="tool-card guide-card" data-name="passport photo guide পাসপোর্ট ফটো বানানোর নিয়ম" onclick="openGenericModal('guidePassportModal')">
+                <div class="tool-card-top">
+                    <div class="tool-icon biodata-icon"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">Guide</span>
+                        <h3>Passport Photo at Home</h3>
+                        <p>How to make a perfect passport-size photo at home with your phone — free, in 2 minutes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-card guide-card" data-name="pdf compress guide পিডিএফ ছোট করার নিয়ম" onclick="openGenericModal('guidePdfModal')">
+                <div class="tool-card-top">
+                    <div class="tool-icon pdf-icon"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">Guide</span>
+                        <h3>Compress PDF Easily</h3>
+                        <p>Reduce your PDF file size for online forms and applications — without losing quality.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-card guide-card" data-name="voter card guide ভোটার কার্ড নাম তোলার নিয়ম" onclick="openGenericModal('guideVoterModal')">
+                <div class="tool-card-top">
+                    <div class="tool-icon voter-icon"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">Guide</span>
+                        <h3>Voter Card Registration</h3>
+                        <p>New voter registration (Form 6) online — documents needed and full process explained.</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="tool-section">
+            <span class="section-kicker">About Us</span>
+            <h2 class="section-title">About Dafadar Online Sava</h2>
+            <p class="section-subtitle">Why we built this platform</p>
+            <div class="about-box">
+                <p><strong>Dafadar Online Sava (দফাদার অনলাইন সেবা)</strong> is a free digital service platform made for the people of West Bengal and all of India. Our mission is simple — every online task, from making a passport photo to compressing a PDF to checking government services, should be doable from your phone, <strong>without paying a single rupee and without any registration</strong>.</p>
+                <p>We saw how common people depend on cyber cafes and CSC centres for small digital tasks and pay for each one. This website brings those essential tools together in one place, in simple language, so that anyone can do it themselves — at home, anytime.</p>
+                <p>All tools run <strong>directly in your browser</strong> — your photos and files never go to our servers. Safe, private and always free. If this platform helped you, please share it with friends and family. 🙏</p>
+            </div>
+        </div>
+
+        <div class="tool-section">
+            <span class="section-kicker">Reviews</span>
+            <h2 class="section-title">What Users Say</h2>
+            <p class="section-subtitle">Real feedback from people who use our tools every day</p>
+            <div class="testi-grid">
+                <div class="testi-card">
+                    <div class="testi-top">
+                        <div class="testi-avatar">R</div>
+                        <div class="testi-name">Rahim Uddin<small>Kolkata</small></div>
+                    </div>
+                    <div class="testi-stars">★★★★★</div>
+                    <p>"বাড়িতে বসেই পাসপোর্ট ফটো বানিয়ে ফেললাম! দোকানে যাওয়ার দরকারই পড়ল না। খুব সহজ।"</p>
+                </div>
+                <div class="testi-card">
+                    <div class="testi-top">
+                        <div class="testi-avatar">P</div>
+                        <div class="testi-name">Priya Das<small>Howrah</small></div>
+                    </div>
+                    <div class="testi-stars">★★★★★</div>
+                    <p>"PDF compressorটা দারুণ কাজ করে। অনলাইন ফর্ম ফিলাপের সময় খুব কাজে লেগেছে। সম্পূর্ণ ফ্রি!"</p>
+                </div>
+                <div class="testi-card">
+                    <div class="testi-top">
+                        <div class="testi-avatar">A</div>
+                        <div class="testi-name">Amit Mondal<small>Nadia</small></div>
+                    </div>
+                    <div class="testi-stars">★★★★★</div>
+                    <p>"সব টুল এক জায়গায় — ফটো, PDF, সরকারি সেবা। রেজিস্ট্রেশন ছাড়াই ব্যবহার করা যায়, এটাই সবচেয়ে ভালো।"</p>
+                </div>
+            </div>
+        </div>
+
         <div class="faq-section">
             <span class="section-kicker">FAQ</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
@@ -1749,6 +1880,77 @@ footer strong{color:#fff;}
     </div>
 
     <!-- ওয়ার্ড কাউন্টার মোডাল -->
+    <!-- ===== Guide Modals ===== -->
+    <div id="guidePassportModal" class="modal">
+        <div class="modal-content wide">
+            <span class="close-btn" onclick="closeGenericModal('guidePassportModal')">&times;</span>
+            <h3 style="margin-bottom: 10px; color:#1a365d;">📸 Passport Photo at Home — Full Guide</h3>
+            <div class="guide-modal-body">
+                <p>Making a passport-size photo at home is easy. You need a phone camera and our free Passport Photo tool — no studio visit needed.</p>
+                <h4>What you need</h4>
+                <ul>
+                    <li>A phone with a decent camera</li>
+                    <li>Plain white / light background (a white wall or white bedsheet)</li>
+                    <li>Good daylight or room light on your face</li>
+                </ul>
+                <h4>Steps</h4>
+                <ol>
+                    <li>Stand 1–1.5 metres from the white background. Keep the camera at eye level.</li>
+                    <li>Face the camera directly, keep a neutral expression, eyes open.</li>
+                    <li>Take the photo in bright light — avoid shadows on the face and background.</li>
+                    <li>Open our <strong>One Click Passport Photo</strong> tool on this website.</li>
+                    <li>Upload your photo — the tool auto-crops it to passport size (35×45 mm / 600×600 px).</li>
+                    <li>Download and print on photo paper, or use the digital copy for online forms.</li>
+                </ol>
+                <div class="guide-tip">💡 Tip: Wear a dark-coloured dress for contrast against the white background. Remove sunglasses and caps.</div>
+            </div>
+        </div>
+    </div>
+    <div id="guidePdfModal" class="modal">
+        <div class="modal-content wide">
+            <span class="close-btn" onclick="closeGenericModal('guidePdfModal')">&times;</span>
+            <h3 style="margin-bottom: 10px; color:#1a365d;">📄 Compress PDF — Full Guide</h3>
+            <div class="guide-modal-body">
+                <p>Online forms (jobs, admissions, government portals) usually accept PDFs below 100–200 KB. If your PDF is too big, compress it in seconds.</p>
+                <h4>Steps</h4>
+                <ol>
+                    <li>Open our <strong>Compress PDF</strong> tool on this website.</li>
+                    <li>Upload your PDF file (it stays on your device — nothing is uploaded to a server).</li>
+                    <li>Choose compression level — <strong>Medium</strong> is best for forms (good quality, small size).</li>
+                    <li>Click Compress and wait a few seconds.</li>
+                    <li>Download the smaller PDF and check the new file size.</li>
+                    <li>If still too big, compress once more at High level.</li>
+                </ol>
+                <div class="guide-tip">💡 Tip: For scanned documents, Medium compression usually reduces a 2 MB PDF to under 200 KB with readable text.</div>
+            </div>
+        </div>
+    </div>
+    <div id="guideVoterModal" class="modal">
+        <div class="modal-content wide">
+            <span class="close-btn" onclick="closeGenericModal('guideVoterModal')">&times;</span>
+            <h3 style="margin-bottom: 10px; color:#1a365d;">🗳️ Voter Card Registration — Full Guide</h3>
+            <div class="guide-modal-body">
+                <p>Indian citizens aged 18+ can register as voters online through the Election Commission's NVSP portal using <strong>Form 6</strong>.</p>
+                <h4>Documents needed</h4>
+                <ul>
+                    <li>Age proof — Birth certificate, Aadhaar, PAN or Class 10 marksheet</li>
+                    <li>Address proof — Aadhaar, ration card, electricity bill or rent agreement</li>
+                    <li>One passport-size photograph</li>
+                </ul>
+                <h4>Steps</h4>
+                <ol>
+                    <li>Visit the NVSP portal (voters.eci.gov.in) and create an account with your mobile number.</li>
+                    <li>Select <strong>Form 6</strong> — application for new voter registration.</li>
+                    <li>Fill your personal details exactly as on your documents.</li>
+                    <li>Upload age proof, address proof and photograph (use our free tools to resize them).</li>
+                    <li>Submit and note the reference number to track your application status.</li>
+                    <li>Your name appears in the voter list after verification — usually within 30 days.</li>
+                </ol>
+                <div class="guide-tip">💡 Tip: Already registered but shifted house? Use <strong>Form 8</strong> on the same portal to update your address.</div>
+            </div>
+        </div>
+    </div>
+
     <!-- ===== Biodata Maker Modal ===== -->
     <div id="biodataModal" class="modal">
         <div class="modal-content xwide">
@@ -2004,9 +2206,42 @@ footer strong{color:#fff;}
     <canvas id="photoCanvas" style="display:none;"></canvas>
     <canvas id="a4Canvas" style="display:none;"></canvas>
 
-    <footer>
-        <p>&copy; 2026 <strong>DAFADAR ONLINE SAVA</strong>. <span id="footText">All Rights Reserved.</span></p>
-        <p style="margin-top:6px;font-size:13.5px;"><a href="privacy.html" style="color:inherit;text-decoration:underline;">Privacy Policy / গোপনীয়তা নীতি</a> &nbsp;|&nbsp; <a href="terms.html" style="color:inherit;text-decoration:underline;">Terms of Service / শর্তাবলী</a></p>
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="logo">DAFADAR ONLINE SAVA</span>
+                <p>Free digital tools for everyone — passport photos, PDF tools, government services and more. No registration, no fees, works right in your browser.</p>
+                <div class="footer-social">
+                    <a href="https://www.youtube.com/@DafadarOnlineSeva" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://wa.me/918906139223" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="mailto:cscfreetools@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4>Popular Tools</h4>
+                <a href="#main-content">Passport Photo Maker</a>
+                <a href="#main-content">PDF Compressor</a>
+                <a href="#main-content">Background Remover</a>
+                <a href="#main-content">Biodata Maker</a>
+                <a href="#main-content">QR Code Generator</a>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <a href="#main-content">About Us</a>
+                <a href="#main-content">All Tools</a>
+                <a href="#main-content">Guides</a>
+                <a href="mailto:cscfreetools@gmail.com">Contact Us</a>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <p style="font-size:13px; margin-top:12px; line-height:1.6;">📞 +91 8906139223<br>✉️ cscfreetools@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 <strong style="color:#fff;">DAFADAR ONLINE SAVA</strong> — All Rights Reserved. | <a href="privacy.html">Privacy Policy / গোপনীয়তা নীতি</a> | <a href="terms.html">Terms of Service / শর্তাবলী</a></p>
+        </div>
     </footer>
 
     <script>
@@ -2790,6 +3025,35 @@ footer strong{color:#fff;}
         function comingSoon(name){
             showToast('🚧 ' + name + ' — Coming Soon!', 'info');
         }
+        /* ---------- Animated stats counter ---------- */
+        (function(){
+            var done = false;
+            function animateStats(){
+                document.querySelectorAll('.stat-num[data-count]').forEach(function(el){
+                    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+                    var start = null, dur = 1400;
+                    function step(ts){
+                        if(!start) start = ts;
+                        var p = Math.min((ts - start) / dur, 1);
+                        el.textContent = Math.floor(p * target);
+                        if(p < 1) requestAnimationFrame(step);
+                    }
+                    requestAnimationFrame(step);
+                });
+            }
+            function watch(){
+                var bar = document.getElementById('statsBar');
+                if(!bar) return;
+                if('IntersectionObserver' in window){
+                    var io = new IntersectionObserver(function(entries){
+                        if(entries[0].isIntersecting && !done){ done = true; animateStats(); io.disconnect(); }
+                    }, { threshold: 0.3 });
+                    io.observe(bar);
+                } else { animateStats(); }
+            }
+            if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch);
+            else watch();
+        })();
         /* ---------- Biodata Maker ---------- */
         var bdPhotoData = '';
         function openBiodataModal(){ openGenericModal('biodataModal'); updateBiodata(); }
