@@ -458,6 +458,10 @@
         .news-helpline a { color: #fff; font-weight: 800; font-size: 17px; text-decoration: none; letter-spacing: .5px; }
         .news-helpline p { color: #d1fae5; font-size: 13px; margin: 6px 0 0; line-height: 1.7; }
         .news-warn { background: #fef2f2; border: 1px solid #fca5a5; border-left: 5px solid #dc2626; border-radius: 0 12px 12px 0; padding: 12px 15px; font-size: 14px; color: #7f1d1d; line-height: 1.8; margin: 14px 0; }
+        .news-keyfacts { background: linear-gradient(135deg,#ecfdf5,#d1fae5); border: 1px solid #6ee7b7; border-left: 5px solid #059669; border-radius: 0 12px 12px 0; padding: 14px 16px; margin: 14px 0; }
+        .news-keyfacts h4 { margin: 0 0 8px; font-size: 15px; color: #065f46; }
+        .news-keyfacts ul { margin: 0; padding-left: 20px; color: #064e3b; font-size: 14.5px; line-height: 2; }
+        .news-keyfacts ul b { color: #065f46; }
         .news-disc { font-size: 12px; color: #a8a29e; margin-top: 18px; border-top: 1px dashed #d6d3d1; padding-top: 10px; line-height: 1.7; }
         /* ---------- Full-screen news reader ---------- */
         #annapurnaNewsModal .modal-content { width: 100%; max-width: 100%; height: 100%; margin: 0; border-radius: 0; padding: 0; overflow-y: auto; }
@@ -1416,6 +1420,18 @@ footer strong{color:#fff;}
                 </div>
                 <div class="news-strip"><span>💰 ₹৩,০০০</span><span>📅 ১৫–২২ অক্টোবর</span><span>👩 ৮ লাখ নতুন নাম</span></div>
             </div>
+            <div class="tool-card news-card" data-name="pm kisan news পিএম কিষাণ খবর কিস্তি টাকা পেমেন্ট আপডেট অক্টোবর কৃষক" onclick="openGenericModal('pmkisanNewsModal')">
+                <div class="news-breaking"><span class="breaking-dot"></span> BREAKING NEWS • ২০ অক্টোবর ২০২৬</div>
+                <div class="tool-card-top">
+                    <div class="tool-icon news-icon"><i class="fa-solid fa-newspaper"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">📰 Latest News</span>
+                        <h3>PM কিষাণ ২৪তম কিস্তি কবে? <span style="display:block; font-size:14px; color:#b45309; font-weight:700; margin-top:4px;">₹২,০০০ — আসল আপডেট খবরের মতো করে পড়ুন</span></h3>
+                        <p>PM-KISAN ২৪তম কিস্তির আসল তথ্য — কবে টাকা, eKYC বাধ্যতামূলক, ভুয়ো খবর থেকে সাবধান।</p>
+                    </div>
+                </div>
+                <div class="news-strip"><span>💰 ₹২,০০০</span><span>📅 অক্টো–নভে ২০২৬</span><span>🌾 ৯.৪৪ কোটি কৃষক</span></div>
+            </div>
             <div class="tool-card" data-name="banglar bhumi land record জমির তথ্য জমি রেকর্ড খতিয়ান বাংলার ভূমি land">
                 <div class="tool-card-top">
                     <div class="tool-icon land-icon"><i class="fa-solid fa-map-location-dot"></i></div>
@@ -1956,6 +1972,69 @@ footer strong{color:#fff;}
                     <a href="https://socialsecurity.wb.gov.in" target="_blank" rel="noopener"><span class="rn-ico">🏛️</span> Social Security পোর্টাল: socialsecurity.wb.gov.in</a>
                 </div>
                 <div class="news-disc">ℹ️ দ্রষ্টব্য: স্ট্যাটাসের শতাংশগুলো আনুমানিক সম্ভাবনা — অফিসিয়াল ফিগার নয়। প্রতিবেদনটি বিভিন্ন সংবাদমাধ্যম ও সরকারি পোর্টালের তথ্যের ভিত্তিতে তৈরি (১৯ অক্টোবর ২০২৬)।</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PM-KISAN নিউজ আর্টিকেল মোডাল -->
+    <div id="pmkisanNewsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeGenericModal('pmkisanNewsModal')">&times;</span>
+            <div class="news-topbar"><span>📰 DAFADAR NEWS DESK</span><span class="live"><span class="breaking-dot"></span> LIVE UPDATE</span></div>
+            <div class="news-page">
+                <span class="news-cat">সারাদেশ</span>
+                <h2 class="news-h">PM কিষাণ ২৪তম কিস্তি: ₹২,০০০ কবে ঢুকবে? জেনে নিন আসল আপডেট</h2>
+                <div class="news-byline">
+                    <div class="news-avatar">দ</div>
+                    <div><div class="nb-name">Dafadar News Desk</div><div class="nb-date">Published: 20 October 2026 &nbsp;•&nbsp; পড়ার সময়: ৪ মিনিট</div></div>
+                </div>
+                <div class="news-featured"><img src="assets/news-pmkisan-oct.jpg" alt="PM কিষাণ যোজনার কৃষক" loading="lazy"></div>
+                <div class="news-caption">প্রতীকী ছবি: PM কিষাণের সুবিধাভোগী কৃষক মোবাইলে টাকা ঢোকার মেসেজ দেখছেন।</div>
+                <p class="news-lead">প্রধানমন্ত্রী কিষাণ সম্মান নিধি (PM-KISAN) প্রকল্পে এবার আসছে ২৪তম কিস্তি। ২৩তম কিস্তির ₹২,০০০ গত ২০ জুন ২০২৬-এ ৯.৪৪ কোটি কৃষকের অ্যাকাউন্টে পাঠানো হয়েছিল — এবার পালা ২৪তম কিস্তির।</p>
+                <div class="news-keyfacts">
+                    <h4>⭐ মূল পয়েন্ট — এক নজরে</h4>
+                    <ul>
+                        <li><b>২৪তম কিস্তি:</b> ₹২,০০০ — তারিখ <b>এখনো ঘোষণা হয়নি</b>, অক্টোবর–নভেম্বর ২০২৬-এ আসার সম্ভাবনা</li>
+                        <li><b>২৩তম কিস্তি:</b> ২০ জুন ২০২৬-এ দেওয়া হয়েছে (₹১৮,৮৮০ কোটি, ৯.৪৪ কোটি কৃষক)</li>
+                        <li><b>বছরে মোট:</b> ₹৬,০০০ — তিন কিস্তিতে ₹২,০০০ করে, সরাসরি ব্যাংকে (DBT)</li>
+                        <li><b>বাধ্যতামূলক:</b> eKYC + আধার-ব্যাংক লিংক (NPCI) + জমির রেকর্ড যাচাই</li>
+                    </ul>
+                </div>
+                <h3 class="sec">২৪তম কিস্তি নিয়ে এত গুজব কেন?</h3>
+                <p>সোশ্যাল মিডিয়া ও WhatsApp-এ "২১তম কিস্তি রিলিজ!" বলে যেসব খবর ঘুরছে, সেগুলো <b>পুরনো খবরের রিসাইকেল</b> — ২১তম কিস্তি ২০২৫ সালের নভেম্বরেই দেওয়া হয়ে গেছে। আবার "₹৪,০০০ ডাবল পেমেন্ট" দাবিটিকে PM-KISAN-এর অফিসিয়াল সোশ্যাল মিডিয়া <b>ভুয়ো বলে নিশ্চিত করেছে</b>।</p>
+                <p>আসল নিয়ম: কিস্তির তারিখ সরকারি ঘোষণা ছাড়া জানা যায় না। তারিখ অফিসিয়াল হয় <b>শুধুমাত্র</b> pmkisan.gov.in পোর্টালে বা PIB প্রেস রিলিজে প্রকাশিত হলে।</p>
+                <h3 class="sec">সাম্প্রতিক কিস্তিগুলোর হিসেব</h3>
+                <table class="news-table">
+                    <tr><th>কিস্তি</th><th>তারিখ</th><th>অবস্থা</th></tr>
+                    <tr><td><b>২১তম</b></td><td>১৯ নভেম্বর ২০২৫</td><td><span class="chance ch-high">প্রদত্ত ✅</span></td></tr>
+                    <tr><td><b>২২তম</b></td><td>১৩ মার্চ ২০২৬</td><td><span class="chance ch-high">প্রদত্ত ✅</span></td></tr>
+                    <tr><td><b>২৩তম</b></td><td>২০ জুন ২০২৬</td><td><span class="chance ch-high">প্রদত্ত ✅</span></td></tr>
+                    <tr><td><b>২৪তম</b></td><td>অক্টো–নভে ২০২৬ (সম্ভাব্য)</td><td><span class="chance ch-mid">ঘোষণা বাকি ⏳</span></td></tr>
+                </table>
+                <h3 class="sec">টাকা পেতে এই ৩টে কাজ এখনই করুন</h3>
+                <p>২৪তম কিস্তি ঘোষণার আগেই এই তিনটে জিনিস ঠিক করে রাখুন — না হলে টাকা আটকে যাবে:</p>
+                <div class="news-3ways">
+                    <div class="news-way"><b>১. eKYC সম্পূর্ণ করুন:</b> pmkisan.gov.in-এ OTP-ভিত্তিক eKYC, অথবা CSC সেন্টারে বায়োমেট্রিক eKYC।</div>
+                    <div class="news-way"><b>২. আধার-ব্যাংক লিংক (NPCI):</b> ব্যাংক অ্যাকাউন্ট আধারের সাথে লিংক আছে কিনা যাচাই করুন — DBT-তে টাকা আসে এই লিংকেই।</div>
+                    <div class="news-way"><b>৩. জমির রেকর্ড যাচাই:</b> জমির মালিকানার রেকর্ড আপডেট ও সঠিক আছে কিনা দেখুন।</div>
+                </div>
+                <h3 class="sec">কারা এই টাকা পাবেন না</h3>
+                <p>সরকারি কর্মচারী, মাসে ₹১০,০০০+ পেনশনভোগী, আয়করদাতা এবং পেশাজীবী (ডাক্তার, ইঞ্জিনিয়ার, আইনজীবী, CA) এই প্রকল্পের আওতায় পড়েন না।</p>
+                <div class="news-warn">⚠️ <b>প্রতারণা থেকে সাবধান:</b> PM কিষাণ কখনো ফোনে OTP, টাকা বা "প্রসেসিং ফি" চায় না — চাইলেই বুঝবেন প্রতারক! তারিখ জানতে শুধু <b>pmkisan.gov.in</b> দেখুন।</div>
+                <h3 class="sec">স্ট্যাটাস কীভাবে চেক করবেন</h3>
+                <p><b>pmkisan.gov.in → Know Your Status</b>-এ গিয়ে আধার/মোবাইল নম্বর দিয়ে ২ মিনিটে দেখে নিন — eKYC, পেমেন্ট স্ট্যাটাস সব এক জায়গায়। UMANG অ্যাপেও চেক করা যায়।</p>
+                <div class="news-helpline">
+                    <h4>📞 হেল্পলাইন — সমস্যা থাকলে যোগাযোগ করুন</h4>
+                    <a href="tel:155261">155261</a> <span style="font-size:13px;">(টোল-ফ্রি)</span><br>
+                    <a href="tel:01124300606">011-24300606</a>
+                    <p>🌐 পোর্টাল: pmkisan.gov.in &nbsp;|&nbsp; 📱 UMANG অ্যাপেও স্ট্যাটাস দেখা যায়</p>
+                </div>
+                <div class="news-related">
+                    <h4>📌 আরও পড়ুন</h4>
+                    <a href="https://pmkisan.gov.in" target="_blank" rel="noopener"><span class="rn-ico">🌐</span> অফিসিয়াল পোর্টাল: pmkisan.gov.in — স্ট্যাটাস চেক ও eKYC</a>
+                    <a href="#" onclick="closeGenericModal('pmkisanNewsModal');openGenericModal('annapurnaNewsModal');return false;"><span class="rn-ico">🍚</span> অন্নপূর্ণা ভান্ডার: অক্টোবর পেমেন্ট আপডেট</a>
+                </div>
+                <div class="news-disc">ℹ️ প্রতিবেদনটি PIB, pmkisan.gov.in ও বিভিন্ন সংবাদমাধ্যমের তথ্যের ভিত্তিতে তৈরি (২০ অক্টোবর ২০২৬)। কিস্তির তারিখ সরকারি ঘোষণা সাপেক্ষে পরিবর্তন হতে পারে।</div>
             </div>
         </div>
     </div>
@@ -3518,6 +3597,9 @@ footer strong{color:#fff;}
          h_en:'Open the tool → enter family member details → submit.',h_bn:'টুল খোলো → পরিবারের তথ্য লেখো → জমা দাও।'},
         {icon:'📰',title:'Annapurna News: টাকা পাননি?',kw:['annapurna news','অন্নপূর্ণা টাকা','অন্নপূর্ণা খবর','টাকা পাননি','টাকা ঢোকেনি','payment update','অক্টোবর টাকা','কবে ঢুকবে','খবর','october payment'],open:"openGenericModal('annapurnaNewsModal')",
          d_en:'October payment news for Annapurna Bhandar — dates, helplines, claim process, status guide.',d_bn:'অন্নপূর্ণা ভান্ডার অক্টোবর পেমেন্টের খবর — তারিখ, হেল্পলাইন, ক্লেম প্রসেস, স্ট্যাটাস গাইড।',
+         h_en:'Open the news card → read the full report.',h_bn:'নিউজ কার্ড খোলো → পুরো খবর পড়ো।'},
+        {icon:'🌾',title:'PM Kisan News: ২৪তম কিস্তি',kw:['pm kisan','pm kisan news','পিএম কিষাণ','কিষাণ খবর','kisan kist','কিস্তি','২৪তম কিস্তি','24th installment','pm kisan taka','কৃষক টাকা','ekyc'],open:"openGenericModal('pmkisanNewsModal')",
+         d_en:'PM-KISAN 24th installment update — expected date, eKYC requirement, helpline, fake-news alert.',d_bn:'PM কিষাণ ২৪তম কিস্তির আপডেট — সম্ভাব্য তারিখ, eKYC, হেল্পলাইন, ভুয়ো খবর সতর্কতা।',
          h_en:'Open the news card → read the full report.',h_bn:'নিউজ কার্ড খোলো → পুরো খবর পড়ো।'},
         {icon:'🔑',title:'Password Generator',kw:['password','পাসওয়ার্ড'],open:"openSmartlinkThen(openPasswordModal)",
          d_en:'Create strong, random, secure passwords instantly.',d_bn:'মজবুত, নিরাপদ পাসওয়ার্ড বানাও এক ক্লিকে।',
