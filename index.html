@@ -262,7 +262,13 @@
         .admin-visit-head { font-weight: 700; color: var(--blue-deep); border-bottom: 2px solid var(--border); }
 
         /* ---------- Hero: split layout (copy left / visual right) ---------- */
-        .hero { position: relative; padding: 60px 5% 0; background: linear-gradient(135deg, #101f3d 0%, #1F3A6E 55%, #2F4F8F 100%); border-bottom: none; overflow: hidden; }
+        .hero { position: relative; padding: 70px 5% 0; background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 52%, #6d28d9 100%); border-bottom: none; overflow: hidden; }
+        .hero::before { content:''; position:absolute; width:520px; height:520px; border-radius:50%;
+            background: radial-gradient(circle, rgba(167,139,250,.35) 0%, transparent 65%);
+            top:-180px; right:-120px; pointer-events:none; }
+        .hero::after { content:''; position:absolute; width:420px; height:420px; border-radius:50%;
+            background: radial-gradient(circle, rgba(45,212,191,.22) 0%, transparent 65%);
+            bottom:-160px; left:-100px; pointer-events:none; }
         .hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(ellipse at 85% 15%, rgba(217,138,43,0.22), transparent 55%), radial-gradient(ellipse at 10% 90%, rgba(96,165,250,0.18), transparent 55%); pointer-events: none; }
         .hero::after {
             content: '';
@@ -304,9 +310,9 @@
         @media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; } .hero-visual { display: none; } .hero-content { text-align: center; padding-bottom: 40px; } .hero-trust-row { justify-content: center; } }
 
         .container { max-width: 1200px; margin: 45px auto; padding: 0 20px; }
-        .section-kicker { color: var(--blue); font-size: 13px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; display: block; }
-        .section-title { position: relative; font-size: 22px; color: var(--blue-deep); margin-bottom: 8px; border-left: 4px solid var(--blue); padding-left: 14px; font-weight: 700; }
-        .section-title::before { content: ''; position: absolute; left: -6px; top: 2px; bottom: 2px; width: 3px; background: var(--purple); border-radius: 2px; }
+        .section-kicker { display:inline-block; color:#fff; font-size:12px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; margin-bottom:10px; padding:6px 14px; border-radius:20px; background:linear-gradient(135deg,var(--blue),#7c3aed); box-shadow:0 4px 12px rgba(79,70,229,.3); }
+        .section-title { position: relative; font-size:24px; color:var(--blue-deep); margin-bottom:8px; padding-left:16px; font-weight:800; letter-spacing:-.3px; }
+        .section-title::before { content:''; position:absolute; left:0; top:4px; bottom:4px; width:5px; border-radius:3px; background:linear-gradient(180deg,var(--blue),#7c3aed); }
         .section-subtitle { color: var(--muted); font-size: 14.5px; margin-bottom: 30px; padding-left: 14px; }
 
         /* ---------- Tool cards: icon-left horizontal layout ---------- */
@@ -344,11 +350,19 @@
             body { background: #fff !important; color: #000 !important; background-image: none !important; }
             .tool-card { box-shadow: none !important; border: 1px solid #ccc !important; break-inside: avoid; }
         }
-        .tool-card { position: relative; background-color: var(--surface); border-radius: 16px; padding: 26px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 18px; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.04); overflow: hidden; }
-        .tool-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--purple)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
-        .tool-card:hover { transform: translateY(-6px); box-shadow: 0 16px 28px rgba(15,23,42,0.12); border-color: var(--blue); }
+        .tool-card { position: relative; background-color: var(--surface); border-radius: 20px; padding: 26px; border: 1px solid var(--border-soft); display: flex; flex-direction: column; gap: 18px; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; box-shadow: 0 2px 8px rgba(20,26,48,0.05); overflow: hidden; }
+        .tool-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--blue), #7c3aed, #06b6d4); transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease; }
+        .tool-card:hover { transform: translateY(-7px); box-shadow: 0 20px 44px rgba(79,70,229,0.16); border-color: #c7d0f5; }
         .tool-card:hover::before { transform: scaleX(1); }
-        .tool-card:hover .tool-icon { transform: scale(1.06); }
+        .tool-card:hover .tool-icon { transform: scale(1.08) rotate(-4deg); }
+        /* Coming Soon cards */
+        .tool-card.coming-soon { cursor: pointer; }
+        .tool-card.coming-soon:hover { border-color: #fcd34d; box-shadow: 0 20px 44px rgba(217,119,6,0.18); }
+        .soon-badge { position: absolute; top: 16px; right: 16px; z-index: 2; background: linear-gradient(135deg,#f59e0b,#d97706); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; padding: 6px 13px; border-radius: 20px; box-shadow: 0 4px 12px rgba(217,119,6,.4); }
+        .ludo-icon { background: linear-gradient(135deg,#a78bfa,#6d28d9); }
+        .emi-icon { background: linear-gradient(135deg,#818cf8,#4338ca); }
+        .age-icon { background: linear-gradient(135deg,#fbbf24,#d97706); }
+        .wordcount-icon { background: linear-gradient(135deg,#f9a8d4,#db2777); }
         .tool-icon { transition: transform 0.25s ease; }
 
         .tool-card-top { display: flex; gap: 16px; align-items: flex-start; text-align: left; }
@@ -365,17 +379,16 @@
         .pension-icon { background: linear-gradient(135deg,#fbbf24,#d9770a); }
 
         .tool-card-text { flex: 1; }
-        .tool-tag { display: inline-block; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--blue); background: #ebf5ff; padding: 3px 9px; border-radius: 5px; margin-bottom: 8px; }
+        .tool-tag { display: inline-block; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px; color: var(--blue-dark); background: linear-gradient(135deg,#eef2ff,#e0e7ff); padding: 4px 11px; border-radius: 20px; margin-bottom: 9px; border: 1px solid #dbe2fb; }
         .tool-card h3 { font-size: 18.5px; color: var(--ink); margin-bottom: 8px; font-weight: 700; }
         .tool-card p { font-size: 14.5px; color: var(--ink-soft); font-weight: 500; line-height: 1.6; text-align: left; }
 
-        .btn { position: relative; overflow: hidden; display: block; width: 100%; padding: 12px; background-color: var(--blue); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; text-align: center; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; font-size: 15px; text-decoration: none; }
+        .btn { position: relative; overflow: hidden; display: block; width: 100%; padding: 13px; background: linear-gradient(135deg, var(--blue), #7c3aed); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; text-align: center; transition: transform 0.15s, box-shadow 0.2s, filter 0.2s; font-size: 15px; text-decoration: none; box-shadow: 0 4px 14px rgba(79,70,229,.3); }
         .btn::after { content: ''; position: absolute; top: 0; left: -75%; width: 50%; height: 100%; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent); transform: skewX(-20deg); transition: left 0.55s ease; }
         .btn:hover::after { left: 125%; }
-        .btn:hover { background-color: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 6px 14px rgba(37,99,235,0.3); }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(79,70,229,.45); filter: brightness(1.06); }
         .btn:active { transform: translateY(0); box-shadow: none; }
         .btn:focus-visible, .combo-btn:focus-visible, .lang-btn:focus-visible, .search-box input:focus-visible { outline: 2px solid var(--blue-dark); outline-offset: 2px; }
-        .btn:hover { background-color: var(--blue-dark); }
 
         /* ---------- Contact (dark panel) + Feedback (light) split ---------- */
         .info-feedback-section { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 0; margin-top: 50px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(15,23,42,0.08); }
@@ -606,12 +619,12 @@
 <style id="pro-theme">
 /* ===== Professional theme (colours, spacing, typography only — no behaviour changes) ===== */
 :root{
-  --blue:#1a56db; --blue-dark:#1240a8; --blue-deep:#0b1f44;
-  --bg:#f1f5fb; --border:#d3dcea; --border-soft:#e3e9f3;
-  --ink:#14213d; --ink-soft:#334155;
-  --green:#0e9f6e; --green-dark:#057a55; --badge-green:#0e9f6e;
-  --purple:#e0a030; --purple-dark:#b9791a;
-  --gold:#e0a030;
+  --blue:#4f46e5; --blue-dark:#3730a3; --blue-deep:#1e1b4b;
+  --bg:#f5f6fb; --border:#dfe3ee; --border-soft:#e9edf5;
+  --ink:#141a30; --ink-soft:#3f475e;
+  --green:#059669; --green-dark:#047857; --badge-green:#059669;
+  --purple:#d97706; --purple-dark:#b45309;
+  --gold:#f59e0b;
 }
 body{font-family:'Inter','Hind Siliguri',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;}
 h1,h2,h3,.logo,.section-title{font-family:'Poppins','Inter','Hind Siliguri',sans-serif;}
@@ -1016,6 +1029,17 @@ footer strong{color:#fff;}
                 <div class="tool-banner" style="--tb1:#475569;--tb2:#0f172a;"><i class="fa-solid fa-align-left tb-bg"></i><span class="tb-cap">Word Counter</span><div class="tb-window"><div class="tb-dots"><span></span><span></span><span></span></div><div class="tb-ico"><i class="fa-solid fa-align-left"></i></div><b></b><b></b></div></div>
                 <button class="btn tOpenBtn" onclick="openWordCounterModal()">Open Tool</button>
             </div>
+            <div class="tool-card coming-soon" data-name="image to text ocr ছবি থেকে লেখা বের করা" onclick="comingSoon('Image to Text (OCR)')">
+                <span class="soon-badge">Coming Soon</span>
+                <div class="tool-card-top">
+                    <div class="tool-icon wordcount-icon"><i class="fa-solid fa-eye"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">Document</span>
+                        <h3>Image to Text (OCR)</h3>
+                        <p>Extract editable text from photos, screenshots and scanned documents in Bangla and English.</p>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
 
@@ -1167,6 +1191,28 @@ footer strong{color:#fff;}
                 <div class="tool-banner" style="--tb1:#c2410c;--tb2:#7c2d12;"><i class="fa-solid fa-map tb-bg"></i><span class="tb-cap">Land · Convert</span><div class="tb-window"><div class="tb-dots"><span></span><span></span><span></span></div><div class="tb-ico"><i class="fa-solid fa-map"></i></div><b></b><b></b></div></div>
                 <button class="btn tOpenBtn" onclick="openLandModal()">Open Tool</button>
             </div>
+            <div class="tool-card coming-soon" data-name="emi calculator ইএমআই ক্যালকুলেটর loan interest কিস্তি" onclick="comingSoon('EMI Calculator')">
+                <span class="soon-badge">Coming Soon</span>
+                <div class="tool-card-top">
+                    <div class="tool-icon emi-icon"><i class="fa-solid fa-calculator"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">Utility</span>
+                        <h3>EMI Calculator</h3>
+                        <p>Calculate monthly loan EMI, total interest and payment schedule for home, car and personal loans.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tool-card coming-soon" data-name="age calculator বয়স ক্যালকুলেটর date of birth জন্ম তারিখ" onclick="comingSoon('Age Calculator')">
+                <span class="soon-badge">Coming Soon</span>
+                <div class="tool-card-top">
+                    <div class="tool-icon age-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">Utility</span>
+                        <h3>Age Calculator</h3>
+                        <p>Find your exact age in years, months and days from your date of birth — plus next birthday countdown.</p>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
 
@@ -1217,6 +1263,17 @@ footer strong{color:#fff;}
                     </div>
                 </div>
                 <a class="btn tOpenBtn" href="games/football-3d/">Play Game</a>
+            </div>
+            <div class="tool-card coming-soon" data-name="ludo game লুডু গেম খেলা dice board game" onclick="comingSoon('Ludo Game')">
+                <span class="soon-badge">Coming Soon</span>
+                <div class="tool-card-top">
+                    <div class="tool-icon ludo-icon"><i class="fa-solid fa-dice"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">Games</span>
+                        <h3>Ludo Game</h3>
+                        <p>Classic Ludo board game — roll the dice, race your tokens home and capture rivals. Play with friends and family, coming very soon!</p>
+                    </div>
+                </div>
             </div>
             </div>
         </div>
@@ -2578,8 +2635,10 @@ footer strong{color:#fff;}
         /* =============================================================
            TOAST NOTIFICATIONS (replaces alert() popups)
         ============================================================= */
-        function showToast(message, type){
-            type = type || 'info';
+        function comingSoon(name){
+            showToast('🚧 ' + name + ' — Coming Soon!', 'info');
+        }
+        function showToast(message, type){            type = type || 'info';
             const icons = { success: 'fa-circle-check', error: 'fa-circle-exclamation', info: 'fa-circle-info' };
             const container = document.getElementById('toastContainer');
             if (!container) { alert(message); return; }
