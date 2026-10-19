@@ -458,6 +458,25 @@
         .news-helpline p { color: #d1fae5; font-size: 13px; margin: 6px 0 0; line-height: 1.7; }
         .news-warn { background: #fef2f2; border: 1px solid #fca5a5; border-left: 5px solid #dc2626; border-radius: 0 12px 12px 0; padding: 12px 15px; font-size: 14px; color: #7f1d1d; line-height: 1.8; margin: 14px 0; }
         .news-disc { font-size: 12px; color: #a8a29e; margin-top: 18px; border-top: 1px dashed #d6d3d1; padding-top: 10px; line-height: 1.7; }
+        /* ---------- Full-screen news reader ---------- */
+        #annapurnaNewsModal .modal-content { width: 100%; max-width: 100%; height: 100%; margin: 0; border-radius: 0; padding: 0; overflow-y: auto; }
+        #annapurnaNewsModal .close-btn { position: fixed; top: 14px; right: 18px; z-index: 5; background: #1e1b4b; color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 14px rgba(0,0,0,.3); }
+        .news-page { max-width: 760px; margin: 0 auto; padding: 0 18px 60px; }
+        .news-topbar { background: #1e1b4b; color: #fff; padding: 12px 66px 12px 18px; display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; font-weight: 800; letter-spacing: 1px; position: sticky; top: 0; z-index: 4; white-space: nowrap; }
+        .news-topbar .live { display: flex; align-items: center; gap: 7px; color: #fcd34d; }
+        .news-cat { display: inline-block; background: #dc2626; color: #fff; font-size: 12px; font-weight: 800; padding: 4px 14px; border-radius: 4px; margin: 18px 0 10px; letter-spacing: .5px; }
+        .news-byline { display: flex; align-items: center; gap: 10px; margin: 12px 0 16px; padding-bottom: 14px; border-bottom: 1px solid #e7e5e4; }
+        .news-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; flex-shrink: 0; }
+        .news-byline .nb-name { font-size: 13.5px; font-weight: 700; color: #1c1917; }
+        .news-byline .nb-date { font-size: 12px; color: #78716c; }
+        .news-featured { margin: 0 -18px 6px; }
+        .news-featured img { width: 100%; display: block; }
+        .news-caption { font-size: 12px; color: #78716c; padding: 8px 0 4px; line-height: 1.6; border-bottom: 1px solid #f5f5f4; margin-bottom: 8px; }
+        .news-lead { font-size: 17px !important; font-weight: 600; color: #1c1917 !important; line-height: 1.9 !important; }
+        .news-related { margin-top: 26px; border-top: 3px solid #1e1b4b; padding-top: 14px; }
+        .news-related h4 { font-size: 15px; color: #1e1b4b; margin: 0 0 10px; font-weight: 800; }
+        .news-related a { display: flex; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid #f5f5f4; text-decoration: none; color: #1c1917; font-size: 14px; font-weight: 600; line-height: 1.6; }
+        .news-related a .rn-ico { width: 46px; height: 46px; border-radius: 10px; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
         /* ---------- Rich footer ---------- */
         .site-footer { background: linear-gradient(135deg,#1e1b4b 0%,#2a2563 60%,#3b2a6e 100%); color: #c4b5fd; margin-top: 56px; }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 30px; padding: 46px 5% 24px; max-width: 1200px; margin: 0 auto; }
@@ -1384,8 +1403,8 @@ footer strong{color:#fff;}
                     <div class="tool-icon news-icon"><i class="fa-solid fa-newspaper"></i></div>
                     <div class="tool-card-text">
                         <span class="tool-tag">📰 Latest News</span>
-                        <h3>১৫ অক্টোবরের পরেও টাকা পাননি? <span style="display:block; font-size:14px; color:#b45309; font-weight:700; margin-top:4px;">এক্ষুনি জেনে নিন — ভিডিও স্ক্রিপ্টসহ</span></h3>
-                        <p>অন্নপূর্ণা ভান্ডার অক্টোবর পেমেন্ট আপডেট — কবে টাকা ঢুকবে, অভিযোগের ৩টে রাস্তা, হেল্পলাইন নম্বর। পড়ে পড়ে ভিডিও বানান।</p>
+                        <h3>১৫ অক্টোবরের পরেও টাকা পাননি? <span style="display:block; font-size:14px; color:#b45309; font-weight:700; margin-top:4px;">এক্ষুনি জেনে নিন — খবরের মতো করে পড়ুন</span></h3>
+                        <p>অন্নপূর্ণা ভান্ডার অক্টোবর পেমেন্ট আপডেট — কবে টাকা ঢুকবে, অভিযোগের ৩টে রাস্তা, হেল্পলাইন নম্বর।</p>
                     </div>
                 </div>
                 <div class="news-strip"><span>💰 ₹৩,০০০</span><span>📅 ১৫–২২ অক্টোবর</span><span>👩 ৮ লাখ নতুন নাম</span></div>
@@ -1866,63 +1885,59 @@ footer strong{color:#fff;}
         </div>
     </div>
     <div id="annapurnaNewsModal" class="modal">
-        <div class="modal-content wide">
+        <div class="modal-content">
             <span class="close-btn" onclick="closeGenericModal('annapurnaNewsModal')">&times;</span>
-            <div class="news-article">
-                <div class="news-masthead"><span>📰 DAFADAR NEWS DESK</span><span>১৯ অক্টোবর ২০২৬</span></div>
-                <h2 class="news-h">🚨 ১৫ অক্টোবরের পরেও অন্নপূর্ণার টাকা পাননি? এক্ষুনি জেনে নিন — কবে ঢুকবে, কী করবেন</h2>
-                <div class="news-date">আপডেট: ১৯ অক্টোবর ২০২৬ &nbsp;•&nbsp; পড়ার সময়: ৪ মিনিট &nbsp;•&nbsp; নিচে ভিডিও স্ক্রিপ্ট দেওয়া আছে</div>
-                <div class="news-hero">
-                    <div class="nh-kicker">অন্নপূর্ণা ভান্ডার • অক্টোবর কিস্তি</div>
-                    <div class="nh-amt">₹৩,০০০</div>
-                    <div class="nh-sub">প্রতি মাসে • সরাসরি ব্যাংক অ্যাকাউন্টে (DBT)</div>
-                    <div class="nh-date">📅 ১৫ – ২২ অক্টোবর: ধাপে ধাপে টাকা ঢুকছে</div>
+            <div class="news-topbar"><span>📰 DAFADAR NEWS DESK</span><span class="live"><span class="breaking-dot"></span> LIVE UPDATE</span></div>
+            <div class="news-page">
+                <span class="news-cat">পশ্চিমবঙ্গ</span>
+                <h2 class="news-h">১৫ অক্টোবর থেকে ঢুকছে অন্নপূর্ণার টাকা, তালিকায় যোগ ৮ লাখ নতুন নাম</h2>
+                <div class="news-byline">
+                    <div class="news-avatar">দ</div>
+                    <div><div class="nb-name">Dafadar News Desk</div><div class="nb-date">Published: 19 October 2026 &nbsp;•&nbsp; পড়ার সময়: ৪ মিনিট</div></div>
                 </div>
-
-                <h3 class="sec">🎙️ ভিডিও স্ক্রিপ্ট — ইন্ট্রো</h3>
-                <div class="script-line">"নমস্কার বন্ধুরা! আজকের ভিডিওতে আলোচনা করব তাদের নিয়ে — যাদের অন্নপূর্ণা ভান্ডারের টাকা এখনো ব্যাংক অ্যাকাউন্টে ঢোকেনি। আপনারা হয়তো সবাই জেনে গেছেন — এই পোর্টালে বা এই নাম্বারে যোগাযোগ করলে সমস্যার সমাধান হবে। কিন্তু আসলে এর মধ্যে কিছু গুরুত্বপূর্ণ বিষয় আছে, যেগুলো না জানলে আপনার টাকা আটকেই থাকবে! আর সাথে জানিয়ে দেব — পোর্টালে গিয়ে নতুন করে ক্লেম বা অভিযোগ করলে আপনার টাকা কত তারিখের মধ্যে ঢুকতে পারে। পুরো ভিডিওটা মন দিয়ে দেখুন।"</div>
-
-                <h3 class="sec">💸 যারা টাকা পাননি, তারা কবে পাবেন?</h3>
-                <div class="script-line">"প্রথমে সুখবরটা শুনুন। ১৫ই অক্টোবর, পঞ্চমীর দিন থেকে টাকা দেওয়া স্টার্ট হয়েছে। ১৬ তারিখ, ১৭ তারিখেও বহু মানুষের অ্যাকাউন্টে টাকা ঢুকেছে। এখনো যদি আপনার না ঢুকে থাকে, হতাশ হবেন না — কারণ এবার প্রায় <b>৮ লক্ষ নতুন উপভোক্তার নাম</b> তালিকায় যোগ হয়েছে! এতজনের টাকা একসাথে পাঠানো সম্ভব নয় — ধাপে ধাপে পাঠানো হচ্ছে।"</div>
-
-                <h3 class="sec">📞 অভিযোগ জানানোর ৩টে রাস্তা</h3>
+                <div class="news-featured"><img src="assets/news-annapurna-oct.jpg" alt="অন্নপূর্ণা যোজনার সুবিধাভোগী"></div>
+                <div class="news-caption">প্রতীকী ছবি: অন্নপূর্ণা যোজনার সুবিধাভোগী মহিলা মোবাইলে টাকা ঢোকার মেসেজ দেখছেন।</div>
+                <p class="news-lead">পঞ্চমীর দিন, ১৫ অক্টোবর দুপুর থেকে অন্নপূর্ণা যোজনার অক্টোবর মাসের টাকা উপভোক্তাদের ব্যাংক অ্যাকাউন্টে পাঠানো শুরু হয়েছে। এই মাসে প্রায় ১ কোটি ৭০ লাখ মহিলা ৩,০০০ টাকা করে পাবেন।</p>
+                <p>একসাথে এতজনের অ্যাকাউন্টে টাকা পাঠানো সম্ভব নয় বলে ১৫ থেকে ২২ অক্টোবরের মধ্যে ধাপে ধাপে টাকা ঢুকবে। ১৬ ও ১৭ তারিখেও বহু উপভোক্তার অ্যাকাউন্টে টাকা জমা পড়েছে। সেপ্টেম্বরে অন্নপূর্ণা দিবস (১৭ সেপ্টেম্বর) থেকে প্রায় ১ কোটি ৫৮ লাখ মহিলা এই সহায়তা পেয়েছিলেন।</p>
+                <h3 class="sec">তালিকায় ৮ লাখ নতুন নাম, বাদও গেল বহু নাম</h3>
+                <p>নবান্ন সূত্রে খবর, অক্টোবরে নতুন করে প্রায় ৮ লাখ মহিলার নাম উপভোক্তা তালিকায় যুক্ত হয়েছে। চলতি মাসের শুরুতেই জনকল্যাণ শিবিরে পুনরায় নাম নথিভুক্তির ব্যবস্থা করা হয়েছিল — যাঁদের তথ্য যাচাই সম্পূর্ণ হয়েছে, তাঁরা এই মাস থেকেই অর্থ সহায়তা পাচ্ছেন।</p>
+                <p>তবে শুধু যোগ নয়, কাটছাঁটও হয়েছে। তালিকায় স্বচ্ছতা বজায় রাখতে প্রশাসন প্রতিটি নথি কঠোরভাবে যাচাই করছে — চলতি মাসে অন্তত ৩ লাখ নাম বাদ গেছে বলে খবর। যাঁরা বিধবা ভাতা ও অন্নপূর্ণা — দুই প্রকল্পের সুবিধা একসাথে নিচ্ছিলেন, তাঁদের নামও বাদ যেতে পারে; এখন যেকোনো একটি প্রকল্পের সুবিধাই মিলবে। ভুয়ো তথ্য দিয়ে আবেদনের অভিযোগেও বেশ কিছু নাম বাদ গেছে।</p>
+                <h3 class="sec">এখনো টাকা না পেলে কী করবেন?</h3>
+                <p>যাঁদের অ্যাকাউন্টে এখনো টাকা ঢোকেনি, তাঁদের জন্য তিনটে রাস্তা খোলা আছে:</p>
                 <div class="news-3ways">
                     <div class="news-way"><b>১. ফোনে সরাসরি অভিযোগ:</b> <a href="tel:8282082820" style="font-weight:800;color:#5b21b6;">82820 82820</a> (সকাল ৯টা – সন্ধ্যা ৬টা) অথবা টোল-ফ্রি <b>1800-345-5505</b></div>
                     <div class="news-way"><b>২. WhatsApp:</b> একই নাম্বারে WhatsApp করেও অভিযোগ জানানো যায় বলে খবর।</div>
-                    <div class="news-way"><b>৩. পোর্টালে Claim:</b> <b>socialregistry.wb.gov.in</b> বা <b>socialsecurity.wb.gov.in</b>-এ গিয়ে সরাসরি <b>Claim / Objection</b> ফাইল করুন — সবাই করতে পারবেন।</div>
+                    <div class="news-way"><b>৩. পোর্টালে Claim:</b> <b>socialregistry.wb.gov.in</b> বা <b>socialsecurity.wb.gov.in</b>-এ গিয়ে সরাসরি <b>Claim / Objection</b> ফাইল করুন।</div>
                 </div>
-
-                <h3 class="sec">📅 টাকা কবে ঢুকবে?</h3>
-                <div class="script-line">"সর্বোচ্চ সময়সীমা — <b>২২ তারিখের মধ্যে</b> আপনার ব্যাংক অ্যাকাউন্টে টাকা ঢুকে যাবে। টাকা ঢোকার আগে একটা জিনিস অবশ্যই চেক করে নিন — আপনার <b>DBT লিংক</b> ঠিক আছে কিনা। আগে করিয়ে থাকলেও আবার চেক করুন — কোনোভাবে কেটে যায়নি তো! ব্যাংকে গিয়ে কনফার্ম করে নিন।"</div>
-
-                <h3 class="sec">🏦 পুজোর ছুটিতেও টাকা ঢুকবে</h3>
-                <div class="script-line">"পুজোর ছুটিতে কি টাকা আটকে যাবে? না! ছুটি থাকলেও আপনার ব্যাংক অ্যাকাউন্টে টাকা ঢুকতেই থাকবে। তবে বুঝুন — প্রতিটা আবেদন ম্যানুয়ালি যাচাই হচ্ছে, তাই সময় লাগছে। এবার মুখ্যমন্ত্রী শুভেন্দু অধিকারী মহাশয় অন্নপূর্ণা ভান্ডার নিয়ে অনেকটাই অগ্রগতি করেছেন — ২২ তারিখের মধ্যে টাকা দেওয়ার প্রতিশ্রুতি দিয়েছেন।"</div>
-
-                <h3 class="sec">📊 স্ট্যাটাস অনুযায়ী টাকা ঢোকার সম্ভাবনা</h3>
-                <p>পোর্টালে আপনার স্ট্যাটাস কী বলছে, তার উপরেই নির্ভর করছে টাকা কবে ঢুকবে:</p>
-                <table class="news-table">
-                    <tr><th>স্ট্যাটাস</th><th>সম্ভাবনা</th><th>মানে কী / কী করবেন</th></tr>
-                    <tr><td><b>Approved</b></td><td><span class="chance ch-high">৯৫%</span></td><td>শুধু DBT লিংক ঠিক থাকলেই ২২ তারিখের মধ্যে পাবেন</td></tr>
-                    <tr><td><b>Payment Initiated</b></td><td><span class="chance ch-high">৯০%</span></td><td>টাকা পাঠানো শুরু — ২-৩ দিনে ঢুকবে</td></tr>
-                    <tr><td><b>Under Verification</b></td><td><span class="chance ch-mid">৬০%</span></td><td>যাচাই চলছে — ২২ তারিখের মধ্যে আসতে পারে, না এলে ক্লেম করুন</td></tr>
-                    <tr><td><b>Under Process</b></td><td><span class="chance ch-mid">৫০%</span></td><td>প্রসেসিংয়ে আছে — অপেক্ষা করুন বা BDO অফিসে যোগাযোগ করুন</td></tr>
-                    <tr><td><b>Further Verification</b></td><td><span class="chance ch-mid">৪০%</span></td><td>অতিরিক্ত যাচাই চাওয়া হয়েছে — সঠিক ডকুমেন্ট আপলোড করে ক্লেম করলে সম্ভাবনা বাড়বে</td></tr>
-                    <tr><td><b>Rejected</b></td><td><span class="chance ch-low">১০%</span></td><td>কারণ ভুল হলে Objection করে চ্যালেঞ্জ করুন — পুনর্বিবেচনা হতে পারে</td></tr>
-                </table>
-
                 <div class="news-helpline">
                     <h4>📞 হেল্পলাইন — সমস্যা থাকলে যোগাযোগ করুন</h4>
                     <a href="tel:8282082820">82820 82820</a> <span style="font-size:13px;">(সকাল ৯টা – সন্ধ্যা ৬টা)</span><br>
                     <a href="tel:18003455505">1800-345-5505</a> <span style="font-size:13px;">(টোল-ফ্রি)</span>
                     <p>🌐 পোর্টাল: socialregistry.wb.gov.in • socialsecurity.wb.gov.in &nbsp;|&nbsp; 📧 ASAP@WB.gov.in</p>
                 </div>
-
-                <div class="news-warn">⚠️ <b>সতর্কতা:</b> শুধুমাত্র <b>.gov.in</b> ওয়েবসাইটেই কাজ করুন — .com সাইটগুলো ভুয়ো। সরকারি অফিসার কখনো ফোনে আপনার OTP চাইবে না — OTP চাইলেই বুঝবেন প্রতারক!</div>
-
-                <h3 class="sec">🎙️ ভিডিও স্ক্রিপ্ট — এন্ডিং</h3>
-                <div class="script-line">"তো বন্ধুরা, অফিসিয়াল পোর্টাল থেকে আপনারা প্রত্যেকেই স্ট্যাটাস চেক করতে পারছেন। স্ট্যাটাস অনুযায়ী আপনার টাকা ঢোকার সম্ভাবনা কতটা, সেটা আজ জানিয়ে দিলাম। ব্যাংক অ্যাকাউন্ট আর DBT লিংকটা আজই চেক করে নিন। ভিডিওটা উপকারী লাগলে শেয়ার করুন — যাদের টাকা আটকে আছে, তাদের কাজে লাগবে। ধন্যবাদ!"</div>
-
-                <div class="news-disc">ℹ️ দ্রষ্টব্য: স্ট্যাটাসের শতাংশগুলো আনুমানিক সম্ভাবনা — অফিসিয়াল ফিগার নয়। তথ্য বিভিন্ন সংবাদমাধ্যম ও সরকারি পোর্টাল থেকে সংগৃহীত (১৯ অক্টোবর ২০২৬)।</div>
+                <h3 class="sec">টাকা ঢোকার আগে চেক করুন DBT লিংক</h3>
+                <p>অভিযোগ জানানোর আগে একটা জিনিস অবশ্যই যাচাই করে নিন — ব্যাংক অ্যাকাউন্টের সাথে আধার-DBT লিংক সক্রিয় আছে কিনা। লিংক না থাকলে আবেদন অনুমোদিত হলেও টাকা ঢুকবে না। আগে লিংক করিয়ে থাকলেও ব্যাংকে গিয়ে আবার নিশ্চিত হয়ে নিন — কোনোভাবে লিংক কেটে যায়নি তো।</p>
+                <h3 class="sec">স্ট্যাটাস দেখেই বুঝুন টাকার সম্ভাবনা</h3>
+                <p>পোর্টালে আবেদনের স্ট্যাটাস কী বলছে, তার উপরেই নির্ভর করছে টাকা কবে ঢুকবে:</p>
+                <table class="news-table">
+                    <tr><th>স্ট্যাটাস</th><th>সম্ভাবনা</th><th>অর্থ ও করণীয়</th></tr>
+                    <tr><td><b>Approved</b></td><td><span class="chance ch-high">৯৫%</span></td><td>DBT লিংক ঠিক থাকলেই ২২ তারিখের মধ্যে টাকা পাবেন</td></tr>
+                    <tr><td><b>Payment Initiated</b></td><td><span class="chance ch-high">৯০%</span></td><td>টাকা পাঠানো শুরু — ২-৩ দিনে অ্যাকাউন্টে ঢুকবে</td></tr>
+                    <tr><td><b>Under Verification</b></td><td><span class="chance ch-mid">৬০%</span></td><td>যাচাই চলছে — ২২ তারিখের মধ্যে আসতে পারে, না এলে ক্লেম করুন</td></tr>
+                    <tr><td><b>Under Process</b></td><td><span class="chance ch-mid">৫০%</span></td><td>প্রসেসিংয়ে আছে — অপেক্ষা করুন বা BDO অফিসে যোগাযোগ করুন</td></tr>
+                    <tr><td><b>Further Verification</b></td><td><span class="chance ch-mid">৪০%</span></td><td>অতিরিক্ত যাচাই চাওয়া হয়েছে — সঠিক নথি আপলোড করে ক্লেম করুন</td></tr>
+                    <tr><td><b>Rejected</b></td><td><span class="chance ch-low">১০%</span></td><td>কারণ ভুল হলে Objection করে চ্যালেঞ্জ করুন — পুনর্বিবেচনা হতে পারে</td></tr>
+                </table>
+                <div class="news-warn">⚠️ <b>সতর্কতা:</b> শুধুমাত্র <b>.gov.in</b> ওয়েবসাইটেই কাজ করুন — .com দাবি করা সাইট ভুয়ো। সরকারি আধিকারিক কখনো ফোনে আপনার OTP চাইবেন না — OTP চাইলেই বুঝবেন প্রতারক!</div>
+                <h3 class="sec">পুজোর ছুটিতেও থামবে না পেমেন্ট</h3>
+                <p>দুর্গাপুজোর ছুটিতে সরকারি অফিস বন্ধ থাকলেও টাকা পাঠানো থামবে না — DBT ব্যবস্থায় টাকা সরাসরি ব্যাংক অ্যাকাউন্টে যায়। তবে প্রতিটি আবেদন ম্যানুয়ালি যাচাই হওয়ায় কিছুটা সময় লাগছে। ২২ অক্টোবরের মধ্যে সবার টাকা পৌঁছে দেওয়ার প্রতিশ্রুতি দিয়েছে প্রশাসন।</p>
+                <div class="news-related">
+                    <h4>📌 আরও পড়ুন</h4>
+                    <a href="#" onclick="closeGenericModal('annapurnaNewsModal');openAnnapurnaModal();return false;"><span class="rn-ico">🍚</span> অন্নপূর্ণা ভান্ডার: পরিবার-ভিত্তিক তথ্য সংগ্রহ টুল</a>
+                    <a href="https://socialregistry.wb.gov.in" target="_blank" rel="noopener"><span class="rn-ico">🌐</span> অফিসিয়াল পোর্টাল: socialregistry.wb.gov.in — স্ট্যাটাস চেক ও ক্লেম</a>
+                    <a href="https://socialsecurity.wb.gov.in" target="_blank" rel="noopener"><span class="rn-ico">🏛️</span> Social Security পোর্টাল: socialsecurity.wb.gov.in</a>
+                </div>
+                <div class="news-disc">ℹ️ দ্রষ্টব্য: স্ট্যাটাসের শতাংশগুলো আনুমানিক সম্ভাবনা — অফিসিয়াল ফিগার নয়। প্রতিবেদনটি বিভিন্ন সংবাদমাধ্যম ও সরকারি পোর্টালের তথ্যের ভিত্তিতে তৈরি (১৯ অক্টোবর ২০২৬)।</div>
             </div>
         </div>
     </div>
@@ -3483,9 +3498,9 @@ footer strong{color:#fff;}
         {icon:'🍚',title:'Annapurna Bhandar',kw:['annapurna','অন্নপূর্ণা','bhandar'],open:"openAnnapurnaModal()",
          d_en:'Family-level data collection for the Annapurna Bhandar scheme.',d_bn:'অন্নপূর্ণা ভাণ্ডার প্রকল্পের পারিবারিক তথ্য সংগ্রহ।',
          h_en:'Open the tool → enter family member details → submit.',h_bn:'টুল খোলো → পরিবারের তথ্য লেখো → জমা দাও।'},
-        {icon:'📰',title:'Annapurna News: টাকা পাননি?',kw:['annapurna news','অন্নপূর্ণা টাকা','অন্নপূর্ণা খবর','টাকা পাননি','টাকা ঢোকেনি','payment update','অক্টোবর টাকা','কবে ঢুকবে','video script','ভিডিও স্ক্রিপ্ট','october payment'],open:"openGenericModal('annapurnaNewsModal')",
-         d_en:'October payment update for Annapurna Bhandar — dates, helplines, claim process + video script.',d_bn:'অন্নপূর্ণা ভান্ডার অক্টোবর পেমেন্ট আপডেট — তারিখ, হেল্পলাইন, ক্লেম প্রসেস + ভিডিও স্ক্রিপ্ট।',
-         h_en:'Open the news card → read the update & script sections.',h_bn:'নিউজ কার্ড খোলো → আপডেট ও স্ক্রিপ্ট পড়ো।'},
+        {icon:'📰',title:'Annapurna News: টাকা পাননি?',kw:['annapurna news','অন্নপূর্ণা টাকা','অন্নপূর্ণা খবর','টাকা পাননি','টাকা ঢোকেনি','payment update','অক্টোবর টাকা','কবে ঢুকবে','খবর','october payment'],open:"openGenericModal('annapurnaNewsModal')",
+         d_en:'October payment news for Annapurna Bhandar — dates, helplines, claim process, status guide.',d_bn:'অন্নপূর্ণা ভান্ডার অক্টোবর পেমেন্টের খবর — তারিখ, হেল্পলাইন, ক্লেম প্রসেস, স্ট্যাটাস গাইড।',
+         h_en:'Open the news card → read the full report.',h_bn:'নিউজ কার্ড খোলো → পুরো খবর পড়ো।'},
         {icon:'🔑',title:'Password Generator',kw:['password','পাসওয়ার্ড'],open:"openSmartlinkThen(openPasswordModal)",
          d_en:'Create strong, random, secure passwords instantly.',d_bn:'মজবুত, নিরাপদ পাসওয়ার্ড বানাও এক ক্লিকে।',
          h_en:'Open the tool → set length → copy password.',h_bn:'টুল খোলো → লেন্থ সেট করো → কপি করো।'},
