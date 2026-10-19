@@ -390,6 +390,10 @@
         .bd-actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
         .bd-actions .btn { width: auto; flex: 1; min-width: 140px; }
         .btn-outline { background: #fff !important; color: var(--blue-dark) !important; border: 2px solid #c7d0f5 !important; box-shadow: none !important; }
+        .bd-dress-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 6px; }
+        .bd-dress-btn { flex: 1; min-width: 90px; padding: 9px 6px; border-radius: 10px; border: 2px solid #e0e7ff; background: #f8faff; font-size: 13px; font-weight: 700; color: var(--blue-dark); cursor: pointer; transition: .2s; }
+        .bd-dress-btn.active { border-color: var(--blue); background: linear-gradient(135deg,#eef2ff,#e0e7ff); box-shadow: 0 4px 12px rgba(79,70,229,.2); }
+        .biodata-form input[type="range"] { width: 100%; accent-color: var(--blue); }
         /* ---------- Stats bar ---------- */
         .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 28px 0 36px; }
         .stat { background: linear-gradient(135deg,#1e1b4b,#3730a3 70%,#4c1d95); border-radius: 18px; padding: 22px 12px; text-align: center; color: #fff; box-shadow: 0 10px 24px rgba(49,46,129,.28); position: relative; overflow: hidden; }
@@ -428,8 +432,10 @@
         .footer-social { display: flex; gap: 10px; margin-top: 16px; }
         .footer-social a { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; margin: 0; font-size: 16px; }
         .footer-social a:hover { background: var(--blue); padding-left: 0; transform: translateY(-2px); }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,.12); text-align: center; padding: 18px 5%; font-size: 13.5px; max-width: 1200px; margin: 0 auto; }
-        .footer-bottom a { color: #c4b5fd; display: inline; margin: 0 6px; }
+        .footer-bottom { border-top: none; text-align: center; padding: 0; max-width: 1200px; margin: 0 auto; }
+        .footer-bottom p { background: linear-gradient(90deg,#4f46e5,#7c3aed,#4f46e5); color: #fff; font-size: 13.5px; padding: 15px 20px; border-radius: 14px 14px 0 0; margin: 0 5%; box-shadow: 0 -6px 20px rgba(79,70,229,.25); }
+        .footer-bottom a { color: #fde68a; display: inline; margin: 0 6px; font-weight: 600; }
+        .footer-bottom strong { color: #fff; }
         @media (max-width: 760px){ .footer-grid { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 480px){ .footer-grid { grid-template-columns: 1fr; } }
         /* ---------- Inviting hero: pattern + floating dots + glow badge ---------- */
@@ -2000,27 +2006,72 @@ footer strong{color:#fff;}
             <p class="hint-text" style="margin-top:0;">Fill the details — preview updates live. Then Print or Save as PDF.</p>
             <div class="biodata-layout">
                 <div class="biodata-form">
-                    <h4>📷 Photo</h4>
+                    <h4>📷 Photo — auto passport size</h4>
                     <input type="file" id="bd_photo" accept="image/*" class="tool-input" onchange="bdPhotoChange(this)">
+                    <p class="hint-text" style="margin:6px 0;">Photo auto-crops to passport size (35×45). Face never changes — only the dress overlay below.</p>
+                    <label class="field-label">👔 Formal Dress (optional)</label>
+                    <div class="bd-dress-row">
+                        <button class="bd-dress-btn active" data-dress="none" onclick="bdSetDress('none')">No Change</button>
+                        <button class="bd-dress-btn" data-dress="suit" onclick="bdSetDress('suit')">🤵 Suit + Tie</button>
+                        <button class="bd-dress-btn" data-dress="blazer" onclick="bdSetDress('blazer')">🧥 Blazer</button>
+                    </div>
+                    <div class="bd-grid2">
+                        <div><label class="field-label">Dress Size</label><input type="range" id="bd_dressSize" min="70" max="140" value="100" oninput="bdDressSize=this.value;bdApplyDress()"></div>
+                        <div><label class="field-label">Dress Position</label><input type="range" id="bd_dressY" min="30" max="70" value="52" oninput="bdDressY=this.value;bdApplyDress()"></div>
+                    </div>
                     <h4>👤 Personal Details</h4>
                     <input id="bd_name" class="tool-input" placeholder="Full Name" oninput="updateBiodata()">
                     <div class="bd-grid2">
-                        <input id="bd_dob" class="tool-input" placeholder="Date of Birth" oninput="updateBiodata()">
+                        <div><label class="field-label">Date of Birth</label><input id="bd_dob" type="date" class="tool-input" oninput="updateBiodata()"></div>
+                        <div><label class="field-label">Age (auto)</label><input id="bd_age" class="tool-input" placeholder="—" readonly></div>
                         <input id="bd_height" class="tool-input" placeholder="Height (e.g. 5'6&quot;)" oninput="updateBiodata()">
                         <input id="bd_weight" class="tool-input" placeholder="Weight (e.g. 60 kg)" oninput="updateBiodata()">
-                        <input id="bd_marital" class="tool-input" placeholder="Marital Status" oninput="updateBiodata()">
-                        <input id="bd_religion" class="tool-input" placeholder="Religion" oninput="updateBiodata()">
+                    </div>
+                    <div class="bd-grid2">
+                        <div><label class="field-label">Marital Status</label>
+                        <select id="bd_marital" class="tool-select" onchange="updateBiodata()">
+                            <option value="">Select</option><option>Never Married</option><option>Married</option><option>Divorced</option><option>Widowed</option>
+                        </select></div>
+                        <div><label class="field-label">Religion</label>
+                        <select id="bd_religion" class="tool-select" onchange="updateBiodata()">
+                            <option value="">Select</option><option>Hindu</option><option>Muslim</option><option>Christian</option><option>Sikh</option><option>Buddhist</option><option>Jain</option><option>Other</option>
+                        </select></div>
                         <input id="bd_caste" class="tool-input" placeholder="Caste" oninput="updateBiodata()">
                         <input id="bd_gotra" class="tool-input" placeholder="Gotra" oninput="updateBiodata()">
-                        <input id="bd_rashi" class="tool-input" placeholder="Rashi / Star" oninput="updateBiodata()">
                     </div>
-                    <input id="bd_edu" class="tool-input" placeholder="Education" oninput="updateBiodata()">
+                    <input id="bd_rashi" class="tool-input" placeholder="Rashi / Star" oninput="updateBiodata()">
+                    <input id="bd_address" class="tool-input" placeholder="Address" oninput="updateBiodata()">
+                    <input id="bd_phone" class="tool-input" placeholder="Phone / Mobile" oninput="updateBiodata()">
+                    <h4>🎓 Education Details</h4>
+                    <label class="field-label">Madhyamik (10th) Board</label>
+                    <select id="bd_board10" class="tool-select" onchange="updateBiodata()">
+                        <option value="">Select Board</option><option>WBBSE – West Bengal Board</option><option>CBSE</option><option>ICSE</option><option>Other Board</option>
+                    </select>
+                    <div class="bd-grid2">
+                        <input id="bd_marks10" type="number" class="tool-input" placeholder="Marks obtained" oninput="bdCalcPercent('10')">
+                        <input id="bd_total10" type="number" class="tool-input" placeholder="Total marks" oninput="bdCalcPercent('10')">
+                    </div>
+                    <input id="bd_perc10" class="tool-input" placeholder="Percentage (auto)" readonly>
+                    <label class="field-label">Higher Secondary (12th) Board</label>
+                    <select id="bd_board12" class="tool-select" onchange="updateBiodata()">
+                        <option value="">Select Board</option><option>WBCHSE – West Bengal Council</option><option>CBSE</option><option>ICSE</option><option>Other Board</option>
+                    </select>
+                    <div class="bd-grid2">
+                        <input id="bd_marks12" type="number" class="tool-input" placeholder="Marks obtained" oninput="bdCalcPercent('12')">
+                        <input id="bd_total12" type="number" class="tool-input" placeholder="Total marks" oninput="bdCalcPercent('12')">
+                    </div>
+                    <input id="bd_perc12" class="tool-input" placeholder="Percentage (auto)" readonly>
+                    <label class="field-label">Graduation</label>
+                    <input id="bd_degree" class="tool-input" placeholder="Degree (e.g. B.A. English)" oninput="updateBiodata()">
+                    <div class="bd-grid2">
+                        <input id="bd_uni" class="tool-input" placeholder="University" oninput="updateBiodata()">
+                        <input id="bd_percG" class="tool-input" placeholder="% / CGPA" oninput="updateBiodata()">
+                    </div>
+                    <h4>💼 Occupation & Income</h4>
                     <div class="bd-grid2">
                         <input id="bd_occ" class="tool-input" placeholder="Occupation" oninput="updateBiodata()">
                         <input id="bd_income" class="tool-input" placeholder="Annual Income" oninput="updateBiodata()">
                     </div>
-                    <input id="bd_address" class="tool-input" placeholder="Address" oninput="updateBiodata()">
-                    <input id="bd_phone" class="tool-input" placeholder="Phone / Mobile" oninput="updateBiodata()">
                     <h4>👨‍👩‍👧 Family Details</h4>
                     <input id="bd_father" class="tool-input" placeholder="Father's Name & Occupation" oninput="updateBiodata()">
                     <input id="bd_mother" class="tool-input" placeholder="Mother's Name" oninput="updateBiodata()">
@@ -3204,15 +3255,78 @@ footer strong{color:#fff;}
             if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch);
             else watch();
         })();
-        /* ---------- Biodata Maker ---------- */
-        var bdPhotoData = '';
+        /* ---------- Biodata Maker v2 ---------- */
+        var bdBasePhoto = '', bdFinalPhoto = '', bdDress = 'none', bdDressSize = 100, bdDressY = 52;
+        var bdDressImgs = {};
         function openBiodataModal(){ openGenericModal('biodataModal'); updateBiodata(); }
+        /* Photo: auto-crop to passport ratio 7:9 */
         function bdPhotoChange(input){
-            if(input.files && input.files[0]){
-                var reader = new FileReader();
-                reader.onload = function(e){ bdPhotoData = e.target.result; updateBiodata(); };
-                reader.readAsDataURL(input.files[0]);
-            }
+            if(!input.files || !input.files[0]) return;
+            var reader = new FileReader();
+            reader.onload = function(e){
+                var img = new Image();
+                img.onload = function(){
+                    var target = 7/9, sw = img.width, sh = img.height, sx = 0, sy = 0, cw = sw, ch = sh;
+                    if(sw/sh > target){ cw = sh*target; sx = (sw-cw)/2; }
+                    else { ch = sw/target; sy = (sh-ch)/2; }
+                    var c = document.createElement('canvas');
+                    c.width = 700; c.height = 900;
+                    c.getContext('2d').drawImage(img, sx, sy, cw, ch, 0, 0, 700, 900);
+                    bdBasePhoto = c.toDataURL('image/jpeg', 0.92);
+                    bdApplyDress();
+                    showToast('Photo ready — passport size! 📷', 'success');
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+        /* Dress overlay: face untouched, only clothes change */
+        function bdSetDress(name){
+            bdDress = name;
+            var btns = document.querySelectorAll('.bd-dress-btn');
+            for(var i=0;i<btns.length;i++) btns[i].classList.toggle('active', btns[i].getAttribute('data-dress')===name);
+            if(name!=='none' && !bdDressImgs[name]){
+                var img = new Image();
+                img.onload = function(){ bdDressImgs[name] = img; bdApplyDress(); };
+                img.src = 'assets/dress-'+name+'.png';
+            } else { bdApplyDress(); }
+        }
+        function bdApplyDress(){
+            if(!bdBasePhoto){ bdFinalPhoto=''; updateBiodata(); return; }
+            var img = new Image();
+            img.onload = function(){
+                var c = document.createElement('canvas');
+                c.width = 700; c.height = 900;
+                var ctx = c.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                if(bdDress!=='none' && bdDressImgs[bdDress]){
+                    var d = bdDressImgs[bdDress], s = bdDressSize/100;
+                    var dw = 700*1.15*s, dh = dw*(d.height/d.width);
+                    ctx.drawImage(d, (700-dw)/2, 900*(bdDressY/100), dw, dh);
+                }
+                bdFinalPhoto = c.toDataURL('image/jpeg', 0.92);
+                updateBiodata();
+            };
+            img.src = bdBasePhoto;
+        }
+        /* Auto percentage from marks */
+        function bdCalcPercent(lv){
+            var m = parseFloat(bdVal('bd_marks'+lv)), t = parseFloat(bdVal('bd_total'+lv));
+            var el = document.getElementById('bd_perc'+lv);
+            if(m>0 && t>0){ el.value = (m/t*100).toFixed(1)+'%'; }
+            else { el.value = ''; }
+            updateBiodata();
+        }
+        /* Auto age from DOB */
+        function bdAgeParts(){
+            var v = bdVal('bd_dob');
+            if(!v) return { txt:'', age:'' };
+            var d = new Date(v+'T00:00:00'); if(isNaN(d)) return { txt:v, age:'' };
+            var now = new Date(), age = now.getFullYear()-d.getFullYear();
+            var m = now.getMonth()-d.getMonth();
+            if(m<0 || (m===0 && now.getDate()<d.getDate())) age--;
+            var mon = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()];
+            return { txt: d.getDate()+' '+mon+' '+d.getFullYear(), age: age+' years' };
         }
         function bdVal(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; }
         function bdRow(label, value){
@@ -3220,13 +3334,22 @@ footer strong{color:#fff;}
             return '<div class="bd-row"><b>' + label + '</b><span>' + value.replace(/</g,'&lt;') + '</span></div>';
         }
         function updateBiodata(){
-            var photo = bdPhotoData ? '<img class="bd-photo" src="' + bdPhotoData + '">' : '<div class="bd-photo" style="display:flex;align-items:center;justify-content:center;color:#a8a29e;font-size:12px;">Photo</div>';
+            var ageEl = document.getElementById('bd_age');
+            var ap = bdAgeParts();
+            if(ageEl) ageEl.value = ap.age || '—';
+            var photo = bdFinalPhoto
+                ? '<img class="bd-photo" src="'+bdFinalPhoto+'">'
+                : '<div class="bd-photo" style="display:flex;align-items:center;justify-content:center;color:#a8a29e;font-size:12px;">Photo</div>';
+            var dobTxt = ap.txt ? ap.txt + (ap.age ? ' ('+ap.age+')' : '') : '';
+            var edu10 = bdVal('bd_board10') || bdVal('bd_marks10') ? ('Madhyamik (10th)' + (bdVal('bd_board10') ? ' — '+bdVal('bd_board10') : '') + (bdVal('bd_marks10')&&bdVal('bd_total10') ? ' — '+bdVal('bd_marks10')+'/'+bdVal('bd_total10')+' ('+bdVal('bd_perc10')+')' : '')) : '';
+            var edu12 = bdVal('bd_board12') || bdVal('bd_marks12') ? ('Higher Secondary (12th)' + (bdVal('bd_board12') ? ' — '+bdVal('bd_board12') : '') + (bdVal('bd_marks12')&&bdVal('bd_total12') ? ' — '+bdVal('bd_marks12')+'/'+bdVal('bd_total12')+' ('+bdVal('bd_perc12')+')' : '')) : '';
+            var eduG = bdVal('bd_degree') ? (bdVal('bd_degree') + (bdVal('bd_uni') ? ', '+bdVal('bd_uni') : '') + (bdVal('bd_percG') ? ' — '+bdVal('bd_percG') : '')) : '';
             var html = '<div class="bd-sheet">' + photo +
                 '<div class="bd-head"><h2>BIODATA</h2><p>Marriage Profile</p></div>' +
                 '<div style="clear:both;"></div>' +
                 '<div class="bd-sec">Personal Details</div>' +
                 bdRow('Name', bdVal('bd_name')) +
-                bdRow('Date of Birth', bdVal('bd_dob')) +
+                bdRow('Date of Birth', dobTxt) +
                 bdRow('Height', bdVal('bd_height')) +
                 bdRow('Weight', bdVal('bd_weight')) +
                 bdRow('Marital Status', bdVal('bd_marital')) +
@@ -3234,11 +3357,15 @@ footer strong{color:#fff;}
                 bdRow('Caste', bdVal('bd_caste')) +
                 bdRow('Gotra', bdVal('bd_gotra')) +
                 bdRow('Rashi', bdVal('bd_rashi')) +
-                bdRow('Education', bdVal('bd_edu')) +
-                bdRow('Occupation', bdVal('bd_occ')) +
-                bdRow('Annual Income', bdVal('bd_income')) +
                 bdRow('Address', bdVal('bd_address')) +
                 bdRow('Phone', bdVal('bd_phone')) +
+                '<div class="bd-sec">Education Details</div>' +
+                bdRow('Madhyamik', edu10) +
+                bdRow('Higher Secondary', edu12) +
+                bdRow('Graduation', eduG) +
+                '<div class="bd-sec">Occupation & Income</div>' +
+                bdRow('Occupation', bdVal('bd_occ')) +
+                bdRow('Annual Income', bdVal('bd_income')) +
                 '<div class="bd-sec">Family Details</div>' +
                 bdRow("Father's Name", bdVal('bd_father')) +
                 bdRow("Mother's Name", bdVal('bd_mother')) +
@@ -3250,13 +3377,21 @@ footer strong{color:#fff;}
             document.getElementById('biodataPreview').innerHTML = html;
         }
         function bdFillSample(){
-            var s = { bd_name:'Rahul Sharma', bd_dob:'15 Aug 1995', bd_height:"5'8\"", bd_weight:'65 kg',
-                bd_marital:'Never Married', bd_religion:'Hindu', bd_caste:'Brahmin', bd_gotra:'Kashyap', bd_rashi:'Simha',
-                bd_edu:'B.Tech (Computer Science)', bd_occ:'Software Engineer', bd_income:'Rs. 8 LPA',
+            var s = { bd_name:'Rahul Sharma', bd_dob:'1995-08-15', bd_height:"5'8\"", bd_weight:'65 kg',
+                bd_religion:'Hindu', bd_caste:'Brahmin', bd_gotra:'Kashyap', bd_rashi:'Simha',
+                bd_board10:'WBBSE – West Bengal Board', bd_marks10:'432', bd_total10:'500',
+                bd_board12:'WBCHSE – West Bengal Council', bd_marks12:'380', bd_total12:'500',
+                bd_degree:'B.Tech (Computer Science)', bd_uni:'MAKAUT, Kolkata', bd_percG:'78%',
+                bd_occ:'Software Engineer', bd_income:'Rs. 8 LPA',
                 bd_address:'Kolkata, West Bengal', bd_phone:'+91 98765 43210',
                 bd_father:'Amit Sharma (Businessman)', bd_mother:'Sunita Sharma (Homemaker)',
                 bd_siblings:'One younger sister', bd_partner:'Well-educated, caring girl from a good family' };
-            for(var k in s){ document.getElementById(k).value = s[k]; }
+            for(var k in s){
+                var el = document.getElementById(k);
+                if(el) el.value = s[k];
+            }
+            var ms = document.getElementById('bd_marital'); if(ms) ms.value = 'Never Married';
+            bdCalcPercent('10'); bdCalcPercent('12');
             updateBiodata();
             showToast('Sample data filled!', 'success');
         }
