@@ -475,6 +475,27 @@
         .ai-chat-input input:focus { border-color: #a5b4fc; }
         .ai-chat-input button { width: 44px; height: 44px; border-radius: 50%; border: none; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; font-size: 16px; cursor: pointer; flex-shrink: 0; }
         @media (max-width: 480px){ .ai-chat-panel { left: 12px; bottom: 92px; width: calc(100vw - 24px); } .ai-float-btn { left: 14px; bottom: 18px; } }
+        /* ---------- Photoshop Studio Pro + RGB lights ---------- */
+        #studioModal .modal-content { border-radius: 22px; border: 1px solid #e0e7ff; box-shadow: 0 24px 60px rgba(20,26,48,.25); }
+        #studioModal h3#mTitle { font-size: 22px; font-weight: 800; letter-spacing: -.3px;
+            background: linear-gradient(90deg,#4f46e5,#7c3aed,#06b6d4); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            animation: rgbTextGlow 4s linear infinite; }
+        @keyframes rgbTextGlow { 0% { filter: drop-shadow(0 0 6px rgba(79,70,229,.5)); } 50% { filter: drop-shadow(0 0 12px rgba(6,182,212,.6)); } 100% { filter: drop-shadow(0 0 6px rgba(79,70,229,.5)); } }
+        #studioModal label, #studioModal .input-group label, #studioModal .slider-container label { font-weight: 800 !important; font-size: 14.5px; color: #1e1b4b; }
+        #studioModal .upload-btn { font-weight: 800; font-size: 15px; padding: 13px 28px; border-radius: 12px;
+            background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; box-shadow: 0 8px 20px rgba(79,70,229,.4); transition: .2s; }
+        #studioModal .upload-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(79,70,229,.55); }
+        #studioModal .preview-box { border: 3px solid #4f46e5; border-radius: 16px; animation: rgbBorder 3.5s linear infinite; }
+        @keyframes rgbBorder {
+            0%   { border-color: #ff2d78; box-shadow: 0 0 22px rgba(255,45,120,.55); }
+            25%  { border-color: #ffb800; box-shadow: 0 0 22px rgba(255,184,0,.55); }
+            50%  { border-color: #00e676; box-shadow: 0 0 22px rgba(0,230,118,.55); }
+            75%  { border-color: #00cfff; box-shadow: 0 0 22px rgba(0,207,255,.55); }
+            100% { border-color: #ff2d78; box-shadow: 0 0 22px rgba(255,45,120,.55); }
+        }
+        #studioModal .st-bg-title { font-weight: 800; font-size: 14.5px; color: #1e1b4b; }
+        #studioModal select, #studioModal .st-hex { font-weight: 600; }
+        #studioModal input[type="range"] { accent-color: #7c3aed; }
         /* ---------- Inviting hero: pattern + floating dots + glow badge ---------- */
         .hero-dots { position: absolute; inset: 0; pointer-events: none;
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
@@ -3392,6 +3413,7 @@ footer strong{color:#fff;}
         {icon:'👁️',title:'Image to Text (OCR)',kw:['ocr','image to text','ছবি থেকে লেখা']},
         ];
         let aiOpened = false;
+        let aiPending = null, aiReqText = '';
         function aiIsBn(t){ return /[\u0980-\u09FF]/.test(t); }
         function aiEsc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
         function toggleAiChat(){
@@ -3400,7 +3422,7 @@ footer strong{color:#fff;}
             if(p.classList.contains('open') && !aiOpened){
                 aiOpened = true;
                 aiBotSay('👋 <b>নমস্কার! আমি Sava AI.</b><br>কোনো টুল খুঁজে দেবো? যেমন লেখো: <i>"passport photo"</i> বা <i>"pdf ছোট করো"</i> বা <i>"বায়োডাটা"</i>');
-                aiChips(['📷 Passport Photo','🗜️ PDF Compress','💒 Biodata','✦ All Tools']);
+                aiChips(['💡 টুল চাই','⭐ রিভিউ দাও','📷 Passport Photo','✦ All Tools']);
             }
             if(p.classList.contains('open')) setTimeout(()=>document.getElementById('aiInput').focus(), 300);
         }
@@ -3425,7 +3447,60 @@ footer strong{color:#fff;}
             const q = inp.value.trim(); if(!q) return;
             inp.value = '';
             aiAddMsg(aiEsc(q), 'user');
-            aiBotSay(aiThink(q));
+            if(aiPending){ aiBotSay(aiPendingStep(q)); return; }
+            const ans = aiThink(q);
+            if(ans==='__TOOLREQ__'){ aiStartToolReq(); return; }
+            if(ans==='__REVIEW__'){ aiStartReview(); return; }
+            // smart missing-tool detection: looks like a tool request?
+            if(ans && ans.indexOf('__FALLBACK__')===0){
+                if(/(চাই|chai|need|বানাও|banao|করো|tool|টুল|calculator|ক্যালকুলেটর|maker|মেকার|generator|জেনারেটর|converter|কনভার্টার|banano|বানানো)/.test(' '+q.toLowerCase()+' ')){ aiStartToolReq(); return; }
+                aiBotSay(ans.replace('__FALLBACK__','')); return;
+            }
+            aiBotSay(ans);
+        }
+        /* ----- Tool request & review flows ----- */
+        function aiStartToolReq(){
+            aiPending = {type:'toolreq', step:'name'};
+            aiBotSay('🛠️ <b>নতুন টুলের রিকোয়েস্ট!</b><br>আপাতত আমাদের ওয়েবসাইটে এই ধরনের টুল নেই — তবে তোমাদের প্রয়োজনে আমরা খুব তাড়াতাড়ি আনতে চাই।<br><br>টুলটার <b>নাম</b> কী হবে? (এক লাইনে লেখো)');
+        }
+        function aiStartReview(){
+            aiPending = {type:'review', step:'stars'};
+            const t = aiAddMsg('<span></span><span></span><span></span>', 'bot typing');
+            setTimeout(()=>{ t.classList.remove('typing');
+                t.innerHTML = '⭐ <b>তোমার রিভিউ দাও!</b><br>আমাদের সার্ভিস কেমন লাগলো? স্টার বেছে নাও:';
+                const b = document.getElementById('aiChatBody');
+                const d = document.createElement('div');
+                d.className='ai-msg bot';
+                d.innerHTML = [5,4,3,2,1].map(n=>'<button class="ai-chip" style="margin:2px;" onclick="aiRate('+n+')">'+'⭐'.repeat(n)+'</button>').join('');
+                b.appendChild(d); b.scrollTop = 1e6;
+            }, 650);
+        }
+        function aiRate(n){
+            aiAddMsg('⭐'.repeat(n)+' ('+n+'/5)', 'user');
+            aiPending = {type:'review', step:'text', stars:n};
+            aiBotSay('ধন্যবাদ! এবার তোমার <b>মতামত</b> লেখো — কোন টুলটা ভালো লাগলো, কী উন্নতি চাও?');
+        }
+        function aiWaBtn(label){
+            return '<div class="ai-tool-card"><button onclick="window.open(\'https://wa.me/918906139223?text=\'+encodeURIComponent(aiReqText),\'_blank\')">📩 '+label+'</button></div>';
+        }
+        function aiPendingStep(q){
+            const p = aiPending;
+            if(p.type==='toolreq' && p.step==='name'){
+                p.name = q; p.step='detail';
+                return '✅ <b>'+aiEsc(q)+'</b> — নোট করলাম!<br><br>এবার ডিটেইলসে বলো — টুলটা <b>ঠিক কী কী করবে</b>? কী কী সুবিধা থাকলে তোমার উপকার হয়?';
+            }
+            if(p.type==='toolreq' && p.step==='detail'){
+                aiPending = null;
+                aiReqText = '🔧 *নতুন টুল রিকোয়েস্ট*\n\n📌 নাম: '+p.name+'\n📝 কাজের বিবরণ:\n'+q+'\n\n— Sava AI থেকে পাঠানো';
+                return '🎉 <b>রিকোয়েস্ট রেডি!</b><br>📌 <b>'+aiEsc(p.name)+'</b><br>📝 '+aiEsc(q).slice(0,200)+'<br><br>নিচের বাটনে আমাদের WhatsApp-এ পাঠিয়ে দাও — আমরা দ্রুত বানানোর চেষ্টা করবো!'+aiWaBtn('WhatsApp-এ পাঠাও');
+            }
+            if(p.type==='review' && p.step==='text'){
+                aiPending = null;
+                aiReqText = '⭐ *ইউজার রিভিউ* ('+p.stars+'/5)\n\n💬 '+q+'\n\n— Sava AI থেকে পাঠানো';
+                return '🙏 <b>ধন্যবাদ তোমার রিভিউয়ের জন্য!</b><br>'+'⭐'.repeat(p.stars)+'<br><br>নিচের বাটনে পাঠিয়ে দাও:'+aiWaBtn('রিভিউ পাঠাও');
+            }
+            aiPending = null;
+            return aiThink(q);
         }
         function aiToolCard(it, bn){
             const desc = bn ? it.d_bn : it.d_en;
@@ -3443,14 +3518,16 @@ footer strong{color:#fff;}
                               : '🤖 <b>What I can do:</b><br>• Find tools — e.g. <i>"qr code"</i><br>• Explain a tool — <i>"what does biodata do?"</i><br>• How to use — <i>"how to compress pdf?"</i><br>• List everything — <i>"all tools"</i>',
                 all: bn ? '🧰 <b>আমাদের টুলসমূহ:</b><br>📷 ফটো: Passport Photo, BG Remover, Resizer, Image→PDF, Thumbnail<br>📄 ডকুমেন্ট: PDF Compress, Word Counter, Biodata Maker<br>🏛️ সরকারি: Voter, Pension, Aadhaar, PAN, Banglar Bhumi<br>🧰 ইউটিলিটি: Password, QR, Land, EMI, Age, %, GST<br>🎮 গেম: 3D Football<br>কোনটা খুলবো?'
                             : '🧰 <b>Our tools:</b><br>📷 Photo: Passport Photo, BG Remover, Resizer, Image→PDF, Thumbnail<br>📄 Document: PDF Compress, Word Counter, Biodata Maker<br>🏛️ Govt: Voter, Pension, Aadhaar, PAN, Banglar Bhumi<br>🧰 Utility: Password, QR, Land, EMI, Age, %, GST<br>🎮 Games: 3D Football<br>Which one shall I open?',
-                fallback: bn ? '🤔 বুঝতে পারলাম না। এভাবে লেখো: <i>"passport photo"</i>, <i>"pdf ছোট"</i>, <i>"বায়োডাটা"</i> — অথবা <i>"all tools"</i> লিখে সব দেখো।'
-                                  : '🤔 I didn\'t get that. Try: <i>"passport photo"</i>, <i>"compress pdf"</i>, <i>"biodata"</i> — or type <i>"all tools"</i>.'
+                fallback: '__FALLBACK__'+(bn ? '🤔 এই টুলটা খুঁজে পেলাম না। যদি <b>নতুন টুল</b> চাও, <i>"টুল চাই"</i> লেখো — তোমার রিকোয়েস্ট আমরা WhatsApp-এ পেয়ে যাবো! অথবা <i>"all tools"</i> লিখে সব দেখো।'
+                                  : '__FALLBACK__🤔 Couldn\'t find that tool. Want a <b>new tool</b>? Type <i>"টুল চাই"</i> — we\'ll get your request on WhatsApp! Or type <i>"all tools"</i>.')
             };
             if(/^(hi+|hello|hey|হ্যালো|নমস্কার|আসসালামু|sup|yo)\b/.test(t.trim())) return T.greet;
             if(/(thank|ধন্যবাদ|শুকরিয়া|thx)\b/.test(t)) return T.thanks;
             if(/\b(bye|বাই|আল্লাহ হাফেজ|good ?night)\b/.test(t)) return T.bye;
             if(/(help|সাহায্য|what can you do|তুমি কি( করতে)? পারো|তোমার কাজ)/.test(t)) return T.help;
             if(/(all tools|সব টুল|কি কি আছে|tools list|সবগুলো)/.test(t)) return T.all;
+            if(/(টুল চাই|নতুন টুল|tool request|নতুন কিছু|request tool|নেই.*টুল)/.test(t)) return '__TOOLREQ__';
+            if(/(রিভিউ|review|মতামত|feedback|রেটিং)/.test(t)) return '__REVIEW__';
             const howQ = /(how|kivabe|কিভাবে|কীভাবে|কেমনে|kaise|process|পদ্ধতি|নিয়ম)/.test(t);
             const whatQ = /(what|কি করে|কী করে|kya karta|কাজ কি|use of|about)/.test(t);
             let best=null, score=0;
