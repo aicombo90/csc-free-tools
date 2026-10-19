@@ -421,6 +421,43 @@
         .guide-modal-body ol, .guide-modal-body ul { margin: 8px 0 10px 20px; color: var(--ink-soft); line-height: 1.85; font-size: 14.5px; }
         .guide-modal-body p { color: var(--ink-soft); line-height: 1.85; font-size: 14.5px; margin-bottom: 10px; }
         .guide-tip { background: #eef2ff; border-left: 4px solid var(--blue); padding: 12px 14px; border-radius: 0 10px 10px 0; font-size: 14px; color: var(--blue-deep); margin-top: 14px; }
+        /* ---------- News article card + modal ---------- */
+        .news-card { cursor: pointer; border: 2px solid #f59e0b !important; position: relative; overflow: hidden; }
+        .news-breaking { display: flex; align-items: center; gap: 8px; background: linear-gradient(90deg,#dc2626,#ef4444); color: #fff; font-size: 11.5px; font-weight: 800; letter-spacing: 1px; padding: 7px 14px; margin: -18px -18px 14px; }
+        .breaking-dot { width: 9px; height: 9px; border-radius: 50%; background: #fff; animation: blinkDot 1.1s infinite; }
+        @keyframes blinkDot { 0%,100% { opacity: 1; transform: scale(1);} 50% { opacity: .35; transform: scale(.7);} }
+        .news-icon { background: linear-gradient(135deg,#f59e0b,#d97706) !important; }
+        .news-strip { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+        .news-strip span { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; font-size: 12.5px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
+        .news-article { text-align: left; }
+        .news-masthead { display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; color: #b45309; letter-spacing: .5px; border-bottom: 3px double #f59e0b; padding-bottom: 10px; margin-bottom: 14px; padding-right: 34px; }
+        .news-article h2.news-h { font-size: 22px; line-height: 1.4; color: #1e1b4b; margin: 0 0 6px; font-weight: 800; }
+        .news-date { font-size: 12.5px; color: #78716c; margin-bottom: 14px; }
+        .news-hero { border-radius: 16px; overflow: hidden; margin: 0 0 18px; background: linear-gradient(135deg,#1e1b4b 0%,#4c1d95 55%,#7c3aed 100%); color: #fff; padding: 26px 20px; text-align: center; position: relative; }
+        .news-hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 20% 20%, rgba(251,191,36,.35), transparent 55%), radial-gradient(circle at 85% 80%, rgba(34,211,238,.28), transparent 55%); }
+        .news-hero > * { position: relative; }
+        .news-hero .nh-kicker { font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #fcd34d; }
+        .news-hero .nh-amt { font-size: 52px; font-weight: 900; margin: 6px 0 2px; text-shadow: 0 4px 18px rgba(0,0,0,.35); }
+        .news-hero .nh-sub { font-size: 14px; color: #e9d5ff; font-weight: 600; }
+        .news-hero .nh-date { display: inline-block; margin-top: 10px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.3); padding: 6px 16px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+        .news-article h3.sec { font-size: 17px; color: #7c2d12; margin: 22px 0 8px; font-weight: 800; border-left: 5px solid #f59e0b; padding-left: 12px; }
+        .news-article p { color: #44403c; line-height: 2; font-size: 15px; margin-bottom: 10px; }
+        .news-article .script-line { background: #fffbeb; border: 1px dashed #f59e0b; border-radius: 12px; padding: 12px 15px; font-size: 15px; line-height: 2; color: #451a03; margin: 10px 0; }
+        .news-3ways { display: grid; gap: 10px; margin: 12px 0; }
+        .news-way { background: #f5f3ff; border: 1px solid #c4b5fd; border-radius: 12px; padding: 12px 14px; font-size: 14.5px; color: #2e1065; line-height: 1.8; }
+        .news-way b { color: #5b21b6; }
+        .news-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13.5px; }
+        .news-table th { background: #1e1b4b; color: #fff; padding: 10px 8px; text-align: left; font-size: 13px; }
+        .news-table td { padding: 10px 8px; border-bottom: 1px solid #e7e5e4; color: #44403c; vertical-align: top; line-height: 1.6; }
+        .news-table tr:nth-child(even) td { background: #fafaf9; }
+        .chance { display: inline-block; font-weight: 800; padding: 3px 10px; border-radius: 999px; font-size: 12.5px; }
+        .ch-high { background: #dcfce7; color: #166534; } .ch-mid { background: #fef9c3; color: #854d0e; } .ch-low { background: #fee2e2; color: #991b1b; }
+        .news-helpline { background: linear-gradient(135deg,#065f46,#047857); color: #fff; border-radius: 14px; padding: 16px 18px; margin: 16px 0; }
+        .news-helpline h4 { margin: 0 0 8px; font-size: 15px; }
+        .news-helpline a { color: #fff; font-weight: 800; font-size: 17px; text-decoration: none; letter-spacing: .5px; }
+        .news-helpline p { color: #d1fae5; font-size: 13px; margin: 6px 0 0; line-height: 1.7; }
+        .news-warn { background: #fef2f2; border: 1px solid #fca5a5; border-left: 5px solid #dc2626; border-radius: 0 12px 12px 0; padding: 12px 15px; font-size: 14px; color: #7f1d1d; line-height: 1.8; margin: 14px 0; }
+        .news-disc { font-size: 12px; color: #a8a29e; margin-top: 18px; border-top: 1px dashed #d6d3d1; padding-top: 10px; line-height: 1.7; }
         /* ---------- Rich footer ---------- */
         .site-footer { background: linear-gradient(135deg,#1e1b4b 0%,#2a2563 60%,#3b2a6e 100%); color: #c4b5fd; margin-top: 56px; }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 30px; padding: 46px 5% 24px; max-width: 1200px; margin: 0 auto; }
@@ -1341,6 +1378,18 @@ footer strong{color:#fff;}
                 <div class="tool-banner" style="--tb1:#059669;--tb2:#064e3b;"><i class="fa-solid fa-users tb-bg"></i><span class="tb-cap">Family Data Collection</span><div class="tb-window"><div class="tb-dots"><span></span><span></span><span></span></div><div class="tb-ico"><i class="fa-solid fa-users"></i></div><b></b><b></b></div></div>
                 <button class="btn tOpenBtn" onclick="openAnnapurnaModal()">Open Tool</button>
             </div>
+            <div class="tool-card news-card" data-name="annapurna bhandar news অন্নপূর্ণা ভাণ্ডার খবর টাকা পেমেন্ট আপডেট অক্টোবর video script ভিডিও স্ক্রিপ্ট" onclick="openGenericModal('annapurnaNewsModal')">
+                <div class="news-breaking"><span class="breaking-dot"></span> BREAKING NEWS • ১৯ অক্টোবর ২০২৬</div>
+                <div class="tool-card-top">
+                    <div class="tool-icon news-icon"><i class="fa-solid fa-newspaper"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">📰 Latest News</span>
+                        <h3>১৫ অক্টোবরের পরেও টাকা পাননি? <span style="display:block; font-size:14px; color:#b45309; font-weight:700; margin-top:4px;">এক্ষুনি জেনে নিন — ভিডিও স্ক্রিপ্টসহ</span></h3>
+                        <p>অন্নপূর্ণা ভান্ডার অক্টোবর পেমেন্ট আপডেট — কবে টাকা ঢুকবে, অভিযোগের ৩টে রাস্তা, হেল্পলাইন নম্বর। পড়ে পড়ে ভিডিও বানান।</p>
+                    </div>
+                </div>
+                <div class="news-strip"><span>💰 ₹৩,০০০</span><span>📅 ১৫–২২ অক্টোবর</span><span>👩 ৮ লাখ নতুন নাম</span></div>
+            </div>
             <div class="tool-card" data-name="banglar bhumi land record জমির তথ্য জমি রেকর্ড খতিয়ান বাংলার ভূমি land">
                 <div class="tool-card-top">
                     <div class="tool-icon land-icon"><i class="fa-solid fa-map-location-dot"></i></div>
@@ -1814,6 +1863,67 @@ footer strong{color:#fff;}
         <div style="background:#fff; margin:2% auto; width:95%; max-width:1150px; height:92vh; border-radius:12px; position:relative; overflow:hidden; box-shadow:0 10px 40px rgba(0,0,0,0.3);">
             <span class="close-btn" style="z-index:10; background:#fff; border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; top:8px; right:10px;" onclick="closeAnnapurnaModal()">&times;</span>
             <iframe id="annapurnaFrame" style="width:100%; height:100%; border:none;"></iframe>
+        </div>
+    </div>
+    <div id="annapurnaNewsModal" class="modal">
+        <div class="modal-content wide">
+            <span class="close-btn" onclick="closeGenericModal('annapurnaNewsModal')">&times;</span>
+            <div class="news-article">
+                <div class="news-masthead"><span>📰 DAFADAR NEWS DESK</span><span>১৯ অক্টোবর ২০২৬</span></div>
+                <h2 class="news-h">🚨 ১৫ অক্টোবরের পরেও অন্নপূর্ণার টাকা পাননি? এক্ষুনি জেনে নিন — কবে ঢুকবে, কী করবেন</h2>
+                <div class="news-date">আপডেট: ১৯ অক্টোবর ২০২৬ &nbsp;•&nbsp; পড়ার সময়: ৪ মিনিট &nbsp;•&nbsp; নিচে ভিডিও স্ক্রিপ্ট দেওয়া আছে</div>
+                <div class="news-hero">
+                    <div class="nh-kicker">অন্নপূর্ণা ভান্ডার • অক্টোবর কিস্তি</div>
+                    <div class="nh-amt">₹৩,০০০</div>
+                    <div class="nh-sub">প্রতি মাসে • সরাসরি ব্যাংক অ্যাকাউন্টে (DBT)</div>
+                    <div class="nh-date">📅 ১৫ – ২২ অক্টোবর: ধাপে ধাপে টাকা ঢুকছে</div>
+                </div>
+
+                <h3 class="sec">🎙️ ভিডিও স্ক্রিপ্ট — ইন্ট্রো</h3>
+                <div class="script-line">"নমস্কার বন্ধুরা! আজকের ভিডিওতে আলোচনা করব তাদের নিয়ে — যাদের অন্নপূর্ণা ভান্ডারের টাকা এখনো ব্যাংক অ্যাকাউন্টে ঢোকেনি। আপনারা হয়তো সবাই জেনে গেছেন — এই পোর্টালে বা এই নাম্বারে যোগাযোগ করলে সমস্যার সমাধান হবে। কিন্তু আসলে এর মধ্যে কিছু গুরুত্বপূর্ণ বিষয় আছে, যেগুলো না জানলে আপনার টাকা আটকেই থাকবে! আর সাথে জানিয়ে দেব — পোর্টালে গিয়ে নতুন করে ক্লেম বা অভিযোগ করলে আপনার টাকা কত তারিখের মধ্যে ঢুকতে পারে। পুরো ভিডিওটা মন দিয়ে দেখুন।"</div>
+
+                <h3 class="sec">💸 যারা টাকা পাননি, তারা কবে পাবেন?</h3>
+                <div class="script-line">"প্রথমে সুখবরটা শুনুন। ১৫ই অক্টোবর, পঞ্চমীর দিন থেকে টাকা দেওয়া স্টার্ট হয়েছে। ১৬ তারিখ, ১৭ তারিখেও বহু মানুষের অ্যাকাউন্টে টাকা ঢুকেছে। এখনো যদি আপনার না ঢুকে থাকে, হতাশ হবেন না — কারণ এবার প্রায় <b>৮ লক্ষ নতুন উপভোক্তার নাম</b> তালিকায় যোগ হয়েছে! এতজনের টাকা একসাথে পাঠানো সম্ভব নয় — ধাপে ধাপে পাঠানো হচ্ছে।"</div>
+
+                <h3 class="sec">📞 অভিযোগ জানানোর ৩টে রাস্তা</h3>
+                <div class="news-3ways">
+                    <div class="news-way"><b>১. ফোনে সরাসরি অভিযোগ:</b> <a href="tel:8282082820" style="font-weight:800;color:#5b21b6;">82820 82820</a> (সকাল ৯টা – সন্ধ্যা ৬টা) অথবা টোল-ফ্রি <b>1800-345-5505</b></div>
+                    <div class="news-way"><b>২. WhatsApp:</b> একই নাম্বারে WhatsApp করেও অভিযোগ জানানো যায় বলে খবর।</div>
+                    <div class="news-way"><b>৩. পোর্টালে Claim:</b> <b>socialregistry.wb.gov.in</b> বা <b>socialsecurity.wb.gov.in</b>-এ গিয়ে সরাসরি <b>Claim / Objection</b> ফাইল করুন — সবাই করতে পারবেন।</div>
+                </div>
+
+                <h3 class="sec">📅 টাকা কবে ঢুকবে?</h3>
+                <div class="script-line">"সর্বোচ্চ সময়সীমা — <b>২২ তারিখের মধ্যে</b> আপনার ব্যাংক অ্যাকাউন্টে টাকা ঢুকে যাবে। টাকা ঢোকার আগে একটা জিনিস অবশ্যই চেক করে নিন — আপনার <b>DBT লিংক</b> ঠিক আছে কিনা। আগে করিয়ে থাকলেও আবার চেক করুন — কোনোভাবে কেটে যায়নি তো! ব্যাংকে গিয়ে কনফার্ম করে নিন।"</div>
+
+                <h3 class="sec">🏦 পুজোর ছুটিতেও টাকা ঢুকবে</h3>
+                <div class="script-line">"পুজোর ছুটিতে কি টাকা আটকে যাবে? না! ছুটি থাকলেও আপনার ব্যাংক অ্যাকাউন্টে টাকা ঢুকতেই থাকবে। তবে বুঝুন — প্রতিটা আবেদন ম্যানুয়ালি যাচাই হচ্ছে, তাই সময় লাগছে। এবার মুখ্যমন্ত্রী শুভেন্দু অধিকারী মহাশয় অন্নপূর্ণা ভান্ডার নিয়ে অনেকটাই অগ্রগতি করেছেন — ২২ তারিখের মধ্যে টাকা দেওয়ার প্রতিশ্রুতি দিয়েছেন।"</div>
+
+                <h3 class="sec">📊 স্ট্যাটাস অনুযায়ী টাকা ঢোকার সম্ভাবনা</h3>
+                <p>পোর্টালে আপনার স্ট্যাটাস কী বলছে, তার উপরেই নির্ভর করছে টাকা কবে ঢুকবে:</p>
+                <table class="news-table">
+                    <tr><th>স্ট্যাটাস</th><th>সম্ভাবনা</th><th>মানে কী / কী করবেন</th></tr>
+                    <tr><td><b>Approved</b></td><td><span class="chance ch-high">৯৫%</span></td><td>শুধু DBT লিংক ঠিক থাকলেই ২২ তারিখের মধ্যে পাবেন</td></tr>
+                    <tr><td><b>Payment Initiated</b></td><td><span class="chance ch-high">৯০%</span></td><td>টাকা পাঠানো শুরু — ২-৩ দিনে ঢুকবে</td></tr>
+                    <tr><td><b>Under Verification</b></td><td><span class="chance ch-mid">৬০%</span></td><td>যাচাই চলছে — ২২ তারিখের মধ্যে আসতে পারে, না এলে ক্লেম করুন</td></tr>
+                    <tr><td><b>Under Process</b></td><td><span class="chance ch-mid">৫০%</span></td><td>প্রসেসিংয়ে আছে — অপেক্ষা করুন বা BDO অফিসে যোগাযোগ করুন</td></tr>
+                    <tr><td><b>Further Verification</b></td><td><span class="chance ch-mid">৪০%</span></td><td>অতিরিক্ত যাচাই চাওয়া হয়েছে — সঠিক ডকুমেন্ট আপলোড করে ক্লেম করলে সম্ভাবনা বাড়বে</td></tr>
+                    <tr><td><b>Rejected</b></td><td><span class="chance ch-low">১০%</span></td><td>কারণ ভুল হলে Objection করে চ্যালেঞ্জ করুন — পুনর্বিবেচনা হতে পারে</td></tr>
+                </table>
+
+                <div class="news-helpline">
+                    <h4>📞 হেল্পলাইন — সমস্যা থাকলে যোগাযোগ করুন</h4>
+                    <a href="tel:8282082820">82820 82820</a> <span style="font-size:13px;">(সকাল ৯টা – সন্ধ্যা ৬টা)</span><br>
+                    <a href="tel:18003455505">1800-345-5505</a> <span style="font-size:13px;">(টোল-ফ্রি)</span>
+                    <p>🌐 পোর্টাল: socialregistry.wb.gov.in • socialsecurity.wb.gov.in &nbsp;|&nbsp; 📧 ASAP@WB.gov.in</p>
+                </div>
+
+                <div class="news-warn">⚠️ <b>সতর্কতা:</b> শুধুমাত্র <b>.gov.in</b> ওয়েবসাইটেই কাজ করুন — .com সাইটগুলো ভুয়ো। সরকারি অফিসার কখনো ফোনে আপনার OTP চাইবে না — OTP চাইলেই বুঝবেন প্রতারক!</div>
+
+                <h3 class="sec">🎙️ ভিডিও স্ক্রিপ্ট — এন্ডিং</h3>
+                <div class="script-line">"তো বন্ধুরা, অফিসিয়াল পোর্টাল থেকে আপনারা প্রত্যেকেই স্ট্যাটাস চেক করতে পারছেন। স্ট্যাটাস অনুযায়ী আপনার টাকা ঢোকার সম্ভাবনা কতটা, সেটা আজ জানিয়ে দিলাম। ব্যাংক অ্যাকাউন্ট আর DBT লিংকটা আজই চেক করে নিন। ভিডিওটা উপকারী লাগলে শেয়ার করুন — যাদের টাকা আটকে আছে, তাদের কাজে লাগবে। ধন্যবাদ!"</div>
+
+                <div class="news-disc">ℹ️ দ্রষ্টব্য: স্ট্যাটাসের শতাংশগুলো আনুমানিক সম্ভাবনা — অফিসিয়াল ফিগার নয়। তথ্য বিভিন্ন সংবাদমাধ্যম ও সরকারি পোর্টাল থেকে সংগৃহীত (১৯ অক্টোবর ২০২৬)।</div>
+            </div>
         </div>
     </div>
 
@@ -3373,6 +3483,9 @@ footer strong{color:#fff;}
         {icon:'🍚',title:'Annapurna Bhandar',kw:['annapurna','অন্নপূর্ণা','bhandar'],open:"openAnnapurnaModal()",
          d_en:'Family-level data collection for the Annapurna Bhandar scheme.',d_bn:'অন্নপূর্ণা ভাণ্ডার প্রকল্পের পারিবারিক তথ্য সংগ্রহ।',
          h_en:'Open the tool → enter family member details → submit.',h_bn:'টুল খোলো → পরিবারের তথ্য লেখো → জমা দাও।'},
+        {icon:'📰',title:'Annapurna News: টাকা পাননি?',kw:['annapurna news','অন্নপূর্ণা টাকা','অন্নপূর্ণা খবর','টাকা পাননি','টাকা ঢোকেনি','payment update','অক্টোবর টাকা','কবে ঢুকবে','video script','ভিডিও স্ক্রিপ্ট','october payment'],open:"openGenericModal('annapurnaNewsModal')",
+         d_en:'October payment update for Annapurna Bhandar — dates, helplines, claim process + video script.',d_bn:'অন্নপূর্ণা ভান্ডার অক্টোবর পেমেন্ট আপডেট — তারিখ, হেল্পলাইন, ক্লেম প্রসেস + ভিডিও স্ক্রিপ্ট।',
+         h_en:'Open the news card → read the update & script sections.',h_bn:'নিউজ কার্ড খোলো → আপডেট ও স্ক্রিপ্ট পড়ো।'},
         {icon:'🔑',title:'Password Generator',kw:['password','পাসওয়ার্ড'],open:"openSmartlinkThen(openPasswordModal)",
          d_en:'Create strong, random, secure passwords instantly.',d_bn:'মজবুত, নিরাপদ পাসওয়ার্ড বানাও এক ক্লিকে।',
          h_en:'Open the tool → set length → copy password.',h_bn:'টুল খোলো → লেন্থ সেট করো → কপি করো।'},
