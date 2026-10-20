@@ -466,6 +466,21 @@
         /* ---------- Full-screen news reader ---------- */
         #annapurnaNewsModal .modal-content, #pmkisanNewsModal .modal-content { width: 100%; max-width: 100%; height: 100%; margin: 0; border-radius: 0; padding: 0; overflow-y: auto; }
         #annapurnaNewsModal .close-btn, #pmkisanNewsModal .close-btn { position: fixed; top: 14px; right: 18px; z-index: 5; background: #1e1b4b; color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 14px rgba(0,0,0,.3); }
+        /* ---------- Every tool opens full-screen, like a new page ---------- */
+        .modal:not(#annapurnaNewsModal):not(#pmkisanNewsModal) .modal-content,
+        .modal:not(#annapurnaNewsModal):not(#pmkisanNewsModal) .modal-content.wide,
+        .modal:not(#annapurnaNewsModal):not(#pmkisanNewsModal) .modal-content.xwide {
+            width: 100% !important; max-width: 100% !important; height: 100% !important; max-height: 100% !important;
+            margin: 0 !important; border-radius: 0 !important; border: none !important;
+            padding: 66px 18px 44px !important; overflow-y: auto;
+        }
+        .modal:not(#annapurnaNewsModal):not(#pmkisanNewsModal) .modal-content > *:not(.close-btn) { max-width: 920px; margin-left: auto; margin-right: auto; }
+        .modal:not(#annapurnaNewsModal):not(#pmkisanNewsModal) .close-btn {
+            position: fixed !important; top: 12px; right: 14px; z-index: 50;
+            background: #1e1b4b; color: #fff; width: 42px; height: 42px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 26px;
+            box-shadow: 0 4px 14px rgba(0,0,0,.3);
+        }
         .news-page { max-width: 760px; margin: 0 auto; padding: 0 18px 60px; }
         .news-topbar { background: #1e1b4b; color: #fff; padding: 12px 66px 12px 18px; display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; font-weight: 800; letter-spacing: 1px; position: sticky; top: 0; z-index: 4; white-space: nowrap; }
         .news-topbar .live { display: flex; align-items: center; gap: 7px; color: #fcd34d; }
