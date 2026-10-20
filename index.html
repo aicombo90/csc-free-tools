@@ -737,6 +737,13 @@
         /* ---------- WhatsApp floating button ---------- */
         .whatsapp-float-btn { position: fixed; bottom: 24px; right: 24px; width: 52px; height: 52px; border-radius: 50%; background: #25d366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 8px 20px rgba(37,211,102,0.4); z-index: 900; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; animation: whatsappPulse 2.4s infinite; }
         .whatsapp-float-btn:hover { transform: scale(1.08); box-shadow: 0 10px 26px rgba(37,211,102,0.55); animation-play-state: paused; }
+        /* ---------- Fixed share button (top-right, stays on scroll) ---------- */
+        .share-float-btn { position: fixed; top: 76px; right: 14px; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; border: none; cursor: pointer; box-shadow: 0 8px 20px rgba(79,70,229,.4); z-index: 900; transition: transform .2s; }
+        .share-float-btn:hover { transform: scale(1.08); }
+        .share-menu { display: none; position: fixed; top: 132px; right: 14px; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.2); z-index: 901; overflow: hidden; min-width: 175px; }
+        .share-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 16px; border: none; background: #fff; font-size: 15px; font-weight: 600; color: #1e293b; cursor: pointer; }
+        .share-menu button:hover { background: #f1f5f9; }
+        .share-menu button i { font-size: 20px; }
         @keyframes whatsappPulse { 0%, 100% { box-shadow: 0 8px 20px rgba(37,211,102,0.4), 0 0 0 0 rgba(37,211,102,0.5); } 50% { box-shadow: 0 8px 20px rgba(37,211,102,0.4), 0 0 0 10px rgba(37,211,102,0); } }
 
         /* ---------- Scroll to top button ---------- */
@@ -1022,6 +1029,13 @@ footer strong{color:#fff;}
     </div>
 
     <a class="whatsapp-float-btn" href="https://wa.me/918906139223" target="_blank" rel="noopener" aria-label="Contact on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+    <button class="share-float-btn" onclick="shareSite()" aria-label="Share website"><i class="fa-solid fa-share-nodes"></i></button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareViaWhatsApp()"><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> WhatsApp</button>
+        <button onclick="shareViaFacebook()"><i class="fa-brands fa-facebook" style="color:#1877f2;"></i> Facebook</button>
+        <button onclick="copySiteLink()"><i class="fa-solid fa-link" style="color:#4f46e5;"></i> Copy Link</button>
+    </div>
 
 
     <div class="youtube-notice-bar" id="noticeBar">
@@ -3499,6 +3513,30 @@ footer strong{color:#fff;}
         ============================================================= */
         function openGenericModal(id){ document.getElementById(id).style.display = 'block'; }
         function closeGenericModal(id){ document.getElementById(id).style.display = 'none'; }
+        // ---------- Website share (native sheet on mobile, menu on desktop) ----------
+        const SITE_URL = 'https://aicombo90.github.io/csc-free-tools/';
+        const SHARE_TEXT = 'Dafadar Online Sava — ফ্রি অনলাইন টুলস: Passport Photo, PDF, সরকারি পরিষেবা — সব এক জায়গায়!';
+        function shareSite(){
+            if (navigator.share) { navigator.share({ title: 'Dafadar Online Sava', text: SHARE_TEXT, url: SITE_URL }).catch(() => {}); }
+            else toggleShareMenu();
+        }
+        function toggleShareMenu(){
+            const m = document.getElementById('shareMenu');
+            m.style.display = (m.style.display === 'block') ? 'none' : 'block';
+        }
+        function shareViaWhatsApp(){
+            window.open('https://wa.me/?text=' + encodeURIComponent(SHARE_TEXT + ' ' + SITE_URL), '_blank');
+            toggleShareMenu();
+        }
+        function shareViaFacebook(){
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(SITE_URL), '_blank');
+            toggleShareMenu();
+        }
+        function copySiteLink(){
+            const done = () => { document.getElementById('shareMenu').style.display = 'none'; alert('✅ লিংক কপি হয়ে গেছে! এবার যেকোনো জায়গায় পাঠাও।'); };
+            if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(SITE_URL).then(done).catch(() => fallbackCopy(SITE_URL, done));
+            else fallbackCopy(SITE_URL, done);
+        }
         // ---------- অন্নপূর্ণা অভিযোগ মেসেজ জেনারেটর ----------
         const cmTemplates = {
             approved: "নমস্কার, আমি অন্নপূর্ণা ভান্ডার প্রকল্পের আবেদনকারী {name}। আবেদন নম্বর {id}। জেলা {dist}, ব্লক {block}। আমার আবেদনের স্ট্যাটাস {status} দেখাচ্ছে, তবুও অক্টোবর মাসের ৩০০০ টাকা এখনো আমার ব্যাংক অ্যাকাউন্টে ঢোকেনি। আমার রেজিস্টার্ড মোবাইল নম্বর {mobile}। অনুগ্রহ করে বিষয়টি যাচাই করে দ্রুত টাকা প্রদানের ব্যবস্থা করুন। ধন্যবাদ।",
