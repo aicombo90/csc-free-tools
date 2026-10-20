@@ -464,8 +464,8 @@
         .news-keyfacts ul b { color: #065f46; }
         .news-disc { font-size: 12px; color: #a8a29e; margin-top: 18px; border-top: 1px dashed #d6d3d1; padding-top: 10px; line-height: 1.7; }
         /* ---------- Full-screen news reader ---------- */
-        #annapurnaNewsModal .modal-content { width: 100%; max-width: 100%; height: 100%; margin: 0; border-radius: 0; padding: 0; overflow-y: auto; }
-        #annapurnaNewsModal .close-btn { position: fixed; top: 14px; right: 18px; z-index: 5; background: #1e1b4b; color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 14px rgba(0,0,0,.3); }
+        #annapurnaNewsModal .modal-content, #pmkisanNewsModal .modal-content { width: 100%; max-width: 100%; height: 100%; margin: 0; border-radius: 0; padding: 0; overflow-y: auto; }
+        #annapurnaNewsModal .close-btn, #pmkisanNewsModal .close-btn { position: fixed; top: 14px; right: 18px; z-index: 5; background: #1e1b4b; color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 14px rgba(0,0,0,.3); }
         .news-page { max-width: 760px; margin: 0 auto; padding: 0 18px 60px; }
         .news-topbar { background: #1e1b4b; color: #fff; padding: 12px 66px 12px 18px; display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; font-weight: 800; letter-spacing: 1px; position: sticky; top: 0; z-index: 4; white-space: nowrap; }
         .news-topbar .live { display: flex; align-items: center; gap: 7px; color: #fcd34d; }
@@ -2000,14 +2000,10 @@ footer strong{color:#fff;}
                         <li><b>বাধ্যতামূলক:</b> eKYC + আধার-ব্যাংক লিংক (NPCI) + জমির রেকর্ড যাচাই</li>
                     </ul>
                 </div>
-                <h3 class="sec">২৪তম কিস্তি নিয়ে এত গুজব কেন?</h3>
-                <p>সোশ্যাল মিডিয়া ও WhatsApp-এ "২১তম কিস্তি রিলিজ!" বলে যেসব খবর ঘুরছে, সেগুলো <b>পুরনো খবরের রিসাইকেল</b> — ২১তম কিস্তি ২০২৫ সালের নভেম্বরেই দেওয়া হয়ে গেছে। আবার "₹৪,০০০ ডাবল পেমেন্ট" দাবিটিকে PM-KISAN-এর অফিসিয়াল সোশ্যাল মিডিয়া <b>ভুয়ো বলে নিশ্চিত করেছে</b>।</p>
-                <p>আসল নিয়ম: কিস্তির তারিখ সরকারি ঘোষণা ছাড়া জানা যায় না। তারিখ অফিসিয়াল হয় <b>শুধুমাত্র</b> pmkisan.gov.in পোর্টালে বা PIB প্রেস রিলিজে প্রকাশিত হলে।</p>
-                <h3 class="sec">সাম্প্রতিক কিস্তিগুলোর হিসেব</h3>
+                <h3 class="sec">২৪তম কিস্তি এখন কোন পর্যায়ে</h3>
+                <p>সবশেষ কিস্তি — ২৩তম — দেওয়া হয়েছে <b>২০ জুন ২০২৬</b>-এ: মোট <b>₹১৮,৮৮০ কোটি</b> পৌঁছেছে <b>৯.৪৪ কোটি</b> কৃষকের অ্যাকাউন্টে। এরপরের কিস্তিই ২৪তম। প্রতি চার মাস অন্তর কিস্তি আসে বলে অক্টোবর–নভেম্বর ২০২৬-এর মধ্যেই টাকা ঢোকার সম্ভাবনা — তবে সরকারি তারিখ ঘোষণা হলেই তা চূড়ান্ত হবে।</p>
                 <table class="news-table">
                     <tr><th>কিস্তি</th><th>তারিখ</th><th>অবস্থা</th></tr>
-                    <tr><td><b>২১তম</b></td><td>১৯ নভেম্বর ২০২৫</td><td><span class="chance ch-high">প্রদত্ত ✅</span></td></tr>
-                    <tr><td><b>২২তম</b></td><td>১৩ মার্চ ২০২৬</td><td><span class="chance ch-high">প্রদত্ত ✅</span></td></tr>
                     <tr><td><b>২৩তম</b></td><td>২০ জুন ২০২৬</td><td><span class="chance ch-high">প্রদত্ত ✅</span></td></tr>
                     <tr><td><b>২৪তম</b></td><td>অক্টো–নভে ২০২৬ (সম্ভাব্য)</td><td><span class="chance ch-mid">ঘোষণা বাকি ⏳</span></td></tr>
                 </table>
@@ -2020,14 +2016,27 @@ footer strong{color:#fff;}
                 </div>
                 <h3 class="sec">কারা এই টাকা পাবেন না</h3>
                 <p>সরকারি কর্মচারী, মাসে ₹১০,০০০+ পেনশনভোগী, আয়করদাতা এবং পেশাজীবী (ডাক্তার, ইঞ্জিনিয়ার, আইনজীবী, CA) এই প্রকল্পের আওতায় পড়েন না।</p>
-                <div class="news-warn">⚠️ <b>প্রতারণা থেকে সাবধান:</b> PM কিষাণ কখনো ফোনে OTP, টাকা বা "প্রসেসিং ফি" চায় না — চাইলেই বুঝবেন প্রতারক! তারিখ জানতে শুধু <b>pmkisan.gov.in</b> দেখুন।</div>
-                <h3 class="sec">স্ট্যাটাস কীভাবে চেক করবেন</h3>
-                <p><b>pmkisan.gov.in → Know Your Status</b>-এ গিয়ে আধার/মোবাইল নম্বর দিয়ে ২ মিনিটে দেখে নিন — eKYC, পেমেন্ট স্ট্যাটাস সব এক জায়গায়। UMANG অ্যাপেও চেক করা যায়।</p>
+                <h3 class="sec">স্ট্যাটাস ধাপে ধাপে কীভাবে দেখবেন</h3>
+                <div class="news-3ways">
+                    <div class="news-way"><b>১.</b> <b>pmkisan.gov.in</b>-এ যান → Farmers Corner → <b>Know Your Status</b></div>
+                    <div class="news-way"><b>২.</b> আধার নম্বর বা রেজিস্টার্ড মোবাইল নম্বর দিয়ে <b>Get Data</b> চাপুন</div>
+                    <div class="news-way"><b>৩.</b> eKYC স্ট্যাটাস, পেমেন্ট রেকর্ড ও পরের কিস্তির যোগ্যতা — সব এক স্ক্রিনে দেখা যাবে</div>
+                </div>
+                <h3 class="sec">টাকা আটকে গেলে কী করবেন</h3>
+                <p>স্ট্যাটাসে <b>FTO Generated</b> মানে টাকা পাঠানোর নির্দেশ তৈরি — ২-৩ দিনে অ্যাকাউন্টে ঢুকবে। আর <b>Payment Failed</b> দেখালে সাধারণত তিনটে কারণ: eKYC অসম্পূর্ণ, ব্যাংক অ্যাকাউন্টে আধার লিংক নেই, বা অ্যাকাউন্ট বন্ধ/ভুল। কারণ ঠিক করে পরের কিস্তিতেই টাকা পেয়ে যাবেন।</p>
+                <h3 class="sec">eKYC-র ৩টে পদ্ধতি</h3>
+                <div class="news-3ways">
+                    <div class="news-way"><b>১. OTP eKYC:</b> pmkisan.gov.in-এ আধার-লিংকড মোবাইলে OTP দিয়ে — ঘরে বসেই</div>
+                    <div class="news-way"><b>২. বায়োমেট্রিক eKYC:</b> কাছের CSC সেন্টারে আঙুলের ছাপ দিয়ে</div>
+                    <div class="news-way"><b>৩. ফেস অথেন্টিকেশন:</b> UMANG অ্যাপে মুখ দেখিয়ে — পাসওয়ার্ডের ঝামেলা নেই</div>
+                </div>
+                <h3 class="sec">নতুন কৃষক কীভাবে নাম লেখাবেন</h3>
+                <p>pmkisan.gov.in → <b>New Farmer Registration</b>। লাগবে: আধার কার্ড, জমির রেকর্ড (পর্চা/খতিয়ান), ব্যাংক পাসবুক। আবেদনের পর ব্লক কৃষি দপ্তর যাচাই করে — অনুমোদন হলে পরের কিস্তি থেকেই টাকা।</p>
                 <div class="news-helpline">
                     <h4>📞 হেল্পলাইন — সমস্যা থাকলে যোগাযোগ করুন</h4>
                     <a href="tel:155261">155261</a> <span style="font-size:13px;">(টোল-ফ্রি)</span><br>
                     <a href="tel:01124300606">011-24300606</a>
-                    <p>🌐 পোর্টাল: pmkisan.gov.in &nbsp;|&nbsp; 📱 UMANG অ্যাপেও স্ট্যাটাস দেখা যায়</p>
+                    <p>🌐 পোর্টাল: pmkisan.gov.in &nbsp;|&nbsp; 📱 UMANG অ্যাপেও স্ট্যাটাস দেখা যায় &nbsp;|&nbsp; ⚠️ ফোনে OTP বা টাকা চাইলে দেবেন না — সেটা প্রতারক!</p>
                 </div>
                 <div class="news-related">
                     <h4>📌 আরও পড়ুন</h4>
