@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Us | যোগাযোগ — DAFADAR ONLINE SAVA</title>
+<meta name="description" content="Contact DAFADAR ONLINE SAVA — email, WhatsApp, YouTube. যোগাযোগ করুন: ইমেইল, WhatsApp, YouTube.">
+<style>
+:root{--bg:#f1f5f9;--card:#fff;--ink:#1e293b;--mute:#64748b;--line:#e2e8f0;--blue:#4f46e5;--blue2:#7c3aed}
+@media (prefers-color-scheme:dark){:root{--bg:#0f172a;--card:#1e1b4b;--ink:#e2e8f0;--mute:#94a3b8;--line:#334155}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans Bengali","Segoe UI",Arial,sans-serif;line-height:1.75}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 50px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px}
+h1{font-size:26px;margin:6px 0 4px}h2{font-size:19px;margin:26px 0 8px}
+p,li{font-size:15.5px}.en{color:var(--mute);font-size:14.5px;margin-top:-4px}
+a{color:var(--blue)}.back{display:inline-block;margin:6px 0 14px;font-weight:600;text-decoration:none}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:18px 0}
+.cbox{border:1px solid var(--line);border-radius:12px;padding:16px;text-decoration:none;color:var(--ink);display:block;transition:transform .15s}
+.cbox:hover{transform:translateY(-2px)}
+.cbox .ic{font-size:26px}.cbox b{display:block;margin:6px 0 2px;font-size:16px}.cbox span{color:var(--mute);font-size:14px;word-break:break-all}
+form label{display:block;font-weight:600;margin:14px 0 4px}
+form input,form textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit;background:var(--bg);color:var(--ink)}
+form textarea{min-height:110px;resize:vertical}
+.btn{display:inline-block;margin-top:16px;padding:12px 26px;border:0;border-radius:999px;font-size:16px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue2));cursor:pointer}
+.note{color:var(--mute);font-size:13.5px;margin-top:14px}
+</style></head><body><div class="wrap">
+<a class="back" href="index.html">&larr; হোম / Home</a>
+<div class="card">
+<h1>যোগাযোগ করুন (Contact Us)</h1>
+<p class="en">Questions, feedback or a tool request? Reach us on any of these — we usually reply within 24 hours.</p>
+<p>প্রশ্ন, মতামত বা নতুন টুলের অনুরোধ — যেকোনো মাধ্যমে জানান, সাধারণত ২৪ ঘণ্টার মধ্যে উত্তর দিই।</p>
+
+<div class="cgrid">
+<a class="cbox" href="mailto:cscfreetools@gmail.com">
+<span class="ic">✉️</span><b>Email / ইমেইল</b><span>cscfreetools@gmail.com</span></a>
+<a class="cbox" href="https://wa.me/918906139223" target="_blank" rel="noopener">
+<span class="ic">💬</span><b>WhatsApp</b><span>+91 89061 39223</span></a>
+<a class="cbox" href="https://www.youtube.com/@DafadarOnlineSeva" target="_blank" rel="noopener">
+<span class="ic">▶️</span><b>YouTube</b><span>@DafadarOnlineSeva</span></a>
+</div>
+
+<h2>📍 ঠিকানা / Address</h2>
+<p>Baduria, North 24 Parganas, West Bengal — 743292</p>
+
+<h2>✍️ মেসেজ পাঠান / Send a message</h2>
+<p class="en">Fill this in — it will open WhatsApp with your message ready to send. No account needed.</p>
+<form onsubmit="sendWA(event)">
+<label for="nm">আপনার নাম / Your name</label>
+<input id="nm" required placeholder="যেমন: রহিম উদ্দিন">
+<label for="msg">মেসেজ / Message</label>
+<textarea id="msg" required placeholder="আপনার প্রশ্ন বা মতামত লিখুন…"></textarea>
+<button class="btn" type="submit">WhatsApp-এ পাঠান ➤</button>
+</form>
+<p class="note">ফর্মটি কোনো সার্ভারে তথ্য পাঠায় না — শুধু আপনার WhatsApp খুলে মেসেজ তৈরি করে দেয়।<br>
+<span class="en">This form sends nothing to any server — it only opens your WhatsApp with the message pre-filled.</span></p>
+</div></div>
+<script>
+function sendWA(e){e.preventDefault();
+var t="নমস্কার! আমি "+document.getElementById('nm').value.trim()+"\n\n"+document.getElementById('msg').value.trim();
+window.open("https://wa.me/918906139223?text="+encodeURIComponent(t),"_blank");}
+</script>
+</body></html>
