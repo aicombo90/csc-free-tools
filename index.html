@@ -1432,6 +1432,16 @@ footer strong{color:#fff;}
                 </div>
                 <div class="news-strip"><span>💰 ₹২,০০০</span><span>📅 অক্টো–নভে ২০২৬</span><span>🌾 ৯.৪৪ কোটি কৃষক</span></div>
             </div>
+            <div class="tool-card" data-name="annapurna complaint message অভিযোগ মেসেজ অন্নপূর্ণা টাকা আসেনি whatsapp হেল্পলাইন grievance" onclick="openGenericModal('complaintMsgModal')">
+                <div class="tool-card-top">
+                    <div class="tool-icon"><i class="fa-solid fa-file-pen"></i></div>
+                    <div class="tool-card-text">
+                        <span class="tool-tag">📋 Complaint Helper</span>
+                        <h3>অন্নপূর্ণা অভিযোগ মেসেজ তৈরি</h3>
+                        <p>টাকা আসেনি? স্ট্যাটাস অনুযায়ী রেডি অভিযোগ মেসেজ — তথ্য বসাও, কপি করে হেল্পলাইনে পাঠাও!</p>
+                    </div>
+                </div>
+            </div>
             <div class="tool-card" data-name="banglar bhumi land record জমির তথ্য জমি রেকর্ড খতিয়ান বাংলার ভূমি land">
                 <div class="tool-card-top">
                     <div class="tool-icon land-icon"><i class="fa-solid fa-map-location-dot"></i></div>
@@ -2045,6 +2055,44 @@ footer strong{color:#fff;}
                 </div>
                 <div class="news-disc">ℹ️ প্রতিবেদনটি PIB, pmkisan.gov.in ও বিভিন্ন সংবাদমাধ্যমের তথ্যের ভিত্তিতে তৈরি (২০ অক্টোবর ২০২৬)। কিস্তির তারিখ সরকারি ঘোষণা সাপেক্ষে পরিবর্তন হতে পারে।</div>
             </div>
+        </div>
+    </div>
+
+    <!-- অন্নপূর্ণা অভিযোগ মেসেজ মোডাল -->
+    <div id="complaintMsgModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeGenericModal('complaintMsgModal')">&times;</span>
+            <div style="text-align:center; margin-bottom: 15px;">
+                <i class="fa-solid fa-file-pen" style="font-size: 40px; color: #4f46e5;"></i>
+                <h3 style="color: #1e1b4b; margin-top: 10px;">অন্নপূর্ণা অভিযোগ মেসেজ তৈরি</h3>
+                <p style="font-size: 14px; color: #64748b;">নিজের তথ্য বসাও → স্ট্যাটাস বেছে নাও → মেসেজ কপি করে পাঠাও</p>
+            </div>
+            <div class="bio-form">
+                <div class="bio-field"><label>আবেদনকারীর নাম</label><input type="text" id="cmName" placeholder="যেমন: আরজিনা বিবি" oninput="buildComplaintMsg()"></div>
+                <div class="bio-field"><label>আবেদন নম্বর (Application ID)</label><input type="text" id="cmId" placeholder="যেমন: 303100370692" oninput="buildComplaintMsg()"></div>
+                <div class="bio-field"><label>জেলা</label><input type="text" id="cmDist" placeholder="যেমন: North 24 Parganas" oninput="buildComplaintMsg()"></div>
+                <div class="bio-field"><label>ব্লক</label><input type="text" id="cmBlock" placeholder="যেমন: Baduria" oninput="buildComplaintMsg()"></div>
+                <div class="bio-field"><label>রেজিস্টার্ড মোবাইল নম্বর</label><input type="tel" id="cmMobile" placeholder="10-সংখ্যার মোবাইল নম্বর" maxlength="10" oninput="buildComplaintMsg()"></div>
+                <div class="bio-field"><label>আপনার স্ট্যাটাস বেছে নিন</label>
+                    <select id="cmStatus" onchange="buildComplaintMsg()">
+                        <option value="approved">✅ Approved — কিন্তু টাকা ঢোকেনি</option>
+                        <option value="failed">❌ Payment Failed</option>
+                        <option value="further">🔍 For Further Verification</option>
+                        <option value="underver">⏳ Under Verification</option>
+                        <option value="underprocess">🔄 Under Process</option>
+                        <option value="rejected">🚫 Rejected</option>
+                    </select>
+                </div>
+            </div>
+            <div style="background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:12px; padding:14px; margin-top:14px;">
+                <div style="font-size:12px; font-weight:700; color:#64748b; letter-spacing:.5px; margin-bottom:8px;">📝 তোমার মেসেজ (প্রিভিউ)</div>
+                <p id="cmPreview" style="font-size:14.5px; line-height:1.9; color:#1e293b; margin:0;"></p>
+            </div>
+            <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;">
+                <button onclick="copyComplaintMsg()" style="flex:1; min-width:150px; background:linear-gradient(135deg,#4f46e5,#7c3aed); color:#fff; border:none; padding:13px; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer;">📋 মেসেজ কপি করো</button>
+                <button onclick="shareComplaintWhatsApp()" style="flex:1; min-width:150px; background:#25d366; color:#fff; border:none; padding:13px; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer;">📲 WhatsApp-এ পাঠাও</button>
+            </div>
+            <p style="font-size:12.5px; color:#94a3b8; margin-top:12px; line-height:1.7;">💡 মেসেজটি কপি করে অন্নপূর্ণা হেল্পলাইন <b>82820 82820</b> (সকাল ৯টা–সন্ধ্যা ৬টা) নম্বরে WhatsApp বা কল করে পাঠাতে পারো। কাউকে OTP বা পুরো আধার নম্বর পাঠাবে না।</p>
         </div>
     </div>
 
@@ -3433,6 +3481,46 @@ footer strong{color:#fff;}
         ============================================================= */
         function openGenericModal(id){ document.getElementById(id).style.display = 'block'; }
         function closeGenericModal(id){ document.getElementById(id).style.display = 'none'; }
+        // ---------- অন্নপূর্ণা অভিযোগ মেসেজ জেনারেটর ----------
+        const cmTemplates = {
+            approved: "নমস্কার, আমি অন্নপূর্ণা ভান্ডার প্রকল্পের আবেদনকারী {name}। আবেদন নম্বর {id}। জেলা {dist}, ব্লক {block}। আমার আবেদনের স্ট্যাটাস {status} দেখাচ্ছে, তবুও অক্টোবর মাসের ৩০০০ টাকা এখনো আমার ব্যাংক অ্যাকাউন্টে ঢোকেনি। আমার রেজিস্টার্ড মোবাইল নম্বর {mobile}। অনুগ্রহ করে বিষয়টি যাচাই করে দ্রুত টাকা প্রদানের ব্যবস্থা করুন। ধন্যবাদ।",
+            failed: "নমস্কার, আমি অন্নপূর্ণা ভান্ডার প্রকল্পের আবেদনকারী {name}। আবেদন নম্বর {id}। জেলা {dist}, ব্লক {block}। আমার পেমেন্ট প্রথমে {status} দেখিয়েছে, তারপর থেকে অক্টোবর মাসের ৩০০০ টাকা আর ঢোকেনি। আমার রেজিস্টার্ড মোবাইল নম্বর {mobile}। অনুগ্রহ করে কারণটি দেখে পুনরায় টাকা পাঠানোর ব্যবস্থা করুন। ধন্যবাদ।",
+            further: "নমস্কার, আমি অন্নপূর্ণা ভান্ডার প্রকল্পের আবেদনকারী {name}। আবেদন নম্বর {id}। জেলা {dist}, ব্লক {block}। প্রথমে আমার পেমেন্ট ফেল্ড দেখিয়েছিল, এখন স্ট্যাটাস {status} হয়ে পড়ে আছে। অক্টোবর মাসের ৩০০০ টাকা এখনো পাইনি। আমার রেজিস্টার্ড মোবাইল নম্বর {mobile}। অনুগ্রহ করে আবেদনটি যাচাই করে সাহায্য করুন। ধন্যবাদ।",
+            underver: "নমস্কার, আমি অন্নপূর্ণা ভান্ডার প্রকল্পের আবেদনকারী {name}। আবেদন নম্বর {id}। জেলা {dist}, ব্লক {block}। আমার আবেদন অনেকদিন ধরে {status} অবস্থায় পড়ে আছে, অক্টোবর মাসের ৩০০০ টাকা এখনো পাইনি। আমার রেজিস্টার্ড মোবাইল নম্বর {mobile}। অনুগ্রহ করে যাচাই সম্পূর্ণ করে টাকা প্রদানের ব্যবস্থা করুন। ধন্যবাদ।",
+            underprocess: "নমস্কার, আমি অন্নপূর্ণা ভান্ডার প্রকল্পের আবেদনকারী {name}। আবেদন নম্বর {id}। জেলা {dist}, ব্লক {block}। আমার আবেদনের স্ট্যাটাস {status} দেখাচ্ছে, কিন্তু অক্টোবর মাসের ৩০০০ টাকা এখনো ব্যাংক অ্যাকাউন্টে ঢোকেনি। আমার রেজিস্টার্ড মোবাইল নম্বর {mobile}। অনুগ্রহ করে বিষয়টি দেখে দ্রুত ব্যবস্থা করুন। ধন্যবাদ।",
+            rejected: "নমস্কার, আমি অন্নপূর্ণা ভান্ডার প্রকল্পের আবেদনকারী {name}। আবেদন নম্বর {id}। জেলা {dist}, ব্লক {block}। আমার আবেদনটি {status} করা হয়েছে, কিন্তু আমি বিশ্বাস করি আমি এই প্রকল্পের সব শর্ত পূরণ করি। আমার রেজিস্টার্ড মোবাইল নম্বর {mobile}। অনুগ্রহ করে আবেদনটি পুনর্বিবেচনা করে আমাকে জানান। ধন্যবাদ।"
+        };
+        const cmStatusBn = { approved: "Approved", failed: "Payment Failed", further: "For Further Verification", underver: "Under Verification", underprocess: "Under Process", rejected: "Rejected" };
+        function buildComplaintMsg(){
+            const v = id => (document.getElementById(id).value || "").trim();
+            const st = document.getElementById('cmStatus').value;
+            let txt = cmTemplates[st]
+                .replace('{name}', v('cmName') || '[আপনার নাম]')
+                .replace('{id}', v('cmId') || '[আবেদন নম্বর]')
+                .replace('{dist}', v('cmDist') || '[জেলা]')
+                .replace('{block}', v('cmBlock') || '[ব্লক]')
+                .replace('{mobile}', v('cmMobile') || '[মোবাইল নম্বর]')
+                .replace('{status}', '*' + cmStatusBn[st] + '*');
+            document.getElementById('cmPreview').innerHTML = txt
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/\*([^*]+)\*/g, '<b style="color:#4f46e5;">$1</b>');
+            return txt;
+        }
+        function copyComplaintMsg(){
+            const txt = buildComplaintMsg();
+            const done = () => alert('✅ মেসেজ কপি হয়ে গেছে! এবার WhatsApp-এ পাঠাও।');
+            if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done).catch(() => fallbackCopy(txt, done));
+            else fallbackCopy(txt, done);
+        }
+        function fallbackCopy(txt, done){
+            const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+            try { document.execCommand('copy'); done(); } catch(e){ alert('কপি হয়নি — মেসেজটা হাতে সিলেক্ট করে কপি করো।'); }
+            document.body.removeChild(ta);
+        }
+        function shareComplaintWhatsApp(){
+            const txt = buildComplaintMsg();
+            window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank');
+        }
 
         window.addEventListener('click', function(e){
             document.querySelectorAll('.modal').forEach(function(m){
@@ -3607,6 +3695,9 @@ footer strong{color:#fff;}
         {icon:'📰',title:'Annapurna News: টাকা পাননি?',kw:['annapurna news','অন্নপূর্ণা টাকা','অন্নপূর্ণা খবর','টাকা পাননি','টাকা ঢোকেনি','payment update','অক্টোবর টাকা','কবে ঢুকবে','খবর','october payment'],open:"openGenericModal('annapurnaNewsModal')",
          d_en:'October payment news for Annapurna Bhandar — dates, helplines, claim process, status guide.',d_bn:'অন্নপূর্ণা ভান্ডার অক্টোবর পেমেন্টের খবর — তারিখ, হেল্পলাইন, ক্লেম প্রসেস, স্ট্যাটাস গাইড।',
          h_en:'Open the news card → read the full report.',h_bn:'নিউজ কার্ড খোলো → পুরো খবর পড়ো।'},
+        {icon:'📋',title:'অন্নপূর্ণা অভিযোগ মেসেজ তৈরি',kw:['annapurna complaint','complaint message','অভিযোগ','অভিযোগ মেসেজ','টাকা আসেনি','taka aseni','payment failed','verification','grievance','হেল্পলাইন মেসেজ'],open:"openGenericModal('complaintMsgModal')",
+         d_en:'Make a ready complaint message for Annapurna — pick your status, fill details, copy & send.',d_bn:'অন্নপূর্ণার অভিযোগ মেসেজ বানাও — স্ট্যাটাস বেছে তথ্য বসিয়ে কপি করে পাঠাও।',
+         h_en:'Fill name/ID/district/block/mobile → choose status → Copy or WhatsApp.',h_bn:'নাম/আইডি/জেলা/ব্লক/মোবাইল বসাও → স্ট্যাটাস বেছে নাও → কপি বা WhatsApp করো।'},
         {icon:'🌾',title:'PM Kisan News: ২৪তম কিস্তি',kw:['pm kisan','pm kisan news','পিএম কিষাণ','কিষাণ খবর','kisan kist','কিস্তি','২৪তম কিস্তি','24th installment','pm kisan taka','কৃষক টাকা','ekyc'],open:"openGenericModal('pmkisanNewsModal')",
          d_en:'PM-KISAN 24th installment update — expected date, eKYC requirement, helpline, fake-news alert.',d_bn:'PM কিষাণ ২৪তম কিস্তির আপডেট — সম্ভাব্য তারিখ, eKYC, হেল্পলাইন, ভুয়ো খবর সতর্কতা।',
          h_en:'Open the news card → read the full report.',h_bn:'নিউজ কার্ড খোলো → পুরো খবর পড়ো।'},
