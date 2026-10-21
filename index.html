@@ -1160,30 +1160,65 @@ footer strong{color:#fff;}
         </div>
     </div>
 
-    <section class="hero">
-        <div class="hero-dots"></div>
-        <span class="hero-float-dot hfd-1"></span>
-        <span class="hero-float-dot hfd-2"></span>
-        <span class="hero-float-dot hfd-3"></span>
-        <div class="hero-inner">
-            <div class="hero-content">
-                <button class="hero-new-badge" onclick="openBiodataModal()">✨ NEW: Biodata Maker — Try it Free</button>
-                <div class="hero-badge" id="heroBadge">100% Safe & Free Service</div>
-                <h1 id="heroTitle">Dafadar Online Sava: All Your Tasks Done in One Single Place</h1>
-                <p id="heroDesc">A professional and easy digital platform for online form filling, passport photo creation and file size reduction.</p>
-                <div class="hero-trust-row">
-                    <span><i class="fa-solid fa-circle-check"></i> Completely Free</span>
-                    <span><i class="fa-solid fa-circle-check"></i> No Registration Required</span>
-                    <span><i class="fa-solid fa-circle-check"></i> Fast & Easy to Use</span>
+    <section class="hero hero-new">
+        <div class="hero-new-inner">
+            <div class="hero-new-content">
+                <h1>আপনার সব কাজের<br><span class="hero-hl">একমাত্র ঠিকানা</span></h1>
+                <p>পাসপোর্ট ফটো, ব্যাকগ্রাউন্ড রিমুভ, বায়োডাটা, PDF টুলস, সরকারি ফর্মের গাইড — সব এক জায়গায়, সম্পূর্ণ ফ্রি।</p>
+                <div class="hero-new-btns">
+                    <a href="#toolsGrid" class="hero-btn-green"><i class="fa-solid fa-bolt"></i> টুল ব্যবহার করুন →</a>
+                    <a href="#secTitle" class="hero-btn-green"><i class="fa-solid fa-newspaper"></i> আপডেট দেখুন</a>
                 </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-visual-card hvc-1"><i class="fa-solid fa-camera"></i><span>Passport Photo Editor</span></div>
-                <div class="hero-visual-card hvc-2"><i class="fa-solid fa-file-pdf"></i><span>PDF Compressor</span></div>
-                <div class="hero-visual-card hvc-3"><i class="fa-solid fa-id-card"></i><span>Voter Services</span></div>
+                <div class="hero-new-trust">
+                    <span><i class="fa-solid fa-circle-check"></i> সম্পূর্ণ ফ্রি</span>
+                    <span><i class="fa-solid fa-bolt"></i> সহজ গাইড</span>
+                    <span><i class="fa-solid fa-shield-halved"></i> ১০০% নিরাপদ</span>
+                    <span><i class="fa-solid fa-handshake"></i> সবসময় পাশে</span>
+                </div>
             </div>
         </div>
     </section>
+    <style>
+        /* ===== OCB-style redesign overrides ===== */
+        .hero-new { position: relative; padding: 26px 5% !important; background: none !important; border: none !important; overflow: visible !important; }
+        .hero-new::before, .hero-new::after { display: none !important; }
+        .hero-new-inner { max-width: 1200px; margin: 0 auto; border-radius: 26px; overflow: hidden; position: relative;
+            background: linear-gradient(100deg, rgba(3,10,7,.96) 20%, rgba(3,10,7,.55) 60%, rgba(3,10,7,.25) 100%), url('assets/hero-bg.jpg') center/cover;
+            min-height: 380px; display: flex; align-items: center; padding: 48px 5%; box-shadow: 0 24px 60px rgba(0,0,0,.25); }
+        .hero-new-content { max-width: 640px; position: relative; z-index: 2; }
+        .hero-new-content h1 { font-size: 52px !important; line-height: 1.25 !important; color: #fff !important; font-weight: 900 !important; margin: 0 0 16px !important; text-shadow: 0 2px 18px rgba(0,0,0,.5) !important; }
+        .hero-new-content h1 .hero-hl { color: #f9d54a !important; }
+        .hero-new-content p { font-size: 19px !important; color: #e8f2ea !important; line-height: 1.7 !important; margin-bottom: 26px !important; }
+        .hero-new-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 26px; }
+        .hero-btn-green { background: #1fc64c; color: #fff !important; text-decoration: none; padding: 13px 26px; border-radius: 10px; font-weight: 800; font-size: 16px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 8px 22px rgba(31,198,76,.35); transition: transform .2s; }
+        .hero-btn-green:hover { transform: translateY(-2px); }
+        .hero-new-trust { display: flex; gap: 12px; flex-wrap: wrap; }
+        .hero-new-trust span { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.16); color: #fff; font-size: 13.5px; font-weight: 700; padding: 9px 16px; border-radius: 30px; display: inline-flex; align-items: center; gap: 7px; backdrop-filter: blur(4px); }
+        .hero-new-trust span i { color: #4ade80; }
+        @media (max-width: 768px) {
+            .hero-new-inner { min-height: 320px; padding: 36px 6%; }
+            .hero-new-content h1 { font-size: 34px !important; }
+            .hero-new-content p { font-size: 16px !important; }
+        }
+        /* ===== Gradient tool cards (OCB style) ===== */
+        .tools-grid .tool-card:not(.news-card) { border: none !important; color: #fff !important; box-shadow: 0 10px 28px rgba(15,23,42,.14) !important; }
+        .tools-grid .tool-card:not(.news-card)::before { display: none !important; }
+        .tools-grid .tool-card:not(.news-card):nth-child(8n+1) { background: linear-gradient(135deg, #2563eb, #7c3aed) !important; }
+        .tools-grid .tool-card:not(.news-card):nth-child(8n+2) { background: linear-gradient(135deg, #f59e0b, #ef4444) !important; }
+        .tools-grid .tool-card:not(.news-card):nth-child(8n+3) { background: linear-gradient(135deg, #4f46e5, #c026d3) !important; }
+        .tools-grid .tool-card:not(.news-card):nth-child(8n+4) { background: linear-gradient(135deg, #0d9488, #3b82f6) !important; }
+        .tools-grid .tool-card:not(.news-card):nth-child(8n+5) { background: linear-gradient(135deg, #db2777, #7c3aed) !important; }
+        .tools-grid .tool-card:not(.news-card):nth-child(8n+6) { background: linear-gradient(135deg, #16a34a, #0d9488) !important; }
+        .tools-grid .tool-card:not(.news-card):nth-child(8n+7) { background: linear-gradient(135deg, #ea580c, #f59e0b) !important; }
+        .tools-grid .tool-card:not(.news-card):nth-child(8n+8) { background: linear-gradient(135deg, #0891b2, #6366f1) !important; }
+        .tools-grid .tool-card:not(.news-card) h3, .tools-grid .tool-card:not(.news-card) p, .tools-grid .tool-card:not(.news-card) .tool-tag { color: #fff !important; }
+        .tools-grid .tool-card:not(.news-card) .tool-tag { background: rgba(255,255,255,.18) !important; }
+        .tools-grid .tool-card:not(.news-card) .tool-icon { background: rgba(255,255,255,.92) !important; color: #1e1b4b !important; box-shadow: 0 6px 16px rgba(0,0,0,.18); }
+        .tools-grid .tool-card:not(.news-card) .tOpenBtn { background: rgba(255,255,255,.16) !important; color: #fff !important; border: 1px solid rgba(255,255,255,.35) !important; }
+        .tools-grid .tool-card:not(.news-card):hover { transform: translateY(-7px) !important; box-shadow: 0 20px 44px rgba(15,23,42,.22) !important; }
+        /* ===== Dark green header to match ===== */
+        header .navbar { background: #07100d !important; }
+    </style>
 
     <main class="container" id="main-content">
         <div class="stats-bar" id="statsBar">
