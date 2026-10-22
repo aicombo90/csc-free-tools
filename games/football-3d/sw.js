@@ -1,11 +1,11 @@
 // 3D ফুটবল — অফলাইন খেলার জন্য ক্যাশ
 const CACHE = 'football3d-v1';
 const FILES = [
-  '/csc-free-tools/games/football-3d/',
-  '/csc-free-tools/games/football-3d/index.html',
-  '/csc-free-tools/games/football-3d/manifest.json',
-  '/csc-free-tools/games/football-3d/icon-192.png',
-  '/csc-free-tools/games/football-3d/icon-512.png',
+  '/dafadar-online-seva/games/football-3d/',
+  '/dafadar-online-seva/games/football-3d/index.html',
+  '/dafadar-online-seva/games/football-3d/manifest.json',
+  '/dafadar-online-seva/games/football-3d/icon-192.png',
+  '/dafadar-online-seva/games/football-3d/icon-512.png',
   'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js',
 ];
 
@@ -28,6 +28,6 @@ self.addEventListener('fetch', (e) => {
       const copy = res.clone();
       caches.open(CACHE).then((c) => c.put(e.request, copy));
       return res;
-    }).catch(() => caches.match('/csc-free-tools/games/football-3d/index.html')))
+    }).catch(() => caches.match('/dafadar-online-seva/games/football-3d/index.html')))
   );
 });
