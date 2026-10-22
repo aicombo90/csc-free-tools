@@ -156,6 +156,10 @@
     background:rgba(120,53,15,.88); margin:0 18px; padding:10px 14px; border-radius:12px;
     border:1px solid rgba(251,191,36,.55);
     top:calc(74px + env(safe-area-inset-top)); bottom:auto; }
+/* subtle entrance FX — canvas fade-in only (game logic untouched) */
+#game-canvas{animation:fxFade .8s ease both}
+@keyframes fxFade{from{opacity:0}}
+@media (prefers-reduced-motion:reduce){#game-canvas{animation:none}}
 </style>
 </head>
 <body>

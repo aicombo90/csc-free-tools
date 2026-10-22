@@ -1162,6 +1162,7 @@ footer strong{color:#fff;}
 
     <section class="hero hero-new">
         <div class="hero-new-inner">
+            <canvas id="emberCanvas" aria-hidden="true"></canvas>
             <div class="hero-new-content">
                 <h1>আপনার সব কাজের<br><span class="hero-hl">একমাত্র ঠিকানা</span></h1>
                 <p>পাসপোর্ট ফটো, ব্যাকগ্রাউন্ড রিমুভ, বায়োডাটা, PDF টুলস, সরকারি ফর্মের গাইড — সব এক জায়গায়, সম্পূর্ণ ফ্রি।</p>
@@ -1218,6 +1219,44 @@ footer strong{color:#fff;}
         .tools-grid .tool-card:not(.news-card):hover { transform: translateY(-7px) !important; box-shadow: 0 20px 44px rgba(15,23,42,.22) !important; }
         /* ===== Dark green header to match ===== */
         header .navbar { background: #07100d !important; }
+    </style>
+
+    <style id="gaming-fx">
+        /* ===== Free Fire-style gaming FX — fire accents only, indigo/violet theme stays ===== */
+        #emberCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+        /* Fire-glow CTA buttons */
+        .hero-btn-green{position:relative;overflow:hidden;isolation:isolate}
+        .hero-btn-green::after{content:"";position:absolute;inset:-3px;border-radius:14px;z-index:-1;
+            background:linear-gradient(120deg,#ff9a3c,#ff5e3a,#ffc93c,#ff9a3c);background-size:300% 300%;
+            filter:blur(12px);opacity:.5;animation:ffGlow 3.4s ease-in-out infinite}
+        @keyframes ffGlow{0%,100%{background-position:0% 50%;opacity:.4}50%{background-position:100% 50%;opacity:.65}}
+        .hero-btn-green .ripple,.tOpenBtn .ripple{position:absolute;border-radius:50%;transform:scale(0);
+            background:rgba(255,255,255,.45);animation:ffRipple .6s ease-out forwards;pointer-events:none}
+        @keyframes ffRipple{to{transform:scale(4);opacity:0}}
+        .tOpenBtn{position:relative;overflow:hidden}
+        /* Tool cards: scroll reveal + fire hover glow */
+        .g-reveal{opacity:0;transform:translateY(26px)}
+        .g-reveal.g-in{opacity:1;transform:none;transition:opacity .55s ease,transform .55s cubic-bezier(.2,.7,.3,1.15);transition-delay:var(--d,0s)}
+        .tools-grid .tool-card:not(.news-card):hover{box-shadow:0 20px 44px rgba(15,23,42,.22),0 0 28px rgba(255,122,26,.5)!important}
+        /* Navbar: scroll shine + animated logo glow */
+        header .navbar{transition:box-shadow .35s ease}
+        header .navbar.scrolled{box-shadow:0 8px 28px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,154,60,.4)}
+        header .navbar .logo-main{background:linear-gradient(90deg,#ffd76a,#ff9a3c,#ffd76a);background-size:200% auto;
+            -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+            animation:ffShine 4.5s linear infinite}
+        @keyframes ffShine{to{background-position:200% center}}
+        /* Footer ember top-border */
+        .site-footer{position:relative}
+        .site-footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:2px;border-radius:2px;
+            background:linear-gradient(90deg,transparent,#ff9a3c,#ffc93c,#ff9a3c,transparent);background-size:200% 100%;
+            animation:ffShine 5s linear infinite;opacity:.7}
+        @media (prefers-reduced-motion:reduce){
+            #emberCanvas{display:none}
+            .hero-btn-green::after,header .navbar .logo-main,.site-footer::before{animation:none}
+            .hero-btn-green::after{opacity:.25}
+            .g-reveal{opacity:1!important;transform:none!important}
+            .tools-grid .tool-card{transition:none}
+        }
     </style>
 
     <main class="container" id="main-content">
@@ -5128,6 +5167,134 @@ async function gvDeletePw(id){
 gv.remembered = gvSessLoad();
 if (gv.remembered) setTimeout(function(){ gvLoadGIS().catch(function(){}); }, 2500);
 
+</script>
+<script>
+/* ===== Free Fire-style gaming FX (visual only — no tool logic touched) ===== */
+(function(){
+"use strict";
+var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+/* --- 1. Ember particle canvas on the hero (lightweight, pauses when hidden) --- */
+(function embers(){
+    if (reduceMotion) return;
+    var canvas = document.getElementById('emberCanvas');
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var hero = canvas.parentElement;
+    var W = 0, H = 0, parts = [], raf = null, visible = true, inView = true, i;
+    var MAX = (window.innerWidth || 800) < 768 ? 24 : 40;
+    function resize(){
+        var r = hero.getBoundingClientRect();
+        W = canvas.width = Math.max(1, Math.floor(r.width));
+        H = canvas.height = Math.max(1, Math.floor(r.height));
+    }
+    function spawn(fromBottom){
+        return { x: Math.random() * W, y: fromBottom ? H + 8 : Math.random() * H,
+            r: Math.random() * 2.1 + 0.7, vy: Math.random() * 0.55 + 0.25,
+            vx: (Math.random() - 0.5) * 0.35, ph: Math.random() * 6.28,
+            hue: 18 + Math.random() * 28, a: Math.random() * 0.45 + 0.25 };
+    }
+    function loop(){
+        raf = null;
+        if (!visible || !inView) return;
+        var p, flick;
+        ctx.clearRect(0, 0, W, H);
+        ctx.globalCompositeOperation = 'lighter';
+        for (i = 0; i < parts.length; i++){
+            p = parts[i];
+            p.ph += 0.05;
+            p.y -= p.vy;
+            p.x += p.vx + Math.sin(p.ph) * 0.25;
+            if (p.y < -12 || p.x < -12 || p.x > W + 12){ parts[i] = spawn(true); continue; }
+            flick = 0.7 + 0.3 * Math.sin(p.ph * 2);
+            ctx.beginPath();
+            ctx.fillStyle = 'hsla(' + p.hue.toFixed(0) + ',95%,58%,' + (p.a * flick).toFixed(3) + ')';
+            ctx.arc(p.x, p.y, p.r, 0, 6.2832);
+            ctx.fill();
+        }
+        ctx.globalCompositeOperation = 'source-over';
+        raf = requestAnimationFrame(loop);
+    }
+    function start(){ if (raf === null){ resize(); raf = requestAnimationFrame(loop); } }
+    function stop(){ if (raf !== null){ cancelAnimationFrame(raf); raf = null; } }
+    for (i = 0; i < MAX; i++) parts.push(spawn(false));
+    resize();
+    window.addEventListener('resize', resize);
+    document.addEventListener('visibilitychange', function(){ visible = !document.hidden; if (visible) start(); else stop(); });
+    if ('IntersectionObserver' in window){
+        new IntersectionObserver(function(es){ inView = es[0].isIntersecting; if (inView) start(); else stop(); }, { threshold: 0 }).observe(hero);
+    }
+    start();
+})();
+
+/* --- 2. Staggered scroll reveal for cards, titles, stats, footer --- */
+(function reveals(){
+    if (reduceMotion || !('IntersectionObserver' in window)) return;
+    var cards = document.querySelectorAll('.tools-grid .tool-card');
+    Array.prototype.forEach.call(cards, function(c, i){
+        c.classList.add('g-reveal');
+        c.style.setProperty('--d', ((i % 8) * 0.07).toFixed(2) + 's');
+    });
+    var others = document.querySelectorAll('.section-title, #statsBar .stat, .site-footer');
+    Array.prototype.forEach.call(others, function(el, i){
+        el.classList.add('g-reveal');
+        el.style.setProperty('--d', (i * 0.05).toFixed(2) + 's');
+    });
+    var io = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('g-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    Array.prototype.forEach.call(document.querySelectorAll('.g-reveal'), function(el){ io.observe(el); });
+})();
+
+/* --- 3. Navbar shine on scroll --- */
+(function nav(){
+    var nav = document.querySelector('header .navbar');
+    if (!nav) return;
+    var ticking = false;
+    function upd(){ nav.classList.toggle('scrolled', window.scrollY > 24); ticking = false; }
+    window.addEventListener('scroll', function(){ if (!ticking){ ticking = true; requestAnimationFrame(upd); } }, { passive: true });
+    upd();
+})();
+
+/* --- 4. Button ripple (visual only, never blocks clicks) --- */
+document.addEventListener('click', function(e){
+    if (reduceMotion) return;
+    var btn = e.target.closest ? e.target.closest('.hero-btn-green, .tOpenBtn') : null;
+    if (!btn) return;
+    var r = btn.getBoundingClientRect();
+    var s = Math.max(r.width, r.height);
+    var sp = document.createElement('span');
+    sp.className = 'ripple';
+    sp.style.width = sp.style.height = s + 'px';
+    sp.style.left = (e.clientX - r.left - s / 2) + 'px';
+    sp.style.top = (e.clientY - r.top - s / 2) + 'px';
+    btn.appendChild(sp);
+    setTimeout(function(){ if (sp.parentNode) sp.parentNode.removeChild(sp); }, 700);
+});
+
+/* --- 5. Subtle card tilt (fine-pointer devices only) --- */
+(function tilt(){
+    if (reduceMotion) return;
+    if (!window.matchMedia || !window.matchMedia('(pointer:fine)').matches) return;
+    Array.prototype.forEach.call(document.querySelectorAll('.tools-grid .tool-card'), function(card){
+        card.addEventListener('mousemove', function(e){
+            if (card._traf) return;
+            var cx = e.clientX, cy = e.clientY;
+            card._traf = requestAnimationFrame(function(){
+                card._traf = null;
+                var r = card.getBoundingClientRect();
+                var rx = ((cy - r.top) / r.height - 0.5) * -7;
+                var ry = ((cx - r.left) / r.width - 0.5) * 9;
+                card.style.transform = 'translateY(-7px) perspective(800px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) scale(1.02)';
+            });
+        });
+        card.addEventListener('mouseleave', function(){
+            if (card._traf){ cancelAnimationFrame(card._traf); card._traf = null; }
+            card.style.transform = '';
+        });
+    });
+})();
+})();
 </script>
 </body>
 </html>

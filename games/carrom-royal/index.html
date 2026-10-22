@@ -53,6 +53,12 @@ canvas#board{width:100%;height:100%;border-radius:18px;touch-action:none;box-sha
 #toast{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-80px);background:#1e1b4b;border:1px solid #f59e0b;color:#fde68a;padding:10px 20px;border-radius:999px;font-weight:800;font-size:14px;z-index:60;transition:transform .3s;white-space:nowrap;box-shadow:0 8px 30px rgba(0,0,0,.5)}
 #toast.show{transform:translateX(-50%) translateY(0)}
 @media (max-height:640px){#menu h1{font-size:32px}.mode-btn{padding:12px 14px;font-size:15px}}
+/* subtle gaming FX — menu entrance + title ember glow (visual only) */
+#menu{animation:fxUp .5s ease both}
+#menu h1{text-shadow:0 0 18px rgba(255,154,60,.55);animation:fxPulse 3s ease-in-out infinite}
+@keyframes fxPulse{50%{text-shadow:0 0 30px rgba(255,180,60,.9)}}
+@keyframes fxUp{from{opacity:0;transform:translateY(14px)}}
+@media (prefers-reduced-motion:reduce){#menu,#menu h1{animation:none}}
 </style>
 </head>
 <body>
