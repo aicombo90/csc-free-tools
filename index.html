@@ -3789,101 +3789,307 @@ footer strong{color:#fff;}
         })();
         /* ================= Seva AI Assistant ================= */
         const AI_KB = [
-        {icon:'📷',title:'One Click Passport Photo',kw:['passport','পাসপোর্ট','পাসপোট','passport size','photo banano','ছবি বানানো'],open:"openStudioModal()",
+        {icon:'📷',title:'One Click Passport Photo',kw:['passport','passport photo','passport size','passport size photo','পাসপোর্ট','পাসপোর্ট ফটো','পাসপোর্ট ছবি','পাসপোর্ট সাইজ','পাসপোট','পাসপোর্টের ছবি','photo banano','ছবি বানানো','ফটো বানানো','passportphoto','photo maker','ফটো মেকার','35x45','3.5x4.5','পাসপোর্ট সাইজ ছবি','passport wala','id photo','আইডি ফটো','photo crop','ফটো ক্রপ','পাসপোর্ট ফটো বানানো','chobi tolo'],open:"openStudioModal()",
          d_en:'Make a perfect passport-size photo at home from any photo — auto crop & resize.',d_bn:'যেকোনো ছবি থেকে বাড়িতে বসে পারফেক্ট পাসপোর্ট সাইজ ফটো — অটো ক্রপ ও রিসাইজ।',
          h_en:'Open the tool → upload your photo → adjust → download the passport-size copy.',h_bn:'টুল খোলো → ছবি আপলোড করো → ডাউনলোড করো।'},
-        {icon:'✨',title:'Background Remover',kw:['background','ব্যাকগ্রাউন্ড','remove bg','bg remover','ছবির পিছন'],open:"openRmBgModal()",
+        {icon:'✨',title:'Background Remover',kw:['background','background remover','remove background','remove bg','bg remover','bg remove','ব্যাকগ্রাউন্ড','ব্যাকগ্রাউন্ড রিমুভ','ছবির পিছন','পিছনের ব্যাকগ্রাউন্ড','background hatao','ব্যাকগ্রাউন্ড সরাও','ব্যাকগ্রাউন্ড হটাও','transparent','ট্রান্সপারেন্ট','png banano','সাদা ব্যাকগ্রাউন্ড','white background','photo background','ছবির ব্যাকগ্রাউন্ড','background erase','ব্যাকগ্রাউন্ড মুছে','bg hatana','পিছন মুছে','background changer'],open:"openRmBgModal()",
          d_en:'Remove photo background in HD and download transparent PNG.',d_bn:'ছবির ব্যাকগ্রাউন্ড মুছে HD transparent PNG ডাউনলোড করো।',
          h_en:'Open the tool → upload image → background removed automatically → download.',h_bn:'টুল খোলো → ছবি দাও → ব্যাকগ্রাউন্ড মুছে যাবে → ডাউনলোড।'},
-        {icon:'🖼️',title:'Image Resizer & Compressor',kw:['resize','রিসাইজ','compress image','ছবি ছোট','image size','kb'],open:"openImgToolModal()",
+        {icon:'🖼️',title:'Image Resizer & Compressor',kw:['resize','resizer','image resize','compress image','image compressor','ছবি ছোট','ছবি ছোট করো','রিসাইজ','ইমেজ রিসাইজ','image size','photo size','ছবির সাইজ','kb','কেবি','photo compress','ফটো কম্প্রেস','image ko chota','ছবি ছোট করা','reduce photo size','ফর্মের ছবি','form photo','20kb','ছবি কেবি','photo resize','ইমেজ কম্প্রেস','chobi choto','kb photo'],open:"openImgToolModal()",
          d_en:'Resize images to exact dimensions or KB — perfect for online forms.',d_bn:'ছবি নির্দিষ্ট সাইজ বা KB-তে ছোট করো — অনলাইন ফর্মের জন্য পারফেক্ট।',
          h_en:'Open the tool → upload image → set size → download.',h_bn:'টুল খোলো → ছবি দাও → সাইজ সেট করো → ডাউনলোড।'},
-        {icon:'📑',title:'Image to PDF',kw:['image to pdf','jpg to pdf','img2pdf','ছবি থেকে পিডিএফ'],open:"openImg2PdfModal()",
+        {icon:'📑',title:'Image to PDF',kw:['image to pdf','images to pdf','jpg to pdf','jpeg to pdf','png to pdf','img2pdf','ছবি থেকে পিডিএফ','ছবি পিডিএফ','photo to pdf','ফটো টু পিডিএফ','pdf banano','পিডিএফ বানানো','pdf banao','make pdf','পিডিএফ তৈরি','ছবি দিয়ে পিডিএফ','photo se pdf','ছবিগুলো পিডিএফ','pdf maker','পিডিএফ মেকার'],open:"openImg2PdfModal()",
          d_en:'Turn multiple images into a single PDF document in seconds.',d_bn:'একাধিক ছবি একসাথে একটা PDF বানাও — কয়েক সেকেন্ডে।',
          h_en:'Open the tool → add images → arrange → create & download PDF.',h_bn:'টুল খোলো → ছবি যোগ করো → PDF বানিয়ে ডাউনলোড।'},
-        {icon:'🎬',title:'Thumbnail Downloader',kw:['thumbnail','থাম্বনেইল','youtube thumb'],open:"openSmartlinkThen(openThumbModal)",
+        {icon:'🎬',title:'Thumbnail Downloader',kw:['thumbnail','thumbnails','থাম্বনেইল','থামনেল','থাম্বনেল','youtube thumbnail','youtube thumb','yt thumbnail','thumb download','থাম্বনেইল ডাউনলোড','video thumbnail','ভিডিও থাম্বনেইল','hd thumbnail','thumbnail downloader','থাম্বনেইল নাও','thumb','ভিডিওর থাম্বনেইল'],open:"openSmartlinkThen(openThumbModal)",
          d_en:'Download HD thumbnails from any YouTube video instantly.',d_bn:'যেকোনো YouTube ভিডিওর HD থাম্বনেইল ডাউনলোড করো।',
          h_en:'Open the tool → paste video link → download thumbnail.',h_bn:'টুল খোলো → ভিডিও লিংক দাও → থাম্বনেইল ডাউনলোড।'},
-        {icon:'🗜️',title:'Compress PDF',kw:['compress pdf','pdf compress','পিডিএফ ছোট','pdf choto','pdf size'],open:"openPdfCompressModal()",
+        {icon:'🗜️',title:'Compress PDF',kw:['compress pdf','pdf compress','pdf compressor','পিডিএফ ছোট','পিডিএফ কম্প্রেস','pdf chota','pdf choto','pdf size','পিডিএফ সাইজ','pdf ko chota karo','পিডিএফ ছোট করো','reduce pdf','পিডিএফ ছোট করা','pdf shrink','pdf mb to kb','পিডিএফ এমবি','compress my pdf'],open:"openPdfCompressModal()",
          d_en:'Reduce PDF file size for forms & applications without losing quality.',d_bn:'ফর্মের জন্য PDF ফাইলের সাইজ ছোট করো — কোয়ালিটি ঠিক রেখে।',
          h_en:'Open the tool → upload PDF → choose level → download smaller file.',h_bn:'টুল খোলো → PDF দাও → কম্প্রেস → ডাউনলোড।'},
-        {icon:'🔤',title:'Word Counter',kw:['word count','word counter','character count','শব্দ গণনা','অক্ষর'],open:"openWordCounterModal()",
+        {icon:'🔤',title:'Word Counter',kw:['word count','word counter','character count','character counter','শব্দ গণনা','শব্দ গুনো','শব্দ গণনা করো','অক্ষর গণনা','অক্ষর','wordcount','words count','কত শব্দ','kitne shabd','letter count','অক্ষর গুনো','sentence count','বাক্য গণনা','reading time','পড়ার সময়','word calculator','শব্দ ক্যালকুলেটর'],open:"openWordCounterModal()",
          d_en:'Instant word, character, sentence count + reading time of any text.',d_bn:'যেকোনো লেখার শব্দ, অক্ষর, বাক্য গণনা + পড়ার সময়।',
          h_en:'Open the tool → paste/type text → counts appear instantly.',h_bn:'টুল খোলো → লেখা দাও → গণনা দেখো।'},
-        {icon:'💒',title:'Biodata Maker',kw:['biodata','বায়োডাটা','বায়োডেটা','resume','সিভি','marriage'],open:"openBiodataModal()",
+        {icon:'💒',title:'Biodata Maker',kw:['biodata','বায়োডাটা','বায়োডেটা','বায়ো ডাটা','biodata maker','resume','সিভি','cv','marriage','বিয়ে','বিয়ের বায়োডাটা','marriage biodata','bio data','বায়োডাটা বানানো','biodata banano','resume maker','সিভি বানানো','shadi biodata','পাত্র পাত্রী','patra patri','বায়োডাটা মেকার','bio-data','বিবাহ','marriage cv'],open:"openBiodataModal()",
          d_en:'Beautiful marriage biodata with photo — auto passport photo, dress change, auto %.',d_bn:'ছবিসহ সুন্দর বিয়ের বায়োডাটা — অটো পাসপোর্ট ফটো, ড্রেস চেঞ্জ, অটো %।',
          h_en:'Open the tool → fill details (or Sample) → upload photo → Print / Save PDF.',h_bn:'টুল খোলো → তথ্য লেখো → ছবি দাও → Print / PDF সেভ।'},
-        {icon:'🗳️',title:'Voter Services',kw:['voter','ভোটার','vote'],open:"window.open('https://voters.eci.gov.in/','_blank')",
+        {icon:'🗳️',title:'Voter Services',kw:['voter','voter id','voter card','ভোটার','ভোটার কার্ড','ভোটার আইডি','vote','ভোট','voter list','ভোটার লিস্ট','voter registration','ভোটার নাম তোলা','epic','এপিক','voter correction','ভোটার সংশোধন','voter download','ভোটার ডাউনলোড','eci','ভোটার তালিকা','new voter','নতুন ভোটার'],open:"window.open('https://voters.eci.gov.in/','_blank')",
          d_en:'Official voter portal — new registration, corrections, downloads.',d_bn:'অফিসিয়াল ভোটার পোর্টাল — নতুন নাম তোলা, সংশোধন, ডাউনলোড।',
          h_en:'Click Open → official ECI portal opens → choose your service.',h_bn:'Open চাপো → অফিসিয়াল পোর্টাল খুলবে → সেবা বেছে নাও।'},
-        {icon:'👴',title:'Pension Status',kw:['pension','পেনশন','ভাতা','bidhaba','old age'],open:"window.open('https://samarth.wb.gov.in/track-applicant-public/','_blank')",
+        {icon:'👴',title:'Pension Status',kw:['pension','pension status','পেনশন','পেনশন স্ট্যাটাস','ভাতা','bidhaba','বিধবা','বিধবা ভাতা','widow','widow pension','old age','বার্ধক্য','বার্ধক্য ভাতা','বৃদ্ধ ভাতা','old age pension','pension check','পেনশন চেক','samarth','সমর্থ','bidhaba bhata','ভাতা চেক'],open:"window.open('https://samarth.wb.gov.in/track-applicant-public/','_blank')",
          d_en:'Track West Bengal pension (old age / widow) application status.',d_bn:'পশ্চিমবঙ্গ পেনশন (বার্ধক্য/বিধবা) আবেদনের স্ট্যাটাস দেখো।',
          h_en:'Click Open → Samarth portal → enter details → check status.',h_bn:'Open চাপো → পোর্টাল খুলবে → তথ্য দিয়ে স্ট্যাটাস দেখো।'},
-        {icon:'🪪',title:'Aadhaar Services',kw:['aadhaar','আধার','adhar'],open:"window.open('https://uidai.gov.in/en/','_blank')",
+        {icon:'🪪',title:'Aadhaar Services',kw:['aadhaar','aadhar','adhar','আধার','আধার কার্ড','aadhaar card','uidai','আধার ডাউনলোড','aadhaar download','আধার আপডেট','aadhaar update','আধার সংশোধন','aadhaar correction','আধার ভেরিফাই','mobile link','মোবাইল লিংক','আধার নম্বর','aadhaar number','e-aadhaar','ই আধার'],open:"window.open('https://uidai.gov.in/en/','_blank')",
          d_en:'Official UIDAI portal — download, update & verify Aadhaar.',d_bn:'অফিসিয়াল UIDAI পোর্টাল — ডাউনলোড, আপডেট, ভেরিফাই।',
          h_en:'Click Open → UIDAI site → choose service.',h_bn:'Open চাপো → UIDAI সাইট → সেবা বেছে নাও।'},
-        {icon:'💳',title:'PAN Card',kw:['pan card','প্যান','pancard'],open:"window.open('https://onlineservices.proteantech.in/paam/endUserRegisterContact.html','_blank')",
+        {icon:'💳',title:'PAN Card',kw:['pan card','pancard','pan','প্যান','প্যান কার্ড','pan apply','প্যান আবেদন','pan correction','প্যান সংশোধন','pan download','ই প্যান','epan','e-pan','pan number','প্যান নম্বর','pan card apply','প্যান কার্ড আবেদন','nsdl'],open:"window.open('https://onlineservices.proteantech.in/paam/endUserRegisterContact.html','_blank')",
          d_en:'Apply for new PAN card or corrections via the official portal.',d_bn:'নতুন PAN কার্ড আবেদন বা সংশোধন — অফিসিয়াল পোর্টাল।',
          h_en:'Click Open → official PAN portal → fill the form.',h_bn:'Open চাপো → পোর্টাল খুলবে → ফর্ম পূরণ করো।'},
-        {icon:'🌾',title:'Banglar Bhumi',kw:['banglar bhumi','বাংলার ভূমি','jomi','জমি','khatian','খতিয়ান','land record'],open:"window.open('https://banglarbhumi.gov.in/','_blank')",
+        {icon:'🌾',title:'Banglar Bhumi',kw:['banglar bhumi','বাংলার ভূমি','bangla bhumi','jomi','জমি','জমির','khatian','খতিয়ান','land record','জমির রেকর্ড','plot','দাগ','dag number','দাগ নম্বর','mouza','মৌজা','land','জমির খতিয়ান','bhumi','porcha','পর্চা','জমির দাগ','khatian number','খতিয়ান নম্বর'],open:"window.open('https://banglarbhumi.gov.in/','_blank')",
          d_en:'West Bengal land records — khatian, plot info & services.',d_bn:'পশ্চিমবঙ্গ জমির রেকর্ড — খতিয়ান, দাগের তথ্য।',
          h_en:'Click Open → Banglar Bhumi portal → citizen services.',h_bn:'Open চাপো → বাংলার ভূমি পোর্টাল → নাগরিক সেবা।'},
-        {icon:'🍚',title:'Annapurna Bhandar',kw:['annapurna','অন্নপূর্ণা','bhandar'],open:"openAnnapurnaModal()",
+        {icon:'🍚',title:'Annapurna Bhandar',kw:['annapurna','অন্নপূর্ণা','annapurna bhandar','অন্নপূর্ণা ভান্ডার','অন্নপূর্ণা ভাণ্ডার','annapurna form','অন্নপূর্ণা ফর্ম','annapurna apply','অন্নপূর্ণা আবেদন','annapurna data','পরিবার তথ্য','annapurna family','অন্নপূর্ণা পরিবার','bhandar form','ভান্ডার ফর্ম'],open:"openAnnapurnaModal()",
          d_en:'Family-level data collection for the Annapurna Bhandar scheme.',d_bn:'অন্নপূর্ণা ভাণ্ডার প্রকল্পের পারিবারিক তথ্য সংগ্রহ।',
          h_en:'Open the tool → enter family member details → submit.',h_bn:'টুল খোলো → পরিবারের তথ্য লেখো → জমা দাও।'},
-        {icon:'📰',title:'Annapurna News: টাকা পাননি?',kw:['annapurna news','অন্নপূর্ণা টাকা','অন্নপূর্ণা খবর','টাকা পাননি','টাকা ঢোকেনি','payment update','অক্টোবর টাকা','কবে ঢুকবে','খবর','october payment'],open:"openGenericModal('annapurnaNewsModal')",
+        {icon:'📰',title:'Annapurna News: টাকা পাননি?',kw:['annapurna news','অন্নপূর্ণা নিউজ','অন্নপূর্ণা খবর','annapurna khobor','টাকা পাননি','টাকা ঢোকেনি','payment update','পেমেন্ট আপডেট','অক্টোবর টাকা','কবে ঢুকবে','october payment','অন্নপূর্ণার খবর','taka update','টাকা আপডেট','annapurna status','অন্নপূর্ণা স্ট্যাটাস'],open:"openGenericModal('annapurnaNewsModal')",
          d_en:'October payment news for Annapurna Bhandar — dates, helplines, claim process, status guide.',d_bn:'অন্নপূর্ণা ভান্ডার অক্টোবর পেমেন্টের খবর — তারিখ, হেল্পলাইন, ক্লেম প্রসেস, স্ট্যাটাস গাইড।',
          h_en:'Open the news card → read the full report.',h_bn:'নিউজ কার্ড খোলো → পুরো খবর পড়ো।'},
-        {icon:'📋',title:'অন্নপূর্ণা অভিযোগ মেসেজ তৈরি',kw:['annapurna complaint','complaint message','অভিযোগ','অভিযোগ মেসেজ','টাকা আসেনি','taka aseni','payment failed','verification','grievance','হেল্পলাইন মেসেজ'],open:"openGenericModal('complaintMsgModal')",
+        {icon:'📋',title:'অন্নপূর্ণা অভিযোগ মেসেজ তৈরি',kw:['complaint','অভিযোগ','অভিযোগ মেসেজ','complaint message','টাকা আসেনি','taka aseni','payment failed','পেমেন্ট ফেল','verification','ভেরিফিকেশন','further verification','grievance','হেল্পলাইন মেসেজ','অভিযোগ করবো','complaint korbo','pending','পেন্ডিং','অভিযোগ জানাবো','taka paini','টাকা পাইনি'],open:"openGenericModal('complaintMsgModal')",
          d_en:'Make a ready complaint message for Annapurna — pick your status, fill details, copy & send.',d_bn:'অন্নপূর্ণার অভিযোগ মেসেজ বানাও — স্ট্যাটাস বেছে তথ্য বসিয়ে কপি করে পাঠাও।',
          h_en:'Fill name/ID/district/block/mobile → choose status → Copy or WhatsApp.',h_bn:'নাম/আইডি/জেলা/ব্লক/মোবাইল বসাও → স্ট্যাটাস বেছে নাও → কপি বা WhatsApp করো।'},
-        {icon:'🌾',title:'PM Kisan News: ২৪তম কিস্তি',kw:['pm kisan','pm kisan news','পিএম কিষাণ','কিষাণ খবর','kisan kist','কিস্তি','২৪তম কিস্তি','24th installment','pm kisan taka','কৃষক টাকা','ekyc'],open:"openGenericModal('pmkisanNewsModal')",
+        {icon:'🌾',title:'PM Kisan News: ২৪তম কিস্তি',kw:['pm kisan','pm kisan news','পিএম কিষাণ','পিএম কিসান','কিষাণ','কিসান','কিষাণ খবর','kisan kist','কিস্তি','২৪তম কিস্তি','24th installment','pm kisan taka','কৃষক টাকা','ekyc','ইকেওয়াইসি','kisan samman','কিষাণ সম্মান','24 kist','২৪ কিস্তি','pmkisan','কিস্তির টাকা'],open:"openGenericModal('pmkisanNewsModal')",
          d_en:'PM-KISAN 24th installment update — expected date, eKYC requirement, helpline, fake-news alert.',d_bn:'PM কিষাণ ২৪তম কিস্তির আপডেট — সম্ভাব্য তারিখ, eKYC, হেল্পলাইন, ভুয়ো খবর সতর্কতা।',
          h_en:'Open the news card → read the full report.',h_bn:'নিউজ কার্ড খোলো → পুরো খবর পড়ো।'},
-        {icon:'🔑',title:'Password Generator',kw:['password','পাসওয়ার্ড'],open:"openSmartlinkThen(openPasswordModal)",
+        {icon:'🔑',title:'Password Generator',kw:['password','পাসওয়ার্ড','pasword','পাসওয়ার্ড বানানো','password banano','password generator','strong password','মজবুত পাসওয়ার্ড','secure password','নিরাপদ পাসওয়ার্ড','পাসওয়ার্ড তৈরি','password banao','পাসওয়ার্ড জেনারেটর','random password','পাসওয়ার্ড দাও'],open:"openSmartlinkThen(openPasswordModal)",
          d_en:'Create strong, random, secure passwords instantly.',d_bn:'মজবুত, নিরাপদ পাসওয়ার্ড বানাও এক ক্লিকে।',
          h_en:'Open the tool → set length → copy password.',h_bn:'টুল খোলো → লেন্থ সেট করো → কপি করো।'},
-        {icon:'🔳',title:'QR Code Generator',kw:['qr','কিউআর','qrcode'],open:"openSmartlinkThen(openQRModal)",
+        {icon:'🔳',title:'QR Code Generator',kw:['qr','qr code','qrcode','কিউআর','কিউআর কোড','qr banano','কিউআর বানানো','qr generator','কিউআর জেনারেটর','upi qr','ইউপিআই কিউআর','qr code banao','কিউআর কোড বানাও','qr download','স্ক্যান কোড'],open:"openSmartlinkThen(openQRModal)",
          d_en:'QR codes for links, UPI payments, WiFi & contact cards.',d_bn:'লিংক, UPI পেমেন্ট, WiFi-এর QR কোড বানাও।',
          h_en:'Open the tool → enter text/link → download QR.',h_bn:'টুল খোলো → লেখা/লিংক দাও → QR ডাউনলোড।'},
-        {icon:'📐',title:'Land Area Converter',kw:['land area','জমির মাপ','decimal','ডেসিমেল','bigha','বিঘা','katha','কাঠা','acre','একর'],open:"openLandModal()",
+        {icon:'📐',title:'Land Area Converter',kw:['land area','জমির মাপ','জমি মাপ','decimal','ডেসিমেল','bigha','বিঘা','katha','কাঠা','chatak','ছটাক','acre','একর','hectare','হেক্টর','শতক','sotok','জমি কনভার্ট','land convert','bigha to acre','কাঠা বিঘা','decimal to bigha','জমির হিসাব'],open:"openLandModal()",
          d_en:'Convert between Decimal, Acre, Bigha, Katha, Chatak.',d_bn:'ডেসিমেল, একর, বিঘা, কাঠা, ছটাকে রূপান্তর করো।',
          h_en:'Open the tool → enter value → select units → convert.',h_bn:'টুল খোলো → মান লেখো → একক বেছে নাও।'},
-        {icon:'🧮',title:'EMI Calculator',kw:['emi','ইএমআই','loan','কিস্তি','rin'],open:"openEmiModal()",
+        {icon:'🧮',title:'EMI Calculator',kw:['emi','ইএমআই','loan','লোন','কিস্তি','kisti','rin','ঋণ','loan emi','লোনের কিস্তি','emi calculator','ইএমআই ক্যালকুলেটর','monthly emi','মাসিক কিস্তি','interest','সুদ','home loan','হোম লোন','car loan','গাড়ি লোন','emi ber koro','ইএমআই বের করো'],open:"openEmiModal()",
          d_en:'Monthly EMI, total interest & schedule for any loan.',d_bn:'যেকোনো লোনের মাসিক কিস্তি, মোট সুদ হিসাব করো।',
          h_en:'Open the tool → enter loan, rate, years → see EMI.',h_bn:'টুল খোলো → লোন, সুদ, বছর লেখো → EMI দেখো।'},
-        {icon:'🎂',title:'Age Calculator',kw:['age','বয়স','boyos','dob'],open:"openAgeModal()",
+        {icon:'🎂',title:'Age Calculator',kw:['age','বয়স','boyos','বয়স হিসাব','dob','জন্মতারিখ','birthday','জন্মদিন','age calculator','বয়স ক্যালকুলেটর','how old','কত বয়স','age ber koro','বয়স বের করো','umar','বয়স জানো','birth date'],open:"openAgeModal()",
          d_en:'Exact age in years, months & days + birthday countdown.',d_bn:'বছর, মাস, দিনে সঠিক বয়স + জন্মদিন কাউন্টডাউন।',
          h_en:'Open the tool → pick date of birth → see age.',h_bn:'টুল খোলো → জন্মতারিখ দাও → বয়স দেখো।'},
-        {icon:'📊',title:'Percentage Calculator',kw:['percent','percentage','শতকরা','পার্সেন্ট'],open:"openPctModal()",
+        {icon:'📊',title:'Percentage Calculator',kw:['percent','percentage','শতকরা','পার্সেন্ট','পার্সেন্টেজ','discount','ছাড়','discount calculator','ছাড় হিসাব','marks percentage','নাম্বার পার্সেন্ট','percent nikal','পার্সেন্ট বের করো','শতকরা হিসাব','percentage kaise'],open:"openPctModal()",
          d_en:'Discounts, marks, increase/decrease — all % calculations.',d_bn:'ছাড়, নাম্বার, বৃদ্ধি/হ্রাস — সব % হিসাব।',
          h_en:'Open the tool → enter numbers → get % instantly.',h_bn:'টুল খোলো → সংখ্যা লেখো → % পাও।'},
-        {icon:'🧾',title:'GST Calculator',kw:['gst','জিএসটি'],open:"openGstModal()",
+        {icon:'🧾',title:'GST Calculator',kw:['gst','জিএসটি','gst calculator','জিএসটি ক্যালকুলেটর','gst rate','জিএসটি রেট','gst bill','জিএসটি বিল','tax','ট্যাক্স','gst kitna','জিএসটি কত','gst 18','cgst','sgst','gst nikal'],open:"openGstModal()",
          d_en:'GST inclusive/exclusive prices for 5/12/18/28% slabs.',d_bn:'৫/১২/১৮/২৮% স্ল্যাবে GST সহ/ছাড়া দাম।',
          h_en:'Open the tool → enter amount & slab → see GST.',h_bn:'টুল খোলো → টাকা ও স্ল্যাব দাও → GST দেখো।'},
-        {icon:'🗂️',title:'Document Vault',kw:['save document','document save','ডকুমেন্ট সেভ','vault'],open:"openDocsVaultModal()",
+        {icon:'🗂️',title:'Document Vault',kw:['document vault','ডকুমেন্ট ভল্ট','save document','document save','ডকুমেন্ট সেভ','ডকুমেন্ট রাখো','vault','ভল্ট','document storage','কাগজ সেভ','certificate save','সার্টিফিকেট সেভ','drive save','ড্রাইভে সেভ','document rakho','কাগজপত্র সেভ'],open:"openDocsVaultModal()",
          d_en:'Safely store your important documents in your private vault.',d_bn:'গুরুত্বপূর্ণ ডকুমেন্ট নিরাপদে সংরক্ষণ করো।',
          h_en:'Open the tool → upload & save documents.',h_bn:'টুল খোলো → ডকুমেন্ট আপলোড করে সেভ করো।'},
-        {icon:'🔐',title:'Password Vault',kw:['save password','password save','পাসওয়ার্ড সেভ','id password'],open:"openPwVaultModal()",
+        {icon:'🔐',title:'Password Vault',kw:['password vault','পাসওয়ার্ড ভল্ট','save password','password save','পাসওয়ার্ড সেভ','id password','আইডি পাসওয়ার্ড','password store','পাসওয়ার্ড রাখো','login save','লগইন সেভ','password rakho','আইডি সেভ','account save','password manager','পাসওয়ার্ড ম্যানেজার'],open:"openPwVaultModal()",
          d_en:'Store all your IDs & passwords safely in one vault.',d_bn:'সব ID-পাসওয়ার্ড এক জায়গায় নিরাপদে রাখো।',
          h_en:'Open the tool → add your accounts.',h_bn:'টুল খোলো → অ্যাকাউন্ট যোগ করো।'},
-        {icon:'⚽',title:'3D Football Game',kw:['football','ফুটবল','game','গেম','খেলা','khela'],open:"window.open('games/football-3d/','_blank')",
+        {icon:'⚽',title:'3D Football Game',kw:['football','ফুটবল','football game','ফুটবল গেম','game','গেম','খেলা','khela','khelbo','খেলবো','fifa','ফিফা','soccer','ফুটবল খেলা','play game','গেম খেলবো','match','ম্যাচ'],open:"window.open('games/football-3d/','_blank')",
          d_en:'Full 3D football match — you + AI teammates vs AI team.',d_bn:'ফুল 3D ফুটবল ম্যাচ — তুমি + AI বনাম AI টিম।',
          h_en:'Click Play → choose difficulty → use joystick / keyboard.',h_bn:'Play চাপো → লেভেল বেছে নাও → খেলো!'},
-        {icon:'🎯',title:'Carrom Royale',kw:['carrom','ক্যারাম','কেরাম','carrom game','disc pool'],open:"window.open('games/carrom-royal/','_blank')",
+        {icon:'🎯',title:'Carrom Royale',kw:['carrom','ক্যারাম','কেরাম','carrom game','ক্যারাম গেম','carrom board','ক্যারাম বোর্ড','carrom khelbo','ক্যারাম খেলবো','carrom khalo','ক্যারাম খেলা','striker','স্ট্রাইকার','queen','রানী','carrom download','disc'],open:"window.open('games/carrom-royal/','_blank')",
          d_en:'Free carrom board game — vs AI (3 levels), 2-player pass & play, or practice. Real physics, queen + cover rules.',d_bn:'ফ্রি ক্যারাম গেম — AI-এর সাথে (৩ লেভেল), দুইজন, বা প্র্যাকটিস। আসল ফিজিক্স, রানী+কভার রুল।',
          h_en:'Click Play → choose mode → drag striker, pull back to aim, release to shoot.',h_bn:'Play চাপো → মোড বেছে নাও → স্ট্রাইকার সরাও, টেনে নিশানা করো, ছাড়ো!'},
-        {icon:'🎲',title:'Portal of Legends — Mythic Ludo',kw:['ludo','লুডু','mythic ludo','portal of legends'],open:"window.open('games/ludo/','_blank')",
+        {icon:'🎲',title:'Portal of Legends — Mythic Ludo',kw:['ludo','লুডু','mythic ludo','portal of legends','লুডু গেম','ludo game','লুডু খেলা','ludo khelbo','লুডু খেলবো','dice','ছক্কা','ludo king','token','ঘুঁটি','ludo download','অনলাইন লুডু'],open:"window.open('games/ludo/','_blank')",
          d_en:'3D mythic Ludo — vs AI, online multiplayer with voice chat, power-ups and multi-realm boards.',d_bn:'3D মিথিক লুডু — AI-এর সাথে, অনলাইন মাল্টিপ্লেয়ার (ভয়েস চ্যাট সহ), পাওয়ার-আপ।',
          h_en:'Click Play → choose mode → roll dice and race tokens home.',h_bn:'Play চাপো → মোড বেছে নাও → ছক্কা মেরে ঘুঁটি ঘরে তোলো!'},
         ];
         const AI_SOON = [
-        {icon:'🧾',title:'Invoice Generator',kw:['invoice','ইনভয়েস','বিল বানানো','challan','চালান']},
-        {icon:'📇',title:'Visiting Card Maker',kw:['visiting','ভিজিটিং']},
-        {icon:'🖼️',title:'Photo Collage Maker',kw:['collage','কোলাজ']},
-        {icon:'💌',title:'Invitation Card Maker',kw:['invitation','নিমন্ত্রণ','wedding card']},
-        {icon:'👁️',title:'Image to Text (OCR)',kw:['ocr','image to text','ছবি থেকে লেখা']},
+        {icon:'🧾',title:'Invoice Generator',kw:['invoice','ইনভয়েস','বিল বানানো','বিল','challan','চালান','invoice banano','ইনভয়েস বানানো','bill maker','বিল মেকার','gst invoice','জিএসটি ইনভয়েস','receipt','রসিদ','রসিদ বানানো','cash memo','ক্যাশ মেমো','bill banano']},
+        {icon:'📇',title:'Visiting Card Maker',kw:['visiting','visiting card','ভিজিটিং','ভিজিটিং কার্ড','business card','বিজনেস কার্ড','visiting card banano','ভিজিটিং কার্ড বানানো','name card','নাম কার্ড','visiting card maker','কার্ড বানানো','shop card','দোকান কার্ড','visitingcard']},
+        {icon:'🖼️',title:'Photo Collage Maker',kw:['collage','কোলাজ','photo collage','ফটো কোলাজ','collage banano','কোলাজ বানানো','photo grid','ফটো গ্রিড','multiple photo','ছবি জোড়া','collage maker','কোলাজ মেকার','photo jod','grid photo','ফটো মিক্স']},
+        {icon:'💌',title:'Invitation Card Maker',kw:['invitation','নিমন্ত্রণ','নিমন্ত্রণ কার্ড','wedding card','বিয়ের কার্ড','invitation card','দাওয়াত কার্ড','invite','আমন্ত্রণ','আমন্ত্রণ পত্র','বিয়ে কার্ড','invitation banano','শাদি কার্ড','marriage card','বিবাহ কার্ড']},
+        {icon:'👁️',title:'Image to Text (OCR)',kw:['ocr','image to text','ছবি থেকে লেখা','photo to text','ছবি থেকে টেক্সট','text extractor','লেখা বের করো','scan text','স্ক্যান','ocr online','photo se text','ছবির লেখা','text scanner','handwriting','হাতের লেখা']},
         ];
+/* ---------- Seva AI brain v2: fuzzy matching, intents, context memory ---------- */
+function aiNorm(s){ return ' '+String(s).toLowerCase().replace(/[^a-z0-9\u0980-\u09FF\s]/g,' ').replace(/\s+/g,' ').trim()+' '; }
+function aiWords(s){ return String(s).trim().split(/\s+/).filter(Boolean); }
+function aiLev(a,b){
+    if(a===b) return 0;
+    var m=a.length,n=b.length,i,j,c,t;
+    if(!m) return n; if(!n) return m;
+    var prev=new Array(n+1),cur=new Array(n+1);
+    for(j=0;j<=n;j++) prev[j]=j;
+    for(i=1;i<=m;i++){ cur[0]=i;
+        for(j=1;j<=n;j++){ c=(a.charCodeAt(i-1)===b.charCodeAt(j-1))?0:1;
+            var del=prev[j]+1, ins=cur[j-1]+1, sub=prev[j-1]+c;
+            cur[j]=del<ins?(del<sub?del:sub):(ins<sub?ins:sub); }
+        t=prev; prev=cur; cur=t; }
+    return prev[n];
+}
+/* keyword hit: exact substring (word-boundary for short kw) OR fuzzy word match.
+   returns {w:0|0.7|1, len:effectiveLength} */
+function aiKwHit(t,words,kw){
+    kw=String(kw).toLowerCase().trim(); if(!kw) return {w:0,len:0};
+    if(kw.length>=5){ if(t.indexOf(kw)>=0) return {w:1,len:kw.length}; }
+    else if(t.indexOf(' '+kw+' ')>=0) return {w:1,len:kw.length};
+    var kws=kw.split(/\s+/),wi,ki,w,k,th,d;
+    for(wi=0;wi<words.length;wi++){ w=words[wi]; if(w.length<3) continue;
+        for(ki=0;ki<kws.length;ki++){ k=kws[ki]; if(k.length<4) continue;
+            th=Math.max(1,Math.floor(k.length/4));
+            if(Math.abs(w.length-k.length)>th) continue;
+            d=aiLev(w,k);
+            if(d<=th) return {w:(d===0?1:0.7),len:k.length}; } }
+    return {w:0,len:0};
+}
+/* score = Σ(matched kw length × 1.0 exact / 0.7 fuzzy) + title-word hits × 2 */
+function aiScoreTool(t,words,it){
+    var sc=0,ex=0,seen={},i,k,hit;
+    for(i=0;i<it.kw.length;i++){ k=it.kw[i]; if(seen[k]) continue; seen[k]=1;
+        hit=aiKwHit(t,words,k);
+        if(hit.w>0){ sc+=hit.len*hit.w; if(hit.w===1) ex++; } }
+    var tw=String(it.title).toLowerCase().split(/[^a-z0-9\u0980-\u09FF]+/),x;
+    for(i=0;i<tw.length;i++){ x=tw[i]; if(x.length<2) continue;
+        if(x.length>=5 ? t.indexOf(x)>=0 : t.indexOf(' '+x+' ')>=0) sc+=2; }
+    return {score:sc,exact:ex};
+}
+function aiRankTools(t,words){
+    var pool=[],i,r;
+    for(i=0;i<AI_KB.length;i++){ r=aiScoreTool(t,words,AI_KB[i]); if(r.score>0) pool.push({it:AI_KB[i],score:r.score,exact:r.exact}); }
+    for(i=0;i<AI_SOON.length;i++){ r=aiScoreTool(t,words,AI_SOON[i]); if(r.score>0) pool.push({it:AI_SOON[i],score:r.score,exact:r.exact,soon:true}); }
+    pool.sort(function(a,b){ return (b.score-a.score)||(b.exact-a.exact); });
+    return pool;
+}
+var aiCtx={lastTool:null,lastCands:[],candIdx:0,bn:true};
+function aiIntentHit(t,words,kws){
+    for(var i=0;i<kws.length;i++){ if(aiKwHit(t,words,kws[i]).w>0) return true; }
+    return false;
+}
+function aiLinkCard(icon,title,desc,btn,js){
+    return '<div class="ai-tool-card"><b>'+icon+' '+title+'</b><p>'+desc+'</p><button onclick="toggleAiChat();'+js+'">▶ '+btn+'</button></div>';
+}
+function aiSchemeAnnapurna(bn){
+    var card=aiLinkCard('🍚','অন্নপূর্ণা ভাণ্ডার',
+        bn?'প্রতি মাসে <b>₹৩,০০০</b> টাকা (মহিলা ২৫–৬০ বছর)। লক্ষ্মীর ভাণ্ডার এখন অন্নপূর্ণা ভাণ্ডার। পেমেন্টের খবর আর স্ট্যাটাস গাইড নিচে 👇':'₹3,000/month (women 25–60). Lakshmir Bhandar is now Annapurna Bhandar. Payment news & status guide below 👇',
+        bn?'📰 নিউজ কার্ড খোলো':'📰 Open news card',"openGenericModal('annapurnaNewsModal')");
+    return (bn?'🍚 <b>অন্নপূর্ণা ভাণ্ডার</b><br>• প্রতি মাসে <b>₹৩,০০০</b> টাকা<br>• হেল্পলাইন: <b>1800-345-5505</b><br>':'🍚 <b>Annapurna Bhandar</b><br>• <b>₹3,000</b>/month<br>• Helpline: <b>1800-345-5505</b><br>')+card;
+}
+function aiSchemePmKisan(bn){
+    var card=aiLinkCard('🌾','PM কিষাণ নিউজ',
+        bn?'২৪তম কিস্তির আপডেট, eKYC গাইড, ভুয়ো খবর সতর্কতা 👇':'24th installment update, eKYC guide, fake-news alert 👇',
+        bn?'📰 নিউজ কার্ড খোলো':'📰 Open news card',"openGenericModal('pmkisanNewsModal')");
+    return (bn?'🌾 <b>PM কিষাণ সম্মান নিধি</b><br>• বছরে <b>₹৬,০০০</b> (₹২,০০০ × ৩ কিস্তি)<br>• <b>২৪তম কিস্তি</b> এখনো ঘোষণা হয়নি — <b>eKYC</b> করে রাখো<br>• হেল্পলাইন: <b>155261</b><br>⚠️ <i>"₹৪,০০০ দেবে"</i> — এই খবর ভুয়ো!<br>':'🌾 <b>PM-KISAN</b><br>• <b>₹6,000</b>/year (₹2,000 × 3 installments)<br>• <b>24th installment</b> not announced yet — complete <b>eKYC</b><br>• Helpline: <b>155261</b><br>⚠️ <i>"₹4,000 payment"</i> news is fake!<br>')+card;
+}
+function aiSchemeKrishak(bn){
+    return bn?'🌾 <b>কৃষকবন্ধু</b><br>• বছরে <b>₹১০,০০০</b> (১+ একর; কম জমিতে ₹৪,০০০)<br>• খরিফ কিস্তির <b>সরকারি তারিখ এখনো ঘোষণা হয়নি</b><br>• হেল্পলাইন: <b>1800-103-0002</b><br>• পোর্টাল: krishakbandhu.wb.gov.in'
+             :'🌾 <b>Krishak Bandhu</b><br>• <b>₹10,000</b>/year (1+ acre; ₹4,000 for smaller holdings)<br>• No official date announced for the next installment yet<br>• Helpline: <b>1800-103-0002</b>';
+}
+function aiContactCard(bn){
+    var card=aiLinkCard('📞',bn?'যোগাযোগ':'Contact',
+        '📧 cscfreetools@gmail.com<br>💬 WhatsApp: <b>+91 89061 39223</b><br>📍 Baduria, North 24 Parganas, West Bengal',
+        bn?'📩 যোগাযোগ পেজ খোলো':'📩 Open contact page',"window.location.href='contact.html'");
+    return (bn?'📞 <b>আমাদের সাথে যোগাযোগ করো:</b><br>':'📞 <b>Contact us:</b><br>')+card;
+}
+function aiPickTool(i){
+    var c=aiCtx.lastCands[i]; if(!c) return;
+    var it=c.it, bn=aiCtx.bn;
+    aiAddMsg(aiEsc('👉 '+it.title),'user');
+    aiCtx.lastTool=it;
+    if(c.soon){ aiBotSay(bn?'🚧 <b>'+aiEsc(it.title)+'</b> খুব শীঘ্রই আসছে! 🔔':'🚧 <b>'+aiEsc(it.title)+'</b> is coming soon! 🔔'); return; }
+    aiBotSay((bn?'🔍 পেয়ে গেছি! ':'🔍 Found it! ')+aiToolCard(it,bn));
+}
+function aiShowCands(bn){
+    var start=aiCtx.candIdx, out=aiCtx.lastCands.slice(start,start+3), i, h='';
+    aiCtx.candIdx=start+out.length;
+    for(i=0;i<out.length;i++){ h+='<button class="ai-chip" style="margin:2px;" onclick="aiPickTool('+(start+i)+')">'+out[i].it.icon+' '+aiEsc(out[i].it.title)+'</button>'; }
+    return (bn?'🤔 আর কোনটা? বেছে নাও:<br>':'🤔 Which one? Pick:<br>')+'<div style="margin-top:6px;">'+h+'</div>';
+}
+/* ---------- Seva AI brain v2: fuzzy matching, intents, context memory ---------- */
+function aiNorm(s){ return ' '+String(s).toLowerCase().replace(/[^a-z0-9\u0980-\u09FF\s]/g,' ').replace(/\s+/g,' ').trim()+' '; }
+function aiWords(s){ return String(s).trim().split(/\s+/).filter(Boolean); }
+var AI_STOP={};
+'করবো করো করে করা করতে করুন করি চাই দাও দিন দেবো দেবে হবে হয় হই আমার আমি তুমি তোমার তোমাকে এটা ওটা সেটা এটি কি কী একটা একটি জন্য থেকে সাথে কোনো কোন আর ও এবং না'.split(' ').forEach(function(w){ AI_STOP[w]=1; });
+'korbo koro kare karte chai dao hobe hoga chahiye mujhe mera ka ki kya hai mein the a an to of for me my i you it is are do does please pls par pe'.split(' ').forEach(function(w){ AI_STOP[w]=1; });
+function aiLev(a,b){
+    if(a===b) return 0;
+    var m=a.length,n=b.length,i,j,c,t;
+    if(!m) return n; if(!n) return m;
+    var prev=new Array(n+1),cur=new Array(n+1);
+    for(j=0;j<=n;j++) prev[j]=j;
+    for(i=1;i<=m;i++){ cur[0]=i;
+        for(j=1;j<=n;j++){ c=(a.charCodeAt(i-1)===b.charCodeAt(j-1))?0:1;
+            var del=prev[j]+1, ins=cur[j-1]+1, sub=prev[j-1]+c;
+            cur[j]=del<ins?(del<sub?del:sub):(ins<sub?ins:sub); }
+        t=prev; prev=cur; cur=t; }
+    return prev[n];
+}
+/* keyword hit: {w:0|0.7|1, len, phrase}. phrase=true only on full-phrase match. */
+function aiKwHit(t,words,kw){
+    kw=String(kw).toLowerCase().trim(); if(!kw) return {w:0,len:0,phrase:false};
+    if(kw.length>=5){ if(t.indexOf(kw)>=0) return {w:1,len:kw.length,phrase:true}; }
+    else if(t.indexOf(' '+kw+' ')>=0) return {w:1,len:kw.length,phrase:true};
+    var kws=kw.split(/\s+/),wi,ki,w,k,th,d,best=0,blen=0,bw=0;
+    for(wi=0;wi<words.length;wi++){ w=words[wi]; if(w.length<3||AI_STOP[w]) continue;
+        for(ki=0;ki<kws.length;ki++){ k=kws[ki]; if(k.length<4||AI_STOP[k]) continue;
+            th=Math.max(1,Math.floor(k.length/4));
+            if(Math.abs(w.length-k.length)>th) continue;
+            d=aiLev(w,k);
+            if(d<=th){ var ww=(d===0?1:0.7), sc=k.length*ww;
+                if(sc>best){ best=sc; blen=k.length; bw=ww; } } } }
+    return best>0 ? {w:bw,len:blen,phrase:false} : {w:0,len:0,phrase:false};
+}
+/* strict phrase hit for intents: full-phrase match, or every kw-word matched */
+function aiPhraseHit(t,words,kw){
+    kw=String(kw).toLowerCase().trim(); if(!kw) return false;
+    if(kw.length>=5){ if(t.indexOf(kw)>=0) return true; }
+    else if(t.indexOf(' '+kw+' ')>=0) return true;
+    var kws=kw.split(/\s+/),ki,k,th,wi,w,ok;
+    for(ki=0;ki<kws.length;ki++){ k=kws[ki]; ok=false;
+        for(wi=0;wi<words.length;wi++){ w=words[wi];
+            if(w===k){ ok=true; break; }
+            if(k.length>=4&&w.length>=3){
+                th=Math.max(1,Math.floor(k.length/4));
+                if(Math.abs(w.length-k.length)<=th&&aiLev(w,k)<=th){ ok=true; break; } } }
+        if(!ok) return false; }
+    return true;
+}
+/* score = Σ(phrase kw length × 1.0) + best word-level hit × 0.7/1.0 + title-word hits × 2 */
+function aiScoreTool(t,words,it){
+    var sc=0,ex=0,seen={},i,k,hit,wbest=0;
+    for(i=0;i<it.kw.length;i++){ k=it.kw[i]; if(seen[k]) continue; seen[k]=1;
+        hit=aiKwHit(t,words,k);
+        if(hit.phrase){ sc+=hit.len; ex++; }
+        else if(hit.w>0){ var s=hit.len*hit.w; if(s>wbest) wbest=s; } }
+    sc+=wbest;
+    var tw=String(it.title).toLowerCase().split(/[^a-z0-9\u0980-\u09FF]+/),x;
+    for(i=0;i<tw.length;i++){ x=tw[i]; if(x.length<2) continue;
+        if(x.length>=5 ? t.indexOf(x)>=0 : t.indexOf(' '+x+' ')>=0) sc+=2; }
+    return {score:sc,exact:ex};
+}
+function aiRankTools(t,words){
+    var pool=[],i,r;
+    for(i=0;i<AI_KB.length;i++){ r=aiScoreTool(t,words,AI_KB[i]); if(r.score>0) pool.push({it:AI_KB[i],score:r.score,exact:r.exact}); }
+    for(i=0;i<AI_SOON.length;i++){ r=aiScoreTool(t,words,AI_SOON[i]); if(r.score>0) pool.push({it:AI_SOON[i],score:r.score,exact:r.exact,soon:true}); }
+    pool.sort(function(a,b){ return (b.score-a.score)||(b.exact-a.exact); });
+    return pool;
+}
+var aiCtx={lastTool:null,lastCands:[],candIdx:0,bn:true};
+function aiIntentHit(t,words,kws){
+    for(var i=0;i<kws.length;i++){ if(aiPhraseHit(t,words,kws[i])) return true; }
+    return false;
+}
+function aiLinkCard(icon,title,desc,btn,js){
+    return '<div class="ai-tool-card"><b>'+icon+' '+title+'</b><p>'+desc+'</p><button onclick="toggleAiChat();'+js+'">▶ '+btn+'</button></div>';
+}
+function aiSchemeAnnapurna(bn){
+    var card=aiLinkCard('🍚','অন্নপূর্ণা ভাণ্ডার',
+        bn?'প্রতি মাসে <b>₹৩,০০০</b> টাকা (মহিলা ২৫–৬০ বছর)। লক্ষ্মীর ভাণ্ডার এখন অন্নপূর্ণা ভাণ্ডার। পেমেন্টের খবর আর স্ট্যাটাস গাইড নিচে 👇':'₹3,000/month (women 25–60). Lakshmir Bhandar is now Annapurna Bhandar. Payment news & status guide below 👇',
+        bn?'📰 নিউজ কার্ড খোলো':'📰 Open news card',"openGenericModal('annapurnaNewsModal')");
+    return (bn?'🍚 <b>অন্নপূর্ণা ভাণ্ডার</b><br>• প্রতি মাসে <b>₹৩,০০০</b> টাকা<br>• হেল্পলাইন: <b>1800-345-5505</b><br>':'🍚 <b>Annapurna Bhandar</b><br>• <b>₹3,000</b>/month<br>• Helpline: <b>1800-345-5505</b><br>')+card;
+}
+function aiSchemePmKisan(bn){
+    var card=aiLinkCard('🌾','PM কিষাণ নিউজ',
+        bn?'২৪তম কিস্তির আপডেট, eKYC গাইড, ভুয়ো খবর সতর্কতা 👇':'24th installment update, eKYC guide, fake-news alert 👇',
+        bn?'📰 নিউজ কার্ড খোলো':'📰 Open news card',"openGenericModal('pmkisanNewsModal')");
+    return (bn?'🌾 <b>PM কিষাণ সম্মান নিধি</b><br>• বছরে <b>₹৬,০০০</b> (₹২,০০০ × ৩ কিস্তি)<br>• <b>২৪তম কিস্তি</b> এখনো ঘোষণা হয়নি — <b>eKYC</b> করে রাখো<br>• হেল্পলাইন: <b>155261</b><br>⚠️ <i>"₹৪,০০০ দেবে"</i> — এই খবর ভুয়ো!<br>':'🌾 <b>PM-KISAN</b><br>• <b>₹6,000</b>/year (₹2,000 × 3 installments)<br>• <b>24th installment</b> not announced yet — complete <b>eKYC</b><br>• Helpline: <b>155261</b><br>⚠️ <i>"₹4,000 payment"</i> news is fake!<br>')+card;
+}
+function aiSchemeKrishak(bn){
+    return bn?'🌾 <b>কৃষকবন্ধু</b><br>• বছরে <b>₹১০,০০০</b> (১+ একর; কম জমিতে ₹৪,০০০)<br>• খরিফ কিস্তির <b>সরকারি তারিখ এখনো ঘোষণা হয়নি</b><br>• হেল্পলাইন: <b>1800-103-0002</b><br>• পোর্টাল: krishakbandhu.wb.gov.in'
+             :'🌾 <b>Krishak Bandhu</b><br>• <b>₹10,000</b>/year (1+ acre; ₹4,000 for smaller holdings)<br>• No official date announced for the next installment yet<br>• Helpline: <b>1800-103-0002</b>';
+}
+function aiContactCard(bn){
+    var card=aiLinkCard('📞',bn?'যোগাযোগ':'Contact',
+        '📧 cscfreetools@gmail.com<br>💬 WhatsApp: <b>+91 89061 39223</b><br>📍 Baduria, North 24 Parganas, West Bengal',
+        bn?'📩 যোগাযোগ পেজ খোলো':'📩 Open contact page',"window.location.href='contact.html'");
+    return (bn?'📞 <b>আমাদের সাথে যোগাযোগ করো:</b><br>':'📞 <b>Contact us:</b><br>')+card;
+}
+function aiPickTool(i){
+    var c=aiCtx.lastCands[i]; if(!c) return;
+    var it=c.it, bn=aiCtx.bn;
+    aiAddMsg(aiEsc('👉 '+it.title),'user');
+    aiCtx.lastTool=it;
+    if(c.soon){ aiBotSay(bn?'🚧 <b>'+aiEsc(it.title)+'</b> খুব শীঘ্রই আসছে! 🔔':'🚧 <b>'+aiEsc(it.title)+'</b> is coming soon! 🔔'); return; }
+    aiBotSay((bn?'🔍 পেয়ে গেছি! ':'🔍 Found it! ')+aiToolCard(it,bn));
+}
+function aiShowCands(bn){
+    var start=aiCtx.candIdx, out=aiCtx.lastCands.slice(start,start+3), i, h='';
+    aiCtx.candIdx=start+out.length;
+    for(i=0;i<out.length;i++){ h+='<button class="ai-chip" style="margin:2px;" onclick="aiPickTool('+(start+i)+')">'+out[i].it.icon+' '+aiEsc(out[i].it.title)+'</button>'; }
+    return (bn?'🤔 আর কোনটা? বেছে নাও:<br>':'🤔 Which one? Pick:<br>')+'<div style="margin-top:6px;">'+h+'</div>';
+}
         let aiOpened = false;
         let aiPending = null, aiReqText = '';
         function aiIsBn(t){ return /[\u0980-\u09FF]/.test(t); }
@@ -3980,43 +4186,74 @@ footer strong{color:#fff;}
                    '<button onclick="toggleAiChat();'+it.open+'">▶ '+(bn?'টুল খোলো':'Open Tool')+'</button></div>';
         }
         function aiThink(q){
-            const t = ' '+q.toLowerCase().trim()+' ';
-            const bn = aiIsBn(q);
-            const T = {
-                greet: bn ? '👋 নমস্কার! কোন টুলটা খুঁজে দেবো বলো?' : '👋 Hi! Which tool shall I find for you?',
-                thanks: bn ? '😊 স্বাগতম! আর কিছু লাগলে বলো।' : '😊 You\'re welcome! Anything else?',
-                bye: bn ? '👋 বাই! আবার এসো।' : '👋 Bye! Come back anytime.',
-                help: bn ? '🤖 <b>আমি যা করতে পারি:</b><br>• টুল খুঁজে দেওয়া — যেমন <i>"qr code"</i><br>• টুলের কাজ বোঝানো — <i>"biodata কি করে?"</i><br>• ব্যবহার পদ্ধতি — <i>"pdf কিভাবে ছোট করবো?"</i><br>• সব টুলের লিস্ট — <i>"all tools"</i>'
-                              : '🤖 <b>What I can do:</b><br>• Find tools — e.g. <i>"qr code"</i><br>• Explain a tool — <i>"what does biodata do?"</i><br>• How to use — <i>"how to compress pdf?"</i><br>• List everything — <i>"all tools"</i>',
-                all: bn ? '🧰 <b>আমাদের টুলসমূহ:</b><br>📷 ফটো: Passport Photo, BG Remover, Resizer, Image→PDF, Thumbnail<br>📄 ডকুমেন্ট: PDF Compress, Word Counter, Biodata Maker<br>🏛️ সরকারি: Voter, Pension, Aadhaar, PAN, Banglar Bhumi<br>🧰 ইউটিলিটি: Password, QR, Land, EMI, Age, %, GST<br>🎮 গেম: 3D Football, Carrom Royale<br>কোনটা খুলবো?'
-                            : '🧰 <b>Our tools:</b><br>📷 Photo: Passport Photo, BG Remover, Resizer, Image→PDF, Thumbnail<br>📄 Document: PDF Compress, Word Counter, Biodata Maker<br>🏛️ Govt: Voter, Pension, Aadhaar, PAN, Banglar Bhumi<br>🧰 Utility: Password, QR, Land, EMI, Age, %, GST<br>🎮 Games: 3D Football, Carrom Royale<br>Which one shall I open?',
-                fallback: '__FALLBACK__'+(bn ? '🤔 এই টুলটা খুঁজে পেলাম না। যদি <b>নতুন টুল</b> চাও, <i>"টুল চাই"</i> লেখো — তোমার রিকোয়েস্ট আমরা WhatsApp-এ পেয়ে যাবো! অথবা <i>"all tools"</i> লিখে সব দেখো।'
-                                  : '__FALLBACK__🤔 Couldn\'t find that tool. Want a <b>new tool</b>? Type <i>"টুল চাই"</i> — we\'ll get your request on WhatsApp! Or type <i>"all tools"</i>.')
-            };
-            if(/^(hi+|hello|hey|হ্যালো|নমস্কার|আসসালামু|sup|yo)\b/.test(t.trim())) return T.greet;
-            if(/(thank|ধন্যবাদ|শুকরিয়া|thx)\b/.test(t)) return T.thanks;
-            if(/\b(bye|বাই|আল্লাহ হাফেজ|good ?night)\b/.test(t)) return T.bye;
-            if(/(help|সাহায্য|what can you do|তুমি কি( করতে)? পারো|তোমার কাজ)/.test(t)) return T.help;
-            if(/(all tools|সব টুল|কি কি আছে|tools list|সবগুলো)/.test(t)) return T.all;
-            if(/(টুল চাই|নতুন টুল|tool request|নতুন কিছু|request tool|নেই.*টুল)/.test(t)) return '__TOOLREQ__';
-            if(/(রিভিউ|review|মতামত|feedback|রেটিং)/.test(t)) return '__REVIEW__';
-            const howQ = /(how|kivabe|কিভাবে|কীভাবে|কেমনে|kaise|process|পদ্ধতি|নিয়ম)/.test(t);
-            const whatQ = /(what|কি করে|কী করে|kya karta|কাজ কি|use of|about)/.test(t);
-            let best=null, score=0;
-            const pool = AI_KB.concat(AI_SOON.map(s=>({...s, soon:true})));
-            for(const it of pool){
-                let sc=0;
-                for(const k of it.kw){ if(t.includes(k)) sc += k.length; }
-                if(sc>score){ score=sc; best=it; }
-            }
-            if(best && score>=2){
-                if(best.soon) return (bn?'🚧 <b>'+best.title+'</b> খুব শীঘ্রই আসছে! এখনই চাইলে আমাকে বলো কোন টুল খুলবো।':'🚧 <b>'+best.title+'</b> is coming soon! Want me to open another tool?');
-                if(howQ) return '📖 <b>'+best.icon+' '+best.title+'</b><br>'+(bn?best.h_bn:best.h_en)+aiToolCard(best,bn);
-                if(whatQ) return 'ℹ️ <b>'+best.icon+' '+best.title+'</b><br>'+(bn?best.d_bn:best.d_en)+aiToolCard(best,bn);
-                return (bn?'🔍 পেয়ে গেছি! ':'🔍 Found it! ')+aiToolCard(best,bn);
-            }
-            return T.fallback;
-        }
+    var t=aiNorm(q), words=aiWords(t), bn=aiIsBn(q);
+    var first=words[0]||'';
+    /* --- simple intents --- */
+    if(/^(hi+|hello|hey|হ্যালো|নমস্কার|আসসালামু|সালাম|আদাব|yo|sup|হাই)$/.test(first) || (first==='good' && /^(morning|evening|afternoon|night)$/.test(words[1]||'')))
+        return bn?'👋 নমস্কার! আমি <b>Seva AI</b>। কোন টুলটা খুঁজে দেবো বলো?':'👋 Hi! I am <b>Seva AI</b>. Which tool shall I find for you?';
+    if(aiIntentHit(t,words,['thank','thanks','ধন্যবাদ','শুকরিয়া','thx','dhonnobad']))
+        return bn?'😊 স্বাগতম! আর কিছু লাগলে বলো।':'😊 You\'re welcome! Anything else?';
+    if(aiIntentHit(t,words,['bye','বাই','বিদায়','আল্লাহ হাফেজ','good night','goodnight','see you']))
+        return bn?'👋 বাই! আবার এসো।':'👋 Bye! Come back anytime.';
+    if(aiIntentHit(t,words,['help','সাহায্য','what can you do','তুমি কি পারো','তোমার কাজ','how it works','সাহায্য করো']))
+        return bn?'🤖 <b>আমি যা করতে পারি:</b><br>• টুল খুঁজে দেওয়া — <i>"qr code"</i>, <i>"বায়োডাটা"</i><br>• টুলের কাজ বোঝানো — <i>"biodata কি করে?"</i><br>• ব্যবহার পদ্ধতি — <i>"pdf কিভাবে ছোট করবো?"</i><br>• স্কিমের খবর — <i>"অন্নপূর্ণার টাকা কবে?"</i>, <i>"pm kisan"</i><br>• সব টুলের লিস্ট — <i>"all tools"</i>'
+               :'🤖 <b>What I can do:</b><br>• Find tools — <i>"qr code"</i>, <i>"biodata"</i><br>• Explain a tool — <i>"what does biodata do?"</i><br>• How to use — <i>"how to compress pdf?"</i><br>• Scheme news — <i>"annapurna"</i>, <i>"pm kisan"</i><br>• List everything — <i>"all tools"</i>';
+    if(aiIntentHit(t,words,['all tools','সব টুল','সবগুলো','কি কি আছে','tools list','সব টুল দেখাও','সব দেখাও']))
+        return bn?'🧰 <b>আমাদের টুলসমূহ:</b><br>📷 ফটো: Passport Photo, BG Remover, Resizer, Image→PDF, Thumbnail<br>📄 ডকুমেন্ট: PDF Compress, Word Counter, Biodata Maker<br>🏛️ সরকারি: Voter, Pension, Aadhaar, PAN, Banglar Bhumi<br>🧰 ইউটিলিটি: Password, QR, Land, EMI, Age, %, GST<br>🎮 গেম: 3D Football, Carrom Royale, Ludo<br>🍚 স্কিম: অন্নপূর্ণা নিউজ, PM কিষাণ নিউজ<br>কোনটা খুলবো?'
+               :'🧰 <b>Our tools:</b><br>📷 Photo: Passport Photo, BG Remover, Resizer, Image→PDF, Thumbnail<br>📄 Document: PDF Compress, Word Counter, Biodata Maker<br>🧰 Utility: Password, QR, Land, EMI, Age, %, GST<br>🎮 Games: 3D Football, Carrom Royale, Ludo<br>🍚 Schemes: Annapurna News, PM-KISAN News<br>Which one shall I open?';
+    if(aiIntentHit(t,words,['টুল চাই','নতুন টুল','tool request','request tool','নতুন কিছু বানাও','টুল নেই']))
+        return '__TOOLREQ__';
+    if(aiIntentHit(t,words,['রিভিউ','review','মতামত','feedback','রেটিং','rating']))
+        return '__REVIEW__';
+    /* --- info intents --- */
+    if(aiIntentHit(t,words,['যোগাযোগ','contact','ফোন নম্বর','phone number','whatsapp','হোয়াটসঅ্যাপ','ঠিকানা','address','ইমেইল','email','মোবাইল নম্বর','নম্বর দাও','number dao']))
+        return aiContactCard(bn);
+    if(!/free fire/.test(t) && aiIntentHit(t,words,['টাকা লাগে','taka lage','ফ্রি','free','দাম','খরচ','payment','পেমেন্ট','কত টাকা','charge','চার্জ','মূল্য','koto taka','paise']))
+        return bn?'💰 <b>১০০% ফ্রি!</b><br>আমাদের <b>সব টুল সম্পূর্ণ ফ্রি</b> — কোনো টাকা লাগে না, কোনো সাইন-আপ লাগে না।':'💰 <b>100% FREE!</b><br>All our tools are completely free — no payment, no sign-up.';
+    if(aiIntentHit(t,words,['ইউটিউব','youtube','চ্যানেল','channel','সাবস্ক্রাইব','subscribe','সাবস্ক্রাইবার']))
+        return (bn?'📺 <b>আমাদের YouTube চ্যানেল:</b><br>':'📺 <b>Our YouTube channel:</b><br>')+aiLinkCard('📺','DAFADAR ONLINE SEVA',
+            bn?'স্কিমের ভিডিও আর আপডেট পেতে চ্যানেলটা <b>সাবস্ক্রাইব</b> করে রাখো!':'Subscribe for scheme videos & updates!',
+            bn?'▶ চ্যানেল খোলো':'▶ Open channel',"window.open('https://www.youtube.com/@DafadarOnlineSeva','_blank')");
+    if(aiIntentHit(t,words,['কে বানিয়েছে','admin','অ্যাডমিন','মালিক','owner','creator','তৈরি করেছে','বানিয়েছে','developer','কার ওয়েবসাইট']))
+        return bn?'👨‍💻 <b>Dafadar Online Seva</b> — এই ওয়েবসাইট আর সব টুল Dafadar Online Seva টিমের তৈরি।':'👨‍💻 <b>Dafadar Online Seva</b> — this website and all tools are made by the Dafadar Online Seva team.';
+    /* --- scheme intents (before tool matching) --- */
+    var hasAn=/(অন্নপূর্ণা|অন্নপুর্ণা|annapurna|ভান্ডার|ভাণ্ডার)/.test(t);
+    var toolishAn=/(অভিযোগ|complaint|ফর্ম|form|আবেদন|apply|তথ্য)/.test(t);
+    if(hasAn && !toolishAn) return aiSchemeAnnapurna(bn);
+    if(/(পিএম[\s-]?কিষাণ|পিএম[\s-]?কিসান|pm[\s-]?kisan|কিষাণ|কিসান)/.test(t)) return aiSchemePmKisan(bn);
+    if(aiIntentHit(t,words,['কৃষকবন্ধু','krishak bandhu','krishakbandhu','কৃষক বন্ধু','krishak bondhu'])) return aiSchemeKrishak(bn);
+    /* --- tool matching --- */
+    var ranked=aiRankTools(t,words);
+    var best=ranked.length?ranked[0]:null;
+    var howQ=aiIntentHit(t,words,['how','কিভাবে','কীভাবে','kivabe','কেমনে','kaise','পদ্ধতি','নিয়ম','process','ব্যবহার','use']);
+    var whatQ=aiIntentHit(t,words,['what','কি করে','কী করে','kya karta','কাজ কি','about','কী জিনিস','মানে কি','এটা কি']);
+    if(best && best.score>=3){
+        aiCtx.lastTool=best.it; aiCtx.lastCands=ranked.slice(0,6); aiCtx.candIdx=1; aiCtx.bn=bn;
+        if(best.soon) return (bn?'🚧 <b>'+aiEsc(best.it.title)+'</b> খুব শীঘ্রই আসছে! 🔔':'🚧 <b>'+aiEsc(best.it.title)+'</b> is coming soon! 🔔')+(bn?'<br>অন্য কোনো টুল খুলে দেবো?':'<br>Shall I open another tool?');
+        if(howQ) return '📖 <b>'+best.it.icon+' '+best.it.title+'</b><br>'+(bn?best.it.h_bn:best.it.h_en)+aiToolCard(best.it,bn);
+        if(whatQ) return 'ℹ️ <b>'+best.it.icon+' '+best.it.title+'</b><br>'+(bn?best.it.d_bn:best.it.d_en)+aiToolCard(best.it,bn);
+        return (bn?'🔍 পেয়ে গেছি! ':'🔍 Found it! ')+aiToolCard(best.it,bn);
+    }
+    /* --- context follow-ups --- */
+    if((howQ||whatQ) && aiCtx.lastTool){
+        var lt=aiCtx.lastTool;
+        return '📖 <b>'+lt.icon+' '+lt.title+'</b><br>'+(bn?lt.h_bn:lt.h_en)+aiToolCard(lt,bn);
+    }
+    if(/^(না|na|আরেকটা|arekta|অন্য|অন্যটা|onno|next)$/.test(first)){
+        if(aiCtx.lastCands.length>aiCtx.candIdx) return aiShowCands(bn);
+        if(aiCtx.lastTool) return bn?'🤔 আর কোনো মিল পেলাম না। <i>"টুল চাই"</i> লিখে নতুন টুলের রিকোয়েস্ট পাঠাতে পারো।':'🤔 No more matches. Type <i>"টুল চাই"</i> to request a new tool.';
+    }
+    /* --- smart fallback: top-3 candidates --- */
+    var cands=ranked.slice(0,3), i, h='';
+    if(cands.length){
+        aiCtx.lastCands=ranked.slice(0,6); aiCtx.candIdx=3; aiCtx.bn=bn;
+        for(i=0;i<cands.length;i++){ h+='<button class="ai-chip" style="margin:2px;" onclick="aiPickTool('+i+')"> '+cands[i].it.icon+' '+aiEsc(cands[i].it.title)+'</button>'; }
+        return '__FALLBACK__'+(bn?'🤔 ঠিক বুঝতে পারলাম না। তুমি কি এগুলোর একটা চাইছো?<br><div style="margin-top:6px;">'+h+'</div>'
+                                   :'🤔 Not sure I got that. Did you mean one of these?<br><div style="margin-top:6px;">'+h+'</div>');
+    }
+    return '__FALLBACK__'+(bn?'🤔 এই টুলটা খুঁজে পেলাম না। <i>"টুল চাই"</i> লিখে নতুন টুলের রিকোয়েস্ট পাঠাও, বা <i>"all tools"</i> লিখে সব দেখো।'
+                              :'🤔 Couldn\'t find that tool. Type <i>"টুল চাই"</i> to request a new tool, or <i>"all tools"</i> to see everything.');
+}
         var bdBasePhoto = '', bdFinalPhoto = '', bdDress = 'none', bdDressSize = 100, bdDressY = 52;
         var bdDressImgs = {};
         function openBiodataModal(){ openGenericModal('biodataModal'); updateBiodata(); }
