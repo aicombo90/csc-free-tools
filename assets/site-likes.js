@@ -84,3 +84,42 @@ document.addEventListener("click", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", loadCounts);
+
+// ---- View counter: one counted view per device per day per page ----
+function viewedKey(id) {
+  const d = new Date();
+  const day = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+  return "dos_viewed_" + id + "_" + day;
+}
+
+async function trackViews() {
+  document.querySelectorAll("[data-view-id]").forEach(async (el) => {
+    const id = el.getAttribute("data-view-id");
+    const countEl = el.querySelector(".view-count") || el;
+    const ref = db ? doc(db, "siteViews", id) : null;
+    // show current count first
+    if (db) {
+      try {
+        const snap = await getDoc(ref);
+        countEl.textContent = fmt(snap.exists() ? (snap.data().count || 0) : 0);
+      } catch (e) { /* rules not set yet — stays 0 */ }
+    }
+    // count this visit once per device per day
+    if (localStorage.getItem(viewedKey(id))) return;
+    localStorage.setItem(viewedKey(id), "1");
+    if (!db) return;
+    try {
+      await runTransaction(db, async (tx) => {
+        const snap = await tx.get(ref);
+        const cur = snap.exists() ? (Number(snap.data().count) || 0) : 0;
+        tx.set(ref, { count: cur + 1 }, { merge: true });
+      });
+      const snap = await getDoc(ref);
+      if (snap.exists()) countEl.textContent = fmt(snap.data().count || 0);
+    } catch (e) {
+      console.warn("[site-views] view not counted:", e);
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", trackViews);
