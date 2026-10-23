@@ -31,6 +31,14 @@
         .back { display: inline-block; margin-top: 24px; color: #057a55; font-weight: 700; text-decoration: none; }
         footer { background: #07100d; color: #9fb3a8; text-align: center; padding: 24px 5%; font-size: 14px; margin-top: 40px; }
         footer a { color: #1fc64c; text-decoration: none; }
+
+        .like-row { margin-top: 26px; padding-top: 18px; border-top: 1px solid #eef1ee; display: flex; align-items: center; gap: 10px; }
+        .like-btn { display: inline-flex; align-items: center; gap: 8px; border: 2px solid #d7e3dc; background: #fff; border-radius: 30px; padding: 10px 24px; font-size: 16px; font-weight: 700; color: #3c4a42; cursor: pointer; font-family: inherit; transition: transform .15s, border-color .15s; }
+        .like-btn:hover { border-color: #1fc64c; transform: scale(1.04); }
+        .like-btn.is-liked { border-color: #1fc64c; background: #e6f9ec; color: #057a55; }
+        .like-btn.like-pop { animation: likepop .55s ease; }
+        @keyframes likepop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-6deg); } 100% { transform: scale(1); } }
+        .like-hint { font-size: 13px; color: #8a93a8; }
     </style>
     <script type="application/ld+json">
     {
@@ -75,6 +83,10 @@
         <h2>📞 হেল্পলাইন</h2>
         <p><strong>1800-103-0002</strong> (টোল ফ্রি)</p>
 
+        <div class="like-row">
+            <button class="like-btn" data-like-id="krishak-bandhu" aria-label="Like this article">👍 <span class="like-count">0</span></button>
+            <span class="like-hint">ভালো লাগলে লাইক দিন!</span>
+        </div>
         <a class="back" href="../blog.html">← সব আপডেট দেখুন</a>
     </article>
 
@@ -82,5 +94,6 @@
         <p>© 2026 <a href="../index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য সরকারি ঘোষণা ও সংবাদ প্রতিবেদনের ভিত্তিতে।</p>
     </footer>
+    <script type="module" src="../assets/site-likes.js"></script>
 </body>
 </html>

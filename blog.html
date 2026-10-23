@@ -25,13 +25,19 @@
         .blog-hero h1 { font-size: 32px; margin-bottom: 10px; }
         .blog-hero p { color: #b9d9c9; font-size: 16px; }
         .blog-list { max-width: 900px; margin: -30px auto 0; padding: 0 5% 60px; }
-        .blog-card { background: #fff; border-radius: 14px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 18px rgba(0,0,0,.07); display: block; text-decoration: none; color: inherit; transition: transform .2s; border-left: 5px solid #1fc64c; }
-        .blog-card:hover { transform: translateY(-3px); }
+        .blog-card { background: #fff; border-radius: 14px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 18px rgba(0,0,0,.07); border-left: 5px solid #1fc64c; }
+        .blog-card-link { display: block; text-decoration: none; color: inherit; }
         .blog-card .tag { display: inline-block; background: #e6f9ec; color: #057a55; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; margin-bottom: 10px; }
         .blog-card h2 { font-size: 21px; margin-bottom: 8px; color: #10231c; }
         .blog-card p { color: #5b6478; font-size: 15px; margin-bottom: 10px; }
         .blog-card .meta { font-size: 13px; color: #8a93a8; }
         .blog-card .read { color: #057a55; font-weight: 700; font-size: 15px; }
+        .like-row { margin-top: 14px; padding-top: 12px; border-top: 1px solid #eef1ee; display: flex; align-items: center; gap: 10px; }
+        .like-btn { display: inline-flex; align-items: center; gap: 7px; border: 2px solid #d7e3dc; background: #fff; border-radius: 30px; padding: 8px 18px; font-size: 15px; font-weight: 700; color: #3c4a42; cursor: pointer; font-family: inherit; transition: transform .15s, border-color .15s; }
+        .like-btn:hover { border-color: #1fc64c; transform: scale(1.04); }
+        .like-btn.is-liked { border-color: #1fc64c; background: #e6f9ec; color: #057a55; }
+        .like-btn.like-pop { animation: likepop .55s ease; }
+        @keyframes likepop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-6deg); } 100% { transform: scale(1); } }
         footer { background: #07100d; color: #9fb3a8; text-align: center; padding: 24px 5%; font-size: 14px; }
         footer a { color: #1fc64c; text-decoration: none; }
     </style>
@@ -48,38 +54,60 @@
     </div>
 
     <main class="blog-list">
-        <a class="blog-card" href="blog/bhagini-nivedita.html">
-            <span class="tag">নতুন প্রকল্প</span>
-            <h2>ভগিনী নিবেদিতা প্রকল্প: মেয়েরা পাবে ৫০,০০০ টাকা!</h2>
-            <p>কারা পাবে, কত টাকা, কবে থেকে চালু — নতুন প্রকল্পের সম্পূর্ণ তথ্য। আবেদন প্রক্রিয়া এখনো ঘোষণা হয়নি।</p>
-            <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
-        </a>
+        <div class="blog-card">
+            <a class="blog-card-link" href="blog/bhagini-nivedita.html">
+                <span class="tag">নতুন প্রকল্প</span>
+                <h2>ভগিনী নিবেদিতা প্রকল্প: মেয়েরা পাবে ৫০,০০০ টাকা!</h2>
+                <p>কারা পাবে, কত টাকা, কবে থেকে চালু — নতুন প্রকল্পের সম্পূর্ণ তথ্য। আবেদন প্রক্রিয়া এখনো ঘোষণা হয়নি।</p>
+                <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+            </a>
+            <div class="like-row">
+                <button class="like-btn" data-like-id="bhagini-nivedita" aria-label="Like this article">👍 <span class="like-count">0</span></button>
+            </div>
+        </div>
 
-        <a class="blog-card" href="blog/annapurna-bhandar.html">
-            <span class="tag">গাইড</span>
-            <h2>অন্নপূর্ণা ভান্ডার: মাসে ৩,০০০ টাকা — সম্পূর্ণ গাইড</h2>
-            <p>কারা পাবেন, টাকা না এলে কী করবেন, হেল্পলাইন নম্বর — এক জায়গায় সব তথ্য।</p>
-            <div class="meta">২২ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
-        </a>
+        <div class="blog-card">
+            <a class="blog-card-link" href="blog/annapurna-bhandar.html">
+                <span class="tag">গাইড</span>
+                <h2>অন্নপূর্ণা ভান্ডার: মাসে ৩,০০০ টাকা — সম্পূর্ণ গাইড</h2>
+                <p>কারা পাবেন, টাকা না এলে কী করবেন, হেল্পলাইন নম্বর — এক জায়গায় সব তথ্য।</p>
+                <div class="meta">২২ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+            </a>
+            <div class="like-row">
+                <button class="like-btn" data-like-id="annapurna-bhandar" aria-label="Like this article">👍 <span class="like-count">0</span></button>
+            </div>
+        </div>
 
-        <a class="blog-card" href="blog/krishak-bandhu.html">
-            <span class="tag">আপডেট</span>
-            <h2>কৃষকবন্ধুর টাকা কবে ঢুকবে? সত্যি অবস্থা জানুন</h2>
-            <p>খরিফ ২০২৬-এর টাকার সরকারি ঘোষণা এখনো হয়নি। গুজব বনাম সত্যি — যাচাই করা তথ্য।</p>
-            <div class="meta">২২ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
-        </a>
+        <div class="blog-card">
+            <a class="blog-card-link" href="blog/krishak-bandhu.html">
+                <span class="tag">আপডেট</span>
+                <h2>কৃষকবন্ধুর টাকা কবে ঢুকবে? সত্যি অবস্থা জানুন</h2>
+                <p>খরিফ ২০২৬-এর টাকার সরকারি ঘোষণা এখনো হয়নি। গুজব বনাম সত্যি — যাচাই করা তথ্য।</p>
+                <div class="meta">২২ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+            </a>
+            <div class="like-row">
+                <button class="like-btn" data-like-id="krishak-bandhu" aria-label="Like this article">👍 <span class="like-count">0</span></button>
+            </div>
+        </div>
 
-        <a class="blog-card" href="blog/pm-kisan-24.html">
-            <span class="tag">আপডেট</span>
-            <h2>PM কিসান ২৪তম কিস্তি: ২,০০০ টাকা কবে আসবে?</h2>
-            <p>২৪তম কিস্তির তারিখ এখনো ঘোষণা হয়নি। "৪,০০০ টাকা" দাবি ভুয়ো — অফিসিয়ালি খণ্ডন করা হয়েছে।</p>
-            <div class="meta">২২ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
-        </a>
+        <div class="blog-card">
+            <a class="blog-card-link" href="blog/pm-kisan-24.html">
+                <span class="tag">আপডেট</span>
+                <h2>PM কিসান ২৪তম কিস্তি: ২,০০০ টাকা কবে আসবে?</h2>
+                <p>২৪তম কিস্তির তারিখ এখনো ঘোষণা হয়নি। "৪,০০০ টাকা" দাবি ভুয়ো — অফিসিয়ালি খণ্ডন করা হয়েছে।</p>
+                <div class="meta">২২ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+            </a>
+            <div class="like-row">
+                <button class="like-btn" data-like-id="pm-kisan-24" aria-label="Like this article">👍 <span class="like-count">0</span></button>
+            </div>
+        </div>
     </main>
 
     <footer>
         <p>© 2026 <a href="index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য সরকারি ঘোষণা ও সংবাদ প্রতিবেদনের ভিত্তিতে।</p>
     </footer>
+
+    <script type="module" src="assets/site-likes.js"></script>
 </body>
 </html>
