@@ -934,6 +934,13 @@ footer strong{color:#fff;}
 .input-group select,.input-group input{border-radius:8px;padding:10px;border:1px solid #cbd5e1;background:#f8fafc;}
 .preview-box{border-radius:12px;border-color:#9db8f5;background:#f1f6ff;}
 
+/* YouTube tutorial embed inside tool modals */
+.yt-tutorial-box{margin-top:18px;padding:14px;border:1px dashed #9db8f5;border-radius:12px;background:var(--surface);}
+.yt-tutorial-title{font-weight:700;color:var(--blue-deep);margin-bottom:10px;font-size:15px;}
+.yt-video-wrap{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;background:#000;}
+.yt-video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30;}
+
 /* Photoshop Studio: photo on the left, colour box beside it (modes C & D) */
 #studioModal .modal-content{max-width:500px;}
 .studio-top{display:flex;gap:12px;justify-content:center;align-items:stretch;flex-wrap:nowrap;margin-bottom:16px;}
@@ -1998,6 +2005,12 @@ footer strong{color:#fff;}
                 <small style="display:block;margin-top:6px;color:#64748b;">Made to your real passport photo size. Up to 49 photos fit on one A4 page.</small>
             </div>
             <button class="generate-btn" id="genBtn" onclick="generateA4()">Generate A4 Print File</button>
+            <div class="yt-tutorial-box">
+                <div class="yt-tutorial-title">📺 ভিডিও দেখে শিখুন — Passport Photo Tutorial</div>
+                <div class="yt-video-wrap">
+                    <iframe src="https://www.youtube.com/embed/7WFPlHqgkNE?rel=0" title="Passport Photo Tutorial" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
         </div>
     </div>
 
