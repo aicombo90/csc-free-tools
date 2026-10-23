@@ -215,6 +215,10 @@
 
         header { background-color: var(--surface); padding: 15px 5%; border-bottom: 1px solid var(--border-soft); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; }
+        .header-nav { display: flex; align-items: center; gap: 22px; }
+        .header-nav a { color: #dbe4f7; text-decoration: none; font-weight: 600; font-size: 15px; padding: 6px 2px; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
+        .header-nav a:hover { color: #1fc64c; border-bottom-color: #1fc64c; }
+        @media (max-width: 900px) { .header-nav { display: none; } }
 
         .logo { font-size: 24px; font-weight: 700; color: var(--blue-deep); display: flex; align-items: center; gap: 8px; }
         .logo i { color: var(--blue); }
@@ -1104,6 +1108,12 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
     <header>
         <div class="navbar">
             <div class="logo"><i class="fa-solid fa-laptop-code"></i> <span class="logo-main">DAFADAR ONLINE SEVA</span></div>
+            <nav class="header-nav">
+                <a href="#toolsGrid">টুলস</a>
+                <a href="blog.html">ব্লগ</a>
+                <a href="#gamesSection">গেমস</a>
+                <a href="#cTitle">যোগাযোগ</a>
+            </nav>
 
             <!-- ===== Ad: Navbar Banner (desktop only, wide screens) ===== -->
             <div class="ad-navbar-320" style="display:none;">
@@ -1445,6 +1455,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
                         <p>Combine multiple photos into beautiful collage grids with frames and backgrounds — perfect for sharing.</p>
                     </div>
                 </div>
+                <button class="btn" disabled style="opacity:.55;cursor:default;background:linear-gradient(135deg,#f59e0b,#d97706);">🔔 শীঘ্রই আসছে</button>
             </div>
             <div class="tool-card coming-soon" data-name="invitation card maker নিমন্ত্রণ কার্ড wedding birthday" onclick="comingSoon('Invitation Card Maker')">
                 <span class="soon-badge">Coming Soon</span>
@@ -1456,6 +1467,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
                         <p>Design stunning wedding, birthday and puja invitation cards with Bengali and English templates.</p>
                     </div>
                 </div>
+                <button class="btn" disabled style="opacity:.55;cursor:default;background:linear-gradient(135deg,#f59e0b,#d97706);">🔔 শীঘ্রই আসছে</button>
             </div>
             </div>
         </div>
@@ -1505,6 +1517,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
                         <p>Extract editable text from photos, screenshots and scanned documents in Bangla and English.</p>
                     </div>
                 </div>
+                <button class="btn" disabled style="opacity:.55;cursor:default;background:linear-gradient(135deg,#f59e0b,#d97706);">🔔 শীঘ্রই আসছে</button>
             </div>
             <div class="tool-card" data-name="biodata maker বিয়ের বায়োডাটা resume cv marriage profile">
                 <div class="tool-card-top">
@@ -1527,6 +1540,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
                         <p>Create professional GST invoices and bills with your shop name, items, tax and totals — print or PDF.</p>
                     </div>
                 </div>
+                <button class="btn" disabled style="opacity:.55;cursor:default;background:linear-gradient(135deg,#f59e0b,#d97706);">🔔 শীঘ্রই আসছে</button>
             </div>
             <div class="tool-card coming-soon" data-name="visiting card maker ভিজিটিং কার্ড business card" onclick="comingSoon('Visiting Card Maker')">
                 <span class="soon-badge">Coming Soon</span>
@@ -1538,6 +1552,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
                         <p>Design your own business visiting card in minutes — name, phone, address, logo and stylish layouts.</p>
                     </div>
                 </div>
+                <button class="btn" disabled style="opacity:.55;cursor:default;background:linear-gradient(135deg,#f59e0b,#d97706);">🔔 শীঘ্রই আসছে</button>
             </div>
             </div>
         </div>
@@ -1597,6 +1612,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
                     </div>
                 </div>
                 <div class="news-strip"><span>💰 ₹৩,০০০</span><span>📅 ১৫–২২ অক্টোবর</span><span>👩 ৮ লাখ নতুন নাম</span></div>
+                <button class="btn tOpenBtn">📰 খবর পড়ুন</button>
             </div>
             <div class="tool-card news-card" data-name="pm kisan news পিএম কিষাণ খবর কিস্তি টাকা পেমেন্ট আপডেট অক্টোবর কৃষক" onclick="openGenericModal('pmkisanNewsModal')">
                 <div class="news-breaking"><span class="breaking-dot"></span> BREAKING NEWS • ২০ অক্টোবর ২০২৬</div>
@@ -1609,6 +1625,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
                     </div>
                 </div>
                 <div class="news-strip"><span>💰 ₹২,০০০</span><span>📅 অক্টো–নভে ২০২৬</span><span>🌾 ৯.৪৪ কোটি কৃষক</span></div>
+                <button class="btn tOpenBtn">📰 খবর পড়ুন</button>
             </div>
             <div class="tool-card" data-name="annapurna complaint message অভিযোগ মেসেজ অন্নপূর্ণা টাকা আসেনি whatsapp হেল্পলাইন grievance" onclick="openGenericModal('complaintMsgModal')">
                 <div class="tool-card-top">
@@ -1619,6 +1636,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
                         <p>টাকা আসেনি? স্ট্যাটাস অনুযায়ী রেডি অভিযোগ মেসেজ — তথ্য বসাও, কপি করে হেল্পলাইনে পাঠাও!</p>
                     </div>
                 </div>
+                <button class="btn tOpenBtn">📋 মেসেজ বানান</button>
             </div>
             <div class="tool-card" data-name="banglar bhumi land record জমির তথ্য জমি রেকর্ড খতিয়ান বাংলার ভূমি land">
                 <div class="tool-card-top">
@@ -1803,7 +1821,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
             </div>
         </div>
 
-        <div class="tool-section">
+        <div class="tool-section" id="gamesSection">
             <span class="section-kicker">Play & Fun</span>
             <h2 class="section-title">Games</h2>
             <p class="section-subtitle">Fun games to play on mobile and computer — new games coming soon</p>
@@ -1858,6 +1876,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
                         <p>How to make a perfect passport-size photo at home with your phone — free, in 2 minutes.</p>
                     </div>
                 </div>
+                <button class="btn tOpenBtn">📖 গাইড পড়ুন</button>
             </div>
             <div class="tool-card guide-card" data-name="pdf compress guide পিডিএফ ছোট করার নিয়ম" onclick="openGenericModal('guidePdfModal')">
                 <div class="tool-card-top">
@@ -1868,6 +1887,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
                         <p>Reduce your PDF file size for online forms and applications — without losing quality.</p>
                     </div>
                 </div>
+                <button class="btn tOpenBtn">📖 গাইড পড়ুন</button>
             </div>
             <div class="tool-card guide-card" data-name="voter card guide ভোটার কার্ড নাম তোলার নিয়ম" onclick="openGenericModal('guideVoterModal')">
                 <div class="tool-card-top">
@@ -1878,6 +1898,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
                         <p>New voter registration (Form 6) online — documents needed and full process explained.</p>
                     </div>
                 </div>
+                <button class="btn tOpenBtn">📖 গাইড পড়ুন</button>
             </div>
             </div>
         </div>
