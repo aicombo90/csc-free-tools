@@ -3317,6 +3317,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
                 emptyState.style.display = 'none';
             }
             document.querySelectorAll('.tool-section').forEach(function(sec){
+                if (sec.id === 'sec-blog') return; // blog section always stays visible
                 var anyVisible = false;
                 sec.querySelectorAll('.tool-card').forEach(function(c){ if (c.style.display !== 'none') anyVisible = true; });
                 sec.style.display = anyVisible ? '' : 'none';
