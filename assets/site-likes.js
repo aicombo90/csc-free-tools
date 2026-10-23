@@ -104,7 +104,8 @@ async function trackViews() {
         countEl.textContent = fmt(snap.exists() ? (snap.data().count || 0) : 0);
       } catch (e) { /* rules not set yet — stays 0 */ }
     }
-    // count this visit once per device per day
+    // count this visit once per device per day (skip display-only pills)
+    if (el.hasAttribute("data-no-count")) return;
     if (localStorage.getItem(viewedKey(id))) return;
     localStorage.setItem(viewedKey(id), "1");
     if (!db) return;
