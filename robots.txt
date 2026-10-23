@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aicombo90.github.io/csc-free-tools/sitemap.xml
+Sitemap: https://aicombo90.github.io/dafadar-online-seva/sitemap.xml
