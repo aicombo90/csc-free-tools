@@ -2,7 +2,7 @@
 // Uses the existing Ludo Firebase project (free tier) — counts are shared across all visitors.
 // Firestore collection: siteLikes / doc = like id / field: count
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, doc, getDoc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDLVrEDayBl28NXpiet5rfxQTyJM_R6l5I",
@@ -57,7 +57,16 @@ async function sendLike(btn) {
   localStorage.setItem(likedKey(id), "1");
   if (!db) return;
   try {
-    await setDoc(doc(db, "siteLikes", id), { count: increment(1) }, { merge: true });
+    // Read-then-write in a transaction with a LITERAL count.
+    // The published Firestore rules validate (new count == old count + 1);
+    // that comparison only works with literal numbers — FieldValue.increment()
+    // arrives as a transform sentinel that the rules reject, so we never use it.
+    await runTransaction(db, async (tx) => {
+      const ref = doc(db, "siteLikes", id);
+      const snap = await tx.get(ref);
+      const cur = snap.exists() ? (Number(snap.data().count) || 0) : 0;
+      tx.set(ref, { count: cur + 1 }, { merge: true });
+    });
     const snap = await getDoc(doc(db, "siteLikes", id));
     if (countEl && snap.exists()) countEl.textContent = fmt(snap.data().count || 0);
   } catch (e) {
