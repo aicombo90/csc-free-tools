@@ -364,6 +364,14 @@
 
         /* ---------- Tool cards: icon-left horizontal layout ---------- */
         .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 22px; }
+        /* Category quick-nav cards */
+        .cat-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 0 0 34px; }
+        .cat-card { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid #e8ecf5; border-radius: 16px; padding: 14px 16px; text-decoration: none; color: #1a2340; font-weight: 700; font-size: 15px; box-shadow: 0 2px 10px rgba(30,50,120,.06); transition: transform .15s, box-shadow .15s; }
+        .cat-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(30,50,120,.12); }
+        .cat-card .cat-ico { font-size: 26px; line-height: 1; }
+        .cat-card small { display: block; font-weight: 600; font-size: 12px; color: #8a93a8; }
+        @media (max-width: 640px) { .cat-nav { grid-template-columns: repeat(2, 1fr); gap: 10px; } .cat-card { font-size: 14px; padding: 12px; } }
+        html { scroll-behavior: smooth; }
         .tool-section { margin-bottom: 54px; }
         .tool-section:last-child { margin-bottom: 6px; }
         .tool-section .tools-grid { margin-top: 4px; }
@@ -1354,6 +1362,16 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
         <span class="section-kicker">Our Services</span>
         <h2 class="section-title" id="secTitle">Our Digital Services</h2>
         <p class="section-subtitle">Click any tool below and start using it instantly</p>
+        <div class="cat-nav">
+            <a class="cat-card" href="#sec-photo"><span class="cat-ico">📸</span><span>ফটো টুলস<small>Photo & Image</small></span></a>
+            <a class="cat-card" href="#sec-docs"><span class="cat-ico">📄</span><span>ডকুমেন্ট টুলস<small>PDF & Text</small></span></a>
+            <a class="cat-card" href="#sec-govt"><span class="cat-ico">🏛️</span><span>সরকারি সেবা<small>Schemes & News</small></span></a>
+            <a class="cat-card" href="#sec-utils"><span class="cat-ico">🧰</span><span>ইউটিলিটি<small>Calculators</small></span></a>
+            <a class="cat-card" href="#sec-vault"><span class="cat-ico">🔐</span><span>সিক্রেট ভল্ট<small>Private Storage</small></span></a>
+            <a class="cat-card" href="#gamesSection"><span class="cat-ico">🎮</span><span>গেমস<small>Play & Fun</small></span></a>
+            <a class="cat-card" href="#sec-guides"><span class="cat-ico">📖</span><span>গাইড<small>How-to Guides</small></span></a>
+            <a class="cat-card" href="blog.html"><span class="cat-ico">📰</span><span>ব্লগ<small>Articles</small></span></a>
+        </div>
 
         <!-- ===== Ad: Rectangle Banner (728x90 desktop / 320x50 mobile) ===== -->
         <div style="text-align:center; margin-bottom:26px;">
@@ -1383,7 +1401,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
             </div>
         </div>
 
-        <div class="tool-section">
+        <div class="tool-section" id="sec-photo">
             <span class="section-kicker">Edit & Convert</span>
             <h2 class="section-title">Photo & Image Tools</h2>
             <p class="section-subtitle">Passport photos, background removal, resize, convert and more</p>
@@ -1480,7 +1498,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
             <div id="container-2f8646502f371ef379a6549d1a46be1d"></div>
         </div>
 
-        <div class="tool-section">
+        <div class="tool-section" id="sec-docs">
             <span class="section-kicker">Paperwork Made Easy</span>
             <h2 class="section-title">Document Tools</h2>
             <p class="section-subtitle">Handle PDFs and text like a pro</p>
@@ -1586,7 +1604,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
                 </div>
             </div>
 
-        <div class="tool-section">
+        <div class="tool-section" id="sec-govt">
             <span class="section-kicker">Sarkari Seva</span>
             <h2 class="section-title">Government Services</h2>
             <p class="section-subtitle">West Bengal & central government services in one place</p>
@@ -1703,7 +1721,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
             </div>
         </div>
 
-        <div class="tool-section">
+        <div class="tool-section" id="sec-utils">
             <span class="section-kicker">Everyday Helpers</span>
             <h2 class="section-title">Utilities</h2>
             <p class="section-subtitle">Small tools for daily digital tasks</p>
@@ -1791,7 +1809,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
             </div>
         </div>
 
-        <div class="tool-section">
+        <div class="tool-section" id="sec-vault">
             <span class="section-kicker">Private & Safe</span>
             <h2 class="section-title">Secure Vault</h2>
             <p class="section-subtitle">Your documents and passwords, encrypted and always with you</p>
@@ -1864,7 +1882,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
             </div>
         </div>
 
-        <div class="tool-section">
+        <div class="tool-section" id="sec-guides">
             <span class="section-kicker">Learn & Guides</span>
             <h2 class="section-title">Helpful Guides</h2>
             <p class="section-subtitle">Step-by-step guides in simple language — read and do it yourself</p>
