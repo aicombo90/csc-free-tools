@@ -42,6 +42,10 @@
         @keyframes likepop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-6deg); } 100% { transform: scale(1); } }
         .like-hint { font-size: 13px; color: #8a93a8; }
         .view-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #5b6478; }
+        .share-float-btn{position:fixed;top:76px;right:14px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;border:none;cursor:pointer;box-shadow:0 8px 20px rgba(79,70,229,.4);z-index:900}
+        .share-menu{display:none;position:fixed;top:132px;right:14px;background:#fff;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.2);z-index:901;overflow:hidden;min-width:175px}
+        .share-menu button{display:flex;align-items:center;gap:10px;width:100%;padding:12px 16px;border:none;background:#fff;font-size:15px;font-weight:600;color:#1e293b;cursor:pointer;font-family:'Hind Siliguri',sans-serif}
+        .share-menu button:hover{background:#f1f5f9}
     </style>
     <script type="application/ld+json">
     {
@@ -61,6 +65,12 @@
         <a class="logo" href="../index.html"><i class="fa-solid fa-laptop-code"></i> DAFADAR ONLINE SEVA</a>
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">🔗</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
 
     <article class="article">
         <span class="tag">CSC গাইড</span>
@@ -68,36 +78,45 @@
         <div class="date">২৩ অক্টোবর ২০২৬ · Dafadar Online Seva</div>
         <img src="../assets/blog-thumbs/csc-commission.jpg" alt="CSC থেকে আয় ও কমিশন" class="thumb">
 
-        <p>"CSC খুললে মাসে কত টাকা আয় হবে?" — এটা সবচেয়ে বেশি জিজ্ঞাসা করা প্রশ্ন। সৎ উত্তর হলো: <strong>নির্দিষ্ট কোনো অঙ্ক বলা সম্ভব নয়</strong>, কারণ CSC-তে আয় হয় <strong>কমিশন</strong> ভিত্তিতে, আর কমিশন নির্ভর করে অনেক কিছুর উপর। এই আর্টিকেলে পুরো বিষয়টা পরিষ্কার করে বোঝানো হলো।</p>
+        <p>"CSC খুললে মাসে কত টাকা আয় হবে?" — এটা সবচেয়ে বেশি জিজ্ঞাসা করা প্রশ্ন। সৎ উত্তর হলো: <strong>নির্দিষ্ট কোনো অঙ্ক বলা সম্ভব নয়</strong>, কারণ CSC-তে আয় হয় <strong>কমিশন</strong> ভিত্তিতে, আর কমিশন নির্ভর করে অনেক কিছুর উপর। এই আর্টিকেলে পুরো বিষয়টা পরিষ্কার করে বোঝানো হলো — যাতে ভুল আশা নিয়ে কেউ না নামেন, আবার সঠিক পরিশ্রমের মূল্যও বুঝতে পারেন।</p>
 
         <h2>💰 কমিশন ব্যবস্থাটা কী?</h2>
         <p>VLE যখন Digital Seva পোর্টাল থেকে কোনো সেবা দেন — যেমন টাকা তোলা, বিল পেমেন্ট, টিকিট বুকিং — তখন প্রতিটি লেনদেনের বদলে তিনি একটি <strong>কমিশন</strong> পান। এই কমিশন সরাসরি VLE-এর অ্যাকাউন্টে জমা হয়।</p>
+        <p>বেতন-ভিত্তিক চাকরির সঙ্গে এর তফাৎ বুঝুন: চাকরিতে কাজ কম-বেশি হলেও মাস শেষে নির্দিষ্ট বেতন আসে। CSC-তে <strong>যত সেবা, তত আয়</strong> — কাজ না করলে আয় শূন্য। এই মডেলের সুবিধা হলো, আপনার পরিশ্রমের পুরো ফল আপনিই পান; কেউ ভাগ বসায় না। অসুবিধা হলো, শুরুতে গ্রাহক না থাকলে আয় কম হবে — তাই ধৈর্য আর পরিকল্পনা জরুরি।</p>
         <div class="highlight">
             <p style="margin:0"><strong>মনে রাখুন:</strong> কমিশনের হার <strong>সেবা অনুযায়ী আলাদা</strong> হয় এবং সময়ে সময়ে বদলাতে পারে। আমরা এখানে কোনো নির্দিষ্ট হার বা টাকার অঙ্ক দিচ্ছি না — কারণ ভুল তথ্য দেওয়ার চেয়ে সৎ থাকা ভালো। সঠিক হার <strong>Digital Seva পোর্টালে</strong> লগইন করে দেখা যায়।</p>
         </div>
+        <p>কমিশন অ্যাকাউন্টে জমা হওয়ার জন্য রেজিস্ট্রেশনের সময় যে <strong>ব্যাংক বিবরণ</strong> দিয়েছিলেন, সেটাই ব্যবহার হয় — তাই অ্যাকাউন্ট সচল রাখুন। বিস্তারিত: <a href="csc-documents.html">কী কী কাগজপত্র লাগবে</a>।</p>
 
         <h2>📊 আয় কী কী বিষয়ের উপর নির্ভর করে?</h2>
         <ul>
-            <li><strong>অবস্থান</strong> — বাজার, বাসস্ট্যান্ড বা ভিড় এলাকায় সেন্টার হলে গ্রাহক বেশি আসে</li>
-            <li><strong>সেবার সংখ্যা</strong> — যত বেশি ধরনের সেবা দেবেন, আয়ের উৎস তত বাড়বে</li>
-            <li><strong>গ্রাহক সংখ্যা</strong> — নিয়মিত গ্রাহক তৈরি করাই আসল চাবিকাঠি</li>
-            <li><strong>পরিশ্রম ও সময়</strong> — প্রতিদিন নিয়মিত দোকান খোলা রাখা জরুরি</li>
-            <li><strong>বিশ্বাস</strong> — সৎভাবে কাজ করলে মুখে মুখে প্রচার হয়, গ্রাহক বাড়ে</li>
+            <li><strong>অবস্থান</strong> — বাজার, বাসস্ট্যান্ড বা ভিড় এলাকায় সেন্টার হলে গ্রাহক বেশি আসে। কেন? কারণ মানুষ চলার পথে দোকান দেখে ঢোকে। ভেতরের গলিতে দোকান হলে শুধু পরিচিতরাই আসবে। দোকানের বাইরে <strong>বড় সাইনবোর্ড</strong> লাগান — কী কী সেবা দেন, বাংলায় লিখুন।</li>
+            <li><strong>সেবার সংখ্যা</strong> — যত বেশি ধরনের সেবা দেবেন, আয়ের উৎস তত বাড়বে। যে গ্রাহক রিচার্জ করতে এলো, সে-ই কাল আধার প্রিন্ট করাবে — একই গ্রাহক থেকে দুটো কমিশন। তাই <a href="csc-services-list.html">সেবার তালিকা</a> বাড়াতে থাকুন।</li>
+            <li><strong>গ্রাহক সংখ্যা</strong> — নিয়মিত গ্রাহক তৈরি করাই আসল চাবিকাঠি। গ্রামের মানুষ চেনা মুখের কাছে বারবার আসে। নাম মনে রাখুন, হাসিমুখে কথা বলুন — এই ছোট ছোট বিষয়েই গ্রাহক বাঁধা পড়ে।</li>
+            <li><strong>পরিশ্রম ও সময়</strong> — প্রতিদিন নিয়মিত দোকান খোলা রাখা জরুরি। গ্রামের মানুষ সকাল-সন্ধ্যায় আসে; দোকান বন্ধ পেলে সে আর ফিরবে না — পাশের দোকানে চলে যাবে।</li>
+            <li><strong>বিশ্বাস</strong> — সৎভাবে কাজ করলে মুখে মুখে প্রচার হয়, গ্রাহক বাড়ে। মনে রাখবেন, আপনি মানুষের <strong>টাকা আর আধার তথ্য</strong> নিয়ে কাজ করছেন — একবার বিশ্বাস ভাঙলে পুরো গ্রামে বদনাম ছড়িয়ে যাবে।</li>
         </ul>
 
         <h2>🎯 সৎ প্রত্যাশা রাখুন</h2>
         <ul>
             <li>CSC <strong>চাকরি নয়, উদ্যোক্তা ব্যবসা</strong> — আয় আপনার পরিশ্রমের উপর নির্ভর করে।</li>
-            <li><strong>শুরুতে আয় কম</strong> হতে পারে — গ্রাহক তৈরি হতে সময় লাগে। ধৈর্য ধরুন।</li>
-            <li>একটা সেন্টার থেকে রাতারাতি বড়লোক হওয়ার গল্প <strong>বিশ্বাস করবেন না</strong>।</li>
-            <li>পাশাপাশি ফটোকপি, প্রিন্ট, মোবাইল রিচার্জের মতো কাজ রাখলে আয় স্থিতিশীল হয়।</li>
+            <li><strong>শুরুতে আয় কম</strong> হতে পারে — গ্রাহক তৈরি হতে সময় লাগে। মানুষ প্রথমে ছোট কাজ দিয়ে আপনাকে পরীক্ষা করবে; ভালো সেবা পেলে বড় কাজ নিয়ে আসবে। ধৈর্য ধরুন।</li>
+            <li>একটা সেন্টার থেকে রাতারাতি বড়লোক হওয়ার গল্প <strong>বিশ্বাস করবেন না</strong> — এগুলো হয় মিথ্যা, নয় প্রতারণার ফাঁদ।</li>
+            <li>পাশাপাশি ফটোকপি, প্রিন্ট, মোবাইল রিচার্জের মতো কাজ রাখলে আয় স্থিতিশীল হয় — কমিশন বাড়ার আগ পর্যন্ত এই দৈনিক আয় সংসার চালাতে সাহায্য করে।</li>
+            <li><strong>খরচের হিসাব রাখুন</strong> — দোকান ভাড়া, ইন্টারনেট, প্রিন্টারের কালি, যাতায়াত — মাস শেষে আয়-খরচের হিসাব মিলিয়ে দেখুন, তবেই ব্যবসা বুঝতে পারবেন।</li>
         </ul>
 
         <div class="warning">
-            <p style="margin:0"><strong>🚨 সতর্কতা:</strong> কেউ যদি "গ্যারান্টিড মাসিক আয়" বা "এত টাকা আয় হবেই" বলে <strong>আগে টাকা চায়</strong>, তাহলে সেটা প্রতারণা। CSC-তে যোগ দিতে অফিসিয়াল পোর্টাল ছাড়া কাউকে টাকা দেবেন না।</p>
+            <p style="margin:0"><strong>🚨 সতর্কতা:</strong> কেউ যদি "গ্যারান্টিড মাসিক আয়" বা "এত টাকা আয় হবেই" বলে <strong>আগে টাকা চায়</strong>, তাহলে সেটা প্রতারণা। CSC-তে যোগ দিতে অফিসিয়াল পোর্টাল ছাড়া কাউকে টাকা দেবেন না। মনে রাখুন — <strong>আয়ের গ্যারান্টি দেওয়ার ক্ষমতা কারো নেই</strong>, কারণ আয় নির্ভর করে আপনার কাজের উপর।</p>
         </div>
 
-        <div class="warning">
+        <h2>❓ সাধারণ কিছু প্রশ্ন</h2>
+        <p><strong>মাসে নির্দিষ্ট কত টাকা পাবো?</strong> — সৎ উত্তর: বলা যায় না। এটা আপনার অবস্থান, সেবার সংখ্যা, গ্রাহক ও পরিশ্রমের উপর নির্ভর করে। যে নির্দিষ্ট অঙ্কের গ্যারান্টি দেয়, সে মিথ্যা বলছে।</p>
+        <p><strong>কমিশনের হার কোথায় দেখবো?</strong> — Digital Seva পোর্টালে লগইন করে। হার সেবা অনুযায়ী আলাদা এবং বদলাতে পারে।</p>
+        <p><strong>কমিশন কীভাবে হাতে পাবো?</strong> — পোর্টালের নিয়ম অনুযায়ী আপনার লিংক করা ব্যাংক অ্যাকাউন্টে জমা হয়।</p>
+        <p><strong>শুরুতে আয় না হলে কী করবো?</strong> — হাল ছাড়বেন না। ফটোকপি-প্রিন্ট-রিচার্জের মতো দৈনিক আয়ের কাজ চালু রাখুন, পাশাপাশি CSC সেবার প্রচার করুন।</p>
+
+<div class="warning">
             <p style="margin:0 0 8px"><strong>🔗 অফিসিয়াল পোর্টাল (সরকারি):</strong></p>
             <ul style="margin:0 0 0 20px">
                 <li><a href="https://digitalseva.csc.gov.in" target="_blank" rel="noopener">digitalseva.csc.gov.in</a> — Digital Seva পোর্টাল</li>
@@ -128,5 +147,10 @@
         <p>© 2026 <a href="../index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য অফিসিয়াল পোর্টালের ভিত্তিতে। সর্বশেষ তথ্যের জন্য অফিসিয়াল পোর্টাল দেখুন।</p>
     </footer>
+
+    <script>
+        function shareArticle(){const d={title:document.title,text:(document.querySelector('h1')||{innerText:document.title}).innerText,url:location.href};if(navigator.share){navigator.share(d).catch(()=>{})}else{const m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+        function shareVia(w){const u=encodeURIComponent(location.href);const t=encodeURIComponent(((document.querySelector('h1')||{innerText:''}).innerText)+' | DAFADAR ONLINE SEVA');if(w==='whatsapp')open('https://wa.me/?text='+t+'%20'+u,'_blank');else if(w==='facebook')open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank');else if(w==='copy'){navigator.clipboard.writeText(location.href).then(()=>alert('লিংক কপি হয়েছে!'))}document.getElementById('shareMenu').style.display='none'}
+    </script>
 </body>
 </html>

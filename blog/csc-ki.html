@@ -42,6 +42,10 @@
         @keyframes likepop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-6deg); } 100% { transform: scale(1); } }
         .like-hint { font-size: 13px; color: #8a93a8; }
         .view-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #5b6478; }
+        .share-float-btn{position:fixed;top:76px;right:14px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;border:none;cursor:pointer;box-shadow:0 8px 20px rgba(79,70,229,.4);z-index:900}
+        .share-menu{display:none;position:fixed;top:132px;right:14px;background:#fff;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.2);z-index:901;overflow:hidden;min-width:175px}
+        .share-menu button{display:flex;align-items:center;gap:10px;width:100%;padding:12px 16px;border:none;background:#fff;font-size:15px;font-weight:600;color:#1e293b;cursor:pointer;font-family:'Hind Siliguri',sans-serif}
+        .share-menu button:hover{background:#f1f5f9}
     </style>
     <script type="application/ld+json">
     {
@@ -61,6 +65,12 @@
         <a class="logo" href="../index.html"><i class="fa-solid fa-laptop-code"></i> DAFADAR ONLINE SEVA</a>
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">🔗</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
 
     <article class="article">
         <span class="tag">CSC গাইড</span>
@@ -68,38 +78,55 @@
         <div class="date">২৩ অক্টোবর ২০২৬ · Dafadar Online Seva</div>
         <img src="../assets/blog-thumbs/csc-ki.jpg" alt="গ্রামে কমন সার্ভিস সেন্টার" class="thumb">
 
-        <p>গ্রামে বা পাড়ায় অনেক সময় দেখা যায় ছোট্ট একটি দোকান — যেখানে আধার কার্ড, প্যান কার্ড, টাকা তোলা, টিকিট বুকিং সব হয়। এটাই <strong>CSC</strong>, অর্থাৎ <strong>Common Service Centre</strong> (কমন সার্ভিস সেন্টার)। আজ জানুন CSC আসলে কী, কারা চালান, আর কীভাবে কাজ করে।</p>
+
+        <p>গ্রামে বা পাড়ায় অনেক সময় দেখা যায় ছোট্ট একটি দোকান — যেখানে আধার কার্ড, প্যান কার্ড, টাকা তোলা, টিকিট বুকিং সব হয়। এটাই <strong>CSC</strong>, অর্থাৎ <strong>Common Service Centre</strong> (কমন সার্ভিস সেন্টার)। আজ জানুন CSC আসলে কী, কারা চালান, আর কীভাবে কাজ করে।</p>
+
+        <p>চিন্তা করুন তো — আগে গ্রামের মানুষকে একটা আধার অনলাইন আবেদন করতে হলে শহরে ছুটতে হতো, সারাদিন ছুটি নিতে হতো, লাইনে দাঁড়াতে হতো। যার স্মার্টফোন নেই বা ইংরেজি জানে না, সে তো অনলাইন ফর্মের ধারেকাছেও যেত না। CSC-এর মূল উদ্দেশ্য এখানেই — যাতে প্রয়োজনীয় সেবা পেতে কাউকে দূরে যেতে না হয়।</p>
 
         <h2>🏛️ CSC আসলে কী?</h2>
-        <p>CSC হলো কেন্দ্রীয় সরকারের <strong>Digital India</strong> কর্মসূচির একটি বড় অংশ। এর উদ্দেশ্য খুব সহজ — <strong>সাধারণ মানুষের দোরগোড়ায় ডিজিটাল সেবা পৌঁছে দেওয়া</strong>। যাতে গ্রামের মানুষকেও শহরে ছুটতে না হয়, নিজের এলাকাতেই সরকারি-বেসরকারি নানা সেবা পাওয়া যায়।</p>
+        <p>CSC হলো কেন্দ্রীয় সরকারের <strong>Digital India</strong> কর্মসূচির একটি বড় অংশ। এর উদ্দেশ্য খুব সহজ — <strong>সাধারণ মানুষের দোরগোড়ায় ডিজিটাল সেবা পৌঁছে দেওয়া</strong>। যাতে গ্রামের মানুষকেও শহরে ছুটতে না হয়, নিজের এলাকাতেই সরকারি-বেসরকারি নানা সেবা পাওয়া যায়।</p>
         <p>এই পুরো ব্যবস্থা পরিচালনা করে <strong>CSC e-Governance Services India Limited</strong> নামের একটি সংস্থা, যা ইলেকট্রনিক্স ও তথ্যপ্রযুক্তি মন্ত্রকের (MeitY) অধীনে কাজ করে।</p>
+        <p>সহজ কথায় বললে, সরকার নিজে প্রতিটি গ্রামে অফিস খুলে সব সেবা দেওয়া সম্ভব নয় — তাই উদ্যোক্তা-ভিত্তিক মডেল নেওয়া হয়েছে। সরকার প্ল্যাটফর্ম দেয়, স্থানীয় উদ্যোক্তা সেবা দেন — এভাবেই শেষ মাইল পর্যন্ত (লাস্ট-মাইল ডেলিভারি) সমস্যার সমাধান হয়। ফলে গ্রামের মানুष পায় সহজ সেবা, আর স্থানীয় যুবক পায় কাজের সুযোগ।</p>
 
         <h2>👨‍💼 VLE কারা?</h2>
         <p>প্রতিটি CSC চালান একজন <strong>VLE</strong> — অর্থাৎ <strong>Village Level Entrepreneur</strong> (গ্রাম-স্তরের উদ্যোক্তা)। VLE নিজে একজন উদ্যোক্তা; তিনি নিজের সেন্টার থেকে এলাকার মানুষকে ডিজিটাল সেবা দেন এবং প্রতিটি সেবার বদলে কমিশন পান।</p>
         <div class="highlight">
             <p style="margin:0"><strong>মনে রাখুন:</strong> CSC একটি সরকারি উদ্যোগ হলেও VLE হলেন একজন <strong>বেসরকারি উদ্যোক্তা</strong> — সরকারি চাকরিজীবী নন। এটা এক ধরনের সম্মানজনক স্ব-উদ্যোগ (self-employment)।</p>
         </div>
+        <p>এটা বোঝা জরুরি কেন? কারণ অনেকেই ভাবেন CSC মানে সরকারি চাকরি — না, এটা নিজের ব্যবসা। তাই আয় নির্ভর করে আপনার পরিশ্রম, সেবার মান আর গ্রাহকদের বিশ্বাসের উপর। যে যত ভালো সেবা দেবেন, সে তত এগিয়ে যাবেন। এই মডেলের সুবিধা হলো — আপনি নিজের বস। অসুবিধা হলো — মাস শেষে নির্দিষ্ট বেতন নেই; আয় কমিশন-ভিত্তিক।</p>
+        <p>VLE হয়ার পর আপনাকে নিজের এলাকায় ডিজিটাল সেবার মুখ হতে হয়। গ্রামের বয়স্ক মানুষটি যিনি স্মার্টফোন চালাতে পারেন না, তিনি আপনার কাছে আসবেন বিশ্বাস করে — এই বিশ্বাসই আপনার আসল পুঁজি।</p>
 
         <h2>🖥️ Digital Seva পোর্টাল কী?</h2>
-        <p>VLE-রা যেই অনলাইন প্ল্যাটফর্ম থেকে সেবাগুলো দেন, তার নাম <strong>Digital Seva Portal</strong>। এখানে লগইন করে VLE আধার, প্যান, ব্যাংকিং, বিল পেমেন্ট, টিকিট বুকিংসহ নানা সেবা গ্রাহকদের দিয়ে থাকেন।</p>
+        <p>VLE-রা যেই অনলাইন প্ল্যাটফর্ম থেকে সেবাগুলো দেন, তার নাম <strong>Digital Seva Portal</strong>। এখানে লগইন করে VLE আধার, প্যান, ব্যাংকিং, বিল পেমেন্ট, টিকিট বুকিংসহ নানা সেবা গ্রাহকদের দিয়ে থাকেন।</p>
+        <p>একটা পোর্টালে এত সেবা থাকার সুবিধা কী? প্রতিটি সেবার জন্য আলাদা আলাদা জায়গায় ঘোরাফেরা করতে হয় না। একটা লগইনেই সব সেবার দরজা খুলে যায়। ফলে VLE-এর কাজ সহজ হয়, আর গ্রাহকও দ্রুত সেবা পান। নিয়মিত পোর্টাল চেক করা জরুরি — কারণ নতুন নতুন সেবা যোগ হলে সবার আগে পোর্টালেই জানা যায়।</p>
 
         <h2>📋 CSC থেকে কী কী সেবা মেলে?</h2>
         <ul>
-            <li>আধার সংক্রান্ত সেবা (আপডেট, প্রিন্ট ইত্যাদি)</li>
-            <li>প্যান কার্ডের আবেদন</li>
-            <li>ব্যাংকিং সেবা (টাকা জমা/তোলা)</li>
-            <li>মোবাইল রিচার্জ, বিদ্যুৎ বিল পেমেন্ট</li>
-            <li>রেল, বাস, বিমানের টিকিট বুকিং</li>
-            <li>সরকারি প্রকল্প ও ফর্মের আবেদনে সাহায্য</li>
+            <li>আধার সংক্রান্ত সেবা (আপডেট, প্রিন্ট ইত্যাদি) — কারণ সরকারি টাকা (DBT) আধার-লিংক ব্যাংক অ্যাকাউন্টে আসে; তথ্য ভুল থাকলে টাকা আটকে যায়</li>
+            <li>প্যান কার্ডের আবেদন — ব্যাংক অ্যাকাউন্ট বা অন্য কাজে প্যান ছাড়া চলে না</li>
+            <li>ব্যাংকিং সেবা (টাকা জমা/তোলা) — গ্রামে ব্যাংকের শাখা না থাকলেও টাকার কাজ হয়ে যায়</li>
+            <li>মোবাইল রিচার্জ, বিদ্যুৎ বিল পেমেন্ট — প্রতি মাসের দরকারি কাজ, শহরে যাওয়ার দরকার নেই</li>
+            <li>রেল, বাস, বিমানের টিকিট বুকিং — অনলাইন বুকিং যারা পারেন না, তাদের জন্য বড় সুবিধা</li>
+            <li>সরকারি প্রকল্প ও ফর্মের আবেদনে সাহায্য — এখন বেশিরভাগ আবেদনই অনলাইনে হয়</li>
         </ul>
-        <p>সেবার পুরো তালিকা আমাদের আলাদা আর্টিকেলে দেখুন: <a href="csc-services-list.html">CSC থেকে কী কী সেবা দেওয়া যায়</a>।</p>
+        <p>সেবার পুরো তালিকা আমাদের আলাদা আর্টিকেলে দেখুন: <a href="csc-services-list.html">CSC থেকে কী কী সেবা দেওয়া যায়</a>।</p>
+
+        <h2>💡 VLE হতে चাইলে মনে রাখবেন</h2>
+        <ul>
+            <li><strong>স্থান নির্বাচন:</strong> বাজার, বাসস্ট্যান্ড বা ভিড় এলাকায় সেন্টার হলে গ্রাহক বেশি আসে।</li>
+            <li><strong>সততা:</strong> সরকার নির্ধারিত চার্জের বেশি নেবেন না — বিশ্বাস ভাঙলে গ্রাহক আর ফিরবে না।</li>
+            <li><strong>নিয়মিত শিকা:</strong> পোর্টালে নতুন সেবা যোগ হলে শিখে নিন — যত বেশি সেবা দেবেন, আয় তত বাড়বে।</li>
+            <li><strong>ধৈর্য:</strong> শুরুতে গ্রাহক কম হতে পারে; নিয়মিত ভালো সেবা দিলে মুখে মুখে প্রڇার হয়।</li>
+        </ul>
 
         <h2>❓ সাধারণ কিছু প্রশ্ন</h2>
-        <p><strong>CSC কি সরকারি অফিস?</strong> — না, এটা সরকারি উদ্যোগের অধীনে চলা উদ্যোক্তা-ভিত্তিক সেবাকেন্দ্র।</p>
-        <p><strong>সেবা কি ফ্রি?</strong> — বেশিরভাগ সেবার জন্য সরকার নির্ধারিত সামান্য চার্জ থাকে। VLE-কে সেই নিয়ম মেনেই চার্জ নিতে হয়।</p>
-        <p><strong>নিজে CSC খুলতে চান?</strong> — তাহলে আগে <a href="csc-tec-certificate.html">TEC সার্টিফিকেট</a> নিতে হবে, তারপর <a href="csc-id-apply.html">রেজিস্ট্রেশন</a> করতে হবে।</p>
+        <p><strong>CSC কি সরকারি অফিস?</strong> — না, এটা সরকারি উদ্যোগের অধীনে চলা উদ্যোক্তা-ভিত্তিক সেবাকেন্দ্র। তবে প্ল্যাটফর্ম, নিয়ম আর সেবার তালিকা — সবই সরকারি কাঠামোতে চলে।</p>
+        <p><strong>সেবা কি ফ্রি?</strong> — বেশিরভাগ সেবার জন্য সরকার নির্ধারিত সামান্য চার্জ থাকে। VLE-কে সেই নিয়ম মেনেই চার্জ নিতে হয় — ইচ্ছামতো বেশি নেওয়া অনিয়ম।</p>
+        <p><strong>CSC শুধু কি গ্রামে থাকে?</strong> — না, গ্রাম হোক বা শহরের পাড়া — যেখানে মানুষের ডিজিটাল সেবা দরকার, সেখানেই CSC খোলা যায়।</p>
+        <p><strong>সেবা নিতে গেলে কী কী নিতে হয়?</strong> — সেবা অনুযায়ী আলাদা হয়; সাধারণত আধার নম্বর বা মোবাইল নম্বর লাগে। VLE-কে জিজ্ঞেস করে নিন।</p>
+        <p><strong>নিজে CSC খুলতে चান?</strong> — তাহলে আগে <a href="csc-tec-certificate.html">TEC সার্টিফিকেট</a> নিতে হবে, তারপর <a href="csc-id-apply.html">রেজিস্ট্রেশন</a> করতে হবে।</p>
 
-        <div class="warning">
+<div class="warning">
             <p style="margin:0 0 8px"><strong>🔗 অফিসিয়াল পোর্টাল (সরকারি):</strong></p>
             <ul style="margin:0 0 0 20px">
                 <li><a href="https://csc.gov.in" target="_blank" rel="noopener">csc.gov.in</a> — CSC-এর মূল ওয়েবসাইট</li>
@@ -131,5 +158,10 @@
         <p>© 2026 <a href="../index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য সরকারি ঘোষণা ও অফিসিয়াল পোর্টালের ভিত্তিতে। সর্বশেষ তথ্যের জন্য অফিসিয়াল পোর্টাল দেখুন।</p>
     </footer>
+
+    <script>
+        function shareArticle(){const d={title:document.title,text:(document.querySelector('h1')||{innerText:document.title}).innerText,url:location.href};if(navigator.share){navigator.share(d).catch(()=>{})}else{const m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+        function shareVia(w){const u=encodeURIComponent(location.href);const t=encodeURIComponent(((document.querySelector('h1')||{innerText:''}).innerText)+' | DAFADAR ONLINE SEVA');if(w==='whatsapp')open('https://wa.me/?text='+t+'%20'+u,'_blank');else if(w==='facebook')open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank');else if(w==='copy'){navigator.clipboard.writeText(location.href).then(()=>alert('লিংক কপি হয়েছে!'))}document.getElementById('shareMenu').style.display='none'}
+    </script>
 </body>
 </html>

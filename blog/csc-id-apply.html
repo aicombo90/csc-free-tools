@@ -42,6 +42,10 @@
         @keyframes likepop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-6deg); } 100% { transform: scale(1); } }
         .like-hint { font-size: 13px; color: #8a93a8; }
         .view-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #5b6478; }
+        .share-float-btn{position:fixed;top:76px;right:14px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;border:none;cursor:pointer;box-shadow:0 8px 20px rgba(79,70,229,.4);z-index:900}
+        .share-menu{display:none;position:fixed;top:132px;right:14px;background:#fff;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.2);z-index:901;overflow:hidden;min-width:175px}
+        .share-menu button{display:flex;align-items:center;gap:10px;width:100%;padding:12px 16px;border:none;background:#fff;font-size:15px;font-weight:600;color:#1e293b;cursor:pointer;font-family:'Hind Siliguri',sans-serif}
+        .share-menu button:hover{background:#f1f5f9}
     </style>
     <script type="application/ld+json">
     {
@@ -61,6 +65,12 @@
         <a class="logo" href="../index.html"><i class="fa-solid fa-laptop-code"></i> DAFADAR ONLINE SEVA</a>
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">🔗</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
 
     <article class="article">
         <span class="tag">CSC গাইড</span>
@@ -70,19 +80,22 @@
 
         <p>নিজের এলাকায় CSC (Common Service Centre) খুলে উদ্যোক্তা হতে চান? তাহলে প্রথমে দরকার <strong>CSC ID</strong> — অর্থাৎ VLE (Village Level Entrepreneur) হিসেবে রেজিস্ট্রেশন। এই আর্টিকেলে জানুন কোথায় আবেদন করবেন, সাধারণ ধাপগুলো কী, আর কোন ফাঁদ থেকে সাবধান থাকবেন।</p>
 
+        <p><strong>CSC ID আসলে কী?</strong> এটা আপনার পরিচয় — Digital Seva পোর্টালে লগইন করার চাবি। CSC ID ছাড়া আপনি পোর্টালে ঢুকতেই পারবেন না, ফলে কোনো সেবাও দিতে পারবেন না। তাই CSC খোলার স্বপ্নের প্রথম সিঁড়িই হলো এই ID পাওয়া। আর এই ID পাওয়ার পথ একটাই — অফিসিয়াল পোর্টালে সঠিকভাবে আবেদন করা।</p>
+
         <h2>📝 কোথায় আবেদন করবেন?</h2>
         <p>CSC-এর জন্য আবেদন হয় <strong>শুধুমাত্র অফিসিয়াল পোর্টালে</strong>:</p>
         <div class="highlight">
             <p style="margin:0"><strong>👉 <a href="https://register.csc.gov.in" target="_blank" rel="noopener">register.csc.gov.in</a></strong><br>এটাই VLE রেজিস্ট্রেশনের সরকারি ঠিকানা। অন্য কোনো ওয়েবসাইটে CSC ID-এর জন্য আবেদন করবেন না।</p>
         </div>
+        <p>কেন শুধু এই একটা ঠিকানা? কারণ ইন্টারনেটে CSC-এর নামে <strong>নকল ওয়েবসাইট</strong> ঘুরে বেড়ায় — দেখতে অফিসিয়ালের মতো, কিন্তু আসলে প্রতারকদের ফাঁদ। সেখানে তথ্য দিলে আপনার আধার নম্বর, মোবাইল নম্বর, ব্যাংক বিবরণ চোরের হাতে চলে যেতে পারে। তাই ওয়েবসাইটের ঠিকানা (URL) মিলিয়ে নেওয়াই প্রথম সুরক্ষা।</p>
 
         <h2>✅ রেজিস্ট্রেশনের সাধারণ ধাপ</h2>
         <ol>
-            <li><strong>TEC সার্টিফিকেট আগে নিন</strong> — নতুন VLE রেজিস্ট্রেশনের আগে TEC (Telecentre Entrepreneur Course) সার্টিফিকেট বাধ্যতামূলক। বিস্তারিত: <a href="csc-tec-certificate.html">TEC সার্টিফিকেট গাইড</a>।</li>
-            <li><strong>পোর্টালে আবেদন ফর্ম পূরণ করুন</strong> — register.csc.gov.in-এ গিয়ে নির্ধারিত ফর্মে নিজের তথ্য দিন।</li>
-            <li><strong>কাগজপত্র আপলোড করুন</strong> — চাওয়া ডকুমেন্টগুলোর স্ক্যান কপি আপলোড করুন। তালিকা: <a href="csc-documents.html">কী কী কাগজপত্র লাগবে</a>।</li>
-            <li><strong>যাচাইকরণ</strong> — জমা দেওয়া তথ্য ও কাগজপত্র যাচাই করা হয়।</li>
-            <li><strong>অনুমোদন</strong> — সব ঠিক থাকলে CSC ID ইস্যু করা হয়।</li>
+            <li><strong>TEC সার্টিফিকেট আগে নিন</strong> — নতুন VLE রেজিস্ট্রেশনের আগে TEC (Telecentre Entrepreneur Course) সার্টিফিকেট বাধ্যতামূলক। কেন বাধ্যতামূলক? যাতে CSC চালানোর প্রাথমিক জ্ঞান আপনার থাকে — গ্রাহকের সেবা আর টাকার দায়িত্ব যার হাতে, তার প্রশিক্ষণ থাকা জরুরি। বিস্তারিত: <a href="csc-tec-certificate.html">TEC সার্টিফিকেট গাইড</a>।</li>
+            <li><strong>পোর্টালে আবেদন ফর্ম পূরণ করুন</strong> — register.csc.gov.in-এ গিয়ে নির্ধারিত ফর্মে নিজের তথ্য দিন। ফর্ম পূরণের সময় <strong>প্রতিটি ঘর মন দিয়ে পূরণ করুন</strong> — নামের বানান, জন্মতারিখ, ঠিকানা যেন আপনার কাগজপত্রের সঙ্গে হুবহু মেলে। কেন? কারণ পরের ধাপে যাচাইকরণে ফর্মের তথ্য আর কাগজপত্র মিলিয়ে দেখা হয়। অমিল পেলেই আবেদন আটকে যাবে বা বাতিল হবে — তখন আবার শুরু থেকে করতে হবে।</li>
+            <li><strong>কাগজপত্র আপলোড করুন</strong> — চাওয়া ডকুমেন্টগুলোর স্ক্যান কপি আপলোড করুন। স্ক্যান যেন <strong>স্পষ্ট ও পড়ার মতো</strong> হয় — ঝাপসা ছবি দিলে যাচাইকারী পড়তে পারবেন না, ফলে দেরি হবে। তালিকা: <a href="csc-documents.html">কী কী কাগজপত্র লাগবে</a>।</li>
+            <li><strong>যাচাইকরণ</strong> — জমা দেওয়া তথ্য ও কাগজপত্র যাচাই করা হয়। এই ধাপে ধৈর্য ধরুন — যাচাইকরণে সময় লাগতে পারে। এই ধাপটা কেন আছে? যাতে কোনো প্রতারক ভুয়ো পরিচয়ে CSC ID নিয়ে গ্রামের মানুষের টাকা বা তথ্য নিয়ে পালাতে না পারে। যাচাইকরণ আসলে <strong>আপনারও সুরক্ষা</strong> — এতে CSC ব্যবস্থার উপর মানুষের বিশ্বাস থাকে।</li>
+            <li><strong>অনুমোদন</strong> — সব ঠিক থাকলে CSC ID ইস্যু করা হয়। ID পাওয়ার পর আপনি Digital Seva পোর্টালে লগইন করে সেবা দেওয়া শুরু করতে পারবেন।</li>
         </ol>
 
         <div class="warning">
@@ -91,12 +104,28 @@
 
         <h2>🚨 প্রতারণা থেকে সাবধান!</h2>
         <ul>
-            <li><strong>CSC ID কেনাবেচা হয় না।</strong> কেউ "টাকা দিলে CSC ID পাইয়ে দেবো" বললে সেটা ১০০% প্রতারণা।</li>
-            <li>অফিসিয়াল পোর্টাল ছাড়া অন্য কোথাও টাকা পাঠাবেন না।</li>
+            <li><strong>CSC ID কেনাবেচা হয় না।</strong> কেউ "টাকা দিলে CSC ID পাইয়ে দেবো" বললে সেটা ১০০% প্রতারণা। CSC ID আপনার যাচাইকৃত পরিচয়ের সঙ্গে বাঁধা — এটা কেনা বা অন্যের নামে নেওয়ার কোনো পথ নেই।</li>
+            <li>অফিসিয়াল পোর্টাল ছাড়া অন্য কোথাও টাকা পাঠাবেন না — না কোনো "এজেন্ট"কে, না কোনো WhatsApp নম্বরে।</li>
+            <li>প্রতারকরা অনেক সময় <strong>অফিসিয়ালের মতো দেখতে নকল সাইট</strong> বানায়। URL ভালো করে দেখুন — ঠিকানা register.csc.gov.in-এর সঙ্গে মিলছে কিনা।</li>
+            <li><strong>OTP কাউকে দেবেন না।</strong> আসল পোর্টাল কখনো ফোনে OTP চায় না। কেউ OTP চাইলেই বুঝবেন প্রতারণা।</li>
             <li>সন্দেহ হলে CSC-এর হেল্পলাইন বা অফিসিয়াল ওয়েবসাইটে যোগাযোগ করুন।</li>
         </ul>
 
-        <div class="warning">
+        <h2>💡 আবেদনকারীদের জন্য কাজের টিপস</h2>
+        <ul>
+            <li><strong>নিজে আবেদন করুন</strong> — দালালের উপর নির্ভর করবেন না। ফর্ম পূরণ শিখে নিলে পরে পোর্টাল চালাতেও সুবিধা হবে।</li>
+            <li>আবেদনের <strong>রেফারেন্স নম্বর/রসিদ</strong> যত্নে রাখুন — পরে অবস্থা জানতে কাজে লাগবে।</li>
+            <li>আবেদনের পর মাঝে মাঝে পোর্টালে ঢুকে <strong>অবস্থা (status) দেখুন</strong> — কিছু জানতে চাওয়া হলে দ্রুত জবাব দিন।</li>
+            <li>মোবাইল নম্বরটি <strong>নিজের নামে ও চালু</strong> রাখুন — OTP ও যোগাযোগ এই নম্বরেই আসবে।</li>
+        </ul>
+
+        <h2>❓ সাধারণ কিছু প্রশ্ন</h2>
+        <p><strong>আবেদন করতে কতদিন লাগে?</strong> — নির্দিষ্ট সময় বলা যায় না; যাচাইকরণ কত দ্রুত হয় তার উপর নির্ভর করে। ধৈর্য ধরুন, আর পোর্টালে অবস্থা দেখতে থাকুন।</p>
+        <p><strong>আবেদন বাতিল বা ফেরত এলে কী করবো?</strong> — কী কারণে ফেরত এলো সেটা দেখুন, ভুল সংশোধন করে আবার আবেদন করুন। অফিসিয়াল পোর্টালের নির্দেশ মেনে চলুন।</p>
+        <p><strong>TEC ছাড়া কি আবেদন করা যায়?</strong> — না। নতুন VLE রেজিস্ট্রেশনে TEC সার্টিফিকেট বাধ্যতামূলক। আগে <a href="csc-tec-certificate.html">TEC গাইড</a> দেখুন।</p>
+        <p><strong>অন্যের মোবাইল নম্বর দিয়ে আবেদন করা যায়?</strong> — করবেন না। OTP ও সব যোগাযোগ ওই নম্বরে যাবে; নিজের নামের চালু নম্বর ব্যবহার করুন।</p>
+
+<div class="warning">
             <p style="margin:0 0 8px"><strong>🔗 অফিসিয়াল পোর্টাল (সরকারি):</strong></p>
             <ul style="margin:0 0 0 20px">
                 <li><a href="https://register.csc.gov.in" target="_blank" rel="noopener">register.csc.gov.in</a> — VLE রেজিস্ট্রেশন</li>
@@ -127,5 +156,10 @@
         <p>© 2026 <a href="../index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য অফিসিয়াল পোর্টালের ভিত্তিতে। সর্বশেষ তথ্যের জন্য অফিসিয়াল পোর্টাল দেখুন।</p>
     </footer>
+
+    <script>
+        function shareArticle(){const d={title:document.title,text:(document.querySelector('h1')||{innerText:document.title}).innerText,url:location.href};if(navigator.share){navigator.share(d).catch(()=>{})}else{const m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+        function shareVia(w){const u=encodeURIComponent(location.href);const t=encodeURIComponent(((document.querySelector('h1')||{innerText:''}).innerText)+' | DAFADAR ONLINE SEVA');if(w==='whatsapp')open('https://wa.me/?text='+t+'%20'+u,'_blank');else if(w==='facebook')open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank');else if(w==='copy'){navigator.clipboard.writeText(location.href).then(()=>alert('লিংক কপি হয়েছে!'))}document.getElementById('shareMenu').style.display='none'}
+    </script>
 </body>
 </html>

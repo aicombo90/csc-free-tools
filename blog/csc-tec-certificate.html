@@ -42,6 +42,10 @@
         @keyframes likepop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-6deg); } 100% { transform: scale(1); } }
         .like-hint { font-size: 13px; color: #8a93a8; }
         .view-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #5b6478; }
+        .share-float-btn{position:fixed;top:76px;right:14px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;border:none;cursor:pointer;box-shadow:0 8px 20px rgba(79,70,229,.4);z-index:900}
+        .share-menu{display:none;position:fixed;top:132px;right:14px;background:#fff;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.2);z-index:901;overflow:hidden;min-width:175px}
+        .share-menu button{display:flex;align-items:center;gap:10px;width:100%;padding:12px 16px;border:none;background:#fff;font-size:15px;font-weight:600;color:#1e293b;cursor:pointer;font-family:'Hind Siliguri',sans-serif}
+        .share-menu button:hover{background:#f1f5f9}
     </style>
     <script type="application/ld+json">
     {
@@ -61,6 +65,12 @@
         <a class="logo" href="../index.html"><i class="fa-solid fa-laptop-code"></i> DAFADAR ONLINE SEVA</a>
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">🔗</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
 
     <article class="article">
         <span class="tag">CSC গাইড</span>
@@ -70,15 +80,21 @@
 
         <p>CSC খুলতে চান? তাহলে সবার আগে দরকার <strong>TEC সার্টিফিকেট</strong>। TEC অর্থ <strong>Telecentre Entrepreneur Course</strong> — নতুন VLE (Village Level Entrepreneur) রেজিস্ট্রেশনের জন্য এই সার্টিফিকেট <strong>বাধ্যতামূলক</strong>। TEC ছাড়া CSC ID-এর আবেদন করা যায় না।</p>
 
+        <p>অনেকে ভাবেন — "শুধু একটা সার্টিফিকেটের জন্য কোর্স কেন?" কারণটা গভীর। CSC-তে আপনি মানুষের <strong>আধার তথ্য, ব্যাংকের টাকা, গুরুত্বপূর্ণ ফর্ম</strong> নিয়ে কাজ করবেন। প্রশিক্ষণ ছাড়া এই দায়িত্ব দিলে ভুল হবে, আর ভুলের খেসারত দেবে গ্রামের সাধারণ মানুষ। তাই সরকার চায় — সেন্টার খোলার আগেই উদ্যোক্তা মৌলিক বিষয়গুলো শিখে নিক। TEC সেই শেখারই প্রমাণপত্র।</p>
+
         <h2>🎓 TEC কোর্সটা কী?</h2>
         <p>TEC হলো একটি <strong>অনলাইন কোর্স</strong>, যা CSC Academy-এর মাধ্যমে করানো হয়। এই কোর্সে উদ্যোক্তা হিসেবে CSC চালানোর জন্য দরকারি প্রাথমিক জ্ঞান দেওয়া হয় — যেমন ডিজিটাল সেবা, গ্রাহক পরিচালনা ও ব্যবসার মূল বিষয়গুলো। কোর্স শেষে একটি <strong>অনলাইন পরীক্ষা</strong> দিতে হয়।</p>
+        <p>কোর্সে মূলত তিন ধরনের বিষয় থাকে। <strong>প্রথম</strong> — ডিজিটাল সেবা: পোর্টাল কীভাবে ব্যবহার করবেন, অনলাইন লেনদেনে কী সতর্কতা দরকার। <strong>দ্বিতীয়</strong> — গ্রাহক পরিচালনা: গ্রামের মানুষের সঙ্গে কীভাবে কথা বলবেন, জটিল বিষয় সহজ ভাষায় কীভাবে বোঝাবেন, অভিযোগ এলে কী করবেন। <strong>তৃতীয়</strong> — ব্যবসার মূল বিষয়: হিসাব রাখা, সৎ মূল্য নেওয়া, সেন্টার পরিচালনার নিয়ম। এই তিনটে মিলেই একজন VLE তৈরি হয়।</p>
+        <div class="highlight">
+            <p style="margin:0"><strong>💡 কেন এটা আপনার লাভ?</strong> TEC-তে যা শিখবেন, সেটাই পরে আপনার <strong>আয়ের ভিত্তি</strong>। গ্রাহককে ভালোভাবে বোঝাতে পারলে, সৎভাবে সেবা দিলে — গ্রাহক বাড়বে, আয় বাড়বে। কোর্সটাকে শুধু "সার্টিফিকেটের ফর্মালিটি" ভাববেন না।</p>
+        </div>
 
         <h2>✅ সাধারণ প্রক্রিয়া</h2>
         <ol>
-            <li><strong>কোর্সে ভর্তি</strong> — অফিসিয়াল TEC পোর্টালে নাম নথিভুক্ত করুন।</li>
-            <li><strong>অনলাইনে পড়াশোনা</strong> — নিজের সময়মতো কোর্সের মডিউলগুলো শেষ করুন।</li>
-            <li><strong>পরীক্ষা দিন</strong> — অনলাইন মূল্যায়নে অংশ নিন।</li>
-            <li><strong>সার্টিফিকেট পান</strong> — উত্তীর্ণ হলে TEC সার্টিফিকেট ইস্যু হয়।</li>
+            <li><strong>কোর্সে ভর্তি</strong> — অফিসিয়াল TEC পোর্টালে নাম নথিভুক্ত করুন। ভর্তি শুধু অফিসিয়াল পথেই করবেন — নিচে সতর্কতা অংশে বিস্তারিত আছে।</li>
+            <li><strong>অনলাইনে পড়াশোনা</strong> — নিজের সময়মতো কোর্সের মডিউলগুলো শেষ করুন। অনলাইন হওয়ার সুবিধা হলো — যারা অন্য কাজ বা চাকরির পাশাপাশি প্রস্তুতি নিচ্ছেন, তারা <strong>নিজের সুবিধামতো সময়ে</strong> পড়তে পারেন। তাড়াহুড়ো না করে প্রতিটি মডিউল বুঝে শেষ করুন; কারণ পরীক্ষায় এই পড়াই কাজে লাগবে।</li>
+            <li><strong>পরীক্ষা দিন</strong> — অনলাইন মূল্যায়নে অংশ নিন। পরীক্ষা <strong>নিজে দিন</strong> — এটা শুধু নিয়মের কথা নয়, আপনার নিজের স্বার্থেও জরুরি (নিচে ব্যাখ্যা আছে)।</li>
+            <li><strong>সার্টিফিকেট পান</strong> — উত্তীর্ণ হলে TEC সার্টিফিকেট ইস্যু হয়। সার্টিফিকেটটি যত্নে সংরক্ষণ করুন — CSC রেজিস্ট্রেশনের সময় এটা জমা দিতে হবে।</li>
             <li><strong>CSC-এর জন্য আবেদন</strong> — এই সার্টিফিকেট নিয়ে <a href="csc-id-apply.html">CSC ID-এর জন্য রেজিস্ট্রেশন</a> করুন।</li>
         </ol>
 
@@ -86,17 +102,32 @@
             <p style="margin:0"><strong>⚠️ মনে রাখুন:</strong> কোর্স ফি, পরীক্ষার নিয়ম ও অন্যান্য বিস্তারিত তথ্য সময়ে সময়ে বদলাতে পারে। ভর্তির আগে <strong>অফিসিয়াল পোর্টালে সর্বশেষ তথ্য দেখুন</strong>।</p>
         </div>
 
+        <h2>🤔 পরীক্ষা নিজে কেন দেবেন?</h2>
+        <p>অনেকে ভাবেন — "অন্য কেউ পরীক্ষা দিয়ে দিলেই তো সার্টিফিকেট পেয়ে যাবো!" এটা <strong>মারাত্মক ভুল</strong>, তিনটে কারণে:</p>
+        <ul>
+            <li><strong>যাচাইকরণে ধরা পড়ার ঝুঁকি</strong> — সার্টিফিকেট আপনার পরিচয়ের সঙ্গে বাঁধা। পরে যাচাইকরণে অমিল পেলে রেজিস্ট্রেশন বাতিল পর্যন্ত হতে পারে।</li>
+            <li><strong>জ্ঞান ছাড়া সেন্টার চলবে না</strong> — পরীক্ষা এড়িয়ে গেলে আপনি শিখলেন না। পরে গ্রাহকের আধার-ব্যাংকের কাজে ভুল করলে দায় আপনার।</li>
+            <li><strong>এটা প্রতারণার শামিল</strong> — ধরা পড়লে CSC-এর স্বপ্নই শেষ হয়ে যেতে পারে।</li>
+        </ul>
+
         <h2>🚨 সতর্কতা</h2>
         <ul>
-            <li>TEC সার্টিফিকেট <strong>শুধুমাত্র অফিসিয়াল পথেই</strong> নিন — "টাকা দিলে সার্টিফিকেট পাইয়ে দেবো" ধরনের প্রস্তাব প্রতারণা।</li>
+            <li>TEC সার্টিফিকেট <strong>শুধুমাত্র অফিসিয়াল পথেই</strong> নিন — "টাকা দিলে সার্টিফিকেট পাইয়ে দেবো" ধরনের প্রস্তাব প্রতারণা। সার্টিফিকেট কেনা যায় না; এটা পরীক্ষায় উত্তীর্ণ হয়ে অর্জন করতে হয়।</li>
             <li>পরীক্ষা নিজে দিন — অন্যের নামে পরীক্ষা দিলে পরে যাচাইকরণে সমস্যা হতে পারে।</li>
+            <li>কোর্সের নামে <strong>অচেনা লিংকে ক্লিক</strong> করে টাকা পাঠাবেন না। ঠিকানা অফিসিয়াল কিনা যাচাই করুন।</li>
         </ul>
+
+        <h2>❓ সাধারণ কিছু প্রশ্ন</h2>
+        <p><strong>কোর্স কি বাড়ি বসে করা যায়?</strong> — হ্যাঁ, এটা অনলাইন কোর্স। নিজের সময়মতো মডিউল শেষ করতে পারবেন।</p>
+        <p><strong>কোর্স করতে কতদিন লাগে?</strong> — নির্দিষ্ট সময় বলা যায় না; এটা আপনার পড়ার গতির উপর নির্ভর করে। তাড়াহুড়ো না করে বুঝে পড়ুন।</p>
+        <p><strong>পরীক্ষায় অকৃতকার্য হলে কী হবে?</strong> — এ বিষয়ে অফিসিয়াল পোর্টালের নিয়ম দেখুন। হাল ছাড়বেন না — ভালো করে প্রস্তুতি নিয়ে আবার চেষ্টা করুন।</p>
+        <p><strong>TEC সার্টিফিকেট পেলেই কি CSC ID পেয়ে যাবো?</strong> — না, TEC শুধু প্রথম শর্ত। তারপর <a href="csc-documents.html">কাগজপত্র</a> গুছিয়ে <a href="csc-id-apply.html">রেজিস্ট্রেশন</a> করতে হবে।</p>
 
         <div class="highlight">
             <p style="margin:0"><strong>💡 পরের ধাপ:</strong> TEC সার্টিফিকেট হাতে পেলে <a href="csc-documents.html">কী কী কাগজপত্র লাগবে</a> দেখে নিন, তারপর <a href="csc-id-apply.html">রেজিস্ট্রেশন করুন</a>।</p>
         </div>
 
-        <div class="warning">
+<div class="warning">
             <p style="margin:0 0 8px"><strong>🔗 অফিসিয়াল পোর্টাল (সরকারি):</strong></p>
             <ul style="margin:0 0 0 20px">
                 <li><a href="https://csc.gov.in" target="_blank" rel="noopener">csc.gov.in</a> — CSC-এর মূল ওয়েবসাইট (এখান থেকে TEC-এর লিংক পাবেন)</li>
@@ -127,5 +158,10 @@
         <p>© 2026 <a href="../index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য অফিসিয়াল পোর্টালের ভিত্তিতে। সর্বশেষ তথ্যের জন্য অফিসিয়াল পোর্টাল দেখুন।</p>
     </footer>
+
+    <script>
+        function shareArticle(){const d={title:document.title,text:(document.querySelector('h1')||{innerText:document.title}).innerText,url:location.href};if(navigator.share){navigator.share(d).catch(()=>{})}else{const m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+        function shareVia(w){const u=encodeURIComponent(location.href);const t=encodeURIComponent(((document.querySelector('h1')||{innerText:''}).innerText)+' | DAFADAR ONLINE SEVA');if(w==='whatsapp')open('https://wa.me/?text='+t+'%20'+u,'_blank');else if(w==='facebook')open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank');else if(w==='copy'){navigator.clipboard.writeText(location.href).then(()=>alert('লিংক কপি হয়েছে!'))}document.getElementById('shareMenu').style.display='none'}
+    </script>
 </body>
 </html>

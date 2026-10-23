@@ -42,6 +42,10 @@
         @keyframes likepop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-6deg); } 100% { transform: scale(1); } }
         .like-hint { font-size: 13px; color: #8a93a8; }
         .view-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #5b6478; }
+        .share-float-btn{position:fixed;top:76px;right:14px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;border:none;cursor:pointer;box-shadow:0 8px 20px rgba(79,70,229,.4);z-index:900}
+        .share-menu{display:none;position:fixed;top:132px;right:14px;background:#fff;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.2);z-index:901;overflow:hidden;min-width:175px}
+        .share-menu button{display:flex;align-items:center;gap:10px;width:100%;padding:12px 16px;border:none;background:#fff;font-size:15px;font-weight:600;color:#1e293b;cursor:pointer;font-family:'Hind Siliguri',sans-serif}
+        .share-menu button:hover{background:#f1f5f9}
     </style>
     <script type="application/ld+json">
     {
@@ -61,6 +65,12 @@
         <a class="logo" href="../index.html"><i class="fa-solid fa-laptop-code"></i> DAFADAR ONLINE SEVA</a>
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">🔗</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
 
     <article class="article">
         <span class="tag">CSC গাইড</span>
@@ -68,37 +78,56 @@
         <div class="date">২৩ অক্টোবর ২০২৬ · Dafadar Online Seva</div>
         <img src="../assets/blog-thumbs/csc-documents.jpg" alt="CSC আবেদনের কাগজপত্র" class="thumb">
 
-        <p>CSC VLE রেজিস্ট্রেশনের সময় কিছু কাগজপত্র জমা দিতে হয়। আগে থেকে সব গুছিয়ে রাখলে আবেদন প্রক্রিয়া অনেক সহজ হয়। নিচে <strong>সাধারণভাবে চাওয়া কাগজপত্রের তালিকা</strong> দেওয়া হলো।</p>
+        <p>CSC VLE রেজিস্ট্রেশনের সময় কিছু কাগজপত্র জমা দিতে হয়। আগে থেকে সব গুছিয়ে রাখলে আবেদন প্রক্রিয়া অনেক সহজ হয়। নিচে <strong>সাধারণভাবে চাওয়া কাগজপত্রের তালিকা</strong> দেওয়া হলো — প্রতিটার পাশে লেখা আছে <strong>কেন</strong> সেটা চাওয়া হয়, যাতে বুঝে প্রস্তুতি নিতে পারেন।</p>
 
         <h2>📄 সাধারণ কাগজপত্রের তালিকা</h2>
         <ul>
-            <li><strong>আধার কার্ড</strong> — পরিচয়ের প্রধান প্রমাণ হিসেবে</li>
-            <li><strong>প্যান কার্ড</strong> — আর্থিক লেনদেন ও কর সংক্রান্ত কাজে</li>
-            <li><strong>পাসপোর্ট সাইজ ছবি</strong> — সাম্প্রতিক তোলা রঙিন ছবি</li>
-            <li><strong>ব্যাংক অ্যাকাউন্টের বিবরণ</strong> — কমিশন পাওয়ার জন্য (অ্যাকাউন্ট নম্বর, IFSC)</li>
-            <li><strong>ঠিকানার প্রমাণ</strong> — যেমন ভোটার কার্ড, বিদ্যুৎ বিল বা রেশন কার্ড</li>
-            <li><strong>মোবাইল নম্বর ও ইমেইল</strong> — যোগাযোগ ও OTP-এর জন্য (নিজের নামে হওয়া ভালো)</li>
-            <li><strong>শিক্ষাগত যোগ্যতার প্রমাণ</strong> — প্রযোজ্য ক্ষেত্রে সার্টিফিকেট/মার্কশিট</li>
-            <li><strong>TEC সার্টিফিকেট</strong> — রেজিস্ট্রেশনের আগে বাধ্যতামূলক (দেখুন: <a href="csc-tec-certificate.html">TEC গাইড</a>)</li>
+            <li><strong>আধার কার্ড</strong> — পরিচয়ের প্রধান প্রমাণ হিসেবে। আধার বায়োমেট্রিক-ভিত্তিক, তাই এটা দিয়েই নিশ্চিত হওয়া যায় আবেদনকারী আসলেই সেই ব্যক্তি। ভুয়ো পরিচয়ে কেউ CSC ID নিতে পারবে না — এই সুরক্ষার জন্যই আধার সবচেয়ে গুরুত্বপূর্ণ।</li>
+            <li><strong>প্যান কার্ড</strong> — আর্থিক লেনদেন ও কর সংক্রান্ত কাজে। VLE হিসেবে আপনি কমিশন পাবেন, সেটা আয় — তাই আয়ের হিসাবের জন্য প্যান দরকার। প্যান ছাড়া আর্থিক লেনদেনের স্বচ্ছতা থাকে না।</li>
+            <li><strong>পাসপোর্ট সাইজ ছবি</strong> — সাম্প্রতিক তোলা রঙিন ছবি। যাচাইকরণের সময় আপনার চেহারার সঙ্গে নথি মিলিয়ে দেখা হয়, তাই পুরনো বা অস্পষ্ট ছবি দেবেন না।</li>
+            <li><strong>ব্যাংক অ্যাকাউন্টের বিবরণ</strong> — কমিশন পাওয়ার জন্য (অ্যাকাউন্ট নম্বর, IFSC)। আপনার কাজের কমিশন <strong>সরাসরি এই অ্যাকাউন্টে</strong> জমা হবে, তাই অ্যাকাউন্ট সচল ও আপনার নামে হওয়া জরুরি। IFSC লাগে কারণ এটা দিয়ে ব্যাংকের শাখা চেনা যায় — টাকা ঠিক জায়গায় পৌঁছায়।</li>
+            <li><strong>ঠিকানার প্রমাণ</strong> — যেমন ভোটার কার্ড, বিদ্যুৎ বিল বা রেশন কার্ড। এটা দিয়ে নিশ্চিত হওয়া যায় আপনি কোথায় থাকেন এবং সেন্টার কোন এলাকায় হবে। এলাকা-ভিত্তিক সেবা পৌঁছানোর পরিকল্পনায় এটা কাজে লাগে।</li>
+            <li><strong>মোবাইল নম্বর ও ইমেইল</strong> — যোগাযোগ ও OTP-এর জন্য (নিজের নামে হওয়া ভালো)। রেজিস্ট্রেশন থেকে শুরু করে প্রতিটি লগইন, প্রতিটি গুরুত্বপূর্ণ তথ্য — সব এই নম্বরে আসবে। অন্যের নম্বর দিলে OTP অন্যের হাতে যাবে, অ্যাকাউন্টের নিয়ন্ত্রণ হারাতে পারেন।</li>
+            <li><strong>শিক্ষাগত যোগ্যতার প্রমাণ</strong> — প্রযোজ্য ক্ষেত্রে সার্টিফিকেট/মার্কশিট। ডিজিটাল সেবা চালানোর মতো মৌলিক যোগ্যতা আছে কিনা, এটা তার প্রমাণ।</li>
+            <li><strong>TEC সার্টিফিকেট</strong> — রেজিস্ট্রেশনের আগে বাধ্যতামূলক (দেখুন: <a href="csc-tec-certificate.html">TEC গাইড</a>)। এটা প্রমাণ করে আপনি CSC চালানোর প্রাথমিক প্রশিক্ষণ নিয়েছেন।</li>
         </ul>
 
         <div class="warning">
             <p style="margin:0"><strong>⚠️ জরুরি:</strong> কাগজপত্রের এই তালিকা <strong>সাধারণ ধারণার জন্য</strong>। আসল তালিকা সময়ে সময়ে বদলাতে পারে। আবেদনের আগে <strong>অফিসিয়াল পোর্টালে সর্বশেষ তালিকা দেখুন</strong> — <a href="https://register.csc.gov.in" target="_blank" rel="noopener">register.csc.gov.in</a>।</p>
         </div>
 
+        <h2>🔍 সবচেয়ে বড় ভুল: তথ্যের অমিল</h2>
+        <p>আবেদন আটকে যাওয়ার <strong>সবচেয়ে সাধারণ কারণ</strong> হলো কাগজপত্রে তথ্যের অমিল। যেমন — আধারে নামের বানান একরকম, প্যানে আরেকরকম; জন্মতারিখে একদিনের হেরফের; ঠিকানায় গ্রামের নামের বানান আলাদা। যাচাইকারী অফিসার প্রতিটি নথি মিলিয়ে দেখেন — অমিল পেলেই আবেদন ফেরত যাবে, আর সংশোধন করে আবার জমা দিতে <strong>সপ্তাহের পর সপ্তাহ</strong> লেগে যেতে পারে।</p>
+        <p>তাই আবেদনের <strong>আগেই</strong> সব কাগজ পাশাপাশি রেখে মিলিয়ে নিন — নাম, জন্মতারিখ, ঠিকানা, বাবার নাম। কোথাও অমিল থাকলে আগে সংশ্লিষ্ট দপ্তর থেকে সংশোধন করিয়ে নিন, তারপর আবেদন করুন। এই একটুখানি সতর্কতা আপনার মাসখানেক সময় বাঁচাবে।</p>
+
+        <h2>📸 স্ক্যান কপি কীভাবে তুলবেন</h2>
+        <ul>
+            <li>দিনের আলোয় বা উজ্জ্বল আলোয়, সমতলে রেখে ছবি তুলুন/স্ক্যান করুন।</li>
+            <li>কাগজের <strong>চারটে কোণাই</strong> যেন ছবিতে আসে — কাটা ছবি গ্রহণযোগ্য নয়।</li>
+            <li>লেখা যেন <strong>ঝাপসা না</strong> হয়; জুম করে পড়ে দেখুন।</li>
+            <li>পোর্টাল যে ফরম্যাট (JPG/PDF) ও সাইজ চায়, সেটাই দিন।</li>
+        </ul>
+
         <h2>💡 কাজের টিপস</h2>
         <ul>
             <li>সব কাগজে <strong>নাম, জন্মতারিখ ও ঠিকানা একই</strong> আছে কিনা মিলিয়ে নিন — অমিল থাকলে যাচাইকরণে দেরি হয়।</li>
             <li>স্ক্যান কপি <strong>স্পষ্ট ও পড়ার মতো</strong> হতে হবে; ঝাপসা ছবি আপলোড করবেন না।</li>
-            <li>মোবাইল নম্বরটি আধারের সঙ্গে লিংক থাকলে সুবিধা হয়।</li>
-            <li>আসল কাগজপত্র <strong>নিরাপদে সংরক্ষণ</strong> করুন — কাউকে আসল ডকুমেন্ট দিয়ে দেবেন না।</li>
+            <li>মোবাইল নম্বরটি আধারের সঙ্গে লিংক থাকলে সুবিধা হয় — OTP ও যাচাই দ্রুত হয়।</li>
+            <li>আসল কাগজপত্র <strong>নিরাপদে সংরক্ষণ</strong> করুন — কাউকে আসল ডকুমেন্ট দিয়ে দেবেন না। চাওয়া হলে শুধু স্ক্যান/ফটোকপি দিন।</li>
+            <li>সব ডকুমেন্টের একটা <strong>ফোল্ডার (মোবাইলে বা কম্পিউটারে)</strong> বানিয়ে রাখুন — পরে যেকোনো সেবার আবেদনে আবার লাগবে।</li>
         </ul>
+
+        <h2>❓ সাধারণ কিছু প্রশ্ন</h2>
+        <p><strong>আধারে মোবাইল লিংক না থাকলে কী হবে?</strong> — আবেদন করা যায়, তবে লিংক থাকলে OTP ও যাচাইকরণে সুবিধা হয়। সময় থাকলে আগে লিংক করিয়ে নিন।</p>
+        <p><strong>কাগজে নামের বানান আলাদা হলে?</strong> — আগে সংশোধন করিয়ে নিন। অমিল নিয়ে আবেদন করলে ফেরত আসার সম্ভাবনা প্রবল।</p>
+        <p><strong>কেউ আসল কাগজ চাইলে দেবো?</strong> — না। আসল ডকুমেন্ট কাউকে দেবেন না — শুধু স্ক্যান কপি বা ফটোকপি দিন।</p>
+        <p><strong>ব্যাংক অ্যাকাউন্ট অন্যের নামে হলে?</strong> — কমিশন আপনার অ্যাকাউন্টে আসবে, তাই অ্যাকাউন্ট <strong>নিজের নামে</strong> হতে হবে।</p>
 
         <div class="highlight">
             <p style="margin:0"><strong>💡 পরের ধাপ:</strong> কাগজপত্র রেডি? তাহলে <a href="csc-id-apply.html">CSC ID রেজিস্ট্রেশন গাইড</a> দেখে আবেদন করুন।</p>
         </div>
 
-        <div class="warning">
+<div class="warning">
             <p style="margin:0 0 8px"><strong>🔗 অফিসিয়াল পোর্টাল (সরকারি):</strong></p>
             <ul style="margin:0 0 0 20px">
                 <li><a href="https://register.csc.gov.in" target="_blank" rel="noopener">register.csc.gov.in</a> — VLE রেজিস্ট্রেশন</li>
@@ -129,5 +158,10 @@
         <p>© 2026 <a href="../index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য অফিসিয়াল পোর্টালের ভিত্তিতে। সর্বশেষ তথ্যের জন্য অফিসিয়াল পোর্টাল দেখুন।</p>
     </footer>
+
+    <script>
+        function shareArticle(){const d={title:document.title,text:(document.querySelector('h1')||{innerText:document.title}).innerText,url:location.href};if(navigator.share){navigator.share(d).catch(()=>{})}else{const m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+        function shareVia(w){const u=encodeURIComponent(location.href);const t=encodeURIComponent(((document.querySelector('h1')||{innerText:''}).innerText)+' | DAFADAR ONLINE SEVA');if(w==='whatsapp')open('https://wa.me/?text='+t+'%20'+u,'_blank');else if(w==='facebook')open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank');else if(w==='copy'){navigator.clipboard.writeText(location.href).then(()=>alert('লিংক কপি হয়েছে!'))}document.getElementById('shareMenu').style.display='none'}
+    </script>
 </body>
 </html>

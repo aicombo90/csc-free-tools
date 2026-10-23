@@ -34,6 +34,10 @@
         footer { background: #07100d; color: #9fb3a8; text-align: center; padding: 24px 5%; font-size: 14px; margin-top: 40px; }
         footer a { color: #1fc64c; text-decoration: none; }
 
+        .share-float-btn { position: fixed; top: 76px; right: 14px; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; border: none; cursor: pointer; box-shadow: 0 8px 20px rgba(79,70,229,.4); z-index: 900; }
+        .share-menu { display: none; position: fixed; top: 132px; right: 14px; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.2); z-index: 901; overflow: hidden; min-width: 175px; }
+        .share-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 16px; border: none; background: #fff; font-size: 15px; font-weight: 600; color: #1e293b; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; }
+        .share-menu button:hover { background: #f1f5f9; }
         .like-row { margin-top: 26px; padding-top: 18px; border-top: 1px solid #eef1ee; display: flex; align-items: center; gap: 10px; }
         .like-btn { display: inline-flex; align-items: center; gap: 8px; border: 2px solid #d7e3dc; background: #fff; border-radius: 30px; padding: 10px 24px; font-size: 16px; font-weight: 700; color: #3c4a42; cursor: pointer; font-family: inherit; transition: transform .15s, border-color .15s; }
         .like-btn:hover { border-color: #1fc64c; transform: scale(1.04); }
@@ -62,6 +66,13 @@
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
 
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">🔗</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
+
     <article class="article">
         <span class="tag">সরকারি সিদ্ধান্ত</span>
         <h1>কর্মবন্ধু বেতন ₹৫,০০০ → ₹৮,০০০: ক্যাবিনেট সিদ্ধান্ত</h1>
@@ -69,6 +80,9 @@
         <img src="../assets/blog-thumbs/karmabandhu-salary.jpg" alt="কর্মবন্ধু প্রকল্পের কর্মীদের বেতন বৃদ্ধি" class="thumb">
 
         <p>কর্মবন্ধু প্রকল্পের কর্মীদের জন্য দারুণ খবর! রাজ্য ক্যাবিনেট সিদ্ধান্ত নিয়েছে — তাদের <strong>মাসিক ভাতা ₹৫,০০০ থেকে বাড়িয়ে ₹৮,০০০</strong> করা হবে। অর্থাৎ মাসে <strong>₹৩,০০০ বেশি</strong> পাবেন হাজার হাজার কর্মবন্ধু!</p>
+
+        <h2>📊 অঙ্কটা দেখুন</h2>
+        <p>মাসে ₹৩,০০০ বেশি মানে <strong>বছরে ₹৩৬,০০০</strong> অতিরিক্ত! আর শতাংশের হিসাবে এটা <strong>৬০% বৃদ্ধি</strong> — সরকারি ভাতা একলাফে এতটা বাড়ার ঘটনা বিরল। দীর্ঘদিন ধরে কর্মবন্ধুরা বেতন বৃদ্ধির দাবি জানিয়ে আসছিলেন — <strong>ক্যাবিনেট এবার সেই দাবি মেনে নিল</strong>। একটা সংসারের মাসিক বাজেটে ₹৩,০০০ বাড়তি মানে অনেকটাই স্বস্তি।</p>
 
         <h2>💰 কী সিদ্ধান্ত হলো?</h2>
         <div class="highlight">
@@ -78,6 +92,8 @@
                 <li><strong>বৃদ্ধি:</strong> মাসে ₹৩,০০০ (৬০% বৃদ্ধি!)</li>
             </ul>
         </div>
+
+        <p><strong>একটা জরুরি পার্থক্য বুঝুন:</strong> <strong>ক্যাবিনেট সিদ্ধান্ত</strong> মানে নীতিগত অনুমোদন — কিন্তু টাকা হাতে পেতে লাগে <strong>অর্থ দপ্তরের প্রশাসনিক আদেশ</strong>। সেই আদেশ <strong>এখনো জারি হয়নি</strong>। আদেশ জারি হলেই নতুন হারে (₹৮,০০০) ভাতা পাওয়া যাবে — তার আগে নয়। তাই "কবে থেকে পাব" প্রশ্নের উত্তর: <strong>আদেশের তারিখ থেকে</strong>। আদেশ জারি হলেই আমরা আপডেট দেবো।</p>
 
         <h2>🏛️ একই ক্যাবিনেটে আরও বড় সিদ্ধান্ত</h2>
         <p>একই ক্যাবিনেট বৈঠকে <strong>১৪,৪৫৪টি সরকারি পদে নিয়োগেরও অনুমোদন</strong> দেওয়া হয়েছে। অর্থাৎ শিগগিরই বড় নিয়োগ বিজ্ঞপ্তি আসতে পারে — চাকরি প্রার্থীদের জন্য এটা আশার খবর।</p>
@@ -89,12 +105,28 @@
         <h2>👷 কর্মবন্ধু প্রকল্প কী?</h2>
         <p>কর্মবন্ধু প্রকল্পে রাজ্যের বিভিন্ন দপ্তরে অস্থায়ী/চুক্তিভিত্তিক কর্মী নিয়োগ করা হয়। দীর্ঘদিন ধরে এই কর্মীরা বেতন বৃদ্ধির দাবি জানিয়ে আসছিলেন — এবার ক্যাবিনেট সেই দাবি মেনে নিল।</p>
 
+        <h2>💡 কাজের টিপস</h2>
+        <ul>
+            <li>নতুন হারের <strong>প্রশাসনিক আদেশ জারির</strong> খবরের জন্য আমাদের WhatsApp গ্রুপে যুক্ত থাকুন।</li>
+            <li>১৪,৪৫৪ নিয়োগের <strong>অফিসিয়াল বিজ্ঞপ্তি</strong> না আসা পর্যন্ত কোনো ফর্ম ফিলাপ বা ফি দেবেন না।</li>
+            <li>ভুয়ো "নিয়োগ এজেন্ট" থেকে সাবধান — সরকারি চাকরিতে টাকার বিনিময়ে পদ হয় না।</li>
+        </ul>
+
+        <h2>❓ সাধারণ প্রশ্ন</h2>
+        <p><strong>প্রশ্ন: ₹৮,০০০ কবে থেকে পাব?</strong><br>উত্তর: ক্যাবিনেট সিদ্ধান্ত হয়েছে, কিন্তু <strong>প্রশাসনিক আদেশ এখনো জারি হয়নি</strong>। আদেশ জারি হলেই নতুন হারে টাকা পাওয়া যাবে।</p>
+        <p><strong>প্রশ্ন: কারা এই বর্ধিত ভাতা পাবেন?</strong><br>উত্তর: <strong>কর্মবন্ধু প্রকল্পের কর্মীরা</strong> — রাজ্যের বিভিন্ন দপ্তরে কর্মরত অস্থায়ী/চুক্তিভিত্তিক কর্মী।</p>
+        <p><strong>প্রশ্ন: ১৪,৪৫৪ পদে কীভাবে আবেদন করব?</strong><br>উত্তর: <strong>বিজ্ঞপ্তি এখনো আসেনি।</strong> কোন দপ্তরে কত পদ — বিস্তারিত জানা যায়নি। বিজ্ঞপ্তি এলেই জানিয়ে দেবো।</p>
+        <p><strong>প্রশ্ন: কর্মবন্ধু কি স্থায়ী চাকরি?</strong><br>উত্তর: না। কর্মবন্ধু প্রকল্পে <strong>অস্থায়ী/চুক্তিভিত্তিক</strong> কর্মী নিয়োগ করা হয়।</p>
+        <p><strong>প্রশ্ন: বেতন বৃদ্ধির দাবি কি নতুন?</strong><br>উত্তর: না — কর্মবন্ধুরা <strong>দীর্ঘদিন ধরে</strong> বেতন বৃদ্ধির দাবি জানিয়ে আসছিলেন। এবার ক্যাবিনেট সেই দাবি মেনেছে।</p>
+
         <h2>📋 ১৪,৪৫৪ নিয়োগ — কী জানা গেছে?</h2>
         <ul>
             <li>ক্যাবিনেট <strong>১৪,৪৫৪টি পদে নিয়োগের অনুমোদন</strong> দিয়েছে</li>
             <li>কোন দপ্তরে কত পদ — বিস্তারিত বিজ্ঞপ্তি এখনো আসেনি</li>
             <li>বিজ্ঞপ্তি এলেই আমরা বিস্তারিত জানিয়ে দেবো</li>
         </ul>
+
+        <p><strong>১৪,৪৫৪ নিয়োগ নিয়ে সতর্ক থাকুন:</strong> ক্যাবিনেট <strong>অনুমোদন</strong> দিয়েছে — কিন্তু <strong>কোন দপ্তরে কত পদ, যোগ্যতা কী, আবেদন কবে থেকে</strong> — এসবের বিস্তারিত বিজ্ঞপ্তি এখনো আসেনি। মনে রাখবেন: <strong>অনুমোদন ≠ বিজ্ঞপ্তি।</strong> বিজ্ঞপ্তি না আসা পর্যন্ত কোনো "আবেদন ফর্ম" বা "ফি"-এর খপ্পরে পড়বেন না — ভুয়ো নিয়োগ বিজ্ঞপ্তি দিয়ে প্রতারণার ঘটনা ঘটে। অফিসিয়াল বিজ্ঞপ্তি এলেই আমরা বিস্তারিত জানিয়ে দেবো।</p>
 
         <div class="highlight">
             <p style="margin:0">🌐 <strong>আরও নতুন নতুন তথ্যের জন্য আমাদের ওয়েবসাইট ভিজিট করুন:</strong> <a href="https://aicombo90.github.io/dafadar-online-seva/">aicombo90.github.io/dafadar-online-seva</a> — ওয়েবসাইটটা মোবাইলে <strong>সেভ/বুকমার্ক করে রাখুন</strong> যাতে হারিয়ে না যায়!</p>
@@ -118,6 +150,10 @@
         <p>© 2026 <a href="../index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য সরকারি ঘোষণা ও সংবাদ প্রতিবেদনের ভিত্তিতে।</p>
     </footer>
+    <script>
+    function shareArticle(){const d={title:document.title,text:(document.querySelector('h1')||{innerText:document.title}).innerText,url:location.href};if(navigator.share){navigator.share(d).catch(()=>{})}else{const m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+    function shareVia(w){const u=encodeURIComponent(location.href);const t=encodeURIComponent(((document.querySelector('h1')||{innerText:''}).innerText)+' | DAFADAR ONLINE SEVA');if(w==='whatsapp')open('https://wa.me/?text='+t+'%20'+u,'_blank');else if(w==='facebook')open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank');else if(w==='copy'){navigator.clipboard.writeText(location.href).then(()=>alert('লিংক কপি হয়েছে!'))}document.getElementById('shareMenu').style.display='none'}
+    </script>
     <script type="module" src="../assets/site-likes.js"></script>
 </body>
 </html>

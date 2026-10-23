@@ -34,6 +34,10 @@
         footer { background: #07100d; color: #9fb3a8; text-align: center; padding: 24px 5%; font-size: 14px; margin-top: 40px; }
         footer a { color: #1fc64c; text-decoration: none; }
 
+        .share-float-btn { position: fixed; top: 76px; right: 14px; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; border: none; cursor: pointer; box-shadow: 0 8px 20px rgba(79,70,229,.4); z-index: 900; }
+        .share-menu { display: none; position: fixed; top: 132px; right: 14px; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.2); z-index: 901; overflow: hidden; min-width: 175px; }
+        .share-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 16px; border: none; background: #fff; font-size: 15px; font-weight: 600; color: #1e293b; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; }
+        .share-menu button:hover { background: #f1f5f9; }
         .like-row { margin-top: 26px; padding-top: 18px; border-top: 1px solid #eef1ee; display: flex; align-items: center; gap: 10px; }
         .like-btn { display: inline-flex; align-items: center; gap: 8px; border: 2px solid #d7e3dc; background: #fff; border-radius: 30px; padding: 10px 24px; font-size: 16px; font-weight: 700; color: #3c4a42; cursor: pointer; font-family: inherit; transition: transform .15s, border-color .15s; }
         .like-btn:hover { border-color: #1fc64c; transform: scale(1.04); }
@@ -62,6 +66,13 @@
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
 
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">🔗</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
+
     <article class="article">
         <span class="tag">আপডেট</span>
         <h1>DA বকেয়া: সুপ্রিম কোর্টের রায়ের পর সর্বশেষ অবস্থা</h1>
@@ -69,6 +80,9 @@
         <img src="../assets/blog-thumbs/da-arrears-update.jpg" alt="সরকারি কর্মচারীদের DA বকেয়া নিয়ে সুপ্রিম কোর্ট" class="thumb">
 
         <p>রাজ্য সরকারি কর্মচারীদের <strong>মহার্ঘ ভাতা (DA) বকেয়া</strong> নিয়ে দীর্ঘদিনের লড়াইয়ে <strong>৫ ফেব্রুয়ারি ২০২৬-এ সুপ্রিম কোর্ট ঐতিহাসিক রায়</strong> দিয়েছে — <strong>DA কর্মচারীদের আইনি অধিকার</strong>। কিন্তু তারপর কী হলো? আসুন গুজব আর সত্যিটা আলাদা করি।</p>
+
+        <h2>💵 DA আসলে কী?</h2>
+        <p><strong>DA (মহার্ঘ ভাতা / Dearness Allowance)</strong> হলো মূল বেতনের উপর দেওয়া অতিরিক্ত টাকা — জিনিসপত্রের দাম বাড়লে (মূল্যবৃদ্ধি) বেতনের ক্রয়ক্ষমতা যাতে কমে না যায়, সেজন্য। দাম বাড়ে, কিন্তু বেসিক বেতন তো রোজ বাড়ে না — এই ঘাটতি পূরণেই DA। তাই DA <strong>দয়া বা বোনাস নয়</strong>, এটা বেতনেরই অংশ। সুপ্রিম কোর্ট <strong>৫ ফেব্রুয়ারি ২০২৬</strong>-এর রায়ে ঠিক এই কথাটাই বলেছে — <strong>DA কর্মচারীদের আইনি অধিকার</strong>, সরকার ইচ্ছেমতো আটকে রাখতে পারে না।</p>
 
         <h2>⚖️ সুপ্রিম কোর্ট কী বলেছে?</h2>
         <div class="highlight">
@@ -78,6 +92,8 @@
                 <li>রাজ্য সরকার সময় চেয়ে আবেদন করেছে</li>
             </ul>
         </div>
+
+        <p><strong>২০০৮-২০১৯ মানে কত বছর?</strong> প্রায় <strong>১১ বছরের</strong> বকেয়া! এত বছর ধরে পাওনা টাকা না পাওয়ায় কর্মচারীদের ক্ষোভ দীর্ঘদিনের। আদালতের রায়ের পর আশা জেগেছিল টাকা শিগগিরই মিলবে — কিন্তু <strong>রাজ্য সরকার আদালতের কাছে সময় চেয়েছে</strong>, ফলে প্রক্রিয়া এখনো ঝুলে আছে। রায় হওয়া আর টাকা হাতে পাওয়া — দুটোর মধ্যে এই <strong>সময়ের ফারাকটাই</strong> এখন সবচেয়ে বড় প্রশ্ন।</p>
 
         <h2>💰 এখন পর্যন্ত টাকা পেয়েছেন?</h2>
         <div class="warning">
@@ -91,8 +107,24 @@
             <li>কর্মচারী সংগঠনগুলো চাপ অব্যাহত রেখেছে</li>
         </ul>
 
+        <p><strong>বাস্তব কথাটা হলো:</strong> এখন সবকিছু <strong>আদালতের পরবর্তী নির্দেশের</strong> উপর নির্ভর করছে। কর্মচারী সংগঠনগুলো চাপ দিচ্ছে, সরকার সময় চাইছে — এই টানাপোড়েনের মধ্যে <strong>ইউটিউব-ফেসবুকে "টাকা ছাড়া হয়ে গেছে" ধরনের ভিডিও</strong> ভাইরাল হচ্ছে। এগুলোর উদ্দেশ্য ভিউ কামানো, তথ্য দেওয়া নয়। <strong>সরকারি বিজ্ঞপ্তি বা অর্থ দপ্তরের আদেশ</strong> না দেখা পর্যন্ত কোনো "সুখবর" বিশ্বাস করবেন না।</p>
+
         <h2>🛡️ প্রতারণা থেকে বাঁচুন</h2>
         <p>DA-র নামে <strong>কোনো ফর্ম ফিলাপ, রেজিস্ট্রেশন বা টাকা দেওয়ার</strong> প্রয়োজন নেই। কেউ ফোনে "DA পাইয়ে দেবো" বলে টাকা চাইলে — সেটা <strong>প্রতারণা</strong>। সঙ্গে সঙ্গে ব্লক করুন।</p>
+
+        <h2>💡 কাজের টিপস</h2>
+        <ul>
+            <li><strong>সরকারি বিজ্ঞপ্তি</strong> ছাড়া কোনো খবর বিশ্বাস করবেন না — বিশেষ করে "টাকা ঢুকে গেছে" ধরনের দাবি।</li>
+            <li>DA-র নামে <strong>কোনো ফর্ম, রেজিস্ট্রেশন বা ফি</strong> নেই — চাইলেই প্রতারণা।</li>
+            <li>অফিসিয়াল আপডেটের জন্য আমাদের <strong>WhatsApp গ্রুপে</strong> যুক্ত থাকুন — খবর এলেই জানিয়ে দেবো।</li>
+        </ul>
+
+        <h2>❓ সাধারণ প্রশ্ন</h2>
+        <p><strong>প্রশ্ন: বকেয়া DA-র টাকা কবে পাব?</strong><br>উত্তর: <strong>কোনো নিশ্চিত তারিখ এখনো ঘোষণা হয়নি</strong> (২৩ অক্টোবর ২০২৬ পর্যন্ত)। ঘোষণা হলেই জানিয়ে দেবো।</p>
+        <p><strong>প্রশ্ন: "২৫% DA ছাড়া হয়ে গেছে" — সত্যি?</strong><br>উত্তর: <strong>গুজব।</strong> ইউটিউবের এমন দাবির কোনো সরকারি ভিত্তি নেই।</p>
+        <p><strong>প্রশ্ন: টাকা পেতে কি ফর্ম ফিলাপ করতে হবে?</strong><br>উত্তর: <strong>না।</strong> DA-র জন্য কোনো ফর্ম বা রেজিস্ট্রেশনের প্রয়োজন নেই।</p>
+        <p><strong>প্রশ্ন: কারা এই বকেয়া পাবেন?</strong><br>উত্তর: <strong>রাজ্য সরকারি কর্মচারীরা</strong> — ২০০৮ থেকে ২০১৯ সাল পর্যন্ত বকেয়া DA (আদালতের রায় অনুযায়ী)।</p>
+        <p><strong>প্রশ্ন: তাহলে এখন কী হবে?</strong><br>উত্তর: রাজ্য সরকার সময় চেয়েছে — <strong>আদালতের পরবর্তী নির্দেশের</strong> উপর সব নির্ভর করছে।</p>
 
         <div class="highlight">
             <p style="margin:0">🌐 <strong>আরও নতুন নতুন তথ্যের জন্য আমাদের ওয়েবসাইট ভিজিট করুন:</strong> <a href="https://aicombo90.github.io/dafadar-online-seva/">aicombo90.github.io/dafadar-online-seva</a> — ওয়েবসাইটটা মোবাইলে <strong>সেভ/বুকমার্ক করে রাখুন</strong> যাতে হারিয়ে না যায়!</p>
@@ -116,6 +148,10 @@
         <p>© 2026 <a href="../index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য সরকারি ঘোষণা ও সংবাদ প্রতিবেদনের ভিত্তিতে।</p>
     </footer>
+    <script>
+    function shareArticle(){const d={title:document.title,text:(document.querySelector('h1')||{innerText:document.title}).innerText,url:location.href};if(navigator.share){navigator.share(d).catch(()=>{})}else{const m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+    function shareVia(w){const u=encodeURIComponent(location.href);const t=encodeURIComponent(((document.querySelector('h1')||{innerText:''}).innerText)+' | DAFADAR ONLINE SEVA');if(w==='whatsapp')open('https://wa.me/?text='+t+'%20'+u,'_blank');else if(w==='facebook')open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank');else if(w==='copy'){navigator.clipboard.writeText(location.href).then(()=>alert('লিংক কপি হয়েছে!'))}document.getElementById('shareMenu').style.display='none'}
+    </script>
     <script type="module" src="../assets/site-likes.js"></script>
 </body>
 </html>

@@ -34,6 +34,10 @@
         footer { background: #07100d; color: #9fb3a8; text-align: center; padding: 24px 5%; font-size: 14px; margin-top: 40px; }
         footer a { color: #1fc64c; text-decoration: none; }
 
+        .share-float-btn { position: fixed; top: 76px; right: 14px; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; border: none; cursor: pointer; box-shadow: 0 8px 20px rgba(79,70,229,.4); z-index: 900; }
+        .share-menu { display: none; position: fixed; top: 132px; right: 14px; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.2); z-index: 901; overflow: hidden; min-width: 175px; }
+        .share-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 16px; border: none; background: #fff; font-size: 15px; font-weight: 600; color: #1e293b; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; }
+        .share-menu button:hover { background: #f1f5f9; }
         .like-row { margin-top: 26px; padding-top: 18px; border-top: 1px solid #eef1ee; display: flex; align-items: center; gap: 10px; }
         .like-btn { display: inline-flex; align-items: center; gap: 8px; border: 2px solid #d7e3dc; background: #fff; border-radius: 30px; padding: 10px 24px; font-size: 16px; font-weight: 700; color: #3c4a42; cursor: pointer; font-family: inherit; transition: transform .15s, border-color .15s; }
         .like-btn:hover { border-color: #1fc64c; transform: scale(1.04); }
@@ -62,6 +66,13 @@
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
 
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">🔗</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
+
     <article class="article">
         <span class="tag">সরকারি ভর্তুকি</span>
         <h1>ফার্ম যন্ত্রপাতি ভর্তুকি ২০২৬-২৭: ৪ নভেম্বর ডেডলাইন!</h1>
@@ -69,6 +80,9 @@
         <img src="../assets/blog-thumbs/farm-machinery-subsidy.jpg" alt="ট্রাক্টর ও কৃষি যন্ত্রপাতিতে সরকারি ভর্তুকি" class="thumb">
 
         <p>চাষিদের জন্য বড় সুযোগ! পশ্চিমবঙ্গ সরকার <strong>২০২৬-২৭ অর্থবছরে কৃষি যন্ত্রপাতিতে ভর্তুকি</strong> দিচ্ছে — মোট বরাদ্দ <strong>₹৪০৭ কোটি</strong>, উপকৃত হবেন প্রায় <strong>৬৭,৫৮৫ জন চাষি</strong>। ট্রাক্টর, পাওয়ার টিলার, পাম্প সেট, স্প্রেয়ার — নানা যন্ত্রে ৫০% পর্যন্ত ছাড়!</p>
+
+        <h2>🚜 কেন এই ভর্তুকি এত গুরুত্বপূর্ণ?</h2>
+        <p>চাষের খরচ দিন দিন বাড়ছে — শ্রমিকের মজুরি, ডিজেলের দাম, আর সময়মতো কাজ না হলে ফলনের ক্ষতি। একটা ট্রাক্টর বা পাওয়ার টিলার থাকলে <strong>কম সময়ে বেশি জমি</strong> চাষ করা যায়, আর সোলার পাম্প থাকলে সেচের খরচ প্রায় শূন্যে নেমে আসে। কিন্তু এই যন্ত্রগুলোর দাম এত বেশি যে সাধারণ চাষির পক্ষে একা কেনা কঠিন। সেই কারণেই সরকার <strong>অর্ধেক দাম (বা তার বেশি)</strong> দিয়ে দিচ্ছে — যাতে ছোট-বড় সব চাষি আধুনিক যন্ত্র ব্যবহার করে ফলন বাড়াতে পারেন।</p>
 
         <div class="warning">
             <p style="margin:0"><strong>⏰ ডেডলাইন মনে রাখুন:</strong> অনলাইন আবেদন <strong>৬ অক্টোবর → ৪ নভেম্বর ২০২৬</strong>। তারপর প্রিন্ট কপি + কাগজপত্র ব্লকের ADA অফিসে জমা দিতে হবে <strong>৬ নভেম্বরের মধ্যে</strong>। দেরি করলে আবেদন বাতিল!</p>
@@ -81,12 +95,24 @@
             <li><strong>সোলার পাম্প সেট: ৬০% ভর্তুকি</strong> — সবচেয়ে বেশি ছাড়!</li>
         </ul>
 
+        <div class="highlight">
+            <p style="margin:0 0 8px"><strong>🧮 উদাহরণ দিয়ে বুঝুন:</strong></p>
+            <ul style="margin:0 0 0 20px">
+                <li>₹৬ লাখের ট্রাক্টর → ৫০% = ₹৩ লাখ ছাড় (সর্বোচ্চ সীমার মধ্যে) → চাষি দেবেন মাত্র ₹৩ লাখ</li>
+                <li>₹৮ লাখের যন্ত্র → ৫০% = ₹৪ লাখ হলেও <strong>সর্বোচ্চ ₹৩ লাখই</strong> ছাড় পাবেন</li>
+                <li>₹১৮,০০০-এর স্প্রেয়ার → ৫০% = ₹৯,০০০ ছাড় (₹১০,০০০ সীমার মধ্যে)</li>
+                <li>সোলার পাম্পে <strong>৬০% ছাড়</strong> — তিনটি স্ল্যাবের মধ্যে এটাই সর্বোচ্চ সুবিধা!</li>
+            </ul>
+        </div>
+
         <h2>👨‍🌾 কারা আবেদন করতে পারবেন?</h2>
         <ul>
             <li><strong>কৃষকবন্ধু (নতুন)</strong> বা <strong>PM-কিসান</strong> প্রকল্পের সুবিধাভোগী চাষি</li>
             <li>বয়স <strong>১৮ থেকে ৭০ বছর</strong></li>
             <li><strong>সরকারি কর্মচারীরা আবেদন করতে পারবেন না</strong></li>
         </ul>
+
+        <p><strong>কেন এই শর্ত?</strong> কৃষকবন্ধু বা PM-কিসানের সুবিধাভোগী মানে <strong>সরকারের কাছে আপনার তথ্য ইতিমধ্যে যাচাই করা আছে</strong> — ফলে নতুন করে যাচাইয়ের ঝামেলা কম, প্রক্রিয়া দ্রুত হয়। আর সরকারি কর্মচারীদের বাদ দেওয়া হয়েছে কারণ এই ভর্তুকি <strong>প্রকৃত চাষিদের জন্য</strong> সংরক্ষিত।</p>
 
         <h2>📄 কী কী কাগজ লাগবে?</h2>
         <ul>
@@ -97,14 +123,18 @@
             <li>জমির পর্চা</li>
         </ul>
 
+        <p>প্রতিটা কাগজেরই কারণ আছে: <strong>ভোটার কার্ড</strong> পরিচয় ও ঠিকানার প্রমাণ, <strong>আধার</strong> DBT-র জন্য বাধ্যতামূলক, <strong>DBT-লিংক পাসবই</strong> ছাড়া ভর্তুকির টাকা ব্যাংকে ঢুকবে না, <strong>রেজিস্ট্রেশন নম্বর</strong> দিয়ে যাচাই হবে আপনি সত্যিই সুবিধাভোগী কিনা, আর <strong>পর্চা</strong> প্রমাণ করবে জমিটা আপনার। একটা কাগজও মিসিং থাকলে আবেদন আটকে যেতে পারে — তাই আগেই সব গুছিয়ে রাখুন।</p>
+
         <h2>🖥️ আবেদন পদ্ধতি</h2>
         <ul>
             <li>পোর্টালে গিয়ে অনলাইনে ফর্ম পূরণ করুন (<strong>৪ নভেম্বরের মধ্যে</strong>)</li>
             <li>ফর্মের প্রিন্ট বের করে প্রয়োজনীয় কাগজপত্রসহ ব্লকের <strong>ADA (সহকারী কৃষি অধিকর্তা) অফিসে</strong> জমা দিন (<strong>৬ নভেম্বরের মধ্যে</strong>)</li>
         </ul>
 
+        <p><strong>মনে রাখবেন:</strong> শুধু অনলাইনে ফর্ম পূরণ করলেই হবে না — <strong>প্রিন্ট কপি ADA অফিসে জমা দেওয়া বাধ্যতামূলক</strong>। অনেকেই প্রথম ধাপ করে দ্বিতীয় ধাপ ভুলে যান, আর আবেদন বাতিল হয়ে যায়। দুটো তারিখই ডায়েরিতে লিখে রাখুন: <strong>৪ নভেম্বর (অনলাইন)</strong> ও <strong>৬ নভেম্বর (অফিসে জমা)</strong>।</p>
+
         <h2>🎰 নির্বাচন কীভাবে হবে?</h2>
-        <p>আবেদনকারীদের মধ্যে থেকে সুবিধাভোগী বাছাই হবে <strong>ভিডিওগ্রাফি করা কম্পিউটারাইজড লটারির</strong> মাধ্যমে (DLSC)। অর্থাৎ স্বচ্ছ প্রক্রিয়া — কোনো সুপারিশে কাজ হবে না।</p>
+        <p>আবেদনকারীদের মধ্যে থেকে সুবিধাভোগী বাছাই হবে <strong>ভিডিওগ্রাফি করা কম্পিউটারাইজড লটারির</strong> মাধ্যমে (DLSC)। অর্থাৎ স্বচ্ছ প্রক্রিয়া — কোনো সুপারিশে কাজ হবে না। <strong>কেন লটারি?</strong> বরাদ্দ সীমিত (৬৭,৫৮৫ জন), ফলে ন্যায্যভাবে বাছাইয়ের সবচেয়ে স্বচ্ছ উপায় এটাই। পুরো প্রক্রিয়ার <strong>ভিডিও রেকর্ডিং</strong> থাকে, তাই কেউ পক্ষপাতের অভিযোগ তুলতে পারবে না।</p>
 
         <div class="warning">
             <p style="margin:0"><strong>ℹ️ জানিয়ে রাখি:</strong> লটারির তারিখ <strong>এখনো ঘোষণা হয়নি</strong>। ঘোষণা হলেই আমরা আপডেট দেবো।</p>
@@ -114,6 +144,21 @@
         <div class="warning">
             <p style="margin:0">🌐 অফিসিয়াল পোর্টাল: <a href="https://wbfms.wb.gov.in" target="_blank" rel="noopener">wbfms.wb.gov.in</a> — শুধুমাত্র এই সরকারি সাইট থেকেই আবেদন করুন। অন্য কোনো লিংকে টাকা দেবেন না।</p>
         </div>
+
+        <h2>💡 কাজের টিপস</h2>
+        <ul>
+            <li><strong>শেষ তারিখের অপেক্ষা করবেন না</strong> — শুরুতেই আবেদন করুন, শেষের দিকে সার্ভার জ্যাম হয়।</li>
+            <li>ADA অফিসে যাওয়ার সময় <strong>সব কাগজের অরিজিনাল + ফটোকপি</strong> দুটোই নিয়ে যান।</li>
+            <li>আবেদনের জন্য <strong>কোনো দালালকে টাকা দেবেন না</strong> — পুরো প্রক্রিয়া ফ্রি।</li>
+            <li>আবেদনের <strong>অ্যাকনলেজমেন্ট/রসিদ</strong> যত্নে রাখুন — লটারির সময় কাজে লাগবে।</li>
+        </ul>
+
+        <h2>❓ সাধারণ প্রশ্ন</h2>
+        <p><strong>প্রশ্ন: আমি সরকারি চাকরি করি, কিন্তু চাষও করি — আবেদন করতে পারব?</strong><br>উত্তর: না। সরকারি কর্মচারীরা এই ভর্তুকির জন্য যোগ্য নন — এটা শুধু প্রকৃত চাষিদের জন্য।</p>
+        <p><strong>প্রশ্ন: লটারিতে নাম না এলে কী হবে?</strong><br>উত্তর: এই অর্থবছরের বরাদ্দ শেষ হলে আর সুযোগ থাকবে না। পরের বছরের ঘোষণার জন্য অপেক্ষা করতে হবে।</p>
+        <p><strong>প্রশ্ন: লটারির তারিখ কবে?</strong><br>উত্তর: এখনো ঘোষণা হয়নি। ঘোষণা হলেই আমরা জানিয়ে দেবো।</p>
+        <p><strong>প্রশ্ন: সোলার পাম্পে কেন সবচেয়ে বেশি ছাড়?</strong><br>উত্তর: সোলার পাম্পে সরকার <strong>৬০% ভর্তুকি</strong> দিচ্ছে — তিনটি স্ল্যাবের মধ্যে এটাই সর্বোচ্চ। সোলার পাম্পে ডিজেল বা বিদ্যুতের খরচ বাঁচে, তাই দীর্ঘমেয়াদে চাষির সবচেয়ে লাভ।</p>
+        <p><strong>প্রশ্ন: শুধু অনলাইনে আবেদন করলেই কি হবে?</strong><br>উত্তর: না। প্রথমে <strong>৪ নভেম্বরের মধ্যে</strong> অনলাইনে ফর্ম পূরণ, তারপর প্রিন্ট কপি <strong>৬ নভেম্বরের মধ্যে</strong> ADA অফিসে জমা — দুটো ধাপই বাধ্যতামূলক।</p>
 
         <div class="highlight">
             <p style="margin:0">🌐 <strong>আরও নতুন নতুন তথ্যের জন্য আমাদের ওয়েবসাইট ভিজিট করুন:</strong> <a href="https://aicombo90.github.io/dafadar-online-seva/">aicombo90.github.io/dafadar-online-seva</a> — ওয়েবসাইটটা মোবাইলে <strong>সেভ/বুকমার্ক করে রাখুন</strong> যাতে হারিয়ে না যায়!</p>
@@ -137,6 +182,10 @@
         <p>© 2026 <a href="../index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য সরকারি ঘোষণা ও সংবাদ প্রতিবেদনের ভিত্তিতে।</p>
     </footer>
+    <script>
+    function shareArticle(){const d={title:document.title,text:(document.querySelector('h1')||{innerText:document.title}).innerText,url:location.href};if(navigator.share){navigator.share(d).catch(()=>{})}else{const m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+    function shareVia(w){const u=encodeURIComponent(location.href);const t=encodeURIComponent(((document.querySelector('h1')||{innerText:''}).innerText)+' | DAFADAR ONLINE SEVA');if(w==='whatsapp')open('https://wa.me/?text='+t+'%20'+u,'_blank');else if(w==='facebook')open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank');else if(w==='copy'){navigator.clipboard.writeText(location.href).then(()=>alert('লিংক কপি হয়েছে!'))}document.getElementById('shareMenu').style.display='none'}
+    </script>
     <script type="module" src="../assets/site-likes.js"></script>
 </body>
 </html>

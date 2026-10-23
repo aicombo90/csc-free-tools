@@ -34,6 +34,10 @@
         footer { background: #07100d; color: #9fb3a8; text-align: center; padding: 24px 5%; font-size: 14px; margin-top: 40px; }
         footer a { color: #1fc64c; text-decoration: none; }
 
+        .share-float-btn { position: fixed; top: 76px; right: 14px; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; border: none; cursor: pointer; box-shadow: 0 8px 20px rgba(79,70,229,.4); z-index: 900; }
+        .share-menu { display: none; position: fixed; top: 132px; right: 14px; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.2); z-index: 901; overflow: hidden; min-width: 175px; }
+        .share-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 16px; border: none; background: #fff; font-size: 15px; font-weight: 600; color: #1e293b; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; }
+        .share-menu button:hover { background: #f1f5f9; }
         .like-row { margin-top: 26px; padding-top: 18px; border-top: 1px solid #eef1ee; display: flex; align-items: center; gap: 10px; }
         .like-btn { display: inline-flex; align-items: center; gap: 8px; border: 2px solid #d7e3dc; background: #fff; border-radius: 30px; padding: 10px 24px; font-size: 16px; font-weight: 700; color: #3c4a42; cursor: pointer; font-family: inherit; transition: transform .15s, border-color .15s; }
         .like-btn:hover { border-color: #1fc64c; transform: scale(1.04); }
@@ -62,6 +66,13 @@
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
 
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">🔗</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
+
     <article class="article">
         <span class="tag">কৃষি বিমা</span>
         <h1>PM ফসল বিমা রবি ২০২৬-২৭: এনরোলমেন্ট শুরু</h1>
@@ -69,6 +80,9 @@
         <img src="../assets/blog-thumbs/pmfby-rabi-2026.jpg" alt="ফসল বিমা যোজনায় সবুজ ফসলের ক্ষেত" class="thumb">
 
         <p>চাষিদের জন্য সুখবর! <strong>প্রধানমন্ত্রী ফসল বিমা যোজনায় (PMFBY) রবি ২০২৬-২৭ মরসুমের নাম নথিভুক্তি শুরু</strong> হয়েছে <strong>১৫ অক্টোবর ২০২৬</strong> থেকে। পশ্চিমবঙ্গ খরিফ ২০২৬ থেকে এই যোজনায় ফিরেছে — ফলে রাজ্যের চাষিরা আবার বিমার সুবিধা পাবেন।</p>
+
+        <h2>🛡️ এক মরসুমের ক্ষতি, সারা বছরের ধাক্কা — বিমাই ভরসা</h2>
+        <p>চাষির জীবনে সবচেয়ে বড় ঝুঁকি <strong>প্রকৃতি</strong>। একটা শিলাবৃষ্টি বা আকস্মিক বন্যায় কয়েক ঘণ্টায় সারা মরসুমের পরিশ্রম শেষ হয়ে যেতে পারে। বীজ, সার, শ্রমিকের মজুরি — সব খরচ আগেই হয়ে গেছে, কিন্তু ফসল ঘরে তোলার আগেই নষ্ট। এই অবস্থায় <strong>ফসল বিমা একটা নিরাপত্তা জাল</strong>: নামমাত্র প্রিমিয়াম দিয়ে চাষি নিশ্চিন্তে চাষ করতে পারেন, কারণ ক্ষতি হলে ক্ষতিপূরণের ব্যবস্থা আছে।</p>
 
         <h2>🌾 ফসল বিমা কী? কেন করাবেন?</h2>
         <p>খরা, বন্যা, শিলাবৃষ্টি বা পোকামাকড়ের আক্রমণে ফসল নষ্ট হলে চাষি ক্ষতিপূরণ পান। নামমাত্র প্রিমিয়াম দিয়ে বড় অঙ্কের সুরক্ষা — এটাই এই যোজনার মূল কথা।</p>
@@ -83,6 +97,8 @@
             <p style="margin:10px 0 0">বাকি প্রিমিয়াম কেন্দ্র ও রাজ্য সরকার দেয়। অর্থাৎ চাষির পকেট থেকে যায় সামান্যই!</p>
         </div>
 
+        <p><strong>উদাহরণ দিয়ে বুঝুন:</strong> আপনার রবি ফসলের বিমাকৃত অর্থ যদি ₹৫০,০০০ হয়, তাহলে আপনার প্রিমিয়াম মাত্র <strong>১.৫% = ₹৭৫০</strong>। বাকি পুরো প্রিমিয়াম কেন্দ্র ও রাজ্য সরকার মিলে মেটায়। অর্থাৎ <strong>মাত্র ₹৭৫০ দিয়ে ₹৫০,০০০-এর সুরক্ষা</strong> — এর চেয়ে সস্তা নিরাপত্তা আর কী হতে পারে! এ কারণেই এই যোজনাকে চাষিদের জন্য সবচেয়ে লাভজনক সরকারি সুরক্ষা বলা হয়।</p>
+
         <h2>📅 শেষ তারিখ কবে?</h2>
         <div class="warning">
             <p style="margin:0"><strong>⏰ মনে রাখুন:</strong> রবি মরসুমে নাম লেখানোর শেষ তারিখ সাধারণত <strong>৩১ ডিসেম্বর</strong> হয়। তবে চূড়ান্ত তারিখ <strong>অফিসিয়াল পোর্টালে যাচাই করে নিন</strong> — দেরি করলে এই মরসুমে আর সুযোগ পাবেন না।</p>
@@ -94,6 +110,8 @@
             <li>যাদের কৃষি ঋণ (KCC) আছে, তাদের অনেক ক্ষেত্রে ব্যাংক থেকেই নাম নথিভুক্ত হয়</li>
             <li>ঋণ না থাকলেও স্বেচ্ছায় নাম লেখানো যায়</li>
         </ul>
+
+        <p><strong>ভাগচাষিদের জন্য বিশেষ নোট:</strong> জমি নিজের নামে না থাকলেও চিন্তা নেই — <strong>ভাগচাষিরাও নাম লেখাতে পারবেন</strong>, শুধু ভাগচাষের প্রমাণপত্র লাগবে। আর যাদের <strong>KCC ঋণ</strong> আছে, তাদের অনেক ক্ষেত্রে <strong>ব্যাংক নিজেই নাম নথিভুক্ত</strong> করে দেয় — তবু একবার ব্যাংকে গিয়ে নিশ্চিত হয়ে নিন আপনার নাম তালিকায় আছে কিনা, কারণ ব্যাংকের ভুলে নাম বাদ পড়ার ঘটনা ঘটে।</p>
 
         <h2>📄 কী কী কাগজ লাগবে?</h2>
         <ul>
@@ -107,6 +125,21 @@
         <div class="warning">
             <p style="margin:0">🌐 অফিসিয়াল পোর্টাল: <a href="https://pmfby.gov.in" target="_blank" rel="noopener">pmfby.gov.in</a> — এখানেই নাম নথিভুক্তি ও স্ট্যাটাস দেখুন। CSC কেন্দ্র বা ব্যাংক শাখা থেকেও আবেদন করা যায়।</p>
         </div>
+
+        <h2>💡 কাজের টিপস</h2>
+        <ul>
+            <li><strong>৩১ ডিসেম্বরের অপেক্ষা করবেন না</strong> — শুরুতেই নাম লেখান, শেষের দিকে ভিড় বাড়ে।</li>
+            <li>নাম লেখানোর পর <strong>pmfby.gov.in-এ গিয়ে স্ট্যাটাস</strong> যাচাই করে নিন।</li>
+            <li>অনলাইনে সমস্যা হলে <strong>নিকটবর্তী CSC কেন্দ্রে</strong> গিয়ে সাহায্য নিন — ওরা ফর্ম পূরণ করে দেয়।</li>
+            <li>বিমার <strong>রসিদ/অ্যাকনলেজমেন্ট যত্নে রাখুন</strong> — পরে স্ট্যাটাস দেখতে বা দাবি করতে লাগবে।</li>
+        </ul>
+
+        <h2>❓ সাধারণ প্রশ্ন</h2>
+        <p><strong>প্রশ্ন: আমার কোনো কৃষি ঋণ নেই — তবু বিমা করাতে পারব?</strong><br>উত্তর: হ্যাঁ, একদম পারবেন। ঋণ না থাকলেও <strong>স্বেচ্ছায়</strong> নাম লেখানো যায়।</p>
+        <p><strong>প্রশ্ন: আমি ভাগচাষি, জমি আমার নামে নয় — আমি কি যোগ্য?</strong><br>উত্তর: হ্যাঁ। জমির মালিক ও <strong>ভাগচাষি দুজনেই</strong> নাম লেখাতে পারেন। ভাগচাষের প্রমাণপত্র সঙ্গে রাখুন।</p>
+        <p><strong>প্রশ্ন: পুরো প্রিমিয়াম কি আমাকেই দিতে হবে?</strong><br>উত্তর: না। রবি ফসলে আপনি দেবেন মাত্র <strong>১.৫%</strong>, বাকিটা কেন্দ্র ও রাজ্য সরকার দেয়।</p>
+        <p><strong>প্রশ্ন: শেষ তারিখ পেরিয়ে গেলে কী হবে?</strong><br>উত্তর: এই মরসুমে আর নাম লেখানো যাবে না। রবির শেষ তারিখ সাধারণত <strong>৩১ ডিসেম্বর</strong> — তবে চূড়ান্ত তারিখ অফিসিয়াল পোর্টালে যাচাই করে নিন।</p>
+        <p><strong>প্রশ্ন: কোথায় নাম লেখাব?</strong><br>উত্তর: <strong>pmfby.gov.in</strong> পোর্টালে নিজে, অথবা <strong>CSC কেন্দ্র</strong> বা <strong>ব্যাংক শাখা</strong> থেকে।</p>
 
         <div class="highlight">
             <p style="margin:0">🌐 <strong>আরও নতুন নতুন তথ্যের জন্য আমাদের ওয়েবসাইট ভিজিট করুন:</strong> <a href="https://aicombo90.github.io/dafadar-online-seva/">aicombo90.github.io/dafadar-online-seva</a> — ওয়েবসাইটটা মোবাইলে <strong>সেভ/বুকমার্ক করে রাখুন</strong> যাতে হারিয়ে না যায়!</p>
@@ -130,6 +163,10 @@
         <p>© 2026 <a href="../index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য সরকারি ঘোষণা ও সংবাদ প্রতিবেদনের ভিত্তিতে।</p>
     </footer>
+    <script>
+    function shareArticle(){const d={title:document.title,text:(document.querySelector('h1')||{innerText:document.title}).innerText,url:location.href};if(navigator.share){navigator.share(d).catch(()=>{})}else{const m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+    function shareVia(w){const u=encodeURIComponent(location.href);const t=encodeURIComponent(((document.querySelector('h1')||{innerText:''}).innerText)+' | DAFADAR ONLINE SEVA');if(w==='whatsapp')open('https://wa.me/?text='+t+'%20'+u,'_blank');else if(w==='facebook')open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank');else if(w==='copy'){navigator.clipboard.writeText(location.href).then(()=>alert('লিংক কপি হয়েছে!'))}document.getElementById('shareMenu').style.display='none'}
+    </script>
     <script type="module" src="../assets/site-likes.js"></script>
 </body>
 </html>

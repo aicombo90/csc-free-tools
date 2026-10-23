@@ -34,6 +34,10 @@
         footer { background: #07100d; color: #9fb3a8; text-align: center; padding: 24px 5%; font-size: 14px; margin-top: 40px; }
         footer a { color: #1fc64c; text-decoration: none; }
 
+        .share-float-btn { position: fixed; top: 76px; right: 14px; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; border: none; cursor: pointer; box-shadow: 0 8px 20px rgba(79,70,229,.4); z-index: 900; }
+        .share-menu { display: none; position: fixed; top: 132px; right: 14px; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.2); z-index: 901; overflow: hidden; min-width: 175px; }
+        .share-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 16px; border: none; background: #fff; font-size: 15px; font-weight: 600; color: #1e293b; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; }
+        .share-menu button:hover { background: #f1f5f9; }
         .like-row { margin-top: 26px; padding-top: 18px; border-top: 1px solid #eef1ee; display: flex; align-items: center; gap: 10px; }
         .like-btn { display: inline-flex; align-items: center; gap: 8px; border: 2px solid #d7e3dc; background: #fff; border-radius: 30px; padding: 10px 24px; font-size: 16px; font-weight: 700; color: #3c4a42; cursor: pointer; font-family: inherit; transition: transform .15s, border-color .15s; }
         .like-btn:hover { border-color: #1fc64c; transform: scale(1.04); }
@@ -62,6 +66,13 @@
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
 
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">🔗</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
+
     <article class="article">
         <span class="tag">গাইড</span>
         <h1>লক্ষ্মীর ভান্ডার → অন্নপূর্ণা ভান্ডার: কী কী বদলালো</h1>
@@ -69,6 +80,9 @@
         <img src="../assets/blog-thumbs/lakshmir-to-annapurna.jpg" alt="অন্নপূর্ণা ভান্ডার প্রকল্পে মহিলারা টাকা পাচ্ছেন" class="thumb">
 
         <p>অনেকের মনে প্রশ্ন — <strong>লক্ষ্মীর ভান্ডার কি বন্ধ হয়ে গেল?</strong> উত্তর: না, বন্ধ হয়নি! <strong>১ জুন ২০২৬ থেকে</strong> প্রকল্পের নাম বদলে হয়েছে <strong>অন্নপূর্ণা ভান্ডার</strong>। টাকা আগের মতোই আসবে — তবে কিছু নিয়ম জেনে রাখা জরুরি।</p>
+
+        <h2>🤔 নাম বদলালো, টাকা কি বন্ধ হবে?</h2>
+        <p>সবার আগে ভয়টা দূর করি: <strong>নাম বদলালেও প্রকল্প বন্ধ হয়নি, টাকাও বন্ধ হয়নি।</strong> ১ জুন ২০২৬ থেকে শুধু নামটা "লক্ষ্মীর ভান্ডার" থেকে "অন্নপূর্ণা ভান্ডার" হয়েছে — সুবিধা আগের মতোই চালু আছে। যারা আগে টাকা পেতেন, তারা এখনো পাবেন। নাম নিয়ে বিভ্রান্ত হয়ে কেউ যদি বলে "নতুন করে আবেদন করতে হবে", সেটা <strong>ভুল তথ্য</strong> — পুরনো সুবিধাভোগীদের তথ্য <strong>স্বয়ংক্রিয়ভাবে</strong> নতুন প্রকল্পে স্থানান্তরিত হয়েছে, আলাদা করে কিছু করার দরকার ছিল না।</p>
 
         <h2>🔄 কী কী বদলালো?</h2>
         <div class="highlight">
@@ -80,11 +94,19 @@
             </ul>
         </div>
 
+        <p><strong>₹৩,০০০/মাস মানে বছরে ₹৩৬,০০০</strong> — একটা পরিবারের কাছে এটা কম টাকা নয়। এই টাকা <strong>DBT (ডাইরেক্ট বেনিফিট ট্রান্সফার)</strong>-এর মাধ্যমে সরাসরি আপনার ব্যাংক অ্যাকাউন্টে আসে — কোনো মাঝখানের হাত নেই, তাই কাটছাঁটের ভয় নেই। কিন্তু DBT কাজ করে <strong>শুধু তখনই</strong>, যখন আপনার আধার ব্যাংক অ্যাকাউন্টের সঙ্গে <strong>NPCI সিডিং</strong> করা থাকে। নিচে এটা বিস্তারিত বুঝিয়ে দিচ্ছি, কারণ এটাই টাকা আটকে যাওয়ার এক নম্বর কারণ।</p>
+
         <h2>❌ টাকা না এলে সবচেয়ে বড় কারণ</h2>
         <p>টাকা আটকে যাওয়ার <strong>প্রধান কারণ</strong> হলো <strong>আধার-DBT/NPCI সিডিং না থাকা</strong>। অর্থাৎ আপনার আধার নম্বর ব্যাংক অ্যাকাউন্টের সঙ্গে DBT-র জন্য লিংক না থাকলে টাকা ঢুকবে না। ব্যাংকে গিয়ে NPCI সিডিং করিয়ে নিন।</p>
 
+        <h2>🔧 NPCI সিডিং কী? কীভাবে করাবেন?</h2>
+        <p><strong>NPCI সিডিং</strong> মানে আপনার আধার নম্বরকে ব্যাংক অ্যাকাউন্টের সঙ্গে DBT-র জন্য যুক্ত করা। সহজ ভাষায়: সরকার যখন টাকা পাঠায়, তখন আধার নম্বর দেখে ঠিক করে <strong>কোন অ্যাকাউন্টে</strong> টাকা যাবে। সিডিং না থাকলে সরকার টাকা পাঠালেও ব্যাংক বুঝতে পারে না টাকাটা কার — ফলে টাকা আটকে যায় বা ফেরত চলে যায়।</p>
+        <p><strong>কী করবেন:</strong> আপনার ব্যাংক শাখায় গিয়ে বলুন — <strong>"আমার অ্যাকাউন্টে DBT/NPCI সিডিং করে দিন"</strong>। আধার কার্ড সঙ্গে নিয়ে যান। কাজটা ফ্রি, কয়েক মিনিটেই হয়ে যায়। সিডিং হয়ে গেলে সাধারণত পরের কিস্তি থেকেই টাকা আসতে শুরু করে।</p>
+
         <h2>📅 অক্টোবর ২০২৬-এর টাকা</h2>
         <p>অক্টোবর মাসের টাকা <strong>১৫ থেকে ২২ অক্টোবরের মধ্যে ধাপে ধাপে</strong> দেওয়ার খবর পাওয়া গেছে। তবে <strong>সরকারিভাবে "সবার টাকা দেওয়া শেষ" — এমন ঘোষণা এখনো হয়নি</strong>। আপনার টাকা না এলে হেল্পলাইনে যোগাযোগ করুন।</p>
+
+        <p><strong>"ধাপে ধাপে" মানে কী?</strong> সবার টাকা একদিনে ঢোকে না — জেলা ও ব্যাংক অনুযায়ী <strong>১৫ থেকে ২২ অক্টোবরের মধ্যে</strong> বিভিন্ন দিনে টাকা ছাড়া হয়। তাই পাশের বাড়িতে টাকা এলেও আপনারটা ২-৩ দিন পরে আসতে পারে — এতে ঘাবড়ানোর কিছু নেই। কিন্তু <strong>২২ অক্টোবরের অনেক পরেও</strong> টাকা না এলে প্রথমে NPCI সিডিং যাচাই করুন, তারপর হেল্পলাইনে ফোন করুন।</p>
 
         <h2>📞 হেল্পলাইন নম্বর</h2>
         <ul>
@@ -106,6 +128,21 @@
         <div class="warning">
             <p style="margin:0">🌐 পোর্টাল: <a href="https://socialregistry.wb.gov.in" target="_blank" rel="noopener">socialregistry.wb.gov.in</a> · <a href="https://socialsecurity.wb.gov.in" target="_blank" rel="noopener">socialsecurity.wb.gov.in</a></p>
         </div>
+
+        <h2>💡 কাজের টিপস</h2>
+        <ul>
+            <li>ব্যাংকে গিয়ে <strong>NPCI সিডিং</strong> আছে কিনা একবার যাচাই করে নিন — এটাই ৯০% সমস্যার সমাধান।</li>
+            <li>অ্যাকাউন্টে <strong>আধার নম্বর ও মোবাইল নম্বর</strong> আপডেট রাখুন।</li>
+            <li>টাকা না এলে প্রথমে <strong>২-৩ দিন অপেক্ষা</strong> করুন (ধাপে ধাপে দেওয়া হয়), তারপর হেল্পলাইনে ফোন করুন।</li>
+            <li><strong>OTP কাউকে দেবেন না</strong> — সরকারি কর্মী ফোনে OTP চায় না।</li>
+        </ul>
+
+        <h2>❓ সাধারণ প্রশ্ন</h2>
+        <p><strong>প্রশ্ন: লক্ষ্মীর ভান্ডার কি বন্ধ হয়ে গেছে?</strong><br>উত্তর: না! <strong>১ জুন ২০২৬</strong> থেকে নাম বদলে <strong>অন্নপূর্ণা ভান্ডার</strong> হয়েছে। টাকা আগের মতোই আসবে।</p>
+        <p><strong>প্রশ্ন: নতুন করে আবেদন করতে হবে?</strong><br>উত্তর: পুরনো সুবিধাভোগীদের <strong>নতুন করে আবেদন করতে হয়নি</strong> — তথ্য স্বয়ংক্রিয়ভাবে স্থানান্তরিত হয়েছে।</p>
+        <p><strong>প্রশ্ন: আমার টাকা আসছে না কেন?</strong><br>উত্তর: সবচেয়ে বড় কারণ <strong>আধার-DBT/NPCI সিডিং না থাকা</strong>। ব্যাংকে গিয়ে সিডিং করিয়ে নিন।</p>
+        <p><strong>প্রশ্ন: অক্টোবরের টাকা কবে পাব?</strong><br>উত্তর: <strong>১৫-২২ অক্টোবরের মধ্যে ধাপে ধাপে</strong> দেওয়ার খবর আছে, তবে "সবার দেওয়া শেষ" — এমন <strong>সরকারি ঘোষণা এখনো হয়নি</strong>।</p>
+        <p><strong>প্রশ্ন: "ডবল টাকা ₹৬,০০০" — সত্যি?</strong><br>উত্তর: <strong>ভুয়ো।</strong> সরকারিভাবে এমন কোনো ঘোষণা নেই।</p>
 
         <div class="highlight">
             <p style="margin:0">🌐 <strong>আরও নতুন নতুন তথ্যের জন্য আমাদের ওয়েবসাইট ভিজিট করুন:</strong> <a href="https://aicombo90.github.io/dafadar-online-seva/">aicombo90.github.io/dafadar-online-seva</a> — ওয়েবসাইটটা মোবাইলে <strong>সেভ/বুকমার্ক করে রাখুন</strong> যাতে হারিয়ে না যায়!</p>
@@ -129,6 +166,10 @@
         <p>© 2026 <a href="../index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য সরকারি ঘোষণা ও সংবাদ প্রতিবেদনের ভিত্তিতে।</p>
     </footer>
+    <script>
+    function shareArticle(){const d={title:document.title,text:(document.querySelector('h1')||{innerText:document.title}).innerText,url:location.href};if(navigator.share){navigator.share(d).catch(()=>{})}else{const m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+    function shareVia(w){const u=encodeURIComponent(location.href);const t=encodeURIComponent(((document.querySelector('h1')||{innerText:''}).innerText)+' | DAFADAR ONLINE SEVA');if(w==='whatsapp')open('https://wa.me/?text='+t+'%20'+u,'_blank');else if(w==='facebook')open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank');else if(w==='copy'){navigator.clipboard.writeText(location.href).then(()=>alert('লিংক কপি হয়েছে!'))}document.getElementById('shareMenu').style.display='none'}
+    </script>
     <script type="module" src="../assets/site-likes.js"></script>
 </body>
 </html>

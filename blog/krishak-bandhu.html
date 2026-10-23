@@ -42,6 +42,11 @@
         @keyframes likepop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-6deg); } 100% { transform: scale(1); } }
         .like-hint { font-size: 13px; color: #8a93a8; }
         .view-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #5b6478; }
+        .share-float-btn { position: fixed; top: 76px; right: 14px; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; border: none; cursor: pointer; box-shadow: 0 8px 20px rgba(79,70,229,.4); z-index: 900; }
+        .share-float-btn:hover { transform: scale(1.08); }
+        .share-menu { display: none; position: fixed; top: 132px; right: 14px; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.2); z-index: 901; overflow: hidden; min-width: 175px; }
+        .share-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 16px; border: none; background: #fff; font-size: 15px; font-weight: 600; color: #1e293b; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; }
+        .share-menu button:hover { background: #f1f5f9; }
     </style>
     <script type="application/ld+json">
     {
@@ -62,6 +67,13 @@
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
 
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">&#128279;</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
+
     <article class="article">
         <span class="tag">আপডেট</span>
         <h1>কৃষকবন্ধুর টাকা কবে ঢুকবে? সত্যি অবস্থা জানুন</h1>
@@ -70,22 +82,37 @@
 
         <p>কৃষকবন্ধু প্রকল্পে কৃষকরা বছরে <strong>১০,০০০ টাকা</strong> পান (খরিফে ৫,০০০ + রবিতে ৫,০০০)। ১ একরের কম জমি থাকলে বছরে ন্যূনতম <strong>৪,০০০ টাকা</strong>।</p>
 
+        <p>টাকাটা দুই ভাগে দেওয়ার কারণ হলো চাষের মরশুম — <strong>খরিফ</strong> (বর্ষার ফসল, যেমন ধান) আর <strong>রবি</strong> (শীতের ফসল)। বীজ বোনার সময় কৃষকের হাতে নগদ টাকা সবচেয়ে বেশি দরকার হয় — সার, বীজ, চাষের খরচ মেটাতে। তাই প্রতিটি মরশুমের আগে একটা করে কিস্তি দেওয়ার ব্যবস্থা। ১ একরের কম জমির মালিকরাও বাদ যান না — তাঁরা জমির পরিমাণ অনুযায়ী আনুপাতিক হারে পান, তবে বছরে <strong>কমপক্ষে ৪,০০০ টাকা</strong> গ্যারান্টি।</p>
+
         <h2>📅 খরিফ ২০২৬-এর টাকা কবে?</h2>
         <div class="warning">
             <p style="margin:0"><strong>সৎ তথ্য:</strong> খরিফ ২০২৬ কিস্তির <strong>কোনো সরকারি তারিখ এখনো ঘোষণা হয়নি</strong>। YouTube-এ "১৭ অক্টোবর" জাতীয় দাবিগুলো যাচাই না করা গুজব।</p>
         </div>
         <ul>
             <li><strong>শেষ কিস্তি পেড:</strong> রবি, ৮ জানুয়ারি ২০২৬</li>
-            <li>টাকা ছাড়ার আগে উপভোক্তা পুনঃযাচাই (Annexure-I ফর্ম) চলছে</li>
+            <li>টাকা ছাড়ার আগে <strong>উপভোক্তা পুনঃযাচাই (Annexure-I ফর্ম)</strong> চলছে — এই যাচাই শেষ না হলে টাকা ছাড়া হয় না</li>
         </ul>
+        <p><strong>পুনঃযাচাই কেন হয়?</strong> প্রতিটি কিস্তির আগে সরকার তালিকা ঝালিয়ে নেয় — কেউ মারা গেছেন কিনা, জমি বিক্রি করে দিয়েছেন কিনা, ভুয়ো নাম ঢুকেছে কিনা। Annexure-I ফর্মে কৃষককে নিজের তথ্য আবার নিশ্চিত করতে হয়। এই প্রক্রিয়া শেষ হলেই টাকা ছাড়ের ঘোষণা আসে। তাই যাঁরা ফর্ম জমা দেননি, দ্রুত ব্লক অফিসে যোগাযোগ করুন — নইলে তালিকা থেকে নাম বাদ যেতে পারে।</p>
+        <p><strong>YouTube-এর তারিখ কেন বিশ্বাস করবেন না?</strong> অনেক চ্যানেল ভিউ পেতে "অমুক তারিখে টাকা ঢুকবে" বলে ভিডিও বানায়, কিন্তু সরকারি ঘোষণা ছাড়া এর কোনো ভিত্তি নেই। আসল তারিখ জানতে অপেক্ষা করুন সরকারি ঘোষণার — ঘোষণা হলেই আমরা ওয়েবসাইট ও WhatsApp গ্রুপে জানিয়ে দেবো।</p>
 
         <h2>📰 বড় ঘোষণা: বছরে ৯,০০০ টাকা?</h2>
         <div class="highlight">
             <p style="margin:0">মুখ্যমন্ত্রী ঘোষণা করেছেন — রাজ্য সরকার কেন্দ্রের ৬,০০০ টাকার ওপরে বছরে আরও <strong>৩,০০০ টাকা</strong> দেবে। অর্থাৎ মোট <strong>৯,০০০ টাকা/বছর</strong>! তবে এটি এখনো ঘোষণা পর্যায়ে — সরকারি নির্দেশনা আসেনি।</p>
         </div>
+        <p>বুঝে নিন হিসাবটা: কেন্দ্রের PM কিসান প্রকল্পে কৃষকরা বছরে ৬,০০০ টাকা পান। তার ওপরে রাজ্য আরও ৩,০০০ টাকা যোগ করলে মোট দাঁড়ায় ৯,০০০ টাকা। কিন্তু <strong>ঘোষণা আর কার্যকর হওয়া এক নয়</strong> — সরকারি নির্দেশনা (GR/নোটিফিকেশন) না বেরোনো পর্যন্ত টাকা বাড়বে না। নির্দেশনা বেরোলেই আমরা আপডেট দেবো। ততদিন কেউ "৯,০০০ টাকা পাইয়ে দেবো" বলে টাকা চাইলে — সেটা প্রতারণা।</p>
 
         <h2>📞 হেল্পলাইন</h2>
-        <p><strong>1800-103-0002</strong> (টোল ফ্রি)</p>
+        <p><strong>1800-103-0002</strong> (টোল ফ্রি — কল ফ্রি)</p>
+        <p>নিজের কৃষকবন্ধু রেজিস্ট্রেশন নম্বর বা আধার নম্বর হাতের কাছে রেখে ফোন করুন। টাকা না ঢোকা, নাম তালিকায় আছে কিনা, ফর্ম সংক্রান্ত যেকোনো প্রশ্নে এই নম্বরে সাহায্য পাবেন।</p>
+
+        <h2>❓ সাধারণ প্রশ্ন (FAQ)</h2>
+        <ul>
+            <li><strong>খরিফ ২০২৬-এর টাকা কবে ঢুকবে?</strong> — সরকারি তারিখ এখনো ঘোষণা হয়নি। পুনঃযাচাই শেষ হলে ঘোষণা আসবে।</li>
+            <li><strong>"১৭ অক্টোবর টাকা ঢুকবে" — সত্যি?</strong> — না, এটি যাচাই না করা গুজব। সরকারি ঘোষণা ছাড়া বিশ্বাস করবেন না।</li>
+            <li><strong>Annexure-I ফর্ম কী?</strong> — টাকা ছাড়ার আগে উপভোক্তা পুনঃযাচাইয়ের ফর্ম। জমা না দিলে নাম বাদ যেতে পারে।</li>
+            <li><strong>বছরে ৯,০০০ টাকা কবে থেকে?</strong> — এখনো শুধু ঘোষণা পর্যায়ে; সরকারি নির্দেশনা আসেনি।</li>
+            <li><strong>১ একরের কম জমি থাকলে কত পাবো?</strong> — জমির পরিমাণ অনুযায়ী, তবে বছরে ন্যূনতম ৪,০০০ টাকা।</li>
+        </ul>
 
 
         <div class="highlight">
@@ -117,5 +144,10 @@
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য সরকারি ঘোষণা ও সংবাদ প্রতিবেদনের ভিত্তিতে।</p>
     </footer>
     <script type="module" src="../assets/site-likes.js"></script>
+
+    <script>
+    function shareArticle(){var t=document.title;var h=document.querySelector('h1');var d={title:t,text:h?h.innerText:t,url:location.href};if(navigator.share){navigator.share(d).catch(function(){})}else{var m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+    function shareVia(w){var u=encodeURIComponent(location.href);var h=document.querySelector('h1');var t=encodeURIComponent((h?h.innerText:'')+' | DAFADAR ONLINE SEVA');if(w==='whatsapp'){window.open('https://wa.me/?text='+t+'%20'+u,'_blank')}else if(w==='facebook'){window.open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank')}else if(w==='copy'){if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(function(){alert('লিংক কপি হয়েছে!')})}else{alert(location.href)}}document.getElementById('shareMenu').style.display='none'}
+    </script>
 </body>
 </html>

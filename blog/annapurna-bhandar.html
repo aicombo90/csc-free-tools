@@ -42,6 +42,11 @@
         @keyframes likepop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-6deg); } 100% { transform: scale(1); } }
         .like-hint { font-size: 13px; color: #8a93a8; }
         .view-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #5b6478; }
+        .share-float-btn { position: fixed; top: 76px; right: 14px; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; border: none; cursor: pointer; box-shadow: 0 8px 20px rgba(79,70,229,.4); z-index: 900; }
+        .share-float-btn:hover { transform: scale(1.08); }
+        .share-menu { display: none; position: fixed; top: 132px; right: 14px; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.2); z-index: 901; overflow: hidden; min-width: 175px; }
+        .share-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 16px; border: none; background: #fff; font-size: 15px; font-weight: 600; color: #1e293b; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; }
+        .share-menu button:hover { background: #f1f5f9; }
     </style>
     <script type="application/ld+json">
     {
@@ -62,6 +67,13 @@
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
 
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">&#128279;</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
+
     <article class="article">
         <span class="tag">গাইড</span>
         <h1>অন্নপূর্ণা ভান্ডার: মাসে ৩,০০০ টাকা — সম্পূর্ণ গাইড</h1>
@@ -70,30 +82,55 @@
 
         <p>লক্ষ্মীর ভান্ডার এখন <strong>অন্নপূর্ণা ভান্ডার</strong>! ১ জুন ২০২৬ থেকে এই নামে প্রকল্প চলছে। মহিলারা প্রতি মাসে <strong>৩,০০০ টাকা</strong> সরাসরি ব্যাংক অ্যাকাউন্টে (DBT) পান।</p>
 
+        <p>নাম বদলালেও প্রকল্পের মূল উদ্দেশ্য একই — রাজ্যের মহিলাদের হাতে প্রতি মাসে নগদ টাকা তুলে দেওয়া, যাতে সংসারের ছোটখাটো খরচ, ছেলেমেয়ের পড়াশোনা বা নিজের প্রয়োজন মেটাতে কারও কাছে হাত পাততে না হয়। যাঁরা আগে লক্ষ্মীর ভান্ডার পেতেন, তাঁদের নতুন করে আবেদন করতে হবে না — একই প্রকল্প নতুন নামে চলছে।</p>
+
+        <h2>💳 DBT কী এবং কেন জরুরি?</h2>
+        <p>DBT মানে <strong>Direct Benefit Transfer</strong> — সরকারি টাকা সরাসরি আপনার ব্যাংক অ্যাকাউন্টে ঢোকে, মাঝে কোনো দালাল বা অফিসের হাত ঘোরে না। এতে দুর্নীতি কমে আর টাকা দ্রুত পৌঁছায়। কিন্তু DBT কাজ করার জন্য ব্যাংক অ্যাকাউন্টের সঙ্গে <strong>আধার লিংক (NPCI সিডিং)</strong> থাকা বাধ্যতামূলক। আধার লিংক না থাকলে সরকারের সিস্টেম জানতেই পারে না টাকাটা কোন অ্যাকাউন্টে পাঠাবে — তাই টাকা আটকে যায়।</p>
+
         <h2>👩 কারা পাবেন?</h2>
         <ul>
             <li>বয়স <strong>২৫ থেকে ৬০ বছর</strong> — পশ্চিমবঙ্গের মহিলারা</li>
-            <li>কোনো ধর্মীয় শর্ত নেই</li>
+            <li>কোনো ধর্মীয় শর্ত নেই — সব ধর্মের মহিলারাই সমানভাবে পাবেন</li>
         </ul>
+        <p>২৫ বছর বয়সসীমা রাখার কারণ — এই বয়সের পর সাধারণত মেয়েদের নিজের সংসার/পরিবারের দায়িত্ব বাড়ে, তখন এই মাসিক সাহায্য সবচেয়ে বেশি কাজে লাগে। আর ধর্মীয় শর্ত না থাকার মানে — হিন্দু, মুসলিম, খ্রিস্টান, সব সম্প্রদায়ের মহিলারা সমান অধিকারী। কেউ যদি বলে "অমুক ধর্মের লোক পাবে না", সেটা সম্পূর্ণ ভুল।</p>
 
         <h2>💸 টাকা না এলে কী করবেন?</h2>
         <div class="highlight">
             <p style="margin:0">টাকা না আসার <strong>সবচেয়ে বড় কারণ</strong>: ব্যাংক অ্যাকাউন্টে <strong>আধার-DBT / NPCI সিডিং</strong> না থাকা। ব্যাংকে গিয়ে আধার সিডিং করিয়ে নিন।</p>
         </div>
+        <p><strong>আধার সিডিং কীভাবে করবেন (ধাপে ধাপে):</strong></p>
         <ul>
-            <li>প্রথমে ব্যাংকে আধার-DBT লিংক আছে কিনা যাচাই করুন</li>
-            <li>সমস্যা থাকলে ব্লকের সমাজকল্যাণ দপ্তরে যোগাযোগ করুন</li>
+            <li>আপনার ব্যাংকের শাখায় যান, আধার কার্ড ও ব্যাংকের পাসবই নিয়ে</li>
+            <li>কাউন্টারে বলুন "আধার সিডিং / NPCI ম্যাপিং" করাতে চান</li>
+            <li>ব্যাংক একটি ফর্ম দেবে — পূরণ করে জমা দিন</li>
+            <li>২-৩ দিনের মধ্যে লিংক হয়ে যায়; ব্যাংক থেকে কনফার্ম করে নিন</li>
+        </ul>
+        <ul>
+            <li>সিডিংয়ের পরও টাকা না এলে <strong>ব্লকের সমাজকল্যাণ দপ্তরে</strong> যোগাযোগ করুন — আপনার নাম তালিকায় আছে কিনা যাচাই করুন</li>
+            <li>ব্যাংক অ্যাকাউন্ট <strong>সচল</strong> আছে কিনা দেখুন — দীর্ঘদিন লেনদেন না হলে অ্যাকাউন্ট নিষ্ক্রিয় হয়ে যেতে পারে</li>
+            <li>মোবাইল নম্বর ব্যাংকে আপডেট রাখুন, যাতে টাকা ঢোকার SMS পান</li>
         </ul>
 
         <h2>📞 হেল্পলাইন</h2>
         <ul>
             <li><strong>82820 82820</strong></li>
-            <li><strong>1800-345-5505</strong> (টোল ফ্রি)</li>
+            <li><strong>1800-345-5505</strong> (টোল ফ্রি — কল করতে টাকা লাগে না)</li>
         </ul>
+        <p>ফোন করার আগে আপনার <strong>আধার নম্বর</strong> ও <strong>ব্যাংক অ্যাকাউন্টের তথ্য</strong> হাতের কাছে রাখুন — তাহলে হেল্পলাইন থেকে দ্রুত আপনার সমস্যা খুঁজে বের করা যাবে। সকাল ১০টা থেকে সন্ধ্যা ৬টার মধ্যে ফোন করলে সাড়া পাওয়ার সম্ভাবনা বেশি।</p>
 
         <div class="warning">
             <p style="margin:0"><strong>⚠️ সতর্কতা:</strong> "অক্টোবরে ডবল টাকা (৬,০০০)" — এই খবর <strong>ভুয়ো</strong>। মুখ্যমন্ত্রীর ১২,০০০–১৫,০০০ টাকার কথাটি এখনো শুধু প্রস্তাব। ভুয়ো খবরে কান দেবেন না।</p>
         </div>
+        <p>এই ধরনের গুজব কেন ছড়ায়? কিছু YouTube চ্যানেল ও Facebook পেজ ভিউ বাড়ানোর জন্য চমকপ্রদ থাম্বনেইল বানায়। যাচাই করার সহজ উপায় — সরকারি ঘোষণা ছাড়া কোনো "বড় খবর" বিশ্বাস করবেন না। মুখ্যমন্ত্রী বা সরকারি দপ্তর আনুষ্ঠানিকভাবে যা ঘোষণা করবে, সেটাই সত্যি। আমাদের ওয়েবসাইটে শুধু যাচাই করা তথ্যই দেওয়া হয়।</p>
+
+        <h2>❓ সাধারণ প্রশ্ন (FAQ)</h2>
+        <ul>
+            <li><strong>লক্ষ্মীর ভান্ডার পেতাম, এখন কি নতুন করে আবেদন করতে হবে?</strong> — না। একই প্রকল্প নতুন নামে চলছে, আলাদা আবেদনের দরকার নেই।</li>
+            <li><strong>আধার সিডিং কী?</strong> — ব্যাংক অ্যাকাউন্টের সঙ্গে আধার নম্বর যুক্ত করা, যাতে সরকারি টাকা (DBT) সরাসরি ঢুকতে পারে। ব্যাংকে গিয়ে করাতে হয়।</li>
+            <li><strong>বয়স ৬০ পেরিয়ে গেলে কী হবে?</strong> — এই প্রকল্পের শর্ত ২৫–৬০ বছর।</li>
+            <li><strong>অক্টোবরে কি ডবল টাকা (৬,০০০) আসবে?</strong> — না, এটি ভুয়ো খবর। মাসে ৩,০০০ টাকাই নিয়ম।</li>
+            <li><strong>টাকা না এলে প্রথমে কী করবো?</strong> — ব্যাংকে গিয়ে আধার-DBT লিংক আছে কিনা যাচাই করুন; তারপর ব্লকের সমাজকল্যাণ দপ্তরে যোগাযোগ করুন।</li>
+        </ul>
 
 
         <div class="highlight">
@@ -125,5 +162,10 @@
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য সরকারি ঘোষণা ও সংবাদ প্রতিবেদনের ভিত্তিতে।</p>
     </footer>
     <script type="module" src="../assets/site-likes.js"></script>
+
+    <script>
+    function shareArticle(){var t=document.title;var h=document.querySelector('h1');var d={title:t,text:h?h.innerText:t,url:location.href};if(navigator.share){navigator.share(d).catch(function(){})}else{var m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+    function shareVia(w){var u=encodeURIComponent(location.href);var h=document.querySelector('h1');var t=encodeURIComponent((h?h.innerText:'')+' | DAFADAR ONLINE SEVA');if(w==='whatsapp'){window.open('https://wa.me/?text='+t+'%20'+u,'_blank')}else if(w==='facebook'){window.open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank')}else if(w==='copy'){if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(function(){alert('লিংক কপি হয়েছে!')})}else{alert(location.href)}}document.getElementById('shareMenu').style.display='none'}
+    </script>
 </body>
 </html>

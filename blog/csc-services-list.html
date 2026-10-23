@@ -42,6 +42,10 @@
         @keyframes likepop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-6deg); } 100% { transform: scale(1); } }
         .like-hint { font-size: 13px; color: #8a93a8; }
         .view-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #5b6478; }
+        .share-float-btn{position:fixed;top:76px;right:14px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;border:none;cursor:pointer;box-shadow:0 8px 20px rgba(79,70,229,.4);z-index:900}
+        .share-menu{display:none;position:fixed;top:132px;right:14px;background:#fff;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.2);z-index:901;overflow:hidden;min-width:175px}
+        .share-menu button{display:flex;align-items:center;gap:10px;width:100%;padding:12px 16px;border:none;background:#fff;font-size:15px;font-weight:600;color:#1e293b;cursor:pointer;font-family:'Hind Siliguri',sans-serif}
+        .share-menu button:hover{background:#f1f5f9}
     </style>
     <script type="application/ld+json">
     {
@@ -61,6 +65,12 @@
         <a class="logo" href="../index.html"><i class="fa-solid fa-laptop-code"></i> DAFADAR ONLINE SEVA</a>
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">🔗</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
 
     <article class="article">
         <span class="tag">CSC গাইড</span>
@@ -68,52 +78,67 @@
         <div class="date">২৩ অক্টোবর ২০২৬ · Dafadar Online Seva</div>
         <img src="../assets/blog-thumbs/csc-services-list.jpg" alt="CSC সেন্টারের নানা সেবা" class="thumb">
 
-        <p>CSC (Common Service Centre) থেকে একজন VLE নানা ধরনের ডিজিটাল সেবা দিতে পারেন। নিচে <strong>সেবার প্রধান ক্যাটাগরিগুলো</strong> দেওয়া হলো — যাতে বুঝতে পারেন একটা CSC সেন্টার আসলে কত কাজের।</p>
+        <p>CSC (Common Service Centre) থেকে একজন VLE নানা ধরনের ডিজিটাল সেবা দিতে পারেন। নিচে <strong>সেবার প্রধান ক্যাটাগরিগুলো</strong> দেওয়া হলো — প্রতিটার পাশে লেখা আছে <strong>কেন এই সেবা গ্রামের মানুষের দরকার</strong>, যাতে বুঝতে পারেন একটা CSC সেন্টার আসলে কত কাজের।</p>
 
         <h2>🪪 পরিচয় ও নথি সংক্রান্ত সেবা</h2>
         <ul>
-            <li><strong>আধার সেবা</strong> — তথ্য আপডেট, প্রিন্ট ও সংশ্লিষ্ট সহায়তা</li>
-            <li><strong>প্যান কার্ড</strong> — নতুন আবেদন ও সংশোধনে সাহায্য</li>
-            <li><strong>ভোটার কার্ড</strong> — আবেদন ও সংশোধনে সহায়তা</li>
-            <li><strong>পাসপোর্ট</strong> — অনলাইন আবেদনে সাহায্য</li>
+            <li><strong>আধার সেবা</strong> — তথ্য আপডেট, প্রিন্ট ও সংশ্লিষ্ট সহায়তা। কেন জরুরি? সরকারি টাকা (DBT) আধার-লিংক ব্যাংক অ্যাকাউন্টে আসে — নাম-ঠিকানায় ভুল থাকলে টাকা আটকে যায়। তাই আধার আপডেট গ্রামের মানুষের কাছে সবচেয়ে চাহিদার সেবাগুলোর একটা।</li>
+            <li><strong>প্যান কার্ড</strong> — নতুন আবেদন ও সংশোধনে সাহায্য। ব্যাংক অ্যাকাউন্ট খোলা থেকে নানা কাজে প্যান লাগে — অনলাইন ফর্ম ইংরেজিতে হওয়ায় গ্রামের মানুষ একা করতে পারেন না, VLE-এর সাহায্য দরকার হয়।</li>
+            <li><strong>ভোটার কার্ড</strong> — আবেদন ও সংশোধনে সহায়তা। ভোটাধিকার তো আছেই, পাশাপাশি এটা একটা গুরুত্বপূর্ণ পরিচয়পত্রও।</li>
+            <li><strong>পাসপোর্ট</strong> — অনলাইন আবেদনে সাহায্য। বিদেশে কাজে যেতে চাওয়া যুবকদের জন্য পাসপোর্টের ফর্ম পূরণ কঠিন — এখানে VLE-এর গাইডেন্স বড় সুবিধা।</li>
         </ul>
 
         <h2>🏦 ব্যাংকিং ও আর্থিক সেবা</h2>
         <ul>
-            <li><strong>ব্যাংকিং করেসপন্ডেন্ট (BC)</strong> — টাকা জমা ও তোলা</li>
-            <li><strong>টাকা ট্রান্সফার</strong> — এক অ্যাকাউন্ট থেকে অন্য অ্যাকাউন্টে</li>
-            <li><strong>বীমা</strong> — জীবন ও সাধারণ বীমার প্রিমিয়াম/আবেদন সহায়তা</li>
-            <li><strong>পেনশন সংক্রান্ত</strong> — তথ্য ও আবেদনে সাহায্য</li>
+            <li><strong>ব্যাংকিং করেসপন্ডেন্ট (BC)</strong> — টাকা জমা ও তোলা। এটা সম্ভবত CSC-এর <strong>সবচেয়ে প্রভাবশালী সেবা</strong>। যেসব গ্রামে ব্যাংকের শাখা নেই, সেখানে VLE ব্যাংকের প্রতিনিধি হিসেবে কাজ করেন — গ্রাহককে আর শহরে গিয়ে লাইনে দাঁড়াতে হয় না। একজন বয়স্ক মানুষের জন্য এটা আশীর্বাদ।</li>
+            <li><strong>টাকা ট্রান্সফার</strong> — এক অ্যাকাউন্ট থেকে অন্য অ্যাকাউন্টে। শহরে কাজ করা শ্রমিক বাড়িতে টাকা পাঠাতে চাইলে এই সেবা কাজে লাগে — নিরাপদে, দ্রুত।</li>
+            <li><strong>বীমা</strong> — জীবন ও সাধারণ বীমার প্রিমিয়াম/আবেদন সহায়তা। গরিব পরিবারের জন্য বীমা মানে বিপদের দিনে ভরসা — কিন্তু ফর্মের জটিলতায় অনেকে পিছিয়ে যান। VLE সেই বাধা দূর করেন।</li>
+            <li><strong>পেনশন সংক্রান্ত</strong> — তথ্য ও আবেদনে সাহায্য। বয়স্ক বা বিধবা ভাতার মতো সহায়তা পেতে কাগজপত্রের ঝামেলা VLE মিটিয়ে দেন।</li>
         </ul>
 
         <h2>💡 বিল পেমেন্ট ও রিচার্জ</h2>
         <ul>
-            <li>মোবাইল ও DTH রিচার্জ</li>
-            <li>বিদ্যুৎ বিল পেমেন্ট</li>
-            <li>অন্যান্য ইউটিলিটি বিল পেমেন্ট</li>
+            <li>মোবাইল ও DTH রিচার্জ — প্রায় প্রতিদিনের চাহিদা; দোকানে ভিড় আনার সবচেয়ে সহজ সেবা।</li>
+            <li>বিদ্যুৎ বিল পেমেন্ট — সময়মতো বিল না দিলে জরিমানা বা লাইন কাটা; VLE-এর কাছে বিল দিলে গ্রামের মানুষ নিশ্চিন্ত।</li>
+            <li>অন্যান্য ইউটিলিটি বিল পেমেন্ট — এক জায়গায় সব বিলের সমাধান।</li>
         </ul>
+        <p>এই সেবাগুলো <strong>নিয়মিত গ্রাহক</strong> তৈরি করে — যে আজ রিচার্জ করতে এলো, কাল সে-ই আধার প্রিন্টের জন্য আসবে।</p>
 
         <h2>🎫 টিকিট বুকিং</h2>
         <ul>
-            <li><strong>রেল টিকিট</strong> — IRCTC-এর মাধ্যমে বুকিং সহায়তা</li>
-            <li><strong>বাস ও বিমান টিকিট</strong> — বুকিংয়ে সাহায্য</li>
+            <li><strong>রেল টিকিট</strong> — IRCTC-এর মাধ্যমে বুকিং সহায়তা। তৎকালের চাপ, ইংরেজি ওয়েবসাইট, পেমেন্টের ঝামেলা — গ্রামের মানুষের পক্ষে একা সামলানো কঠিন। VLE এই পুরো প্রক্রিয়া সহজ করে দেন।</li>
+            <li><strong>বাস ও বিমান টিকিট</strong> — বুকিংয়ে সাহায্য। পরিযায়ী শ্রমিকদের যাতায়াতে এই সেবার চাহিদা থাকে।</li>
         </ul>
 
         <h2>🏛️ সরকারি প্রকল্প ও ফর্ম</h2>
         <ul>
-            <li>বিভিন্ন সরকারি প্রকল্পের <strong>অনলাইন আবেদনে</strong> সাহায্য</li>
-            <li>জন্ম/মৃত্যু/আয়/জাতি <strong>সার্টিফিকেটের</strong> আবেদন সহায়তা</li>
-            <li>কৃষক, শ্রমিক ও অন্যান্য কল্যাণ প্রকল্পের ফর্ম পূরণে সাহায্য</li>
+            <li>বিভিন্ন সরকারি প্রকল্পের <strong>অনলাইন আবেদনে</strong> সাহায্য — এখন বেশিরভাগ প্রকল্পের আবেদন অনলাইনে হয়।</li>
+            <li>জন্ম/মৃত্যু/আয়/জাতি <strong>সার্টিফিকেটের</strong> আবেদন সহায়তা — স্কুলে ভর্তি, চাকরি, প্রকল্প — সবখানেই এই সার্টিফিকেট লাগে।</li>
+            <li>কৃষক, শ্রমিক ও অন্যান্য কল্যাণ প্রকল্পের ফর্ম পূরণে সাহায্য — যারা প্রকল্পের টাকা পাওয়ার যোগ্য, তারা যেন ফর্মের জটিলতায় বঞ্চিত না হন।</li>
         </ul>
 
         <div class="highlight">
-            <p style="margin:0"><strong>💡 মনে রাখুন:</strong> সেবার তালিকা সময়ে সময়ে <strong>বাড়তে থাকে</strong> — নতুন সেবা যোগ হলে Digital Seva পোর্টালেই জানা যায়। VLE হিসেবে নিয়মিত পোর্টাল চেক করুন।</p>
+            <p style="margin:0"><strong>💡 মনে রাখুন:</strong> সেবার তালিকা সময়ে সময়ে <strong>বাড়তে থাকে</strong> — নতুন সেবা যোগ হলে Digital Seva পোর্টালেই জানা যায়। VLE হিসেবে নিয়মিত পোর্টাল চেক করুন। নতুন সেবা সবার আগে শিখে নিলে এলাকায় আপনার সুনাম বাড়বে।</p>
         </div>
 
-        <h2>💰 এই সেবাগুলো থেকে আয় কীভাবে?</h2>
-        <p>প্রতিটি সেবা দেওয়ার বদলে VLE <strong>কমিশন</strong> পান। কমিশন সেবা অনুযায়ী আলাদা হয়। বিস্তারিত জানুন: <a href="csc-commission.html">CSC থেকে আয়: কমিশন কীভাবে কাজ করে</a>।</p>
+        <h2>🎯 VLE-দের জন্য বাস্তব টিপস</h2>
+        <ul>
+            <li><strong>দৈনিক ভিড়ের সেবা চিনুন:</strong> রিচার্জ, BC লেনদেন, বিল পেমেন্ট — এগুলো প্রতিদিন গ্রাহক আনে। পাসপোর্ট বা বীমার মতো সেবা মাঝে মাঝে হলেও আয় ভালো দেয়। দুটোর ভারসাম্য রাখুন।</li>
+            <li><strong>সেবার তালিকা দোকানে টাঙান:</strong> বড় হরফে বাংলায় লিখে বাইরে লাগান — কী কী সেবা দেন, মানুষ জানলে তবেই আসবে।</li>
+            <li><strong>ক্রস-সেবা দিন:</strong> যে গ্রাহক রিচার্জ করতে এলো, তাকে জিজ্ঞেস করুন আধার প্রিন্ট বা অন্য কিছু দরকার কিনা। এক গ্রাহক থেকে একাধিক সেবা — আয়ের সহজ পথ।</li>
+            <li><strong>নতুন সেবা শিখতে দেরি করবেন না:</strong> পোর্টালে নতুন সেবা এলে দ্রুত শিখে নিন — এলাকায় "সব কাজ হয়" সুনামই আসল পুঁজি।</li>
+        </ul>
 
-        <div class="warning">
+        <h2>❓ সাধারণ কিছু প্রশ্ন</h2>
+        <p><strong>সব CSC-তে কি সব সেবা মেলে?</strong> — সব সেন্টারে সব সেবা নাও থাকতে পারে। কোন সেবা দরকার, VLE-কে জিজ্ঞেস করে নিন।</p>
+        <p><strong>নতুন সেবা যোগ হলে কীভাবে জানবো?</strong> — Digital Seva পোর্টালে নিয়মিত চোখ রাখুন; নতুন সেবার ঘোষণা সেখানেই আসে।</p>
+        <p><strong>সেবার চার্জ কত?</strong> — বেশিরভাগ সেবার চার্জ সরকার নির্ধারিত। VLE-কে জিজ্ঞেস করলে তিনি নিয়মমাফিক চার্জ বলবেন।</p>
+        <p><strong>একটা সেবার জন্য কত সময় লাগে?</strong> — সেবা অনুযায়ী আলাদা; সাধারণ রিচার্জ-বিল কয়েক মিনিটে, ফর্মের কাজে বেশি সময় লাগতে পারে।</p>
+
+        <h2>💰 এই সেবাগুলো থেকে আয় কীভাবে?</h2>
+        <p>প্রতিটি সেবা দেওয়ার বদলে VLE <strong>কমিশন</strong> পান। কমিশন সেবা অনুযায়ী আলাদা হয় — আর সঠিক হার Digital Seva পোর্টালে লগইন করে দেখা যায়। বিস্তারিত জানুন: <a href="csc-commission.html">CSC থেকে আয়: কমিশন কীভাবে কাজ করে</a>।</p>
+
+<div class="warning">
             <p style="margin:0 0 8px"><strong>🔗 অফিসিয়াল পোর্টাল (সরকারি):</strong></p>
             <ul style="margin:0 0 0 20px">
                 <li><a href="https://digitalseva.csc.gov.in" target="_blank" rel="noopener">digitalseva.csc.gov.in</a> — Digital Seva পোর্টাল</li>
@@ -144,5 +169,10 @@
         <p>© 2026 <a href="../index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য অফিসিয়াল পোর্টালের ভিত্তিতে। সর্বশেষ তথ্যের জন্য অফিসিয়াল পোর্টাল দেখুন।</p>
     </footer>
+
+    <script>
+        function shareArticle(){const d={title:document.title,text:(document.querySelector('h1')||{innerText:document.title}).innerText,url:location.href};if(navigator.share){navigator.share(d).catch(()=>{})}else{const m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+        function shareVia(w){const u=encodeURIComponent(location.href);const t=encodeURIComponent(((document.querySelector('h1')||{innerText:''}).innerText)+' | DAFADAR ONLINE SEVA');if(w==='whatsapp')open('https://wa.me/?text='+t+'%20'+u,'_blank');else if(w==='facebook')open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank');else if(w==='copy'){navigator.clipboard.writeText(location.href).then(()=>alert('লিংক কপি হয়েছে!'))}document.getElementById('shareMenu').style.display='none'}
+    </script>
 </body>
 </html>

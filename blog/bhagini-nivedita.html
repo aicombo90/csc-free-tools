@@ -42,6 +42,11 @@
         @keyframes likepop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-6deg); } 100% { transform: scale(1); } }
         .like-hint { font-size: 13px; color: #8a93a8; }
         .view-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #5b6478; }
+        .share-float-btn { position: fixed; top: 76px; right: 14px; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; border: none; cursor: pointer; box-shadow: 0 8px 20px rgba(79,70,229,.4); z-index: 900; }
+        .share-float-btn:hover { transform: scale(1.08); }
+        .share-menu { display: none; position: fixed; top: 132px; right: 14px; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.2); z-index: 901; overflow: hidden; min-width: 175px; }
+        .share-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 16px; border: none; background: #fff; font-size: 15px; font-weight: 600; color: #1e293b; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; }
+        .share-menu button:hover { background: #f1f5f9; }
     </style>
     <script type="application/ld+json">
     {
@@ -62,6 +67,13 @@
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
 
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">&#128279;</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
+
     <article class="article">
         <span class="tag">নতুন প্রকল্প</span>
         <h1>ভগিনী নিবেদিতা প্রকল্প: মেয়েরা পাবে ৫০,০০০ টাকা!</h1>
@@ -69,6 +81,8 @@
         <img src="../assets/blog-thumbs/bhagini-nivedita.jpg" alt="আর্টিকেল ছবি" class="thumb">
 
         <p>পশ্চিমবঙ্গ সরকারের নতুন <strong>ভগিনী নিবেদিতা প্রকল্প</strong> ঘোষণা হয়েছে! মেয়েদের উচ্চশিক্ষায় সাহায্যের জন্য এই প্রকল্পে মোট <strong>৫০,০০০ টাকা</strong> দেওয়া হবে।</p>
+
+        <p>এই প্রকল্প কেন গুরুত্বপূর্ণ? অনেক পরিবারেই মেয়েরা মাধ্যমিক-উচ্চমাধ্যমিক পাশ করার পর টাকার অভাবে কলেজে ভর্তি হতে পারে না। বই, ভর্তি ফি, যাতায়াত — সব মিলিয়ে খরচটা গরিব পরিবারের পক্ষে বড় বোঝা। এই ৫০,০০০ টাকার সাহায্য সেই বোঝা অনেকটাই কমিয়ে দেবে, আর মেয়েরা পড়াশোনা চালিয়ে যেতে পারবে। মেয়েদের শিক্ষা মানেই পুরো পরিবারের ভবিষ্যৎ বদলে যাওয়া।</p>
 
         <h2>💰 কত টাকা, কীভাবে পাবেন?</h2>
         <div class="highlight">
@@ -79,18 +93,30 @@
                 <li>৩য় বছর: ১৬,০০০ টাকা</li>
             </ul>
         </div>
+        <p>একবারে পুরো টাকা না দিয়ে ৩ বছরে ভাগ করে দেওয়ার পেছনে যুক্তি আছে — প্রতি বছর মেয়ে পড়াশোনা চালিয়ে যাচ্ছে কিনা, সেটা যাচাই করে পরের কিস্তি দেওয়া হবে বলে মনে করা হচ্ছে। এতে টাকাটা সত্যিই শিক্ষার কাজে লাগবে, মাঝপথে পড়া ছেড়ে দিলে সুবিধা বন্ধ হয়ে যাবে। (বিস্তারিত নিয়ম সরকারি নির্দেশনায় জানা যাবে।)</p>
 
         <h2>👩 কারা পাবেন?</h2>
         <ul>
-            <li><strong>অবিবাহিত মেয়েরা</strong> যারা উচ্চশিক্ষা (কলেজ/বিশ্ববিদ্যালয়) নিচ্ছেন</li>
-            <li>পশ্চিমবঙ্গের স্থায়ী বাসিন্দা হতে হবে</li>
-            <li>বিস্তারিত যোগ্যতার শর্ত এখনো ঘোষণা হয়নি</li>
+            <li><strong>অবিবাহিত মেয়েরা</strong> যারা উচ্চশিক্ষা (কলেজ/বিশ্ববিদ্যালয়) নিচ্ছেন — অর্থাৎ দ্বাদশ শ্রেণির পর কলেজ, বিশ্ববিদ্যালয় বা সমমানের উচ্চশিক্ষায় ভর্তি মেয়েরা এই সুবিধার আওতায় আসবেন</li>
+            <li><strong>পশ্চিমবঙ্গের স্থায়ী বাসিন্দা</strong> হতে হবে — এটি রাজ্য সরকারের প্রকল্প, তাই রাজ্যের বাসিন্দাদের জন্যই</li>
+            <li>বিস্তারিত যোগ্যতার শর্ত (যেমন বয়সসীমা, পারিবারিক আয়সীমা আছে কিনা) <strong>এখনো ঘোষণা হয়নি</strong> — সরকারি নির্দেশনা এলে আমরা জানিয়ে দেবো</li>
         </ul>
+        <p>মনে রাখবেন, "অবিবাহিত" শর্তটি রাখার কারণ হলো — বিয়ের পর অনেক মেয়ের পড়াশোনা বন্ধ হয়ে যায়। সরকার চায়, টাকাটা যেন সরাসরি মেয়ের শিক্ষার কাজে লাগে। আর "উচ্চশিক্ষা" শর্তের মানে — এই টাকা শুধু পড়াশোনা চালিয়ে যাওয়া মেয়েদের জন্যই, যাতে মাঝপথে ঝরে পড়া কমে।</p>
 
         <h2>📅 কবে থেকে চালু?</h2>
         <ul>
             <li><strong>ঘোষণা:</strong> ৫ অক্টোবর ২০২৬, মুখ্যমন্ত্রী মমতা বন্দ্যোপাধ্যায়</li>
             <li><strong>চালু:</strong> জানুয়ারি ২০২৭ থেকে সারা রাজ্যে</li>
+        </ul>
+        <p>ঘোষণা আর চালুর মাঝে প্রায় তিন মাস সময় রাখার কারণ হলো প্রস্তুতি — আবেদনের নিয়ম তৈরি, বাজেট বরাদ্দ, আবেদন নেওয়ার ব্যবস্থা (অনলাইন পোর্টাল বা অফলাইন ফর্ম) ঠিক করা। একটা নতুন প্রকল্প সারা রাজ্যে একসাথে চালু করতে এই প্রস্তুতি দরকার। তাই তাড়াহুড়ো না করে সরকারি ঘোষণার জন্য অপেক্ষা করুন।</p>
+
+        <h2>📝 আবেদন নিয়ে এখন কী করবেন?</h2>
+        <p>আবেদন প্রক্রিয়া এখনো ঘোষণা হয়নি, তাই এখনই কোথাও ফর্ম ফিলাপ করতে যাবেন না। তবে প্রস্তুতি হিসেবে এই কাজগুলো করে রাখুন:</p>
+        <ul>
+            <li>মেয়ের <strong>আধার কার্ড</strong> ঠিকঠাক আছে কিনা দেখে নিন (নাম, জন্মতারিখে ভুল থাকলে ঠিক করিয়ে নিন)</li>
+            <li>নিজের নামে <strong>ব্যাংক অ্যাকাউন্ট</strong> থাকা ভালো — সরকারি টাকা সাধারণত সরাসরি ব্যাংকে (DBT) আসে</li>
+            <li>কলেজে ভর্তির <strong>প্রমাণপত্র</strong> (ভর্তির রসিদ/আইডি কার্ড) যত্নে রাখুন</li>
+            <li>আবেদন শুরু হলে আমাদের WhatsApp গ্রুপ ও ওয়েবসাইটে সবার আগে জানিয়ে দেওয়া হবে</li>
         </ul>
 
         <div class="warning">
@@ -99,6 +125,16 @@
 
         <h2>📜 ভগিনী নিবেদিতা কে ছিলেন?</h2>
         <p>ভগিনী নিবেদিতা ছিলেন স্বামী বিবেকানন্দের শিষ্যা। তিনি বাংলায় মেয়েদের শিক্ষার জন্য স্কুল খুলেছিলেন। তাঁর নামেই এই প্রকল্পের নামকরণ করা হয়েছে।</p>
+        <p>আসল নাম মার্গারেট এলিজাবেথ নোবেল — আয়ারল্যান্ডের মেয়ে। স্বামী বিবেকানন্দের ডাকে তিনি ভারতে এসে মেয়েদের শিক্ষার কাজে নিজেকে উৎসর্গ করেন। সেই সময় বাংলায় মেয়েদের স্কুলে পাঠানোই কঠিন ছিল; নিবেদিতা বাড়ি বাড়ি গিয়ে মেয়েদের পড়াশোনার জন্য উদ্বুদ্ধ করতেন। তাই মেয়েদের উচ্চশিক্ষার এই প্রকল্পের নাম তাঁর নামে রাখা একদম যথাযথ — তিনি ছিলেন বাংলার নারীশিক্ষার অগ্রদূত।</p>
+
+        <h2>❓ সাধারণ প্রশ্ন (FAQ)</h2>
+        <ul>
+            <li><strong>এখনই কি আবেদন করা যাবে?</strong> — না। আবেদনের তারিখ, পদ্ধতি এখনো ঘোষণা হয়নি। জানুয়ারি ২০২৭-এ চালুর আগে ঘোষণা আসবে।</li>
+            <li><strong>একবারে ৫০,০০০ টাকা পাওয়া যাবে?</strong> — না। ৩ বছরে ৩টি কিস্তিতে (১৭,০০০ + ১৭,০০০ + ১৬,০০০) দেওয়া হবে।</li>
+            <li><strong>বিবাহিত মেয়েরা কি পাবেন?</strong> — ঘোষণা অনুযায়ী প্রকল্পটি অবিবাহিত মেয়েদের জন্য।</li>
+            <li><strong>ছেলেরা কি আবেদন করতে পারবে?</strong> — না, এটি শুধু মেয়েদের জন্য প্রকল্প।</li>
+            <li><strong>টাকা কীভাবে পাওয়া যাবে?</strong> — সরকারি সাহায্য সাধারণত সরাসরি ব্যাংক অ্যাকাউন্টে (DBT) আসে; বিস্তারিত নিয়ম ঘোষণার পর জানা যাবে।</li>
+        </ul>
 
 
         <div class="highlight">
@@ -130,5 +166,10 @@
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য সরকারি ঘোষণা ও সংবাদ প্রতিবেদনের ভিত্তিতে।</p>
     </footer>
     <script type="module" src="../assets/site-likes.js"></script>
+
+    <script>
+    function shareArticle(){var t=document.title;var h=document.querySelector('h1');var d={title:t,text:h?h.innerText:t,url:location.href};if(navigator.share){navigator.share(d).catch(function(){})}else{var m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+    function shareVia(w){var u=encodeURIComponent(location.href);var h=document.querySelector('h1');var t=encodeURIComponent((h?h.innerText:'')+' | DAFADAR ONLINE SEVA');if(w==='whatsapp'){window.open('https://wa.me/?text='+t+'%20'+u,'_blank')}else if(w==='facebook'){window.open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank')}else if(w==='copy'){if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(function(){alert('লিংক কপি হয়েছে!')})}else{alert(location.href)}}document.getElementById('shareMenu').style.display='none'}
+    </script>
 </body>
 </html>

@@ -42,6 +42,11 @@
         @keyframes likepop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-6deg); } 100% { transform: scale(1); } }
         .like-hint { font-size: 13px; color: #8a93a8; }
         .view-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #5b6478; }
+        .share-float-btn { position: fixed; top: 76px; right: 14px; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; border: none; cursor: pointer; box-shadow: 0 8px 20px rgba(79,70,229,.4); z-index: 900; }
+        .share-float-btn:hover { transform: scale(1.08); }
+        .share-menu { display: none; position: fixed; top: 132px; right: 14px; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.2); z-index: 901; overflow: hidden; min-width: 175px; }
+        .share-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 16px; border: none; background: #fff; font-size: 15px; font-weight: 600; color: #1e293b; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; }
+        .share-menu button:hover { background: #f1f5f9; }
     </style>
     <script type="application/ld+json">
     {
@@ -62,6 +67,13 @@
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
 
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">&#128279;</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
+
     <article class="article">
         <span class="tag">আপডেট</span>
         <h1>PM কিসান ২৪তম কিস্তি: ২,০০০ টাকা কবে আসবে?</h1>
@@ -70,27 +82,42 @@
 
         <p>PM কিসান প্রকল্পে কৃষকরা বছরে <strong>৬,০০০ টাকা</strong> পান — ২,০০০ টাকা করে ৩টি কিস্তিতে। এবার পালা <strong>২৪তম কিস্তির</strong>।</p>
 
+        <p>এটি কেন্দ্রীয় সরকারের প্রকল্প — সারা দেশের কৃষকরা একই নিয়মে টাকা পান। বছরে ৩ বার ২,০০০ টাকা করে দেওয়ার ফলে চাষের মরশুমে কৃষকের হাতে নিয়মিত নগদ টাকা থাকে। ২৪তম কিস্তি মানে এই প্রকল্পের প্রায় ৮ বছর ধরে চলা ধারাবাহিকতার আরেকটি ধাপ।</p>
+
         <h2>📅 ২৪তম কিস্তি কবে?</h2>
         <div class="warning">
             <p style="margin:0"><strong>সৎ তথ্য:</strong> ২৪তম কিস্তির <strong>তারিখ এখনো ঘোষণা হয়নি</strong>। ২৩তম কিস্তি পেড হয়েছে ২০ জুন ২০২৬ (৯.৪৪ কোটি কৃষক, ১৮,৮৮০ কোটি টাকা)।</p>
         </div>
+        <p>২৩তম কিস্তির পরিসংখ্যানটা লক্ষ্য করুন — ৯.৪৪ কোটি কৃষককে একসাথে ১৮,৮৮০ কোটি টাকা পাঠানো হয়েছিল। এত বড় অঙ্কের টাকা একদিনে পাঠাতে সরকারের ব্যাপক প্রস্তুতি লাগে, তাই কিস্তির তারিখ আগে থেকে ঠিক করে ঘোষণা করা হয়। ২৪তম কিস্তির ঘোষণা এলে আমরা সবার আগে জানিয়ে দেবো।</p>
 
         <h2>❌ "৪,০০০ টাকা" — ভুয়ো খবর!</h2>
         <p>সোশ্যাল মিডিয়ায় "২৪তম কিস্তিতে ৪,০০০ টাকা" দাবিটি <strong>অফিসিয়ালি ভুয়ো</strong> প্রমাণিত হয়েছে। কিস্তি ২,০০০ টাকাই থাকছে। একমাত্র ব্যতিক্রম: আগের আটকে থাকা কিস্তি + ২৪তম কিস্তি একসাথে এলে ৪,০০০ টাকা আসতে পারে।</p>
+        <p>ব্যাপারটা বুঝিয়ে বলি: ধরুন কারও ২৩তম কিস্তি e-KYC না থাকায় আটকে ছিল। পরে তিনি e-KYC সম্পূর্ণ করলেন। তখন সরকার বকেয়া ২৩তম কিস্তি (২,০০০) + নতুন ২৪তম কিস্তি (২,০০০) = মোট ৪,০০০ টাকা একসাথে পাঠাতে পারে। এটাই সেই "৪,০০০ টাকা" — কোনো বাড়তি টাকা নয়, শুধু বকেয়া + নতুন কিস্তির যোগফল। তাই গুজবে কান না দিয়ে নিজের e-KYC ঠিক রাখুন।</p>
 
         <h2>✅ টাকা পেতে যা করণীয়</h2>
         <ul>
-            <li><strong>e-KYC</strong> সম্পূর্ণ করুন (বাধ্যতামূলক)</li>
-            <li>ব্যাংক অ্যাকাউন্টে <strong>NPCI/DBT সিডিং</strong> থাকতে হবে</li>
-            <li>জমির নথি (land records) আপডেট রাখুন</li>
+            <li><strong>e-KYC সম্পূর্ণ করুন (বাধ্যতামূলক)</strong> — e-KYC মানে ইলেকট্রনিক পরিচয় যাচাই। আধারের সঙ্গে যুক্ত মোবাইল নম্বরে OTP দিয়ে বা বায়োমেট্রিক দিয়ে পরিচয় নিশ্চিত করা হয়। এটা না করলে সিস্টেমে আপনার পরিচয় "অসম্পূর্ণ" থাকে, ফলে কিস্তি আটকে যায়।</li>
+            <li>ব্যাংক অ্যাকাউন্টে <strong>NPCI/DBT সিডিং</strong> থাকতে হবে — আধার-ব্যাংক লিংক না থাকলে টাকা কোন অ্যাকাউন্টে যাবে, সরকার জানতে পারে না</li>
+            <li><strong>জমির নথি (land records)</strong> আপডেট রাখুন — জমির মালিকানা সংক্রান্ত তথ্যে গরমিল থাকলে যাচাইয়ে নাম বাদ যেতে পারে</li>
         </ul>
+        <p>এই তিনটির মধ্যে <strong>e-KYC সবচেয়ে জরুরি</strong> — বেশিরভাগ "টাকা আটকে গেছে" সমস্যার মূলে এটাই থাকে। PM কিসান পোর্টাল বা নিকটবর্তী CSC কেন্দ্র থেকে e-KYC করা যায়। একবার করে নিলে বারবার করতে হয় না।</p>
 
         <div class="highlight">
             <p style="margin:0"><strong>🌾 পশ্চিমবঙ্গের কৃষকদের জন্য সুখবর:</strong> রাজ্য সরকার বছরে আরও ৩,০০০ টাকা দেওয়ার ঘোষণা দিয়েছে — মোট ৯,০০০ টাকা/বছর! (ঘোষণা পর্যায়ে, নির্দেশনা আসেনি)</p>
         </div>
 
         <h2>📞 হেল্পলাইন</h2>
-        <p><strong>155261</strong> (টোল ফ্রি)</p>
+        <p><strong>155261</strong> (টোল ফ্রি — কল করতে টাকা লাগে না)</p>
+        <p>ফোন করার সময় PM কিসান <strong>রেজিস্ট্রেশন নম্বর</strong> বা আধার নম্বর হাতের কাছে রাখুন। কিস্তি স্ট্যাটাস, e-KYC সমস্যা, নাম তালিকায় আছে কিনা — সব প্রশ্নের উত্তর এই হেল্পলাইনে পাবেন।</p>
+
+        <h2>❓ সাধারণ প্রশ্ন (FAQ)</h2>
+        <ul>
+            <li><strong>২৪তম কিস্তি কবে আসবে?</strong> — তারিখ এখনো সরকারিভাবে ঘোষণা হয়নি। ঘোষণা হলেই আমরা জানিয়ে দেবো।</li>
+            <li><strong>২৪তম কিস্তিতে কি ৪,০০০ টাকা পাবো?</strong> — না। কিস্তি ২,০০০ টাকাই। শুধু আগের আটকে থাকা কিস্তি + নতুন কিস্তি একসাথে এলে ৪,০০০ আসতে পারে।</li>
+            <li><strong>e-KYC না করলে কী হবে?</strong> — কিস্তি আটকে যাবে। e-KYC বাধ্যতামূলক, তাই দ্রুত সম্পূর্ণ করুন।</li>
+            <li><strong>পশ্চিমবঙ্গের কৃষকরা কি বছরে ৯,০০০ টাকা পাবেন?</strong> — রাজ্য সরকার ৩,০০০ টাকা টপ-আপের ঘোষণা দিয়েছে, তবে এখনো ঘোষণা পর্যায়ে; সরকারি নির্দেশনা আসেনি।</li>
+            <li><strong>টাকা না এলে প্রথমে কী যাচাই করবো?</strong> — e-KYC সম্পূর্ণ কিনা, ব্যাংকে NPCI/DBT সিডিং আছে কিনা, জমির নথি ঠিক আছে কিনা।</li>
+        </ul>
 
 
         <div class="highlight">
@@ -122,5 +149,10 @@
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য সরকারি ঘোষণা ও সংবাদ প্রতিবেদনের ভিত্তিতে।</p>
     </footer>
     <script type="module" src="../assets/site-likes.js"></script>
+
+    <script>
+    function shareArticle(){var t=document.title;var h=document.querySelector('h1');var d={title:t,text:h?h.innerText:t,url:location.href};if(navigator.share){navigator.share(d).catch(function(){})}else{var m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+    function shareVia(w){var u=encodeURIComponent(location.href);var h=document.querySelector('h1');var t=encodeURIComponent((h?h.innerText:'')+' | DAFADAR ONLINE SEVA');if(w==='whatsapp'){window.open('https://wa.me/?text='+t+'%20'+u,'_blank')}else if(w==='facebook'){window.open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank')}else if(w==='copy'){if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(function(){alert('লিংক কপি হয়েছে!')})}else{alert(location.href)}}document.getElementById('shareMenu').style.display='none'}
+    </script>
 </body>
 </html>

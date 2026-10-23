@@ -41,6 +41,11 @@
         @keyframes likepop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-6deg); } 100% { transform: scale(1); } }
         .like-hint { font-size: 13px; color: #8a93a8; }
         .view-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #5b6478; }
+        .share-float-btn { position: fixed; top: 76px; right: 14px; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; border: none; cursor: pointer; box-shadow: 0 8px 20px rgba(79,70,229,.4); z-index: 900; }
+        .share-float-btn:hover { transform: scale(1.08); }
+        .share-menu { display: none; position: fixed; top: 132px; right: 14px; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.2); z-index: 901; overflow: hidden; min-width: 175px; }
+        .share-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 16px; border: none; background: #fff; font-size: 15px; font-weight: 600; color: #1e293b; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; }
+        .share-menu button:hover { background: #f1f5f9; }
     </style>
     <script type="application/ld+json">
     {
@@ -61,6 +66,13 @@
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
 
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">&#128279;</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
+
     <article class="article">
         <span class="tag">চাকরির আপডেট</span>
         <h1>সরকারি চাকরির অগ্রিম আপডেট: আসন্ন নিয়োগ ২০২৬</h1>
@@ -68,6 +80,8 @@
         <img src="../assets/blog-thumbs/sarkari-chakri-update.jpg" alt="সরকারি চাকরির নিয়োগ বিজ্ঞপ্তি" class="thumb">
 
         <p>সরকারি চাকরির প্রস্তুতি নিচ্ছেন? তাহলে এই খবর আপনার জন্য! <strong>পশ্চিমবঙ্গ পাবলিক সার্ভিস কমিশন (WBPSC)</strong>-এর দুটি বড় নিয়োগে এখন আবেদন চলছে, আর রাজ্যের ৫৪টি দফতরে ধাপে ধাপে বড় নিয়োগের পরিকল্পনার খবরও এসেছে। সব তথ্য যাচাই করে নিচে দিলাম।</p>
+
+        <p>সরকারি চাকরি কেন এত জনপ্রিয়? চাকরির নিরাপত্তা, নির্দিষ্ট বেতন কাঠামো (Pay Level), পেনশন সুবিধা, আর সমাজে সম্মান — এই কারণেই লাখ লাখ প্রার্থী প্রতিটি বিজ্ঞপ্তিতে আবেদন করে। কিন্তু মনে রাখবেন, <strong>সঠিক তথ্য আর সময়মতো আবেদনই</strong> সাফল্যের প্রথম ধাপ। শেষ তারিখ পেরিয়ে গেলে যত ভালো প্রস্তুতিই থাকুক, আবেদন করা যায় না।</p>
 
         <div class="highlight">
             <p style="margin:0"><strong>🎯 এক নজরে:</strong> English Stenographer — <strong>২৬৬ পদ</strong> (শেষ তারিখ ৭ নভেম্বর ২০২৬) · Sub-Surveyor — <strong>১,১৪৫ পদ</strong> (শেষ তারিখ ৯ নভেম্বর ২০২৬)। দুটোতেই আবেদন <strong>শুধু অনলাইনে</strong>।</p>
@@ -85,6 +99,8 @@
             <li><strong>ফি:</strong> ₹১৬০ (WB-র SC/ST ও PwBD প্রার্থীদের ছাড়)</li>
             <li><strong>পরীক্ষা:</strong> সম্ভাব্য ডিসেম্বর ২০২৬, কলকাতায়</li>
         </ul>
+        <p><strong>কাজটা কী?</strong> স্টেনোগ্রাফার মানে অফিসে দ্রুত লেখার কাজ — মিটিংয়ে বলা কথা সংক্ষিপ্ত লিখন পদ্ধতিতে (শর্টহ্যান্ড) নোট করা, পরে তা টাইপ করে অফিসিয়াল নথি তৈরি করা। সরকারি দপ্তরে প্রতিদিন প্রচুর নথিপত্রের কাজ হয়, তাই দক্ষ স্টেনোগ্রাফারের চাহিদা সবসময় থাকে। মিনিটে ৩০ শব্দ ইংরেজি টাইপিং গতি মানে — নিয়মিত প্র্যাকটিস করলে ২-৩ মাসে এই গতি তোলা সম্ভব।</p>
+        <p><strong>বেতন বুঝে নিন:</strong> Pay Level-9 মানে মূল বেতন ₹২৮,৯০০ থেকে শুরু, অভিজ্ঞতা বাড়লে ₹৭৪,৫০০ পর্যন্ত। এর ওপরে DA (মহার্ঘ ভাতা), HRA (বাড়ি ভাড়া ভাতা) যোগ হয় — ফলে হাতে পাওয়া টাকা মূল বেতনের চেয়ে অনেক বেশি।</p>
 
         <h2>2️⃣ WBPSC Sub-Surveyor — ১,১৪৫ পদ</h2>
         <ul>
@@ -97,12 +113,26 @@
             <li><strong>আবেদন:</strong> ২০ অক্টোবর – <strong>৯ নভেম্বর ২০২৬</strong> (বিকেল ৩টা পর্যন্ত)</li>
             <li><strong>ফি:</strong> ₹১১০ (সংরক্ষিত শ্রেণির ছাড় প্রযোজ্য)</li>
         </ul>
+        <p><strong>কাজটা কী?</strong> সাব-সার্ভেয়ার ভূমি দপ্তরের মাঠ পর্যায়ের গুরুত্বপূর্ণ পদ — জমি মাপা, সীমানা নির্ধারণ, জরিপের কাজ। বাংলায় জমি নিয়ে বিরোধ মেটাতে সঠিক মাপজোকের বিকল্প নেই, তাই এই পদে ১,১৪৫টি শূন্যপদ একটা বড় সুযোগ। সার্ভে ইঞ্জিনিয়ারিং ডিপ্লোমা বা ITI সার্ভেয়ার সার্টিফিকেট থাকলেই যোগ্য — ডিগ্রি কলেজের পড়াশোনা না থাকলেও চলবে।</p>
+        <p><strong>বাংলা কেন আবশ্যক?</strong> মাঠে গিয়ে সাধারণ মানুষের সঙ্গে কথা বলতে হয়, জমির দলিল-নথি বাংলায় থাকে — তাই বাংলা জানা বাধ্যতামূলক করা হয়েছে। (মাতৃভাষা নেপালি হলে ছাড় আছে।)</p>
 
         <h2>3️⃣ ৫৪ দফতরে বড় নিয়োগের পরিকল্পনা</h2>
         <p>প্রকাশিত প্রতিবেদন অনুযায়ী, রাজ্য সরকারের <strong>৫৪টি দফতরের</strong> শূন্যপদ পূরণে ধাপে ধাপে বড় নিয়োগের পরিকল্পনা নেওয়া হয়েছে — <strong>অক্টোবর ২০২৬ থেকে মার্চ ২০২৭</strong>-এর মধ্যে। কিছু প্রতিবেদনে মোট পদের সংখ্যা প্রায় <strong>১.৫১ লক্ষ</strong> বলা হলেও, এটি এখনো পরিকল্পনা পর্যায়ে — দফতরভিত্তিক আলাদা বিজ্ঞপ্তি বেরোলে তবেই আবেদন করা যাবে।</p>
         <div class="warning">
             <p style="margin:0"><strong>⚠️ মনে রাখুন:</strong> "দেড় লক্ষ পদ" নিয়ে অনেক ভুয়ো পোস্ট ঘুরছে। কোনো দফতরের <strong>আলাদা বিজ্ঞপ্তি না বেরোনো পর্যন্ত</strong> আবেদন করা যায় না। অফিসিয়াল বিজ্ঞপ্তির জন্য অপেক্ষা করুন।</p>
         </div>
+        <p><strong>"পরিকল্পনা" আর "বিজ্ঞপ্তি"-র পার্থক্য বুঝুন:</strong> সরকার যখন বলে "এত পদে নিয়োগের পরিকল্পনা", তার মানে প্রস্তাব অনুমোদনের পথে। এরপর প্রতিটি দপ্তর আলাদা বিজ্ঞপ্তি বের করে — সেখানে পদের সংখ্যা, যোগ্যতা, বয়স, ফি সব বিস্তারিত থাকে। <strong>শুধু বিজ্ঞপ্তি বেরোলেই আবেদন করা যায়।</strong> তাই "দেড় লক্ষ পদের ফর্ম বেরিয়েছে" জাতীয় পোস্ট দেখলে সতর্ক হোন — দপ্তরভিত্তিক বিজ্ঞপ্তি ছাড়া সেটা গুজব।</p>
+
+        <h2>📋 অনলাইনে আবেদন করবেন কীভাবে? (ধাপে ধাপে)</h2>
+        <ol>
+            <li><strong>অফিসিয়াল সাইটে যান:</strong> WBPSC-র ক্ষেত্রে <a href="https://psc.wb.gov.in">psc.wb.gov.in</a> — অন্য কোনো সাইট থেকে ফর্ম ফিলাপ করবেন না</li>
+            <li><strong>বিজ্ঞপ্তির PDF ডাউনলোড করে পুরোটা পড়ুন:</strong> যোগ্যতা, বয়স, ফি, পরীক্ষার ধরন — সব এতে লেখা থাকে</li>
+            <li><strong>রেজিস্ট্রেশন করুন:</strong> নাম, মোবাইল নম্বর, ইমেইল দিয়ে অ্যাকাউন্ট খুলুন</li>
+            <li><strong>ফর্ম পূরণ করুন:</strong> ব্যক্তিগত তথ্য, শিক্ষাগত যোগ্যতা সাবধানে লিখুন — ভুল হলে পরে সংশোধন কঠিন</li>
+            <li><strong>ছবি ও স্বাক্ষর আপলোড করুন:</strong> বিজ্ঞপ্তিতে বলা সাইজ/ফরম্যাট মেনে</li>
+            <li><strong>ফি পেমেন্ট করুন:</strong> অনলাইনে (UPI/কার্ড/নেটব্যাংকিং) — পেমেন্টের রসিদ সেভ রাখুন</li>
+            <li><strong>সাবমিট করে প্রিন্ট নিন:</strong> শেষ তারিখের <strong>২-৩ দিন আগে</strong> আবেদন শেষ করুন — শেষ দিনে সার্ভার ধীর থাকে</li>
+        </ol>
 
         <h2>4️⃣ কেন্দ্রীয় চাকরির আপডেট</h2>
         <ul>
@@ -123,9 +153,19 @@
 
         <h2>🚨 প্রতারণা থেকে সাবধান!</h2>
         <ul>
-            <li>সরকারি চাকরির নামে <strong>কেউ টাকা চাইলে দেবেন না</strong> — এটা ১০০% প্রতারণা।</li>
-            <li>WhatsApp/Telegram-এ আসা "নিশ্চিত চাকরি" মেসেজে ক্লিক করবেন না।</li>
-            <li>আবেদনের আগে মূল বিজ্ঞপ্তির PDF নিজে পড়ুন।</li>
+            <li>সরকারি চাকরির নামে <strong>কেউ টাকা চাইলে দেবেন না</strong> — এটা ১০০% প্রতারণা। সরকারি নিয়োগে চাকরি পেতে ঘুষ লাগে না; মেধা তালিকাতেই নিয়োগ হয়।</li>
+            <li>WhatsApp/Telegram-এ আসা "নিশ্চিত চাকরি" মেসেজে ক্লিক করবেন না — এগুলো ফিশিং লিংক হতে পারে, আপনার তথ্য চুরি হতে পারে।</li>
+            <li>আবেদনের আগে মূল বিজ্ঞপ্তির PDF নিজে পড়ুন — দালালের কথায় নয়, অফিসিয়াল কাগজে বিশ্বাস করুন।</li>
+            <li>ফি শুধুমাত্র <strong>অফিসিয়াল পেমেন্ট গেটওয়ে</strong> দিয়ে দিন — কারও ব্যক্তিগত UPI/অ্যাকাউন্টে টাকা পাঠাবেন না।</li>
+        </ul>
+
+        <h2>❓ সাধারণ প্রশ্ন (FAQ)</h2>
+        <ul>
+            <li><strong>শেষ তারিখ পেরিয়ে গেলে কি আবেদন করা যাবে?</strong> — না। অনলাইন পোর্টাল বন্ধ হয়ে যায়; তাই ২-৩ দিন আগেই আবেদন শেষ করুন।</li>
+            <li><strong>আবেদন ফি-তে ছাড় কারা পাবেন?</strong> — WB-র SC/ST ও PwBD প্রার্থীরা (স্টেনোগ্রাফারে); সাব-সার্ভেয়ারে সংরক্ষিত শ্রেণির ছাড় প্রযোজ্য। বিস্তারিত বিজ্ঞপ্তির PDF-এ দেখুন।</li>
+            <li><strong>পরীক্ষা কোথায় হবে?</strong> — স্টেনোগ্রাফারের পরীক্ষা সম্ভাব্য ডিসেম্বর ২০২৬-এ কলকাতায়; অফিসিয়াল অ্যাডমিট কার্ডে কেন্দ্র জানা যাবে।</li>
+            <li><strong>দেড় লক্ষ পদের বিজ্ঞপ্তি কবে বেরোবে?</strong> — এখনো পরিকল্পনা পর্যায়ে। দপ্তরভিত্তিক আলাদা বিজ্ঞপ্তি বেরোলে তবেই আবেদন করা যাবে।</li>
+            <li><strong>বাংলা না জানলে কি সাব-সার্ভেয়ারে আবেদন করা যাবে?</strong> — না, বাংলা জানা আবশ্যক (মাতৃভাষা নেপালি হলে ছাড়)।</li>
         </ul>
 
 
@@ -155,5 +195,10 @@
         <p>© 2026 <a href="../index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য সরকারি ঘোষণা ও সংবাদ প্রতিবেদনের ভিত্তিতে।</p>
     </footer>
+
+    <script>
+    function shareArticle(){var t=document.title;var h=document.querySelector('h1');var d={title:t,text:h?h.innerText:t,url:location.href};if(navigator.share){navigator.share(d).catch(function(){})}else{var m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+    function shareVia(w){var u=encodeURIComponent(location.href);var h=document.querySelector('h1');var t=encodeURIComponent((h?h.innerText:'')+' | DAFADAR ONLINE SEVA');if(w==='whatsapp'){window.open('https://wa.me/?text='+t+'%20'+u,'_blank')}else if(w==='facebook'){window.open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank')}else if(w==='copy'){if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(function(){alert('লিংক কপি হয়েছে!')})}else{alert(location.href)}}document.getElementById('shareMenu').style.display='none'}
+    </script>
 </body>
 </html>

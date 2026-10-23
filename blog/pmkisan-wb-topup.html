@@ -34,6 +34,10 @@
         footer { background: #07100d; color: #9fb3a8; text-align: center; padding: 24px 5%; font-size: 14px; margin-top: 40px; }
         footer a { color: #1fc64c; text-decoration: none; }
 
+        .share-float-btn { position: fixed; top: 76px; right: 14px; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; border: none; cursor: pointer; box-shadow: 0 8px 20px rgba(79,70,229,.4); z-index: 900; }
+        .share-menu { display: none; position: fixed; top: 132px; right: 14px; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.2); z-index: 901; overflow: hidden; min-width: 175px; }
+        .share-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 16px; border: none; background: #fff; font-size: 15px; font-weight: 600; color: #1e293b; cursor: pointer; font-family: 'Hind Siliguri', sans-serif; }
+        .share-menu button:hover { background: #f1f5f9; }
         .like-row { margin-top: 26px; padding-top: 18px; border-top: 1px solid #eef1ee; display: flex; align-items: center; gap: 10px; }
         .like-btn { display: inline-flex; align-items: center; gap: 8px; border: 2px solid #d7e3dc; background: #fff; border-radius: 30px; padding: 10px 24px; font-size: 16px; font-weight: 700; color: #3c4a42; cursor: pointer; font-family: inherit; transition: transform .15s, border-color .15s; }
         .like-btn:hover { border-color: #1fc64c; transform: scale(1.04); }
@@ -62,6 +66,13 @@
         <a href="../blog.html"><i class="fa-solid fa-arrow-left"></i> ব্লগ</a>
     </nav>
 
+    <button class="share-float-btn" onclick="shareArticle()" aria-label="Share">🔗</button>
+    <div id="shareMenu" class="share-menu">
+        <button onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+        <button onclick="shareVia('facebook')">📘 Facebook</button>
+        <button onclick="shareVia('copy')">📋 লিংক কপি</button>
+    </div>
+
     <article class="article">
         <span class="tag">আপডেট</span>
         <h1>PM কিসানের উপরে রাজ্যের ₹৩,০০০: ঘোষণা, এখনো চালু নয়</h1>
@@ -69,6 +80,9 @@
         <img src="../assets/blog-thumbs/pmkisan-wb-topup.jpg" alt="PM কিসান যোজনায় বাংলার চাষিরা অতিরিক্ত টাকা পাবেন" class="thumb">
 
         <p>বাংলার চাষিদের জন্য বড় ঘোষণা! <strong>২৫ সেপ্টেম্বর ২০২৬, পূর্ব বর্ধমানের সভা থেকে মুখ্যমন্ত্রী ঘোষণা করেছেন</strong> — কেন্দ্রের PM-কিসানের <strong>₹৬,০০০-এর উপরে রাজ্য সরকার বছরে আরও ₹৩,০০০</strong> দেবে। অর্থাৎ বাংলার চাষিরা মোট <strong>₹৯,০০০/বছর</strong> পাবেন!</p>
+
+        <h2>📢 ঘোষণা বনাম চালু — পার্থক্যটা বুঝুন</h2>
+        <p>এটা বোঝা খুব জরুরি: <strong>মুখ্যমন্ত্রীর ঘোষণা মানেই টাকা চালু নয়।</strong> সরকারি প্রক্রিয়ায় ঘোষণার পর <strong>অর্থ দপ্তরের বিজ্ঞপ্তি (GR/নোটিফিকেশন)</strong> জারি হয় — তাতে লেখা থাকে কারা পাবেন, কীভাবে পাবেন, কবে থেকে পাবেন। সেই বিজ্ঞপ্তি <strong>২৩ অক্টোবর ২০২৬ পর্যন্ত জারি হয়নি</strong>। অর্থাৎ এখনো কেউ এই ₹৩,০০০ পাননি, কারণ দেওয়াই শুরু হয়নি। বিজ্ঞপ্তি জারি হলেই আমরা সবার আগে জানিয়ে দেবো।</p>
 
         <div class="warning">
             <p style="margin:0"><strong>⚠️ সৎকথা আগে:</strong> এটা <strong>এখনো ঘোষণার পর্যায়েই আছে</strong>। ২৩ অক্টোবর ২০২৬ পর্যন্ত এ নিয়ে <strong>কোনো সরকারি বিজ্ঞপ্তি (GR/নোটিফিকেশন) জারি হয়নি</strong>। অর্থাৎ টাকা দেওয়া এখনো শুরু হয়নি। বিজ্ঞপ্তি জারি হলেই আমরা জানিয়ে দেবো।</p>
@@ -84,12 +98,16 @@
             </ul>
         </div>
 
+        <p><strong>মাসে হিসাব করলে:</strong> বছরে ₹৯,০০০ মানে মাসে গড়ে <strong>₹৭৫০</strong>। এই অঙ্কটা মনে রাখুন — কারণ "মাসে ₹৩,০০০" বলে যে গুজব ছড়াচ্ছে, সেটা এই হিসাবের সঙ্গে মেলেই না। মাসে ₹৩,০০০-এর ধারণাটা এসেছে <strong>PM-কিসান মানধন পেনশন</strong> থেকে — সেটা <strong>সম্পূর্ণ আলাদা প্রকল্প</strong> (৬০ বছর বয়সের পর পেনশন), এই টপ-আপের সঙ্গে তার কোনো সম্পর্ক নেই।</p>
+
         <h2>📅 PM-কিসান ২৪তম কিস্তির খবর</h2>
         <ul>
             <li><strong>২৩তম কিস্তি</strong> দেওয়া হয়েছে <strong>২০ জুন ২০২৬</strong> (₹২,০০০)</li>
             <li><strong>২৪তম কিস্তির তারিখ এখনো ঘোষণা হয়নি</strong></li>
             <li>"₹৪,০০০ করে দেওয়া হবে" — এই দাবি <strong>ভুয়ো</strong>, অফিসিয়ালি খণ্ডন করা হয়েছে</li>
         </ul>
+
+        <p><strong>২৪তম কিস্তি নিয়ে বিস্তারিত:</strong> ২৩তম কিস্তির ₹২,০০০ গেছে <strong>২০ জুন ২০২৬</strong>-এ। ২৪তম কিস্তির তারিখ <strong>এখনো ঘোষণা হয়নি</strong> — ঘোষণা হলেই জানিয়ে দেবো। আর "২৪তম কিস্তিতে ₹৪,০০০ করে দেওয়া হবে" — এই দাবি <strong>অফিসিয়ালি ভুয়ো বলে খণ্ডন</strong> করা হয়েছে। কিস্তির পরিমাণ ₹২,০০০-ই থাকছে, বাড়ানোর কোনো ঘোষণা নেই।</p>
 
         <h2>🤔 "মাসে ₹৩,০০০" — সত্যি?</h2>
         <p>না! কোথাও কোথাও "মাসে ₹৩,০০০" বলা হচ্ছে — এটা <strong>ভুল</strong>। ঘোষণা অনুযায়ী টপ-আপ <strong>বছরে ₹৩,০০০</strong>। মাসে ₹৩,০০০-এর ধারণাটা অন্য প্রকল্পের (PM-কিসান মানধন পেনশন) সঙ্গে গুলিয়ে ফেলার ফল।</p>
@@ -98,6 +116,21 @@
         <ul>
             <li><strong>155261</strong> (টোল ফ্রি)</li>
         </ul>
+        <p>কিস্তি, স্ট্যাটাস বা যেকোনো সমস্যায় এই নম্বরে ফোন করুন — <strong>সম্পূর্ণ ফ্রি</strong>। ফোন করার আগে আপনার <strong>আধার নম্বর বা রেজিস্ট্রেশন নম্বর</strong> হাতের কাছে রাখুন, তাহলে দ্রুত সাহায্য পাবেন।</p>
+
+        <h2>💡 কাজের টিপস</h2>
+        <ul>
+            <li>টপ-আপের <strong>বিজ্ঞপ্তি জারির খবরের</strong> জন্য আমাদের WhatsApp গ্রুপে যুক্ত থাকুন — জারি হলেই জানিয়ে দেবো।</li>
+            <li>PM-কিসানের নিজের কিস্তির <strong>স্ট্যাটাস</strong> মাঝে মাঝে যাচাই করুন।</li>
+            <li>কোনো <strong>"টপ-আপের ফর্ম"</strong> দেখিয়ে টাকা চাইলে — সেটা প্রতারণা। সরকারি সুবিধায় ফর্মের নামে টাকা লাগে না।</li>
+        </ul>
+
+        <h2>❓ সাধারণ প্রশ্ন</h2>
+        <p><strong>প্রশ্ন: রাজ্যের ₹৩,০০০ কবে থেকে পাব?</strong><br>উত্তর: <strong>এখনো চালু হয়নি</strong> — এটা ঘোষণার পর্যায়ে আছে। সরকারি বিজ্ঞপ্তি জারি হলে তবেই দেওয়া শুরু হবে।</p>
+        <p><strong>প্রশ্ন: মাসে ₹৩,০০০ পাব?</strong><br>উত্তর: না — <strong>বছরে ₹৩,০০০</strong>। মাসে ₹৩,০০০-এর ধারণাটা ভুল; ওটা অন্য প্রকল্পের (মানধন পেনশন) সঙ্গে গুলিয়ে ফেলা।</p>
+        <p><strong>প্রশ্ন: PM-কিসান ২৪তম কিস্তি কবে?</strong><br>উত্তর: তারিখ <strong>এখনো ঘোষণা হয়নি</strong>।</p>
+        <p><strong>প্রশ্ন: ২৪তম কিস্তিতে কি ₹৪,০০০ দেবে?</strong><br>উত্তর: <strong>না, এটা ভুয়ো খবর</strong> — অফিসিয়ালি খণ্ডন করা হয়েছে। কিস্তি ₹২,০০০-ই।</p>
+        <p><strong>প্রশ্ন: কারা এই টপ-আপ পাবেন?</strong><br>উত্তর: ঘোষণা অনুযায়ী <strong>প্রায় ৫৪ লাখ</strong> বাংলার চাষি — তবে চূড়ান্ত যোগ্যতা বিজ্ঞপ্তিতে জানা যাবে।</p>
 
         <div class="highlight">
             <p style="margin:0">🌐 <strong>আরও নতুন নতুন তথ্যের জন্য আমাদের ওয়েবসাইট ভিজিট করুন:</strong> <a href="https://aicombo90.github.io/dafadar-online-seva/">aicombo90.github.io/dafadar-online-seva</a> — ওয়েবসাইটটা মোবাইলে <strong>সেভ/বুকমার্ক করে রাখুন</strong> যাতে হারিয়ে না যায়!</p>
@@ -121,6 +154,10 @@
         <p>© 2026 <a href="../index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য সরকারি ঘোষণা ও সংবাদ প্রতিবেদনের ভিত্তিতে।</p>
     </footer>
+    <script>
+    function shareArticle(){const d={title:document.title,text:(document.querySelector('h1')||{innerText:document.title}).innerText,url:location.href};if(navigator.share){navigator.share(d).catch(()=>{})}else{const m=document.getElementById('shareMenu');m.style.display=m.style.display==='block'?'none':'block'}}
+    function shareVia(w){const u=encodeURIComponent(location.href);const t=encodeURIComponent(((document.querySelector('h1')||{innerText:''}).innerText)+' | DAFADAR ONLINE SEVA');if(w==='whatsapp')open('https://wa.me/?text='+t+'%20'+u,'_blank');else if(w==='facebook')open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank');else if(w==='copy'){navigator.clipboard.writeText(location.href).then(()=>alert('লিংক কপি হয়েছে!'))}document.getElementById('shareMenu').style.display='none'}
+    </script>
     <script type="module" src="../assets/site-likes.js"></script>
 </body>
 </html>
