@@ -41,6 +41,13 @@
         .view-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #5b6478; }
         footer { background: #07100d; color: #9fb3a8; text-align: center; padding: 24px 5%; font-size: 14px; }
         footer a { color: #1fc64c; text-decoration: none; }
+        .card-thumb { width: 100%; border-radius: 10px; margin-bottom: 12px; }
+        .cat-pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 26px; }
+        .cat-pill { background: #fff; border: 2px solid #1fc64c; color: #057a55; font-weight: 700; padding: 10px 18px; border-radius: 30px; text-decoration: none; font-size: 15px; }
+        .blog-cat { margin-bottom: 10px; }
+        .cat-title { font-size: 24px; color: #10231c; margin: 26px 0 4px; }
+        .cat-desc { color: #5b6478; margin-bottom: 14px; }
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body>
@@ -55,64 +62,323 @@
     </div>
 
     <main class="blog-list">
-        <div class="blog-card">
-            <a class="blog-card-link" href="blog/bhagini-nivedita.html">
-                <span class="tag">নতুন প্রকল্প</span>
-                <h2>ভগিনী নিবেদিতা প্রকল্প: মেয়েরা পাবে ৫০,০০০ টাকা!</h2>
-                <p>কারা পাবে, কত টাকা, কবে থেকে চালু — নতুন প্রকল্পের সম্পূর্ণ তথ্য। আবেদন প্রক্রিয়া এখনো ঘোষণা হয়নি।</p>
-                <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
-            </a>
-            <div class="like-row">
-                <button class="like-btn" data-like-id="bhagini-nivedita" aria-label="Like this article">👍 <span class="like-count">0</span></button>
-                <span class="view-pill" data-view-id="bhagini-nivedita">👁️ <span class="view-count">0</span></span>
-            </div>
+        <div class="cat-pills">
+            <a class="cat-pill" href="#cat-schemes">🏛️ সরকারি প্রকল্প</a>
+            <a class="cat-pill" href="#cat-jobs">💼 চাকরির আপডেট</a>
+            <a class="cat-pill" href="#cat-csc">🏪 CSC গাইড</a>
+            <a class="cat-pill" href="#cat-cybercafe">🖥️ সাইবার ক্যাফে টিপস</a>
         </div>
-
-        <div class="blog-card">
-            <a class="blog-card-link" href="blog/annapurna-bhandar.html">
-                <span class="tag">গাইড</span>
-                <h2>অন্নপূর্ণা ভান্ডার: মাসে ৩,০০০ টাকা — সম্পূর্ণ গাইড</h2>
-                <p>কারা পাবেন, টাকা না এলে কী করবেন, হেল্পলাইন নম্বর — এক জায়গায় সব তথ্য।</p>
-                <div class="meta">২২ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
-            </a>
-            <div class="like-row">
-                <button class="like-btn" data-like-id="annapurna-bhandar" aria-label="Like this article">👍 <span class="like-count">0</span></button>
-                <span class="view-pill" data-view-id="annapurna-bhandar">👁️ <span class="view-count">0</span></span>
+        <section class="blog-cat" id="cat-schemes">
+            <h2 class="cat-title">🏛️ সরকারি প্রকল্প</h2>
+            <p class="cat-desc">সরকারি প্রকল্পের যাচাই করা তথ্য, আপডেট ও গাইড</p>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/bhagini-nivedita.html">
+                    <img src="assets/blog-thumbs/bhagini-nivedita.jpg" alt="ভগিনী নিবেদিতা প্রকল্প: মেয়েরা পাবে ৫০,০০০ টাকা!" class="card-thumb" loading="lazy">
+                    <span class="tag">নতুন প্রকল্প</span>
+                    <h2>ভগিনী নিবেদিতা প্রকল্প: মেয়েরা পাবে ৫০,০০০ টাকা!</h2>
+                    <p>ভগিনী নিবেদিতা প্রকল্পে অবিবাহিত মেয়েদের উচ্চশিক্ষায় ৩ বছরে ৫০,০০০ টাকা। কারা পাবে, কবে চালু, আবেদন কবে — সম্পূর্ণ তথ্য বাংলায়।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="bhagini-nivedita" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="bhagini-nivedita">👁️ <span class="view-count">0</span></span>
+                </div>
             </div>
-        </div>
-
-        <div class="blog-card">
-            <a class="blog-card-link" href="blog/krishak-bandhu.html">
-                <span class="tag">আপডেট</span>
-                <h2>কৃষকবন্ধুর টাকা কবে ঢুকবে? সত্যি অবস্থা জানুন</h2>
-                <p>খরিফ ২০২৬-এর টাকার সরকারি ঘোষণা এখনো হয়নি। গুজব বনাম সত্যি — যাচাই করা তথ্য।</p>
-                <div class="meta">২২ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
-            </a>
-            <div class="like-row">
-                <button class="like-btn" data-like-id="krishak-bandhu" aria-label="Like this article">👍 <span class="like-count">0</span></button>
-                <span class="view-pill" data-view-id="krishak-bandhu">👁️ <span class="view-count">0</span></span>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/annapurna-bhandar.html">
+                    <img src="assets/blog-thumbs/annapurna-bhandar.jpg" alt="অন্নপূর্ণা ভান্ডার: মাসে ৩,০০০ টাকা — সম্পূর্ণ গাইড" class="card-thumb" loading="lazy">
+                    <span class="tag">গাইড</span>
+                    <h2>অন্নপূর্ণা ভান্ডার: মাসে ৩,০০০ টাকা — সম্পূর্ণ গাইড</h2>
+                    <p>অন্নপূর্ণা ভান্ডারে মহিলারা মাসে ৩,০০০ টাকা পাবেন। কারা পাবেন, টাকা না এলে কী করবেন, হেল্পলাইন নম্বর — সম্পূর্ণ গাইড বাংলায়।</p>
+                    <div class="meta">২২ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="annapurna-bhandar" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="annapurna-bhandar">👁️ <span class="view-count">0</span></span>
+                </div>
             </div>
-        </div>
-
-        <div class="blog-card">
-            <a class="blog-card-link" href="blog/pm-kisan-24.html">
-                <span class="tag">আপডেট</span>
-                <h2>PM কিসান ২৪তম কিস্তি: ২,০০০ টাকা কবে আসবে?</h2>
-                <p>২৪তম কিস্তির তারিখ এখনো ঘোষণা হয়নি। "৪,০০০ টাকা" দাবি ভুয়ো — অফিসিয়ালি খণ্ডন করা হয়েছে।</p>
-                <div class="meta">২২ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
-            </a>
-            <div class="like-row">
-                <button class="like-btn" data-like-id="pm-kisan-24" aria-label="Like this article">👍 <span class="like-count">0</span></button>
-                <span class="view-pill" data-view-id="pm-kisan-24">👁️ <span class="view-count">0</span></span>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/krishak-bandhu.html">
+                    <img src="assets/blog-thumbs/krishak-bandhu.jpg" alt="কৃষকবন্ধুর টাকা কবে ঢুকবে? সত্যি অবস্থা জানুন" class="card-thumb" loading="lazy">
+                    <span class="tag">আপডেট</span>
+                    <h2>কৃষকবন্ধুর টাকা কবে ঢুকবে? সত্যি অবস্থা জানুন</h2>
+                    <p>কৃষকবন্ধু খরিফ ২০২৬-এর টাকার তারিখ এখনো ঘোষণা হয়নি। শেষ কিস্তি, হেল্পলাইন, গুজব বনাম সত্যি — যাচাই করা তথ্য বাংলায়।</p>
+                    <div class="meta">২২ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="krishak-bandhu" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="krishak-bandhu">👁️ <span class="view-count">0</span></span>
+                </div>
             </div>
-        </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/pm-kisan-24.html">
+                    <img src="assets/blog-thumbs/pm-kisan-24.jpg" alt="PM কিসান ২৪তম কিস্তি: ২,০০০ টাকা কবে আসবে?" class="card-thumb" loading="lazy">
+                    <span class="tag">আপডেট</span>
+                    <h2>PM কিসান ২৪তম কিস্তি: ২,০০০ টাকা কবে আসবে?</h2>
+                    <p>PM কিসান ২৪তম কিস্তিতে ২,০০০ টাকা। তারিখ এখনো ঘোষণা হয়নি। ৪,০০০ টাকার দাবি ভুয়ো — যাচাই করা তথ্য বাংলায়।</p>
+                    <div class="meta">২২ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="pm-kisan-24" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="pm-kisan-24">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/farm-machinery-subsidy.html">
+                    <img src="assets/blog-thumbs/farm-machinery-subsidy.jpg" alt="ফার্ম যন্ত্রপাতি ভর্তুকি ২০২৬-২৭: ৪ নভেম্বর ডেডলাইন!" class="card-thumb" loading="lazy">
+                    <span class="tag">সরকারি ভর্তুকি</span>
+                    <h2>ফার্ম যন্ত্রপাতি ভর্তুকি ২০২৬-২৭: ৪ নভেম্বর ডেডলাইন!</h2>
+                    <p>পশ্চিমবঙ্গে কৃষি যন্ত্রপাতিতে ৫০% পর্যন্ত ভর্তুকি। অনলাইন আবেদন ৪ নভেম্বর ২০২৬ পর্যন্ত। যোগ্যতা, কাগজপত্র ও আবেদন পদ্ধতি জানুন।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="farm-machinery-subsidy" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="farm-machinery-subsidy">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/pmfby-rabi-2026.html">
+                    <img src="assets/blog-thumbs/pmfby-rabi-2026.jpg" alt="PM ফসল বিমা রবি ২০২৬-২৭: এনরোলমেন্ট শুরু" class="card-thumb" loading="lazy">
+                    <span class="tag">কৃষি বিমা</span>
+                    <h2>PM ফসল বিমা রবি ২০২৬-২৭: এনরোলমেন্ট শুরু</h2>
+                    <p>PM ফসল বিমা যোজনায় রবি ২০২৬-২৭ মরসুমের নাম নথিভুক্তি শুরু ১৫ অক্টোবর থেকে। প্রিমিয়াম, সুবিধা ও আবেদন পদ্ধতি জানুন।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="pmfby-rabi-2026" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="pmfby-rabi-2026">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/lakshmir-to-annapurna.html">
+                    <img src="assets/blog-thumbs/lakshmir-to-annapurna.jpg" alt="লক্ষ্মীর ভান্ডার → অন্নপূর্ণা ভান্ডার: কী কী বদলালো" class="card-thumb" loading="lazy">
+                    <span class="tag">গাইড</span>
+                    <h2>লক্ষ্মীর ভান্ডার → অন্নপূর্ণা ভান্ডার: কী কী বদলালো</h2>
+                    <p>লক্ষ্মীর ভান্ডার এখন অন্নপূর্ণা ভান্ডার। মাসে ৩,০০০ টাকা, কারা পাবেন, টাকা না এলে কী করবেন — সম্পূর্ণ গাইড।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="lakshmir-to-annapurna" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="lakshmir-to-annapurna">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/pmkisan-wb-topup.html">
+                    <img src="assets/blog-thumbs/pmkisan-wb-topup.jpg" alt="PM কিসানের উপরে রাজ্যের ₹৩,০০০: ঘোষণা, এখনো চালু নয়" class="card-thumb" loading="lazy">
+                    <span class="tag">আপডেট</span>
+                    <h2>PM কিসানের উপরে রাজ্যের ₹৩,০০০: ঘোষণা, এখনো চালু নয়</h2>
+                    <p>PM কিসানের ₹৬,০০০-এর উপরে রাজ্য দেবে বছরে আরও ₹৩,০০০। ঘোষণা হয়েছে, কিন্তু এখনো চালু হয়নি — সত্যি অবস্থা জানুন।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="pmkisan-wb-topup" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="pmkisan-wb-topup">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/da-arrears-update.html">
+                    <img src="assets/blog-thumbs/da-arrears-update.jpg" alt="DA বকেয়া: সুপ্রিম কোর্টের রায়ের পর সর্বশেষ অবস্থা" class="card-thumb" loading="lazy">
+                    <span class="tag">আপডেট</span>
+                    <h2>DA বকেয়া: সুপ্রিম কোর্টের রায়ের পর সর্বশেষ অবস্থা</h2>
+                    <p>DA নিয়ে সুপ্রিম কোর্টের ঐতিহাসিক রায়ের পর বকেয়া টাকার সর্বশেষ অবস্থা। গুজব বনাম সত্যি — যাচাই করা তথ্য।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="da-arrears-update" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="da-arrears-update">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/karmabandhu-salary.html">
+                    <img src="assets/blog-thumbs/karmabandhu-salary.jpg" alt="কর্মবন্ধু বেতন ₹৫,০০০ → ₹৮,০০০: ক্যাবিনেট সিদ্ধান্ত" class="card-thumb" loading="lazy">
+                    <span class="tag">সরকারি সিদ্ধান্ত</span>
+                    <h2>কর্মবন্ধু বেতন ₹৫,০০০ → ₹৮,০০০: ক্যাবিনেট সিদ্ধান্ত</h2>
+                    <p>কর্মবন্ধু প্রকল্পের কর্মীদের মাসিক ভাতা ₹৫,০০০ থেকে বাড়িয়ে ₹৮,০০০ করার ক্যাবিনেট সিদ্ধান্ত। ১৪,৪৫৪ নিয়োগের ঘোষণাও।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="karmabandhu-salary" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="karmabandhu-salary">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+        </section>
+        <section class="blog-cat" id="cat-jobs">
+            <h2 class="cat-title">💼 চাকরির আপডেট</h2>
+            <p class="cat-desc">সরকারি চাকরির অগ্রিম খবর ও অফিসিয়াল ফর্ম-লিংক</p>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/sarkari-chakri-update.html">
+                    <img src="assets/blog-thumbs/sarkari-chakri-update.jpg" alt="সরকারি চাকরির অগ্রিম আপডেট: আসন্ন নিয়োগ ২০২৬" class="card-thumb" loading="lazy">
+                    <span class="tag">চাকরির আপডেট</span>
+                    <h2>সরকারি চাকরির অগ্রিম আপডেট: আসন্ন নিয়োগ ২০২৬</h2>
+                    <p>WBPSC স্টেনোগ্রাফার ২৬৬ ও সাব-সার্ভেয়ার ১১৪৫ পদে আবেদন চলছে। ৫৪ দফতরে বড় নিয়োগের পরিকল্পনা — অফিসিয়াল লিংক সহ সম্পূর্ণ তথ্য।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="sarkari-chakri-update" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="sarkari-chakri-update">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+        </section>
+        <section class="blog-cat" id="cat-csc">
+            <h2 class="cat-title">🏪 CSC গাইড</h2>
+            <p class="cat-desc">কমন সার্ভিস সেন্টার: রেজিস্ট্রেশন থেকে আয় পর্যন্ত</p>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/csc-ki.html">
+                    <img src="assets/blog-thumbs/csc-ki.jpg" alt="CSC কী? কমন সার্ভিস সেন্টার সম্পূর্ণ গাইড" class="card-thumb" loading="lazy">
+                    <span class="tag">CSC গাইড</span>
+                    <h2>CSC কী? কমন সার্ভিস সেন্টার সম্পূর্ণ গাইড</h2>
+                    <p>CSC অর্থাৎ Common Service Centre কী, VLE কারা, Digital Seva পোর্টাল কীভাবে কাজ করে — বাংলায় সহজ সম্পূর্ণ গাইড।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="csc-ki" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="csc-ki">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/csc-id-apply.html">
+                    <img src="assets/blog-thumbs/csc-id-apply.jpg" alt="CSC ID কিভাবে পাবেন: রেজিস্ট্রেশন প্রক্রিয়া" class="card-thumb" loading="lazy">
+                    <span class="tag">CSC গাইড</span>
+                    <h2>CSC ID কিভাবে পাবেন: রেজিস্ট্রেশন প্রক্রিয়া</h2>
+                    <p>CSC VLE রেজিস্ট্রেশন কোথায় ও কীভাবে করবেন — অফিসিয়াল পোর্টাল, সাধারণ ধাপ ও সতর্কতা। বাংলায় সহজ গাইড।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="csc-id-apply" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="csc-id-apply">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/csc-tec-certificate.html">
+                    <img src="assets/blog-thumbs/csc-tec-certificate.jpg" alt="TEC সার্টিফিকেট: CSC-এর জন্য বাধ্যতামূলক" class="card-thumb" loading="lazy">
+                    <span class="tag">CSC গাইড</span>
+                    <h2>TEC সার্টিফিকেট: CSC-এর জন্য বাধ্যতামূলক</h2>
+                    <p>TEC অর্থাৎ Telecentre Entrepreneur Course কী, কেন CSC রেজিস্ট্রেশনের আগে বাধ্যতামূলক — বাংলায় সহজ গাইড।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="csc-tec-certificate" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="csc-tec-certificate">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/csc-documents.html">
+                    <img src="assets/blog-thumbs/csc-documents.jpg" alt="CSC-এর জন্য কী কী কাগজপত্র লাগবে" class="card-thumb" loading="lazy">
+                    <span class="tag">CSC গাইড</span>
+                    <h2>CSC-এর জন্য কী কী কাগজপত্র লাগবে</h2>
+                    <p>CSC VLE রেজিস্ট্রেশনে সাধারণত কী কী কাগজপত্র লাগে — আধার, প্যান, ছবি, ব্যাংক বিবরণসহ সম্পূর্ণ তালিকা বাংলায়।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="csc-documents" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="csc-documents">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/csc-services-list.html">
+                    <img src="assets/blog-thumbs/csc-services-list.jpg" alt="CSC থেকে কী কী সেবা দেওয়া যায়" class="card-thumb" loading="lazy">
+                    <span class="tag">CSC গাইড</span>
+                    <h2>CSC থেকে কী কী সেবা দেওয়া যায়</h2>
+                    <p>CSC সেন্টার থেকে আধার, প্যান, ব্যাংকিং, টিকিট, বিল পেমেন্টসহ কী কী সেবা দেওয়া যায় — ক্যাটাগরি অনুযায়ী সম্পূর্ণ তালিকা বাংলায়।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="csc-services-list" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="csc-services-list">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/csc-commission.html">
+                    <img src="assets/blog-thumbs/csc-commission.jpg" alt="CSC থেকে আয়: কমিশন কীভাবে কাজ করে" class="card-thumb" loading="lazy">
+                    <span class="tag">CSC গাইড</span>
+                    <h2>CSC থেকে আয়: কমিশন কীভাবে কাজ করে</h2>
+                    <p>CSC VLE-দের কমিশন কীভাবে কাজ করে, আয় কী কী বিষয়ের উপর নির্ভর করে — সৎ প্রত্যাশাসহ বাংলায় গাইড।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="csc-commission" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="csc-commission">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+        </section>
+        <section class="blog-cat" id="cat-cybercafe">
+            <h2 class="cat-title">🖥️ সাইবার ক্যাফে টিপস</h2>
+            <p class="cat-desc">দোকান সাজানো, কাস্টমার আনা, ভুল এড়ানো</p>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/cyber-cafe-setup.html">
+                    <img src="assets/blog-thumbs/cyber-cafe-setup.jpg" alt="সাইবার ক্যাফে দোকান সাজানোর সম্পূর্ণ গাইড" class="card-thumb" loading="lazy">
+                    <span class="tag">সাইবার ক্যাফে</span>
+                    <h2>সাইবার ক্যাফে দোকান সাজানোর সম্পূর্ণ গাইড</h2>
+                    <p>সাইবার ক্যাফে খুলতে কী কী লাগবে? জায়গা, কম্পিউটার, প্রিন্টার, ল্যামিনেশন — দোকান সাজানোর A to Z গাইড বাংলায়।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="cyber-cafe-setup" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="cyber-cafe-setup">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/cyber-cafe-services.html">
+                    <img src="assets/blog-thumbs/cyber-cafe-services.jpg" alt="দোকানে কী কী সেবা রাখলে আয় বাড়বে" class="card-thumb" loading="lazy">
+                    <span class="tag">সাইবার ক্যাফে</span>
+                    <h2>দোকানে কী কী সেবা রাখলে আয় বাড়বে</h2>
+                    <p>সাইবার ক্যাফের আয় বাড়াতে কোন কোন সেবা রাখবেন? ফর্ম ফিলাপ, প্রিন্ট, টিকিট বুকিং সহ ১০+ লাভজনক সেবার তালিকা।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="cyber-cafe-services" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="cyber-cafe-services">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/cyber-cafe-mistakes.html">
+                    <img src="assets/blog-thumbs/cyber-cafe-mistakes.jpg" alt="২০২৬-২৭ সালে এই ভুলগুলো করলে কাস্টমার চলে যাবে" class="card-thumb" loading="lazy">
+                    <span class="tag">সাইবার ক্যাফে</span>
+                    <h2>২০২৬-২৭ সালে এই ভুলগুলো করলে কাস্টমার চলে যাবে</h2>
+                    <p>সাইবার ক্যাফে ব্যবসায় কোন ভুলগুলো কাস্টমার তাড়িয়ে দেয়? ২০২৬-২৭ সালের জন্য ৮টি মারাত্মক ভুল ও সমাধান।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="cyber-cafe-mistakes" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="cyber-cafe-mistakes">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/cyber-cafe-customers.html">
+                    <img src="assets/blog-thumbs/cyber-cafe-customers.jpg" alt="দোকানে কাস্টমার আনার ১০টি উপায়" class="card-thumb" loading="lazy">
+                    <span class="tag">সাইবার ক্যাফে</span>
+                    <h2>দোকানে কাস্টমার আনার ১০টি উপায়</h2>
+                    <p>সাইবার ক্যাফেতে কাস্টমার বাড়ানোর ১০টি কার্যকর উপায় — WhatsApp, পোস্টার, স্কিম বোর্ড সহ সহজ টিপস বাংলায়।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="cyber-cafe-customers" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="cyber-cafe-customers">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+            <div class="blog-card">
+                <a class="blog-card-link" href="blog/cyber-cafe-pricing.html">
+                    <img src="assets/blog-thumbs/cyber-cafe-pricing.jpg" alt="সঠিক দাম কীভাবে ঠিক করবেন: সাইবার ক্যাফে গাইড" class="card-thumb" loading="lazy">
+                    <span class="tag">সাইবার ক্যাফে</span>
+                    <h2>সঠিক দাম কীভাবে ঠিক করবেন: সাইবার ক্যাফে গাইড</h2>
+                    <p>সাইবার ক্যাফের সেবার দাম কীভাবে ঠিক করবেন? বাজার যাচাই, খরচের হিসাব ও স্বচ্ছ রেট চার্টের ৬টি নীতি।</p>
+                    <div class="meta">২৩ অক্টোবর ২০২৬ · <span class="read">পড়ুন →</span></div>
+                </a>
+                <div class="like-row">
+                    <button class="like-btn" data-like-id="cyber-cafe-pricing" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                    <span class="view-pill" data-view-id="cyber-cafe-pricing">👁️ <span class="view-count">0</span></span>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <script type="module" src="assets/site-likes.js"></script>
 
     <footer>
         <p>© 2026 <a href="index.html">DAFADAR ONLINE SEVA</a> — সম্পূর্ণ ফ্রি সেবা</p>
         <p style="margin-top:6px; font-size:12px;">এটি সরকারি ওয়েবসাইট নয়। তথ্য সরকারি ঘোষণা ও সংবাদ প্রতিবেদনের ভিত্তিতে।</p>
     </footer>
 
-    <script type="module" src="assets/site-likes.js"></script>
+    
 </body>
 </html>

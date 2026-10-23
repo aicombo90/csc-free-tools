@@ -372,6 +372,7 @@
         .home-blog-card h3 a { color: inherit; text-decoration: none; }
         .home-blog-card p { color: #5b6478; font-size: 14px; margin-bottom: 12px; }
         .home-blog-card .read { color: #057a55; font-weight: 700; font-size: 15px; text-decoration: none; }
+        .home-blog-card .card-thumb { width: 100%; border-radius: 10px; margin-bottom: 12px; }
         @media (max-width: 640px) { .home-blog-grid { grid-template-columns: 1fr; } }
         /* Category quick-nav cards */
         .cat-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 0 0 34px; }
@@ -1894,48 +1895,77 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
         <div class="tool-section" id="sec-blog">
             <span class="section-kicker">Blog</span>
             <h2 class="section-title">ব্লগ পড়ুন</h2>
-            <p class="section-subtitle">সরকারি প্রকল্পের যাচাই করা তথ্য ও গাইড</p>
+            <p class="section-subtitle">সরকারি প্রকল্প, চাকরি, CSC ও সাইবার ক্যাফে গাইড — যাচাই করা তথ্য</p>
             <div class="home-blog-grid">
                 <div class="home-blog-card">
+                    <img src="assets/blog-thumbs/farm-machinery-subsidy.jpg" alt="ফার্ম যন্ত্রপাতি ভর্তুকি ২০২৬-২৭: ৪ নভেম্বর ডেডলাইন!" class="card-thumb" loading="lazy">
+                    <span class="tag">সরকারি ভর্তুকি</span>
+                    <h3><a href="blog/farm-machinery-subsidy.html">ফার্ম যন্ত্রপাতি ভর্তুকি ২০২৬-২৭: ৪ নভেম্বর ডেডলাইন!</a></h3>
+                    <p>পশ্চিমবঙ্গে কৃষি যন্ত্রপাতিতে ৫০% পর্যন্ত ভর্তুকি। অনলাইন আবেদন ৪ নভেম্বর ২০২৬ পর্যন্ত। যোগ্যতা, কাগজপত্র ও আবেদন পদ্ধতি জানুন।</p>
+                    <div class="like-row">
+                        <button class="like-btn" data-like-id="farm-machinery-subsidy" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                        <span class="view-pill" data-view-id="farm-machinery-subsidy" data-no-count>👁️ <span class="view-count">0</span></span>
+                        <a class="read" href="blog/farm-machinery-subsidy.html" style="margin-left:auto;">পড়ুন →</a>
+                    </div>
+                </div>
+                <div class="home-blog-card">
+                    <img src="assets/blog-thumbs/sarkari-chakri-update.jpg" alt="সরকারি চাকরির অগ্রিম আপডেট: আসন্ন নিয়োগ ২০২৬" class="card-thumb" loading="lazy">
+                    <span class="tag">চাকরির আপডেট</span>
+                    <h3><a href="blog/sarkari-chakri-update.html">সরকারি চাকরির অগ্রিম আপডেট: আসন্ন নিয়োগ ২০২৬</a></h3>
+                    <p>WBPSC স্টেনোগ্রাফার ২৬৬ ও সাব-সার্ভেয়ার ১১৪৫ পদে আবেদন চলছে। ৫৪ দফতরে বড় নিয়োগের পরিকল্পনা — অফিসিয়াল লিংক সহ সম্পূর্ণ তথ্য।</p>
+                    <div class="like-row">
+                        <button class="like-btn" data-like-id="sarkari-chakri-update" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                        <span class="view-pill" data-view-id="sarkari-chakri-update" data-no-count>👁️ <span class="view-count">0</span></span>
+                        <a class="read" href="blog/sarkari-chakri-update.html" style="margin-left:auto;">পড়ুন →</a>
+                    </div>
+                </div>
+                <div class="home-blog-card">
+                    <img src="assets/blog-thumbs/bhagini-nivedita.jpg" alt="ভগিনী নিবেদিতা প্রকল্প: মেয়েরা পাবে ৫০,০০০ টাকা!" class="card-thumb" loading="lazy">
                     <span class="tag">নতুন প্রকল্প</span>
                     <h3><a href="blog/bhagini-nivedita.html">ভগিনী নিবেদিতা প্রকল্প: মেয়েরা পাবে ৫০,০০০ টাকা!</a></h3>
-                    <p>কারা পাবে, কত টাকা, কবে থেকে চালু — নতুন প্রকল্পের সম্পূর্ণ তথ্য।</p>
+                    <p>ভগিনী নিবেদিতা প্রকল্পে অবিবাহিত মেয়েদের উচ্চশিক্ষায় ৩ বছরে ৫০,০০০ টাকা। কারা পাবে, কবে চালু, আবেদন কবে — সম্পূর্ণ তথ্য বাংলায়।</p>
                     <div class="like-row">
-                        <button class="like-btn" data-like-id="bhagini-nivedita" aria-label="Like this article">👍 <span class="like-count">0</span></button>
+                        <button class="like-btn" data-like-id="bhagini-nivedita" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
                         <span class="view-pill" data-view-id="bhagini-nivedita" data-no-count>👁️ <span class="view-count">0</span></span>
                         <a class="read" href="blog/bhagini-nivedita.html" style="margin-left:auto;">পড়ুন →</a>
                     </div>
                 </div>
                 <div class="home-blog-card">
-                    <span class="tag">গাইড</span>
-                    <h3><a href="blog/annapurna-bhandar.html">অন্নপূর্ণা ভান্ডার: মাসে ৩,০০০ টাকা — সম্পূর্ণ গাইড</a></h3>
-                    <p>কারা পাবেন, টাকা না এলে কী করবেন, হেল্পলাইন নম্বর — এক জায়গায় সব তথ্য।</p>
+                    <img src="assets/blog-thumbs/csc-ki.jpg" alt="CSC কী? কমন সার্ভিস সেন্টার সম্পূর্ণ গাইড" class="card-thumb" loading="lazy">
+                    <span class="tag">CSC গাইড</span>
+                    <h3><a href="blog/csc-ki.html">CSC কী? কমন সার্ভিস সেন্টার সম্পূর্ণ গাইড</a></h3>
+                    <p>CSC অর্থাৎ Common Service Centre কী, VLE কারা, Digital Seva পোর্টাল কীভাবে কাজ করে — বাংলায় সহজ সম্পূর্ণ গাইড।</p>
                     <div class="like-row">
-                        <button class="like-btn" data-like-id="annapurna-bhandar" aria-label="Like this article">👍 <span class="like-count">0</span></button>
-                        <span class="view-pill" data-view-id="annapurna-bhandar" data-no-count>👁️ <span class="view-count">0</span></span>
-                        <a class="read" href="blog/annapurna-bhandar.html" style="margin-left:auto;">পড়ুন →</a>
+                        <button class="like-btn" data-like-id="csc-ki" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                        <span class="view-pill" data-view-id="csc-ki" data-no-count>👁️ <span class="view-count">0</span></span>
+                        <a class="read" href="blog/csc-ki.html" style="margin-left:auto;">পড়ুন →</a>
                     </div>
                 </div>
                 <div class="home-blog-card">
-                    <span class="tag">আপডেট</span>
-                    <h3><a href="blog/krishak-bandhu.html">কৃষকবন্ধুর টাকা কবে ঢুকবে? সত্যি অবস্থা জানুন</a></h3>
-                    <p>খরিফ ২০২৬-এর টাকার সরকারি ঘোষণা এখনো হয়নি। গুজব বনাম সত্যি।</p>
+                    <img src="assets/blog-thumbs/cyber-cafe-mistakes.jpg" alt="২০২৬-২৭ সালে এই ভুলগুলো করলে কাস্টমার চলে যাবে" class="card-thumb" loading="lazy">
+                    <span class="tag">সাইবার ক্যাফে</span>
+                    <h3><a href="blog/cyber-cafe-mistakes.html">২০২৬-২৭ সালে এই ভুলগুলো করলে কাস্টমার চলে যাবে</a></h3>
+                    <p>সাইবার ক্যাফে ব্যবসায় কোন ভুলগুলো কাস্টমার তাড়িয়ে দেয়? ২০২৬-২৭ সালের জন্য ৮টি মারাত্মক ভুল ও সমাধান।</p>
                     <div class="like-row">
-                        <button class="like-btn" data-like-id="krishak-bandhu" aria-label="Like this article">👍 <span class="like-count">0</span></button>
-                        <span class="view-pill" data-view-id="krishak-bandhu" data-no-count>👁️ <span class="view-count">0</span></span>
-                        <a class="read" href="blog/krishak-bandhu.html" style="margin-left:auto;">পড়ুন →</a>
+                        <button class="like-btn" data-like-id="cyber-cafe-mistakes" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                        <span class="view-pill" data-view-id="cyber-cafe-mistakes" data-no-count>👁️ <span class="view-count">0</span></span>
+                        <a class="read" href="blog/cyber-cafe-mistakes.html" style="margin-left:auto;">পড়ুন →</a>
                     </div>
                 </div>
                 <div class="home-blog-card">
+                    <img src="assets/blog-thumbs/pmkisan-wb-topup.jpg" alt="PM কিসানের উপরে রাজ্যের ₹৩,০০০: ঘোষণা, এখনো চালু নয়" class="card-thumb" loading="lazy">
                     <span class="tag">আপডেট</span>
-                    <h3><a href="blog/pm-kisan-24.html">PM কিসান ২৪তম কিস্তি: ২,০০০ টাকা কবে আসবে?</a></h3>
-                    <p>২৪তম কিস্তির তারিখ এখনো ঘোষণা হয়নি। "৪,০০০ টাকা" দাবি ভুয়ো।</p>
+                    <h3><a href="blog/pmkisan-wb-topup.html">PM কিসানের উপরে রাজ্যের ₹৩,০০০: ঘোষণা, এখনো চালু নয়</a></h3>
+                    <p>PM কিসানের ₹৬,০০০-এর উপরে রাজ্য দেবে বছরে আরও ₹৩,০০০। ঘোষণা হয়েছে, কিন্তু এখনো চালু হয়নি — সত্যি অবস্থা জানুন।</p>
                     <div class="like-row">
-                        <button class="like-btn" data-like-id="pm-kisan-24" aria-label="Like this article">👍 <span class="like-count">0</span></button>
-                        <span class="view-pill" data-view-id="pm-kisan-24" data-no-count>👁️ <span class="view-count">0</span></span>
-                        <a class="read" href="blog/pm-kisan-24.html" style="margin-left:auto;">পড়ুন →</a>
+                        <button class="like-btn" data-like-id="pmkisan-wb-topup" aria-label="Love this article">❤️ <span class="like-count">0</span></button>
+                        <span class="view-pill" data-view-id="pmkisan-wb-topup" data-no-count>👁️ <span class="view-count">0</span></span>
+                        <a class="read" href="blog/pmkisan-wb-topup.html" style="margin-left:auto;">পড়ুন →</a>
                     </div>
                 </div>
+            </div>
+            <div style="text-align:center; margin-top:18px;">
+                <a href="blog.html" class="read" style="font-size:17px;">সব ২২টা ব্লগ দেখুন →</a>
             </div>
         </div>
         <div class="tool-section" id="sec-guides">
