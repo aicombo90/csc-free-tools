@@ -5960,10 +5960,14 @@ header .logo { gap: 10px; align-items: center; }
 .youtube-notice-bar a { color: #2c3438 !important; }
 .header-utility { background: #232a2e !important; }
 /* Mockup hero (user 2026-10-24): centered headline + subtitle + category icon row; old hero buttons/love/trust rows hidden (HTML kept, reversible) */
-.hero-new-inner { justify-content: center !important; text-align: center; padding: 56px 5% 48px !important; background: linear-gradient(115deg, #f2f3f5 0%, #d9dbdf 50%, #3a6b73 100%) !important; }
+.hero-new-inner { justify-content: center !important; text-align: center; padding: 56px 5% 48px !important; background: linear-gradient(115deg, #d5d9dc 0%, #d4d8db 45%, #9aadb1 62%, #597c82 80%, #2f646c 100%) !important; }
+/* Faint geometric facets on the hero (mockup's left side is patterned grey, not flat white) */
+.hero-new-inner::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background-image: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.16) 40.5%, transparent 41%), linear-gradient(60deg, transparent 62%, rgba(0,0,0,.04) 62.5%, transparent 63%), linear-gradient(160deg, transparent 28%, rgba(255,255,255,.12) 28.5%, transparent 29%); }
 .hero-new-content { max-width: 860px !important; margin: 0 auto !important; text-align: center !important; }
 .hero-new-content h1 { font-size: 44px !important; }
-.hero-new-content p { margin-bottom: 30px !important; }
+.hero-new-content p { margin-bottom: 30px !important; color: #2f3538 !important; }
+.hero-cat-row .hero-cat-ic { border-color: #c3c9cd !important; }
+.hero-cat-row .hero-cat-ic i { color: #1f2a2e !important; }
 .hero-new-btns, .hero-love-wrap, .hero-new-trust { display: none !important; }
 .hero-cat-row { display: flex; justify-content: center; gap: 34px; flex-wrap: wrap; margin-top: 6px; }
 .hero-cat-row a { display: flex; flex-direction: column; align-items: center; gap: 8px; color: #1a1a1a !important; text-decoration: none; font-size: 13px; font-weight: 700; }
