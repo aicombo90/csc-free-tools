@@ -148,8 +148,8 @@
 }
     </script>
 
-    <link rel="icon" type="image/png" href="assets/favicon-64.png">
-    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/jpeg" href="assets/channel-logo.jpg">
+    <link rel="apple-touch-icon" href="assets/channel-logo.jpg">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
@@ -1102,6 +1102,8 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
 @media(max-width:520px){.gv-item{flex-wrap:wrap;}.gv-actions{max-width:none;width:100%;justify-content:flex-start;}}
 .gv-center .gv-link{font-size:13px}
 </style>
+
+
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -1150,7 +1152,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
 
     <header>
         <div class="navbar">
-            <div class="logo"><i class="fa-solid fa-laptop-code"></i> <span class="logo-main">DAFADAR ONLINE SEVA</span></div>
+            <div class="logo"><img src="assets/channel-logo.jpg" alt="Dafadar Online Seva logo" class="site-logo-img"> <span class="logo-main">DAFADAR ONLINE SEVA</span></div>
             <nav class="header-nav">
                 <a href="#toolsGrid">টুলস</a>
                 <a href="blog.html">ব্লগ</a>
@@ -1389,10 +1391,10 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
             <div class="stat"><span class="stat-num" style="font-size:26px;">🔒</span><span class="stat-label">No Sign-up Needed</span></div>
         </div>
         <div class="why-strip">
-            <div class="why-item"><i class="fa-solid fa-bolt"></i><b>Lightning Fast</b><span>Work done in seconds, right in your browser</span></div>
-            <div class="why-item"><i class="fa-solid fa-shield-halved"></i><b>100% Private</b><span>Files never leave your device</span></div>
-            <div class="why-item"><i class="fa-solid fa-indian-rupee-sign"></i><b>Fully Free</b><span>No hidden charges, ever</span></div>
-            <div class="why-item"><i class="fa-solid fa-mobile-screen"></i><b>Mobile Friendly</b><span>Perfect on phone & computer</span></div>
+            <div class="why-item"><i class="fa-solid fa-bolt"></i><b>বিজলি গতি</b></div>
+            <div class="why-item"><i class="fa-solid fa-shield-halved"></i><b>শতভাগ ব্যক্তিগত</b></div>
+            <div class="why-item"><i class="fa-solid fa-indian-rupee-sign"></i><b>সম্পূর্ণ বিনামূল্যে</b></div>
+            <div class="why-item"><i class="fa-solid fa-mobile-screen"></i><b>মোবাইল বান্ধব</b></div>
         </div>
         <div class="field-wrap">
         <div class="pollen-field" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -2079,7 +2081,35 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
             </div>
         </div>
 
-        <div class="faq-section">
+        
+<!-- BOOKING-SECTION-START -->
+<div class="tool-section booking-section" id="sec-booking">
+  <span class="section-kicker">Service Booking</span>
+  <h2 class="section-title">সার্ভিস বুকিং ও অনুরোধ</h2>
+  <p class="section-subtitle">তারিখ বেছে নিন, ফর্মটি পূরণ করুন — আপনার অনুরোধ WhatsApp-এ আমাদের কাছে পৌঁছে যাবে</p>
+  <div class="booking-grid">
+    <div class="book-card">
+      <div class="book-cal-head"><button type="button" class="book-nav" onclick="bookMove(-1)" aria-label="Previous month">&#8249;</button><b id="bookMonthLabel"></b><button type="button" class="book-nav" onclick="bookMove(1)" aria-label="Next month">&#8250;</button></div>
+      <div class="book-week"><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span></div>
+      <div class="book-days" id="bookDays"></div>
+      <p class="book-date-note">নির্বাচিত তারিখ: <b id="bookDateText">কোনো তারিখ বাছা হয়নি</b></p>
+    </div>
+    <div class="book-card">
+      <form id="bookForm">
+        <div class="book-field"><label for="bookName">নাম</label><input id="bookName" type="text" placeholder="আপনার নাম" required></div>
+        <div class="book-field"><label for="bookMobile">মোবাইল নম্বর</label><input id="bookMobile" type="tel" inputmode="numeric" placeholder="10 ডিজিটের মোবাইল নম্বর" required></div>
+        <div class="book-field"><label for="bookService">সেবা বেছে নিন</label><select id="bookService" required>
+          <option value="" disabled selected>সেবা বেছে নিন</option>
+          <option>Passport Photo</option><option>PDF Tools (Compress / Convert)</option><option>Background Remover</option><option>Biodata Maker</option><option>CSC Service</option><option>সরকারি প্রকল্প সাহায্য</option><option>অন্যান্য</option>
+        </select></div>
+        <button type="submit" class="book-submit">জমা দিন</button>
+        <p id="bookMsg"></p>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- BOOKING-SECTION-END -->
+<div class="faq-section">
             <span class="section-kicker">FAQ</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <div class="faq-layout">
@@ -5763,5 +5793,142 @@ document.addEventListener('click', function(e){
 })();
 </script>
 <script type="module" src="assets/site-likes.js"></script>
+
+<!-- BOOKING-SCRIPT-START -->
+<script>
+var bookCur = new Date(); bookCur.setDate(1);
+var bookSel = null;
+function bookRenderCal(){
+  var y = bookCur.getFullYear(), m = bookCur.getMonth();
+  var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('bookMonthLabel').textContent = monthNames[m] + ' ' + y;
+  var first = new Date(y, m, 1);
+  var startDay = (first.getDay() + 6) % 7;
+  var daysIn = new Date(y, m + 1, 0).getDate();
+  var today = new Date(); today.setHours(0,0,0,0);
+  var h = '';
+  for (var i = 0; i < startDay; i++) h += '<span></span>';
+  for (var d = 1; d <= daysIn; d++){
+    var dt = new Date(y, m, d);
+    var cls = 'book-day';
+    if (dt.getTime() === today.getTime()) cls += ' today';
+    if (dt < today) cls += ' dis';
+    if (bookSel && dt.getTime() === bookSel.getTime()) cls += ' sel';
+    if (dt < today) h += '<span class="' + cls + '">' + d + '</span>';
+    else h += '<button type="button" class="' + cls + '" onclick="bookPick(' + y + ',' + m + ',' + d + ')">' + d + '</button>';
+  }
+  document.getElementById('bookDays').innerHTML = h;
+}
+function bookPick(y, m, d){
+  bookSel = new Date(y, m, d);
+  var months = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+  document.getElementById('bookDateText').textContent = d + ' ' + months[m] + ' ' + y;
+  bookRenderCal();
+}
+function bookMove(dir){ bookCur.setMonth(bookCur.getMonth() + dir); bookRenderCal(); }
+document.getElementById('bookForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var name = document.getElementById('bookName').value.trim();
+  var raw = document.getElementById('bookMobile').value.replace(/\D/g, '');
+  if (raw.length === 12 && raw.indexOf('91') === 0) raw = raw.slice(2);
+  if (raw.length === 11 && raw.charAt(0) === '0') raw = raw.slice(1);
+  var svc = document.getElementById('bookService').value;
+  var msgEl = document.getElementById('bookMsg');
+  if (!name || raw.length !== 10 || !svc){ msgEl.style.color = '#dc2626'; msgEl.textContent = 'অনুগ্রহ করে নাম, 10 ডিজিটের মোবাইল নম্বর ও সেবা ঠিকভাবে দিন।'; return; }
+  if (!bookSel){ msgEl.style.color = '#dc2626'; msgEl.textContent = 'অনুগ্রহ করে ক্যালেন্ডার থেকে একটি তারিখ বেছে নিন।'; return; }
+  var months = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+  var dateStr = bookSel.getDate() + ' ' + months[bookSel.getMonth()] + ' ' + bookSel.getFullYear();
+  var text = 'Service Request - DAFADAR ONLINE SEVA\nনাম: ' + name + '\nমোবাইল: ' + raw + '\nসেবা: ' + svc + '\nতারিখ: ' + dateStr;
+  window.open('https://wa.me/918906139223?text=' + encodeURIComponent(text), '_blank');
+  msgEl.style.color = '#059669'; msgEl.textContent = 'ধন্যবাদ! আপনার অনুরোধ WhatsApp-এ পাঠানো হচ্ছে।';
+  if (typeof showToast === 'function') showToast('অনুরোধ পাঠানো হচ্ছে...', 'success');
+});
+document.addEventListener('keydown', function(e){
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k'){
+    var sb = document.getElementById('searchBar');
+    if (sb){ e.preventDefault(); sb.focus(); }
+  }
+});
+bookRenderCal();
+</script>
+<!-- BOOKING-SCRIPT-END -->
+<style id="mockup-redesign">
+/* MOCKUP DESIGN (user-approved 2026-10-24): clean light gradient bg, navy header, light hero, white tool cards, no banners */
+body:not([data-theme="dark"]) { background-color: #eef2ff !important; background-image: linear-gradient(180deg, #eef2ff 0%, #f5f3ff 42%, #ecfdf5 100%) !important; background-size: auto !important; background-attachment: scroll !important; }
+body[data-theme="dark"] { background-color: #0f172a !important; background-image: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%) !important; background-size: auto !important; background-attachment: scroll !important; }
+.field-wrap { background: none !important; background-image: none !important; }
+.pollen-field { display: none !important; }
+header { background: linear-gradient(120deg, #1E1B4B 0%, #2E1065 100%) !important; border-bottom: 3px solid #F97316 !important; }
+header .navbar { background: transparent !important; }
+.site-logo-img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid #ffd76a; flex-shrink: 0; }
+header .logo { gap: 10px; align-items: center; }
+/* Trust strip: one white bar, not 4 separate cards */
+.why-strip { background: #fff !important; border: 1px solid #e8ecf5; border-radius: 16px; box-shadow: 0 6px 20px rgba(30,27,75,.08); padding: 16px 10px !important; }
+.why-item { background: transparent !important; border: none !important; box-shadow: none !important; padding: 8px 6px !important; }
+.why-item:hover { transform: none !important; box-shadow: none !important; }
+.why-item i { font-size: 22px !important; margin-bottom: 6px !important; }
+.why-item b { font-size: 14px !important; }
+/* Light hero (mockup): no photo bg, dark text */
+.hero-new-inner { background: linear-gradient(115deg, #ffffff 0%, #eef4f2 55%, #bfe3dc 100%) !important; box-shadow: 0 24px 60px rgba(15,23,42,.12) !important; }
+.hero-new-content h1 { color: #1E1B4B !important; text-shadow: none !important; }
+.hero-new-content h1 .hero-hl { color: #0D9488 !important; }
+.hero-new-content p { color: #475569 !important; }
+.hero-new-trust span { background: rgba(255,255,255,.9) !important; border-color: #e2e8f0 !important; color: #1E1B4B !important; }
+.hero-new-trust span i { color: #0D9488 !important; }
+.hero-love-btn { background: rgba(255,90,120,.12) !important; border-color: rgba(255,90,120,.6) !important; color: #be123c !important; }
+.hero-love-btn.is-liked { background: rgba(255,45,85,.20) !important; }
+.hero-love-text { color: #be123c !important; }
+.hero-views { background: rgba(255,255,255,.9) !important; border-color: #e2e8f0 !important; color: #334155 !important; }
+/* Tool cards: white, no banner thumbnails, section-coloured icons + buttons */
+#main-content .tools-grid .tool-card:not(.news-card) { background: #fff !important; color: var(--ink-soft) !important; border: 1px solid #e8ecf5 !important; box-shadow: 0 2px 10px rgba(30,50,120,.06) !important; }
+#main-content .tools-grid .tool-card:not(.news-card) h3 { color: #1a2340 !important; }
+#main-content .tools-grid .tool-card:not(.news-card) p { color: #64748b !important; }
+#main-content .tools-grid .tool-card:not(.news-card) .tool-tag { color: #4F46E5 !important; background: #eef2ff !important; }
+#main-content .tools-grid .tool-banner, #main-content .tools-grid .tool-thumb { display: none !important; }
+#main-content .tools-grid .tool-card:not(.news-card) .tool-icon { color: #fff !important; box-shadow: 0 6px 14px rgba(15,23,42,.15) !important; }
+#main-content #sec-photo .tool-card .tool-icon { background: linear-gradient(135deg,#0D9488,#059669) !important; }
+#main-content #sec-docs .tool-card .tool-icon { background: linear-gradient(135deg,#8B5CF6,#6D28D9) !important; }
+#main-content #sec-govt .tool-card .tool-icon { background: linear-gradient(135deg,#F97316,#EA580C) !important; }
+#main-content #sec-utils .tool-card .tool-icon { background: linear-gradient(135deg,#0D9488,#059669) !important; }
+#main-content #sec-photo .tool-card .tOpenBtn { background: linear-gradient(135deg,#0D9488,#059669) !important; color: #fff !important; border: none !important; }
+#main-content #sec-docs .tool-card .tOpenBtn { background: linear-gradient(135deg,#8B5CF6,#6D28D9) !important; color: #fff !important; border: none !important; }
+#main-content #sec-govt .tool-card .tOpenBtn { background: linear-gradient(135deg,#F97316,#EA580C) !important; color: #fff !important; border: none !important; }
+#main-content #sec-utils .tool-card .tOpenBtn { background: linear-gradient(135deg,#0D9488,#059669) !important; color: #fff !important; border: none !important; }
+#main-content #sec-vault .tool-card .tOpenBtn, #main-content #gamesSection .tool-card .tOpenBtn { background: linear-gradient(135deg,#4F46E5,#7C3AED) !important; color: #fff !important; border: none !important; }
+#sec-photo .section-kicker { background: linear-gradient(135deg,#0D9488,#059669) !important; }
+#sec-docs .section-kicker { background: linear-gradient(135deg,#8B5CF6,#6D28D9) !important; }
+#sec-govt .section-kicker { background: linear-gradient(135deg,#F97316,#EA580C) !important; }
+#sec-utils .section-kicker { background: linear-gradient(135deg,#0D9488,#059669) !important; }
+/* Mockup layout: Photo + Docs sections side by side on desktop */
+@media (min-width: 1000px) {
+  #sec-photo, #sec-docs { width: calc(50% - 12px); }
+  #sec-photo { float: left; }
+  #sec-docs { float: right; }
+  #sec-photo .tools-grid, #sec-docs .tools-grid { grid-template-columns: 1fr !important; }
+  #sec-govt { clear: both; }
+}
+/* Booking section (kept per user 2026-10-24) */
+.booking-section { margin-top: 55px; }
+.booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; }
+.book-card { background: var(--surface); border: 1px solid var(--border-soft); border-radius: 16px; padding: 22px; box-shadow: 0 6px 20px rgba(30,27,75,.08); }
+.book-cal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.book-cal-head b { font-size: 17px; color: var(--blue-deep); }
+.book-nav { border: 1px solid var(--border-soft); background: #fff; border-radius: 50%; width: 34px; height: 34px; cursor: pointer; font-size: 18px; line-height: 1; }
+.book-week, .book-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
+.book-week span { font-size: 12px; font-weight: 700; color: var(--muted); padding: 4px 0; }
+.book-day { border: 1px solid transparent; background: #f1f5f9; border-radius: 10px; padding: 9px 0; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+.book-day:hover { border-color: #4F46E5; }
+.book-day.sel { background: linear-gradient(135deg,#4F46E5,#7C3AED); color: #fff; }
+.book-day.today { border-color: #F97316; }
+.book-day.dis { opacity: .35; cursor: not-allowed; background: #f8fafc; }
+.book-field { margin-bottom: 14px; }
+.book-field label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 6px; color: var(--blue-deep); }
+.book-field input, .book-field select { width: 100%; padding: 11px 13px; border: 1px solid var(--border-soft); border-radius: 10px; font-size: 15px; background: #fff; color: #111; }
+.book-submit { width: 100%; padding: 13px; border: none; border-radius: 12px; font-size: 16px; font-weight: 800; color: #fff; background: linear-gradient(135deg,#F97316,#EA580C); cursor: pointer; box-shadow: 0 8px 20px rgba(249,115,22,.35); }
+.book-date-note { font-size: 14px; color: var(--muted); margin-top: 14px; }
+.book-date-note b { color: #4F46E5; }
+#bookMsg { font-size: 14px; font-weight: 600; margin-top: 12px; min-height: 20px; }
+@media (max-width: 768px) { .booking-grid { grid-template-columns: 1fr; } }
+</style>
 </body>
 </html>
