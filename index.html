@@ -357,6 +357,29 @@
         @media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; } .hero-visual { display: none; } .hero-content { text-align: center; padding-bottom: 40px; } .hero-trust-row { justify-content: center; } }
 
         .container { max-width: 1200px; margin: 45px auto; padding: 0 20px; }
+        /* ---------- Grass-field background (below why-strip, never ends on scroll) ---------- */
+        .field-wrap { position: relative; background-color: #5a8f3c; background-image: linear-gradient(rgba(255,255,255,0.20), rgba(255,255,255,0.20)), url('assets/grass-field.jpg'); background-position: center center, center center; background-size: auto, cover; background-repeat: no-repeat, no-repeat; background-attachment: fixed, fixed; margin: 0 -20px; padding: 28px 20px 44px; }
+        @media (min-width: 1240px) { .field-wrap { margin-left: calc((1200px - 100vw) / 2); margin-right: calc((1200px - 100vw) / 2); padding-left: calc((100vw - 1200px) / 2 + 20px); padding-right: calc((100vw - 1200px) / 2 + 20px); } }
+        .field-wrap > :not(.pollen-field) { position: relative; z-index: 1; }
+        .pollen-field { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+        .pollen-field i { position: absolute; display: block; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,220,0.95), rgba(255,255,200,0.35) 60%, transparent 70%); animation: pollenFloat 7s ease-in-out infinite; }
+        @keyframes pollenFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+        .pollen-field i:nth-child(1) { width: 12px; height: 12px; top: 2%; left: 6%; opacity: .8; animation-duration: 6s; }
+        .pollen-field i:nth-child(2) { width: 8px; height: 8px; top: 9%; left: 88%; opacity: .6; animation-duration: 8s; animation-delay: 1s; }
+        .pollen-field i:nth-child(3) { width: 14px; height: 14px; top: 15%; left: 42%; opacity: .7; animation-duration: 7s; animation-delay: .5s; }
+        .pollen-field i:nth-child(4) { width: 9px; height: 9px; top: 22%; left: 15%; opacity: .6; animation-duration: 9s; }
+        .pollen-field i:nth-child(5) { width: 11px; height: 11px; top: 30%; left: 78%; opacity: .8; animation-duration: 6.5s; animation-delay: 1.5s; }
+        .pollen-field i:nth-child(6) { width: 8px; height: 8px; top: 38%; left: 55%; opacity: .5; animation-duration: 8.5s; animation-delay: .8s; }
+        .pollen-field i:nth-child(7) { width: 13px; height: 13px; top: 45%; left: 25%; opacity: .7; animation-duration: 7.5s; }
+        .pollen-field i:nth-child(8) { width: 9px; height: 9px; top: 52%; left: 92%; opacity: .6; animation-duration: 6s; animation-delay: 2s; }
+        .pollen-field i:nth-child(9) { width: 12px; height: 12px; top: 60%; left: 10%; opacity: .8; animation-duration: 8s; animation-delay: .3s; }
+        .pollen-field i:nth-child(10) { width: 8px; height: 8px; top: 67%; left: 65%; opacity: .5; animation-duration: 9s; animation-delay: 1.2s; }
+        .pollen-field i:nth-child(11) { width: 14px; height: 14px; top: 74%; left: 35%; opacity: .7; animation-duration: 7s; }
+        .pollen-field i:nth-child(12) { width: 10px; height: 10px; top: 81%; left: 85%; opacity: .6; animation-duration: 6.5s; animation-delay: 1.8s; }
+        .pollen-field i:nth-child(13) { width: 9px; height: 9px; top: 88%; left: 48%; opacity: .6; animation-duration: 8.5s; animation-delay: .6s; }
+        .pollen-field i:nth-child(14) { width: 12px; height: 12px; top: 94%; left: 18%; opacity: .8; animation-duration: 7.5s; animation-delay: 1s; }
+        .pollen-field i:nth-child(15) { width: 8px; height: 8px; top: 12%; left: 68%; opacity: .5; animation-duration: 9.5s; animation-delay: 2.2s; }
+        .pollen-field i:nth-child(16) { width: 11px; height: 11px; top: 55%; left: 40%; opacity: .7; animation-duration: 6.8s; animation-delay: .9s; }
         .section-kicker { display:inline-block; color:#fff; font-size:12px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; margin-bottom:10px; padding:6px 14px; border-radius:20px; background:linear-gradient(135deg,var(--blue),#7c3aed); box-shadow:0 4px 12px rgba(79,70,229,.3); }
         .section-title { position: relative; font-size:24px; color:var(--blue-deep); margin-bottom:8px; padding-left:16px; font-weight:800; letter-spacing:-.3px; }
         .section-title::before { content:''; position:absolute; left:0; top:4px; bottom:4px; width:5px; border-radius:3px; background:linear-gradient(180deg,var(--blue),#7c3aed); }
@@ -413,6 +436,8 @@
             .admin-btn, .whatsapp-float-btn, .scroll-top-btn, .toast-container, .modal, .info-feedback-section,
             .faq-section, .btn, .combo-btn, .generate-btn, .skip-link { display: none !important; }
             body { background: #fff !important; color: #000 !important; background-image: none !important; }
+            .field-wrap { background: none !important; background-image: none !important; }
+            .pollen-field { display: none !important; }
             .tool-card { box-shadow: none !important; border: 1px solid #ccc !important; break-inside: avoid; }
         }
         .tool-card { position: relative; background-color: var(--surface); border-radius: 20px; padding: 26px; border: 1px solid var(--border-soft); display: flex; flex-direction: column; gap: 18px; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; box-shadow: 0 2px 8px rgba(20,26,48,0.05); overflow: hidden; }
@@ -1369,6 +1394,8 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
             <div class="why-item"><i class="fa-solid fa-indian-rupee-sign"></i><b>Fully Free</b><span>No hidden charges, ever</span></div>
             <div class="why-item"><i class="fa-solid fa-mobile-screen"></i><b>Mobile Friendly</b><span>Perfect on phone & computer</span></div>
         </div>
+        <div class="field-wrap">
+        <div class="pollen-field" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <span class="section-kicker">Our Services</span>
         <h2 class="section-title" id="secTitle">Our Digital Services</h2>
         <p class="section-subtitle">Click any tool below and start using it instantly</p>
@@ -2132,6 +2159,7 @@ body[data-theme="dark"] .yt-tutorial-box{border-color:#3b5a9e;background:#101a30
                     <button type="submit" class="submit-btn" id="fBtn">Submit</button>
                 </form>
             </div>
+        </div>
         </div>
     </main>
 
